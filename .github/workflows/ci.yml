@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm --filter @fastlab-ai/design-editor typecheck
+      - name: Lint
+        run: pnpm --filter @fastlab-ai/design-editor lint || true
+      - name: Test
+        run: pnpm --filter @fastlab-ai/design-editor test
+      - name: Build package
+        run: pnpm --filter @fastlab-ai/design-editor build
+      - name: Size check
+        run: pnpm --filter @fastlab-ai/design-editor size
+      - name: Build examples
+        run: |
+          pnpm --filter example-vite-react build
+          pnpm --filter example-custom-providers build
+          pnpm --filter example-nextjs-app-router build
+          pnpm --filter example-nextjs-pages-router build

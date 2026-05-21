@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Editor entry (gzipped)",
+    "path": "dist/index.js",
+    "limit": "150 KB",
+    "ignore": ["react", "react-dom", "@imgly/background-removal", "fabric"]
+  }
+]

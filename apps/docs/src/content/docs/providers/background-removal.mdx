@@ -1,0 +1,45 @@
+---
+title: Background Removal Provider
+description: Plug in your own background-removal backend.
+---
+
+## Interface
+
+```ts
+interface BackgroundRemovalProvider {
+  remove(
+    input: string | Blob,
+    opts?: { signal?: AbortSignal; onProgress?: (pct: number) => void },
+  ): Promise<Blob>
+}
+```
+
+## Default
+
+`createImglyBackgroundRemoval()` — lazy-imports `@imgly/background-removal`
+(an optional peer dep) and runs entirely in the browser. If the peer dep
+isn't installed, the provider throws on first use.
+
+```bash
+npm install @imgly/background-removal
+```
+
+## Example: server-side service
+
+```ts
+import type { BackgroundRemovalProvider } from '@fastlab-ai/design-editor'
+
+export function createServerBgRemoval(): BackgroundRemovalProvider {
+  return {
+    async remove(input) {
+      const blob = typeof input === 'string'
+        ? await fetch(input).then((r) => r.blob())
+        : input
+      const fd = new FormData()
+      fd.append('image', blob)
+      const r = await fetch('/api/bg-remove', { method: 'POST', body: fd })
+      return r.blob()
+    },
+  }
+}
+```

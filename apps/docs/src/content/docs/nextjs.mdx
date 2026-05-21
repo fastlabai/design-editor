@@ -1,0 +1,63 @@
+---
+title: Next.js
+description: Use the editor with Next.js App Router or Pages Router.
+---
+
+The editor is client-only — it manipulates `<canvas>` and uses browser APIs.
+
+## App Router
+
+```tsx
+// app/editor/page.tsx
+import { DesignEditor } from '@fastlab-ai/design-editor'
+import '@fastlab-ai/design-editor/theme.css'
+
+export default function Page() {
+  return (
+    <main style={{ height: '100vh' }}>
+      <DesignEditor />
+    </main>
+  )
+}
+```
+
+The package marks its components with `'use client'`, so App Router treats
+this correctly with no extra config.
+
+## Pages Router
+
+```tsx
+// pages/editor.tsx
+import dynamic from 'next/dynamic'
+
+const DesignEditor = dynamic(
+  () => import('@fastlab-ai/design-editor').then((m) => m.DesignEditor),
+  { ssr: false },
+)
+
+export default function Editor() {
+  return (
+    <div style={{ height: '100vh' }}>
+      <DesignEditor />
+    </div>
+  )
+}
+```
+
+## SSR-safe imports
+
+Type-only imports and pure-data utilities are SSR-safe and can be used in
+`app/api/*` routes or `getServerSideProps`:
+
+```ts
+import type { IScene, MediaProvider } from '@fastlab-ai/design-editor'
+```
+
+## CSS
+
+Import the theme CSS once in a Server Component or in `globals.css`:
+
+```ts
+// app/layout.tsx
+import '@fastlab-ai/design-editor/theme.css'
+```

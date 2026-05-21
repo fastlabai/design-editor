@@ -1,0 +1,53 @@
+---
+title: Font Provider
+description: Wire up custom fonts.
+---
+
+## Interface
+
+```ts
+interface FontProvider {
+  list(opts?: { search?: string; signal?: AbortSignal }): Promise<FontDescriptor[]>
+  load(family: string, opts?: { weight?: number; style?: string }): Promise<void>
+}
+
+interface FontDescriptor {
+  family: string
+  weights?: number[]
+  styles?: ('normal' | 'italic')[]
+  category?: 'serif' | 'sans-serif' | 'display' | 'handwriting' | 'monospace'
+  previewUrl?: string
+}
+```
+
+## Default
+
+`createGoogleFontsProvider()` — lists the 32 most common Google Fonts and
+injects `<link rel=stylesheet>` tags on demand.
+
+## Example: self-hosted fonts
+
+```ts
+import type { FontProvider } from '@fastlab-ai/design-editor'
+
+const MY_FONTS = [
+  { family: 'Inter', category: 'sans-serif' as const },
+  { family: 'JetBrains Mono', category: 'monospace' as const },
+]
+
+export function createSelfHostedFontProvider(): FontProvider {
+  return {
+    async list() {
+      return MY_FONTS
+    },
+    async load(family) {
+      const url = `/fonts/${family.replace(/\s+/g, '-')}.css`
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      document.head.appendChild(link)
+      await document.fonts.ready
+    },
+  }
+}
+```

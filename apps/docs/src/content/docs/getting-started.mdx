@@ -1,0 +1,61 @@
+---
+title: Getting Started
+description: Install @fastlab-ai/design-editor and ship an image editor in 5 minutes.
+---
+
+## Install
+
+```bash
+npm install @fastlab-ai/design-editor
+# optional: enables in-browser background removal
+npm install @imgly/background-removal
+```
+
+`react` and `react-dom` 18+ are peer dependencies.
+
+## Use
+
+```tsx
+import { DesignEditor } from '@fastlab-ai/design-editor'
+import '@fastlab-ai/design-editor/theme.css'
+
+export default function App() {
+  return <DesignEditor />
+}
+```
+
+That's it. The editor uses sensible defaults: `localStorage` for autosave,
+Google Fonts for fonts, `@imgly/background-removal` for background removal
+(if installed), and an empty Library panel (configure
+[`mediaProvider`](/design-editor/providers/media) to enable).
+
+## Customizing
+
+Pass props to wire host integrations:
+
+```tsx
+<DesignEditor
+  mediaProvider={createMyMediaProvider()}
+  fontProvider={createMyFontProvider()}
+  onExport={async (blob) => uploadToS3(blob)}
+  onBack={() => router.push('/dashboard')}
+/>
+```
+
+## Theming
+
+The package ships a CSS file with theme tokens you can override:
+
+```css
+:root {
+  --de-color-primary: #ec4899;
+  --de-color-bg: #0f172a;
+  --de-color-fg: #fafafa;
+}
+```
+
+## Next steps
+
+- [Plug in your own media library](/design-editor/providers/media)
+- [Wire up custom fonts](/design-editor/providers/fonts)
+- [Next.js App Router guide](/design-editor/nextjs)

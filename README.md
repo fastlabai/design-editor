@@ -1,26 +1,66 @@
 # @fastlab-ai/design-editor
 
-Open-source image design editor for React and Next.js. Status: under construction.
+[![npm version](https://img.shields.io/npm/v/@fastlab-ai/design-editor.svg)](https://www.npmjs.com/package/@fastlab-ai/design-editor)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/fastlabai/design-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/fastlabai/design-editor/actions/workflows/ci.yml)
 
-## Installation
+An open-source image design editor for React and Next.js. Plug in your own
+media library, fonts, and storage backend via simple provider interfaces.
+
+![Design Editor screenshot](./screenshot.png)
+
+## Features
+
+- Canvas-based image design editor — layers, shapes, text, stickers
+- Background removal (via optional `@imgly/background-removal` peer dep)
+- Undo / redo, zoom / pan, autosave
+- Themable via CSS variables — bring your own colors
+- TypeScript-first, strict types
+- Next.js App Router compatible (components ship with `'use client'`)
+- ~150 KB gzipped (excluding React and Fabric.js)
+
+## Install
 
 ```bash
 npm install @fastlab-ai/design-editor
-# or
-pnpm add @fastlab-ai/design-editor
+# optional — enables in-browser background removal
+npm install @imgly/background-removal
 ```
 
-## Usage
+## Use
 
 ```tsx
 import { DesignEditor } from '@fastlab-ai/design-editor'
 import '@fastlab-ai/design-editor/theme.css'
 
-export function App() {
+export default function App() {
   return <DesignEditor />
 }
 ```
 
+## Customize
+
+```tsx
+<DesignEditor
+  mediaProvider={myMediaProvider}
+  fontProvider={myFontProvider}
+  persistenceProvider={myPersistenceProvider}
+  onExport={async (blob) => uploadToS3(blob)}
+  onBack={() => router.push('/dashboard')}
+/>
+```
+
+See the [providers docs](https://fastlab-ai.github.io/design-editor/providers/media)
+for the interfaces.
+
+## Docs & playground
+
+- Full documentation — <https://fastlab-ai.github.io/design-editor>
+- Live playground — <https://fastlab-ai.github.io/design-editor/playground>
+- Examples — [`examples/`](./examples) (Next.js App Router, Pages Router, Vite, custom providers)
+
 ## License
 
-MIT © Fastlab
+MIT © Fastlab.
+
+Engine code is forked from [layerhub-io/layerhub-ce](https://github.com/layerhub-io/layerhub-ce) (MIT).

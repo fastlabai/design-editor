@@ -1,0 +1,67 @@
+---
+title: Media Provider
+description: Bring your own media library backend.
+---
+
+## Interface
+
+```ts
+interface MediaProvider {
+  list(opts: {
+    cursor?: string
+    search?: string
+    signal?: AbortSignal
+  }): Promise<{ items: MediaItem[]; nextCursor?: string }>
+
+  upload(
+    file: File,
+    opts?: { signal?: AbortSignal; onProgress?: (pct: number) => void },
+  ): Promise<MediaItem>
+}
+
+interface MediaItem {
+  id: string
+  url: string
+  thumbnailUrl?: string
+  width?: number
+  height?: number
+  name?: string
+  mimeType?: string
+}
+```
+
+## Default
+
+`createNullMediaProvider()` — returns an empty list and rejects uploads. Use
+this if you don't need a media library.
+
+## Example: REST backend
+
+```ts
+import type { MediaProvider } from '@fastlab-ai/design-editor'
+
+export function createMyMediaProvider(): MediaProvider {
+  return {
+    async list({ cursor, search, signal }) {
+      const r = await fetch(
+        `/api/media?cursor=${cursor ?? ''}&q=${search ?? ''}`,
+        { signal },
+      )
+      return r.json()
+    },
+    async upload(file, { onProgress } = {}) {
+      const fd = new FormData()
+      fd.append('file', file)
+      const r = await fetch('/api/media', { method: 'POST', body: fd })
+      onProgress?.(100)
+      return r.json()
+    },
+  }
+}
+```
+
+Pass it to the editor:
+
+```tsx
+<DesignEditor mediaProvider={createMyMediaProvider()} />
+```

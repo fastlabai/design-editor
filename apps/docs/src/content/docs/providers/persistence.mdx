@@ -1,0 +1,55 @@
+---
+title: Persistence Provider
+description: Persist designs anywhere — localStorage, your DB, or S3.
+---
+
+## Interface
+
+```ts
+interface PersistenceProvider {
+  save(sceneKey: string, scene: IScene): Promise<void>
+  load(sceneKey: string): Promise<IScene | null>
+  list?(): Promise<{ sceneKey: string; updatedAt: number; thumbnailUrl?: string }[]>
+}
+```
+
+## Default
+
+`createLocalStoragePersistence()` — stores scenes under
+`design-editor:scene:${sceneKey}` in `localStorage`.
+
+## Example: server-backed persistence
+
+```ts
+import type { PersistenceProvider, IScene } from '@fastlab-ai/design-editor'
+
+export function createServerPersistence(): PersistenceProvider {
+  return {
+    async save(sceneKey, scene) {
+      await fetch(`/api/scenes/${encodeURIComponent(sceneKey)}`, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(scene),
+      })
+    },
+    async load(sceneKey) {
+      const r = await fetch(`/api/scenes/${encodeURIComponent(sceneKey)}`)
+      if (r.status === 404) return null
+      return r.json() as Promise<IScene>
+    },
+    async list() {
+      const r = await fetch('/api/scenes')
+      return r.json()
+    },
+  }
+}
+```
+
+Used together with `sceneKey`:
+
+```tsx
+<DesignEditor
+  sceneKey="design-42"
+  persistenceProvider={createServerPersistence()}
+/>
+```

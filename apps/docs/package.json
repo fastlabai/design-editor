@@ -1,0 +1,21 @@
+{
+  "name": "@fastlab-ai/design-editor-docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "build:api": "typedoc --plugin typedoc-plugin-markdown --out src/content/docs/api ../../src/index.ts"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.30.0",
+    "astro": "^5.0.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "typedoc": "^0.27.0",
+    "typedoc-plugin-markdown": "^4.3.0"
+  }
+}

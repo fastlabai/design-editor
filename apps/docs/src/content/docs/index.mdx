@@ -1,0 +1,32 @@
+---
+title: '@fastlab-ai/design-editor'
+description: An open-source image design editor for React and Next.js.
+template: splash
+hero:
+  title: Image design editor for React and Next.js
+  tagline: |
+    Canvas-based, fully themable, ~150 KB gzipped. Plug in your own media library,
+    fonts, and storage backend via simple provider interfaces.
+  actions:
+    - { text: Get Started, link: /design-editor/getting-started, icon: right-arrow, variant: primary }
+    - { text: View on GitHub, link: https://github.com/fastlabai/design-editor, icon: external }
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
+## Features
+
+<CardGrid>
+  <Card title="Layers + Shapes + Text">
+    Layer panel, shape library, custom fonts, stickers, and a typed object-properties bar.
+  </Card>
+  <Card title="Background Removal">
+    Optional in-browser background removal via `@imgly/background-removal` peer dep.
+  </Card>
+  <Card title="Provider Architecture">
+    Bring your own media library, fonts, persistence, and background-removal services.
+  </Card>
+  <Card title="Next.js Ready">
+    Components ship with `'use client'`. Works with App Router out of the box.
+  </Card>
+</CardGrid>
