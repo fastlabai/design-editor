@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "build:api": "typedoc --plugin typedoc-plugin-markdown --out src/content/docs/api ../../src/index.ts"
+    "build:api": "typedoc"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.30.0",
@@ -15,7 +15,7 @@
     "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "typedoc": "^0.27.0",
-    "typedoc-plugin-markdown": "^4.3.0"
+    "typedoc": "^0.28.0",
+    "typedoc-plugin-markdown": "^4.5.0"
   }
 }
