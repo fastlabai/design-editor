@@ -26,4 +26,14 @@ export default defineConfig({
       ],
     }),
   ],
+  vite: {
+    ssr: {
+      // postcss is a CJS package that uses require('nanoid/non-secure').
+      // When bundled into the SSR output by Vite, nanoid v5's /non-secure
+      // subpath fails because it no longer provides a default export.
+      // Keeping postcss external prevents Vite from inlining this CJS code
+      // path during the static page generation phase.
+      external: ['postcss', 'nanoid'],
+    },
+  },
 })
