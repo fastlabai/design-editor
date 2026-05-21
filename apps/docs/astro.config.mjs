@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 
 export default defineConfig({
-  site: 'https://fastlab-ai.github.io',
+  site: 'https://fastlabai.github.io',
   base: '/design-editor',
   integrations: [
     starlight({

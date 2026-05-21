@@ -50,13 +50,13 @@ export default function App() {
 />
 ```
 
-See the [providers docs](https://fastlab-ai.github.io/design-editor/providers/media)
+See the [providers docs](https://fastlabai.github.io/design-editor/providers/media)
 for the interfaces.
 
 ## Docs & playground
 
-- Full documentation — <https://fastlab-ai.github.io/design-editor>
-- Live playground — <https://fastlab-ai.github.io/design-editor/playground>
+- Full documentation — <https://fastlabai.github.io/design-editor>
+- Live playground — <https://fastlabai.github.io/design-editor/playground>
 - Examples — [`examples/`](./examples) (Next.js App Router, Pages Router, Vite, custom providers)
 
 ## License
