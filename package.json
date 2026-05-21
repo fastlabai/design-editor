@@ -6,10 +6,12 @@
   "author": "Fastlab",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fastlab-ai/design-editor.git"
+    "url": "https://github.com/fastlabai/design-editor.git"
   },
   "type": "module",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,7 +23,12 @@
     },
     "./theme.css": "./dist/theme.css"
   },
-  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsup && node scripts/postbuild-use-client.mjs",
     "dev": "tsup --watch",
@@ -36,21 +43,27 @@
     "react-dom": ">=18"
   },
   "peerDependenciesMeta": {
-    "@imgly/background-removal": { "optional": true }
+    "@imgly/background-removal": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "fabric": "^6.5.1",
+    "fabric": "^5.5.2",
     "nanoid": "^5.0.9"
   },
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@types/fabric": "^5.3.11",
+    "@types/lodash": "^4.17.24",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "lodash": "^4.18.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "size-limit": "^11.1.6",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8",
-    "size-limit": "^11.1.6",
-    "@size-limit/preset-small-lib": "^11.1.6"
+    "vitest": "^2.1.8"
   }
 }

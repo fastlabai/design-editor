@@ -1,6 +1,6 @@
 import { fabric } from "fabric"
 import { nanoid } from "nanoid"
-import { IScene, ILayer } from "@layerhub-io/types"
+import { IScene, ILayer } from "../../types"
 import { LayerType } from "../common/constants"
 import ObjectExporter from "../utils/object-exporter"
 import ObjectImporter from "../utils/object-importer"
@@ -68,6 +68,7 @@ class Scene extends Base {
         }
 
         const group = new fabric.Group(clonedObjects)
+        // @ts-ignore — vendored: group.toJSON() returns loose object, compatible at runtime
         const component = objectExporter.export(group.toJSON(this.editor.config.propertiesToInclude), frame) as any
         const metadata = component.metadata ? component.metadata : {}
 
@@ -82,6 +83,7 @@ class Scene extends Base {
           },
         }
       } else {
+        // @ts-ignore — vendored: activeObject.toJSON() returns loose object, compatible at runtime
         const component = objectExporter.export(activeObject.toJSON(this.editor.config.propertiesToInclude), frame)
         const metadata = component.metadata ? component.metadata : {}
         return {

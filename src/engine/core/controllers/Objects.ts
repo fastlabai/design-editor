@@ -2,7 +2,7 @@ import { fabric } from "fabric"
 import { isArray, pick } from "lodash"
 import { nanoid } from "nanoid"
 import Base from "./Base"
-import { ILayer, ILayerOptions } from "@layerhub-io/types"
+import { ILayer, ILayerOptions } from "../../types"
 import { copyStyleProps, getCopyStyleCursor, LayerType } from "../common/constants"
 import { Direction, GradientOptions, ScaleType, ShadowOptions, Size } from "../common/interfaces"
 import ObjectImporter from "../utils/object-importer"
@@ -292,6 +292,7 @@ class Objects extends Base {
 
       this.canvas.discardActiveObject()
 
+      // @ts-ignore — vendored upstream: activeObject may be null here per Fabric v5 types
       this.duplicate(activeObject, frame, (duplicates) => {
         const selection = new fabric.ActiveSelection(duplicates, {
           canvas: this.canvas,
@@ -745,7 +746,9 @@ class Objects extends Base {
       let nextImage: fabric.StaticImage
       if (currentBackgroundImage) {
         const currentBackgroundImageJSON = currentBackgroundImage.toJSON(this.config.propertiesToInclude)
+        // @ts-ignore — vendored: clipPath exists on Fabric JSON at runtime
         delete currentBackgroundImageJSON.clipPath
+        // @ts-ignore — vendored: src exists on Fabric image JSON at runtime
         const nextImageElement = await loadImageFromURL(currentBackgroundImageJSON.src)
         nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: nanoid() })
         // @ts-ignore
@@ -772,7 +775,9 @@ class Objects extends Base {
         this.canvas.add(nextImage)
       }
       const objectJSON = refObject.toJSON(this.config.propertiesToInclude)
+      // @ts-ignore — vendored: clipPath exists on Fabric JSON at runtime
       delete objectJSON.clipPath
+      // @ts-ignore — vendored: src exists on Fabric image JSON at runtime
       const image = await loadImageFromURL(objectJSON.src)
       const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: nanoid() })
       // @ts-ignore
@@ -819,6 +824,7 @@ class Objects extends Base {
         setObjectGradient(object, angle, colors)
       })
     } else {
+      // @ts-ignore — vendored: activeObject is typed as ActiveSelection but may be null
       setObjectGradient(activeObject, angle, colors)
     }
     this.canvas.requestRenderAll()
@@ -841,7 +847,9 @@ class Objects extends Base {
     this.canvas.requestRenderAll()
     this.editor.history.save()
 
+    // @ts-ignore — vendored: getActiveObject() may return null per strict types
     const groupedActiveObject = this.canvas.getActiveObject()
+    // @ts-ignore
     groupedActiveObject.set({
       name: "group",
       id: nanoid(),

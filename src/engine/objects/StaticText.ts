@@ -2,7 +2,7 @@ import { fabric } from "fabric"
 
 export class StaticTextObject extends fabric.Textbox {
   static type = "StaticText"
-  public fontURL
+  public fontURL: any
   initialize(options: StaticTextOptions) {
     const { text, ...textOptions } = options
     //@ts-ignore

@@ -1,4 +1,4 @@
-import { ILayer } from "@layerhub-io/types"
+import { ILayer } from "../../types"
 import { fabric } from "fabric"
 import { isNaN } from "lodash"
 import { ShadowOptions } from "../common/interfaces"

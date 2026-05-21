@@ -1,5 +1,5 @@
 import { fabric } from "fabric"
-import { IScene, ILayer } from "@layerhub-io/types"
+import { IScene, ILayer } from "../../types"
 import ObjectImporter from "../utils/object-importer-render"
 
 class Renderer {

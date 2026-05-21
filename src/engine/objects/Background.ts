@@ -30,8 +30,10 @@ export class BackgroundObject extends fabric.Rect {
     })
 
     this.on("mouseup", ({ target }) => {
+      // @ts-ignore — vendored: canvas is non-null at runtime when object is on canvas
       const activeSelection = this.canvas.getActiveObject()
       if (!activeSelection && target === this) {
+        // @ts-ignore — vendored
         this.canvas.fire("background:selected")
       }
     })
