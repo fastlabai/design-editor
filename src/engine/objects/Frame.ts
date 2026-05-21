@@ -41,8 +41,6 @@ export interface FrameOptions extends fabric.IRectOptions {
 
 declare module "fabric" {
   namespace fabric {
-    class Frame extends FrameObject {
-      constructor(options: FrameOptions)
-    }
+    interface Frame {}
   }
 }

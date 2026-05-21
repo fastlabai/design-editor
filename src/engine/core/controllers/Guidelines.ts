@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { HandlerOptions } from "../common/interfaces"
+
 import Base from "./Base"
 import { fabric } from "fabric"
 
@@ -10,7 +10,7 @@ class Guidelines extends Base {
   public aligningLineWidth: any
   public aligningLineColor: any
   public ctx: CanvasRenderingContext2D
-  constructor(props: HandlerOptions) {
+  constructor(props: any) {
     super(props)
     this.initAligningGuidelines(this.canvas)
   }

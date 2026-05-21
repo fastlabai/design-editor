@@ -15,12 +15,13 @@ export type SelectProps = {
   options: SelectOption[]
   placeholder?: string
   className?: string
+  style?: React.CSSProperties
 }
 
-export function Select({ value, defaultValue, onValueChange, options, placeholder, className }: SelectProps) {
+export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
   return (
     <RadixSelect.Root value={value} defaultValue={defaultValue} onValueChange={onValueChange}>
-      <RadixSelect.Trigger className={clsx('de-select-trigger', className)}>
+      <RadixSelect.Trigger ref={ref} className={clsx('de-select-trigger', className)} style={style}>
         <RadixSelect.Value placeholder={placeholder} />
         <RadixSelect.Icon>
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,4 +47,4 @@ export function Select({ value, defaultValue, onValueChange, options, placeholde
       </RadixSelect.Portal>
     </RadixSelect.Root>
   )
-}
+})

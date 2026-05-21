@@ -30,8 +30,6 @@ export type StaticPathOptions = fabric.IPathOptions & { path: string }
 
 declare module "fabric" {
   namespace fabric {
-    class StaticPath extends StaticPathObject {
-      constructor(options: StaticPathOptions)
-    }
+    interface StaticPath {}
   }
 }

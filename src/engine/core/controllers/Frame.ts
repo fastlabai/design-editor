@@ -49,7 +49,7 @@ class Frame extends Base {
 
   get options(): Required<ILayer> {
     const options = this.frame.toJSON(this.config.propertiesToInclude)
-    return options as Required<ILayer>
+    return options as unknown as Required<ILayer>
   }
 
   public resize({ height, width }: Dimension) {

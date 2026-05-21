@@ -40,8 +40,6 @@ fabric.StaticVideo = fabric.util.createClass(StaticVideoObject, {
 
 declare module "fabric" {
   namespace fabric {
-    class StaticVideo extends StaticVideoObject {
-      constructor(element: any, options: any)
-    }
+    interface StaticVideo {}
   }
 }

@@ -3,10 +3,10 @@ import { defineConfig } from 'tsup'
 export default defineConfig({
   entry: ['src/index.ts'],
   format: ['esm', 'cjs'],
-  dts: true,
+  dts: false,
   sourcemap: true,
   clean: true,
   treeshake: true,
   splitting: false,
-  external: ['react', 'react-dom', '@imgly/background-removal'],
+  external: ['react', 'react-dom', '@imgly/background-removal', 'antd', '@ant-design/icons'],
 })

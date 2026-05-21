@@ -1,3 +1,4 @@
+'use client'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import * as React from 'react'

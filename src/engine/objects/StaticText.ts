@@ -42,8 +42,6 @@ export type StaticTextOptions = fabric.ITextboxOptions & { text: string; fontURL
 
 declare module "fabric" {
   namespace fabric {
-    class StaticText extends StaticTextObject {
-      constructor(options: StaticTextOptions)
-    }
+    interface StaticText {}
   }
 }

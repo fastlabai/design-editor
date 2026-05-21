@@ -49,8 +49,6 @@ export interface StaticImageOptions extends fabric.IImageOptions {
 
 declare module "fabric" {
   namespace fabric {
-    class StaticImage extends StaticImageObject {
-      constructor(element: any, options: any)
-    }
+    interface StaticImage {}
   }
 }

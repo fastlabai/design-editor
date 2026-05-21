@@ -74,9 +74,7 @@ export interface BackgroundImageOptions extends fabric.IImageOptions {
 
 declare module "fabric" {
   namespace fabric {
-    class BackgroundImage extends BackgroundImageObject {
-      constructor(element: any, options: any)
-    }
+    interface BackgroundImage {}
 
     interface IUtil {
       isTouchEvent(event: Event): boolean

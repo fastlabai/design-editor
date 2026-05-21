@@ -10,12 +10,12 @@ export type TooltipProps = {
   className?: string
 }
 
-export function Tooltip({ children, title, placement = 'top', className }: TooltipProps) {
+export const Tooltip = React.forwardRef<HTMLElement, TooltipProps>(({ children, title, placement = 'top', className }, ref) => {
   if (!title) return <>{children}</>
   return (
     <RadixTooltip.Provider delayDuration={200}>
       <RadixTooltip.Root>
-        <RadixTooltip.Trigger asChild>
+        <RadixTooltip.Trigger asChild ref={ref as any}>
           {children}
         </RadixTooltip.Trigger>
         <RadixTooltip.Portal>
@@ -31,4 +31,4 @@ export function Tooltip({ children, title, placement = 'top', className }: Toolt
       </RadixTooltip.Root>
     </RadixTooltip.Provider>
   )
-}
+})

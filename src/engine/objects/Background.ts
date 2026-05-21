@@ -65,8 +65,6 @@ export interface BackgroundOptions extends fabric.IRectOptions {
 
 declare module "fabric" {
   namespace fabric {
-    class Background extends BackgroundObject {
-      constructor(options: BackgroundOptions)
-    }
+    interface Background {}
   }
 }

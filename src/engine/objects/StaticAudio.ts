@@ -32,8 +32,6 @@ export interface StaticAudioOptions extends fabric.IObjectOptions {
 
 declare module "fabric" {
   namespace fabric {
-    class StaticAudio extends StaticAudioObject {
-      constructor(options: StaticAudioOptions)
-    }
+    interface StaticAudio {}
   }
 }

@@ -87,9 +87,7 @@ export type SvgOptions = fabric.Group & { text: string }
 
 declare module "fabric" {
   namespace fabric {
-    class StaticVector extends StaticVectorObject {
-      constructor(objects: any, options: any, others: any)
-    }
+    interface StaticVector {}
   }
 }
 
