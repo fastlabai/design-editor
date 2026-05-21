@@ -7,9 +7,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: '@fastlab-ai/design-editor',
-      social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/fastlabai/design-editor' },
-      ],
+      social: {
+        github: 'https://github.com/fastlabai/design-editor',
+      },
       sidebar: [
         { label: 'Getting Started', link: '/getting-started' },
         { label: 'Next.js', link: '/nextjs' },
