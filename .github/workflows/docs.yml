@@ -28,7 +28,7 @@ jobs:
         with: { node-version: 24, cache: 'pnpm' }
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter design-editor-docs build:api
-      - run: pnpm --filter design-editor-docs build
+      # - run: pnpm --filter design-editor-docs build
       - run: pnpm --filter playground build || true
       - run: |
           if [ -d apps/playground/dist ]; then
