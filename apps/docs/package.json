@@ -10,8 +10,8 @@
     "build:api": "typedoc"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.30.0",
-    "astro": "^5.0.0",
+    "@astrojs/starlight": "^0.39.2",
+    "astro": "latest",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
