@@ -15514,14 +15514,15 @@ function DesignEditor({
   onExport,
   mediaProvider = createNullMediaProvider(),
   fontProvider = createGoogleFontsProvider(),
-  backgroundRemovalProvider = createImglyBackgroundRemoval(),
+  backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,
   libraryPanel
 }) {
+  const resolvedBackgroundRemovalProvider = backgroundRemovalProvider ?? createImglyBackgroundRemoval();
   const ctx = React__default.useMemo(
-    () => ({ mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
-    [mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
+    () => ({ mediaProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
+    [mediaProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
   );
   return /* @__PURE__ */ jsx(Provider, { children: /* @__PURE__ */ jsxs(EditorContextProvider, { value: ctx, children: [
     /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, libraryPanel }),

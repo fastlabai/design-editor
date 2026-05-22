@@ -368,14 +368,16 @@ export function DesignEditor({
   onExport,
   mediaProvider = createNullMediaProvider(),
   fontProvider = createGoogleFontsProvider(),
-  backgroundRemovalProvider = createImglyBackgroundRemoval(),
+  backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,
   libraryPanel,
 }: DesignEditorProps) {
+  const resolvedBackgroundRemovalProvider =
+    backgroundRemovalProvider ?? createImglyBackgroundRemoval()
   const ctx = React.useMemo(
-    () => ({ mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
-    [mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack],
+    () => ({ mediaProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
+    [mediaProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack],
   )
 
   return (
