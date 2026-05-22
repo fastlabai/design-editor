@@ -1,5 +1,5 @@
 import { fabric } from "fabric"
-import { nanoid } from "nanoid"
+import { generateId } from "../utils/id"
 import { IScene, ILayer } from "../../types"
 import { LayerType } from "../common/constants"
 import ObjectExporter from "../utils/object-exporter"
@@ -19,7 +19,7 @@ class Scene extends Base {
     const canvasJSON: any = this.canvas.toJSON(this.config.propertiesToInclude)
     const frame = this.editor.frame.options
     const template: IScene = {
-      id: this.id ? this.id : nanoid(),
+      id: this.id ? this.id : generateId(),
       name: this.name ? this.name : "Untitled design",
       layers: [],
       frame: {

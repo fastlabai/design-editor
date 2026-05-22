@@ -1,5 +1,5 @@
 import { fabric } from "fabric"
-import { nanoid } from "nanoid"
+import { generateId } from "./id"
 import { LayerType } from "../common/constants"
 import { loadImageFromURL } from "./image-loader"
 import { Editor } from "../editor"
@@ -326,7 +326,7 @@ class ObjectImporter {
     let metadata = item.metadata ? item.metadata : {}
     const { fill } = metadata
     let baseOptions = {
-      id: id ? id : nanoid(),
+      id: id ? id : generateId(),
       name: name ? name : type,
       angle: angle ? angle : 0,
       top: inGroup ? top : options.top + top,

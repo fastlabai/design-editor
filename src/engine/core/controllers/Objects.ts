@@ -1,6 +1,6 @@
 import { fabric } from "fabric"
 import { isArray, pick } from "lodash"
-import { nanoid } from "nanoid"
+import { generateId } from "../utils/id"
 import Base from "./Base"
 import { ILayer, ILayerOptions } from "../../types"
 import { copyStyleProps, getCopyStyleCursor, LayerType } from "../common/constants"
@@ -329,7 +329,7 @@ class Objects extends Base {
       object.clone(
         (clone: fabric.Object) => {
           clone.clipPath = undefined
-          clone.id = nanoid()
+          clone.id = generateId()
           clone.set({
             left: object.left! + 10,
             top: object.top! + 10,
@@ -750,7 +750,7 @@ class Objects extends Base {
         delete currentBackgroundImageJSON.clipPath
         // @ts-ignore — vendored: src exists on Fabric image JSON at runtime
         const nextImageElement = await loadImageFromURL(currentBackgroundImageJSON.src)
-        nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: nanoid() })
+        nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: generateId() })
         // @ts-ignore
         // this.canvas.add(nextImage)
         this.canvas.remove(currentBackgroundImage)
@@ -779,7 +779,7 @@ class Objects extends Base {
       delete objectJSON.clipPath
       // @ts-ignore — vendored: src exists on Fabric image JSON at runtime
       const image = await loadImageFromURL(objectJSON.src)
-      const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: nanoid() })
+      const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: generateId() })
       // @ts-ignore
       this.canvas.add(backgroundImage)
       backgroundImage.clipPath = frame
@@ -852,7 +852,7 @@ class Objects extends Base {
     // @ts-ignore
     groupedActiveObject.set({
       name: "group",
-      id: nanoid(),
+      id: generateId(),
       // @ts-ignore
       subTargetCheck: true,
     })
