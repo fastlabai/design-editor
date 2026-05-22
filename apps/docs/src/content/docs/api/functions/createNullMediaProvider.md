@@ -2,11 +2,11 @@
 title: "Function: createNullMediaProvider()"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / createNullMediaProvider
+[@fastlabai/design-editor](../README.md) / createNullMediaProvider
 
 # Function: createNullMediaProvider()
 

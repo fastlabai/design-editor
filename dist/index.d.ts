@@ -359,8 +359,8 @@ interface DesignEditorProps {
  *
  * @example
  * ```tsx
- * import { DesignEditor } from '@fastlab-ai/design-editor'
- * import '@fastlab-ai/design-editor/theme.css'
+ * import { DesignEditor } from '@fastlabai/design-editor'
+ * import '@fastlabai/design-editor/theme.css'
  *
  * export default function App() {
  *   return <DesignEditor />
@@ -370,7 +370,7 @@ interface DesignEditorProps {
 declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, libraryPanel, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
 
 /**
- * @fastlab-ai/design-editor
+ * @fastlabai/design-editor
  *
  * An open-source image design editor for React and Next.js.
  * Plug into your own media library, fonts, and storage backend via simple

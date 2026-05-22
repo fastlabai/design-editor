@@ -353,8 +353,8 @@ export interface DesignEditorProps {
  *
  * @example
  * ```tsx
- * import { DesignEditor } from '@fastlab-ai/design-editor'
- * import '@fastlab-ai/design-editor/theme.css'
+ * import { DesignEditor } from '@fastlabai/design-editor'
+ * import '@fastlabai/design-editor/theme.css'
  *
  * export default function App() {
  *   return <DesignEditor />

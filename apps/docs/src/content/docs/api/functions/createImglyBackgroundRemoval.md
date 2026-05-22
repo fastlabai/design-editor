@@ -2,11 +2,11 @@
 title: "Function: createImglyBackgroundRemoval()"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / createImglyBackgroundRemoval
+[@fastlabai/design-editor](../README.md) / createImglyBackgroundRemoval
 
 # Function: createImglyBackgroundRemoval()
 

@@ -2,11 +2,11 @@
 title: "Interface: MediaItem"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / MediaItem
+[@fastlabai/design-editor](../README.md) / MediaItem
 
 # Interface: MediaItem
 

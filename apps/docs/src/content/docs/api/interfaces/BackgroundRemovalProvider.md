@@ -2,11 +2,11 @@
 title: "Interface: BackgroundRemovalProvider"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / BackgroundRemovalProvider
+[@fastlabai/design-editor](../README.md) / BackgroundRemovalProvider
 
 # Interface: BackgroundRemovalProvider
 

@@ -2,11 +2,11 @@
 title: "Interface: PersistenceProvider"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / PersistenceProvider
+[@fastlabai/design-editor](../README.md) / PersistenceProvider
 
 # Interface: PersistenceProvider
 

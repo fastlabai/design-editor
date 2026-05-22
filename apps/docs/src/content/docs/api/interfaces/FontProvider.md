@@ -2,11 +2,11 @@
 title: "Interface: FontProvider"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / FontProvider
+[@fastlabai/design-editor](../README.md) / FontProvider
 
 # Interface: FontProvider
 

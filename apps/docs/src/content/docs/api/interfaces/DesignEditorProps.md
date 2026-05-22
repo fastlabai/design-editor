@@ -2,11 +2,11 @@
 title: "Interface: DesignEditorProps"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / DesignEditorProps
+[@fastlabai/design-editor](../README.md) / DesignEditorProps
 
 # Interface: DesignEditorProps
 

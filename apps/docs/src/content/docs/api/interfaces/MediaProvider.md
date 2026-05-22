@@ -2,11 +2,11 @@
 title: "Interface: MediaProvider"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / MediaProvider
+[@fastlabai/design-editor](../README.md) / MediaProvider
 
 # Interface: MediaProvider
 

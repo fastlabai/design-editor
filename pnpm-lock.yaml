@@ -116,7 +116,7 @@ importers:
 
   apps/playground:
     dependencies:
-      '@fastlab-ai/design-editor':
+      '@fastlabai/design-editor':
         specifier: workspace:*
         version: link:../..
       '@imgly/background-removal':
@@ -147,7 +147,7 @@ importers:
 
   examples/custom-providers:
     dependencies:
-      '@fastlab-ai/design-editor':
+      '@fastlabai/design-editor':
         specifier: workspace:*
         version: link:../..
       react:
@@ -175,7 +175,7 @@ importers:
 
   examples/nextjs-app-router:
     dependencies:
-      '@fastlab-ai/design-editor':
+      '@fastlabai/design-editor':
         specifier: workspace:*
         version: link:../..
       next:
@@ -203,7 +203,7 @@ importers:
 
   examples/nextjs-pages-router:
     dependencies:
-      '@fastlab-ai/design-editor':
+      '@fastlabai/design-editor':
         specifier: workspace:*
         version: link:../..
       next:
@@ -231,7 +231,7 @@ importers:
 
   examples/vite-react:
     dependencies:
-      '@fastlab-ai/design-editor':
+      '@fastlabai/design-editor':
         specifier: workspace:*
         version: link:../..
       '@imgly/background-removal':

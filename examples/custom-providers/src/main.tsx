@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { DesignEditor, type MediaProvider, type FontProvider } from '@fastlab-ai/design-editor'
-import '@fastlab-ai/design-editor/theme.css'
+import { DesignEditor, type MediaProvider, type FontProvider } from '@fastlabai/design-editor'
+import '@fastlabai/design-editor/theme.css'
 
 // ── Demo media provider — serves a few Unsplash images via the public API ───
 const DEMO_IMAGES = [

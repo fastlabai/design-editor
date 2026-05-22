@@ -13,7 +13,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: '@fastlab-ai/design-editor',
+      title: '@fastlabai/design-editor',
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/fastlabai/design-editor' },
       ],

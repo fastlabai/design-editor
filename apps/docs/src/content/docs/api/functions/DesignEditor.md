@@ -2,11 +2,11 @@
 title: "Function: DesignEditor()"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / DesignEditor
+[@fastlabai/design-editor](../README.md) / DesignEditor
 
 # Function: DesignEditor()
 
@@ -33,8 +33,8 @@ Configure host integration via the provider props
 ## Example
 
 ```tsx
-import { DesignEditor } from '@fastlab-ai/design-editor'
-import '@fastlab-ai/design-editor/theme.css'
+import { DesignEditor } from '@fastlabai/design-editor'
+import '@fastlabai/design-editor/theme.css'
 
 export default function App() {
   return <DesignEditor />

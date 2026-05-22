@@ -1,6 +1,6 @@
-# @fastlab-ai/design-editor
+# @fastlabai/design-editor
 
-[![npm version](https://img.shields.io/npm/v/@fastlab-ai/design-editor.svg)](https://www.npmjs.com/package/@fastlab-ai/design-editor)
+[![npm version](https://img.shields.io/npm/v/@fastlabai/design-editor.svg)](https://www.npmjs.com/package/@fastlabai/design-editor)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/fastlabai/design-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/fastlabai/design-editor/actions/workflows/ci.yml)
 
@@ -22,7 +22,7 @@ media library, fonts, and storage backend via simple provider interfaces.
 ## Install
 
 ```bash
-npm install @fastlab-ai/design-editor
+npm install @fastlabai/design-editor
 # optional — enables in-browser background removal
 npm install @imgly/background-removal
 ```
@@ -30,8 +30,8 @@ npm install @imgly/background-removal
 ## Use
 
 ```tsx
-import { DesignEditor } from '@fastlab-ai/design-editor'
-import '@fastlab-ai/design-editor/theme.css'
+import { DesignEditor } from '@fastlabai/design-editor'
+import '@fastlabai/design-editor/theme.css'
 
 export default function App() {
   return <DesignEditor />

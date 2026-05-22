@@ -2,11 +2,11 @@
 title: "Function: createLocalStoragePersistence()"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / createLocalStoragePersistence
+[@fastlabai/design-editor](../README.md) / createLocalStoragePersistence
 
 # Function: createLocalStoragePersistence()
 

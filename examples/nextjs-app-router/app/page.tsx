@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 
 const DesignEditor = dynamic(
-  () => import('@fastlab-ai/design-editor').then((mod) => mod.DesignEditor),
+  () => import('@fastlabai/design-editor').then((mod) => mod.DesignEditor),
   { ssr: false }
 )
 

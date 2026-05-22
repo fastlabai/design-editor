@@ -2,11 +2,11 @@
 title: "Interface: MediaListResult"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / MediaListResult
+[@fastlabai/design-editor](../README.md) / MediaListResult
 
 # Interface: MediaListResult
 

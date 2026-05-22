@@ -2,11 +2,11 @@
 title: "Type Alias: ILayer"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / ILayer
+[@fastlabai/design-editor](../README.md) / ILayer
 
 # Type Alias: ILayer
 

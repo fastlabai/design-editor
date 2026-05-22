@@ -2,11 +2,11 @@
 title: "Variable: VERSION"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / VERSION
+[@fastlabai/design-editor](../README.md) / VERSION
 
 # Variable: VERSION
 

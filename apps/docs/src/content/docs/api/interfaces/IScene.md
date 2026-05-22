@@ -2,11 +2,11 @@
 title: "Interface: IScene"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / IScene
+[@fastlabai/design-editor](../README.md) / IScene
 
 # Interface: IScene
 

@@ -2,11 +2,11 @@
 title: "Interface: FontDescriptor"
 ---
 
-[**@fastlab-ai/design-editor**](../README.md)
+[**@fastlabai/design-editor**](../README.md)
 
 ***
 
-[@fastlab-ai/design-editor](../README.md) / FontDescriptor
+[@fastlabai/design-editor](../README.md) / FontDescriptor
 
 # Interface: FontDescriptor
 

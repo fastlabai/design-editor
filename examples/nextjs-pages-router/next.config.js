@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@fastlab-ai/design-editor'],
+  transpilePackages: ['@fastlabai/design-editor'],
   webpack: (config) => {
     config.externals.push({
       canvas: 'commonjs canvas',

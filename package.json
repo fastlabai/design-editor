@@ -1,12 +1,12 @@
 {
-  "name": "@fastlab-ai/design-editor",
-  "version": "0.0.1-stage.0",
+  "name": "@fastlabai/design-editor",
+  "version": "1.0.0-beta.1",
   "description": "Open-source image design editor for React and Next.js",
   "license": "MIT",
-  "author": "Fastlab",
+  "author": "fastlab.ai",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fastlabai/design-editor.git"
+    "url": "git+https://github.com/fastlabai/design-editor.git"
   },
   "type": "module",
   "main": "./dist/index.cjs",

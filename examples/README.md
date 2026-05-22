@@ -1,6 +1,6 @@
 # Examples
 
-Minimal apps demonstrating `@fastlab-ai/design-editor` in different setups.
+Minimal apps demonstrating `@fastlabai/design-editor` in different setups.
 
 | Example | Stack | Purpose |
 | --- | --- | --- |
