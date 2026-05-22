@@ -61,14 +61,14 @@ See the documentation site for more examples.
 ## API Reference
 
 Full typed API documentation is auto-generated and available on the docs site:
-- [`<DesignEditor />`](https://fastlabai.github.io/design-editor/api/functions/DesignEditor)
-- [`DesignEditorProps`](https://fastlabai.github.io/design-editor/api/interfaces/DesignEditorProps)
-- [`MediaProvider`](https://fastlabai.github.io/design-editor/api/interfaces/MediaProvider)
-- [`FontProvider`](https://fastlabai.github.io/design-editor/api/interfaces/FontProvider)
-- [`BackgroundRemovalProvider`](https://fastlabai.github.io/design-editor/api/interfaces/BackgroundRemovalProvider)
-- [`PersistenceProvider`](https://fastlabai.github.io/design-editor/api/interfaces/PersistenceProvider)
-- [`IScene`](https://fastlabai.github.io/design-editor/api/interfaces/IScene)
-- [`ILayer`](https://fastlabai.github.io/design-editor/api/type-aliases/ILayer)
+- [`<DesignEditor />`](https://fastlabai.github.io/design-editor/api/functions/designeditor)
+- [`DesignEditorProps`](https://fastlabai.github.io/design-editor/api/interfaces/designeditorprops)
+- [`MediaProvider`](https://fastlabai.github.io/design-editor/api/interfaces/mediaprovider)
+- [`FontProvider`](https://fastlabai.github.io/design-editor/api/interfaces/fontprovider)
+- [`BackgroundRemovalProvider`](https://fastlabai.github.io/design-editor/api/interfaces/backgroundremovalprovider)
+- [`PersistenceProvider`](https://fastlabai.github.io/design-editor/api/interfaces/persistenceprovider)
+- [`IScene`](https://fastlabai.github.io/design-editor/api/interfaces/iscene)
+- [`ILayer`](https://fastlabai.github.io/design-editor/api/type-aliases/ilayer)
 ## Docs & playground
 
 - Full documentation — <https://fastlabai.github.io/design-editor>
