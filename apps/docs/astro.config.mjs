@@ -6,7 +6,7 @@ export default defineConfig({
   base: '/design-editor',
   vite: {
     ssr: {
-      external: ['postcss', 'nanoid'],
+      noExternal: ['postcss', 'nanoid'],
     },
   },
   integrations: [
