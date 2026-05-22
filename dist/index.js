@@ -3,7 +3,6 @@ import * as React from 'react';
 import React__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
 import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import { fabric } from 'fabric';
-import { nanoid } from 'nanoid';
 import { Switch, Modal, InputNumber, message } from 'antd';
 import { clsx } from 'clsx';
 import '@radix-ui/react-slider';
@@ -8922,6 +8921,14 @@ var History_default = History;
 
 // src/engine/core/controllers/Objects.ts
 var import_lodash2 = __toESM(require_lodash());
+
+// src/engine/core/utils/id.ts
+function generateId() {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return "id-" + Math.random().toString(36).substring(2, 15);
+}
 function loadImageFromURL(src) {
   return new Promise((resolve) => {
     const image = new Image();
@@ -9220,7 +9227,7 @@ var ObjectImporter = class {
     let metadata = item.metadata ? item.metadata : {};
     const { fill } = metadata;
     let baseOptions = {
-      id: id ? id : nanoid(),
+      id: id ? id : generateId(),
       name: name ? name : type,
       angle: angle ? angle : 0,
       top: inGroup ? top : options.top + top,
@@ -9542,7 +9549,7 @@ var Objects = class extends Base_default {
       object.clone(
         (clone) => {
           clone.clipPath = void 0;
-          clone.id = nanoid();
+          clone.id = generateId();
           clone.set({
             left: object.left + 10,
             top: object.top + 10
@@ -9929,7 +9936,7 @@ var Objects = class extends Base_default {
         const currentBackgroundImageJSON = currentBackgroundImage.toJSON(this.config.propertiesToInclude);
         delete currentBackgroundImageJSON.clipPath;
         const nextImageElement = await loadImageFromURL(currentBackgroundImageJSON.src);
-        nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: nanoid() });
+        nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: generateId() });
         this.canvas.remove(currentBackgroundImage);
         resolve(nextImage);
       } else {
@@ -9951,7 +9958,7 @@ var Objects = class extends Base_default {
       const objectJSON = refObject.toJSON(this.config.propertiesToInclude);
       delete objectJSON.clipPath;
       const image = await loadImageFromURL(objectJSON.src);
-      const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: nanoid() });
+      const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: generateId() });
       this.canvas.add(backgroundImage);
       backgroundImage.clipPath = frame;
       this.canvas.remove(refObject);
@@ -10012,7 +10019,7 @@ var Objects = class extends Base_default {
     const groupedActiveObject = this.canvas.getActiveObject();
     groupedActiveObject.set({
       name: "group",
-      id: nanoid(),
+      id: generateId(),
       // @ts-ignore
       subTargetCheck: true
     });
@@ -10855,7 +10862,7 @@ var Scene = class extends Base_default {
     const canvasJSON = this.canvas.toJSON(this.config.propertiesToInclude);
     const frame = this.editor.frame.options;
     const template = {
-      id: this.id ? this.id : nanoid(),
+      id: this.id ? this.id : generateId(),
       name: this.name ? this.name : "Untitled design",
       layers: [],
       frame: {
