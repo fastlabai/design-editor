@@ -9,4 +9,5 @@ export default defineConfig({
   treeshake: true,
   splitting: false,
   external: ['react', 'react-dom', '@imgly/background-removal', 'antd', '@ant-design/icons'],
+  noExternal: ['nanoid'],
 })
