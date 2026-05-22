@@ -10,7 +10,7 @@ title: "Interface: MediaItem"
 
 # Interface: MediaItem
 
-Defined in: [providers/media.ts:2](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L2)
+Defined in: [providers/media.ts:2](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L2)
 
 A single media library item — image, video, or other asset.
 
@@ -20,7 +20,7 @@ A single media library item — image, video, or other asset.
 
 > `optional` **height?**: `number`
 
-Defined in: [providers/media.ts:10](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L10)
+Defined in: [providers/media.ts:10](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L10)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [providers/media.ts:10](https://github.com/fastlabai/design-editor/b
 
 > **id**: `string`
 
-Defined in: [providers/media.ts:4](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L4)
+Defined in: [providers/media.ts:4](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L4)
 
 Stable unique identifier for this item.
 
@@ -38,7 +38,7 @@ Stable unique identifier for this item.
 
 > `optional` **mimeType?**: `string`
 
-Defined in: [providers/media.ts:13](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L13)
+Defined in: [providers/media.ts:13](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L13)
 
 MIME type, e.g. `image/png` or `video/mp4`.
 
@@ -48,7 +48,7 @@ MIME type, e.g. `image/png` or `video/mp4`.
 
 > `optional` **name?**: `string`
 
-Defined in: [providers/media.ts:11](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L11)
+Defined in: [providers/media.ts:11](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L11)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [providers/media.ts:11](https://github.com/fastlabai/design-editor/b
 
 > `optional` **thumbnailUrl?**: `string`
 
-Defined in: [providers/media.ts:8](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L8)
+Defined in: [providers/media.ts:8](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L8)
 
 Optional thumbnail URL — falls back to `url` if omitted.
 
@@ -66,7 +66,7 @@ Optional thumbnail URL — falls back to `url` if omitted.
 
 > **url**: `string`
 
-Defined in: [providers/media.ts:6](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L6)
+Defined in: [providers/media.ts:6](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L6)
 
 Absolute or app-relative URL to the asset.
 
@@ -76,4 +76,4 @@ Absolute or app-relative URL to the asset.
 
 > `optional` **width?**: `number`
 
-Defined in: [providers/media.ts:9](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L9)
+Defined in: [providers/media.ts:9](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L9)

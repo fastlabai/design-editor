@@ -12,7 +12,7 @@ title: "Function: createLocalStoragePersistence()"
 
 > **createLocalStoragePersistence**(`opts?`): [`PersistenceProvider`](../interfaces/PersistenceProvider.md)
 
-Defined in: [providers/defaults/localStoragePersistence.ts:4](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/defaults/localStoragePersistence.ts#L4)
+Defined in: [providers/defaults/localStoragePersistence.ts:4](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/defaults/localStoragePersistence.ts#L4)
 
 ## Parameters
 

@@ -10,7 +10,7 @@ title: "Interface: PersistenceProvider"
 
 # Interface: PersistenceProvider
 
-Defined in: [providers/persistence.ts:7](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/persistence.ts#L7)
+Defined in: [providers/persistence.ts:7](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/persistence.ts#L7)
 
 Plug in a persistence backend for autosave/load. The default provider stores
 scenes in `localStorage`; you can supply a server-side adapter here.
@@ -21,7 +21,7 @@ scenes in `localStorage`; you can supply a server-side adapter here.
 
 > `optional` **list**(): `Promise`\<`object`[]\>
 
-Defined in: [providers/persistence.ts:13](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/persistence.ts#L13)
+Defined in: [providers/persistence.ts:13](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/persistence.ts#L13)
 
 Optional: enumerate stored scenes (used by host-app scene pickers).
 
@@ -35,7 +35,7 @@ Optional: enumerate stored scenes (used by host-app scene pickers).
 
 > **load**(`sceneKey`): `Promise`\<[`IScene`](IScene.md) \| `null`\>
 
-Defined in: [providers/persistence.ts:11](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/persistence.ts#L11)
+Defined in: [providers/persistence.ts:11](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/persistence.ts#L11)
 
 Load a previously saved scene, or null if none exists.
 
@@ -55,7 +55,7 @@ Load a previously saved scene, or null if none exists.
 
 > **save**(`sceneKey`, `scene`): `Promise`\<`void`\>
 
-Defined in: [providers/persistence.ts:9](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/persistence.ts#L9)
+Defined in: [providers/persistence.ts:9](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/persistence.ts#L9)
 
 Persist the given scene under the provided key.
 

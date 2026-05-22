@@ -10,7 +10,7 @@ title: "Interface: MediaProvider"
 
 # Interface: MediaProvider
 
-Defined in: [providers/media.ts:27](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L27)
+Defined in: [providers/media.ts:27](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L27)
 
 Plug in your own media library backend. The editor calls `list` to populate
 the Library panel and `upload` when the user drops a file into the Upload panel.
@@ -21,7 +21,7 @@ the Library panel and `upload` when the user drops a file into the Upload panel.
 
 > **list**(`opts`): `Promise`\<[`MediaListResult`](MediaListResult.md)\>
 
-Defined in: [providers/media.ts:29](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L29)
+Defined in: [providers/media.ts:29](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L29)
 
 List media items, optionally paginated and filtered by search.
 
@@ -51,7 +51,7 @@ List media items, optionally paginated and filtered by search.
 
 > **upload**(`file`, `opts?`): `Promise`\<[`MediaItem`](MediaItem.md)\>
 
-Defined in: [providers/media.ts:36](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/providers/media.ts#L36)
+Defined in: [providers/media.ts:36](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/providers/media.ts#L36)
 
 Upload a file and return the resulting media item.
 

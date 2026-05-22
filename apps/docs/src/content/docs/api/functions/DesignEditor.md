@@ -12,7 +12,7 @@ title: "Function: DesignEditor()"
 
 > **DesignEditor**(`__namedParameters`): `Element`
 
-Defined in: [components/DesignEditor.tsx:364](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/components/DesignEditor.tsx#L364)
+Defined in: [components/DesignEditor.tsx:400](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L400)
 
 The top-level image design editor. Renders a full-screen canvas-based editor
 with toolbar, side panels, layer panel, and object properties bar.
