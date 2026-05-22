@@ -552,7 +552,7 @@ function ShapeCategory({
               shape={shape}
               onClick={() =>
                 onAddShape(
-                  `/shapes/${shape.category}/${shape.file}`
+                  `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/shapes/${shape.category}/${shape.file}`
                 )
               }
             />
@@ -617,7 +617,7 @@ function ScrollRow({
               shape={shape}
               onClick={() =>
                 onAddShape(
-                  `/shapes/${shape.category}/${shape.file}`
+                  `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/shapes/${shape.category}/${shape.file}`
                 )
               }
             />
@@ -660,7 +660,7 @@ function ShapeTile({
 }) {
   const [hovered, setHovered] = useState(false)
 
-  const imageUrl = `/shapes/${shape.category}/${shape.file}`
+  const imageUrl = `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/shapes/${shape.category}/${shape.file}`
 
   const handleDragStart = (
     e: React.DragEvent<HTMLButtonElement>

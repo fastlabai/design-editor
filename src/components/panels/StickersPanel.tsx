@@ -368,7 +368,7 @@ function StickerCategory({
               sticker={sticker}
               onClick={() =>
                 onAddSticker(
-                  `/stickers/${sticker.category}/${sticker.file}`
+                  `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/${sticker.category}/${sticker.file}`
                 )
               }
             />
@@ -433,7 +433,7 @@ function ScrollRow({
               sticker={sticker}
               onClick={() =>
                 onAddSticker(
-                  `/stickers/${sticker.category}/${sticker.file}`
+                  `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/${sticker.category}/${sticker.file}`
                 )
               }
             />
@@ -474,7 +474,7 @@ function StickerTile({
 }) {
   const [hovered, setHovered] = useState(false)
 
-  const imageUrl = `/stickers/${sticker.category}/${sticker.file}`
+  const imageUrl = `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/${sticker.category}/${sticker.file}`
 
   const handleDragStart = (
     e: React.DragEvent<HTMLButtonElement>
