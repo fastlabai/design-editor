@@ -57,6 +57,11 @@
     "nanoid": "^3.3.7",
     "sonner": "^2.0.7"
   },
+  "pnpm": {
+    "overrides": {
+      "nanoid": "^3.3.7"
+    }
+  },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.1.6",
     "@testing-library/jest-dom": "^6.9.1",
