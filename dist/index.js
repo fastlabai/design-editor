@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import React__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
 import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
@@ -7938,7 +7939,8 @@ function createImglyBackgroundRemoval() {
     async remove(input, opts) {
       let removeBackground;
       try {
-        const pkgName = "@imgly/background-removal"({ removeBackground } = await import(
+        const pkgName = "@imgly/background-removal";
+        ({ removeBackground } = await import(
           /* @vite-ignore */
           pkgName
         ));
