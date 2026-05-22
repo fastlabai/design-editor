@@ -15,6 +15,8 @@ media library, fonts, and storage backend via simple provider interfaces.
 - Background removal (via optional `@imgly/background-removal` peer dep)
 - Undo / redo, zoom / pan, autosave
 - Themable via CSS variables — bring your own colors
+- Zero-conflict CSS — styles are securely scoped to `[data-de-root]`, guaranteeing no interference with your host app's Bootstrap or Tailwind classes.
+- Fully flexible UI — optional `onBack` prop (hides the back button automatically if omitted).
 - TypeScript-first, strict types
 - Next.js App Router compatible (components ship with `'use client'`)
 - ~150 KB gzipped (excluding React and Fabric.js)

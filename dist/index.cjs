@@ -12601,7 +12601,7 @@ function Toolbar({
         WebkitBackdropFilter: "blur(20px)"
       },
       children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(
+        onBack && /* @__PURE__ */ jsxRuntime.jsxs(
           "button",
           {
             onClick: () => antd.Modal.confirm({
@@ -15318,7 +15318,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
   const { setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey);
   const handleBack = React.useCallback(() => {
     clearAutosave(sceneKey);
-    onBack();
+    if (onBack) onBack();
   }, [onBack, sceneKey]);
   const [settings, setSettings] = React.useState(() => {
     return getStorageSafe("studio_settings", { showGrid: false, snapGrid: false, railSide: "left" });
@@ -15513,7 +15513,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
         onExport: handleExport,
         settings,
         onSettings: handleSettings,
-        onBack: handleBack,
+        onBack: onBack ? handleBack : void 0,
         canvasBg,
         onBgChange: setCanvasBg,
         workspaceBg,
@@ -15529,7 +15529,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
           onTogglePanel: setActivePanel
         }
       ),
-      activePanel && /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { width: 320, background: "#16213e", borderRight: "1px solid #0f3460", display: "flex", flexDirection: "column", zIndex: 10 }, children: [
+      activePanel && /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { width: 320, background: "var(--color-surface, var(--de-color-bg-elevated))", borderRight: "1px solid var(--color-border, var(--de-color-border))", display: "flex", flexDirection: "column", zIndex: 10 }, children: [
         activePanel === "library" && (libraryPanel ? typeof libraryPanel === "function" ? libraryPanel({ onAddMedia: handleAddMedia }) : libraryPanel : /* @__PURE__ */ jsxRuntime.jsx(LibraryPanel, {})),
         activePanel === "text" && /* @__PURE__ */ jsxRuntime.jsx(TextPanel, { onAddText: handleAddText }),
         activePanel === "shapes" && /* @__PURE__ */ jsxRuntime.jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
@@ -15612,7 +15612,7 @@ function DesignEditor({
 }
 
 // src/index.ts
-var VERSION = "0.0.0";
+var VERSION = "1.0.0-beta.3";
 /*! Bundled license information:
 
 lodash/lodash.js:

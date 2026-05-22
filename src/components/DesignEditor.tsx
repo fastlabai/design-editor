@@ -40,7 +40,7 @@ function getStorageSafe(key: string, DEFAULT_SETTINGS: any) {
 
 type LibraryPanelRenderProp = React.ReactNode | ((props: { onAddMedia: (url: string) => void }) => React.ReactNode)
 
-function DesignEditorInner({ onBack, initialScene, className, libraryPanel, title }: { onBack: () => void; initialScene?: any; className?: string; libraryPanel?: LibraryPanelRenderProp; title?: React.ReactNode }) {
+function DesignEditorInner({ onBack, initialScene, className, libraryPanel, title }: { onBack?: () => void; initialScene?: any; className?: string; libraryPanel?: LibraryPanelRenderProp; title?: React.ReactNode }) {
   const editor    = useEditor()
   const activeObj = useActiveObject() as any
   const zoomRatio = useZoomRatio<number>()
@@ -69,7 +69,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
 
   const handleBack = useCallback(() => {
     clearAutosave(sceneKey)
-    onBack()
+    if (onBack) onBack()
   }, [onBack, sceneKey])
 
   type Settings = { showGrid: boolean; snapGrid: boolean; railSide: 'left' | 'right' }
@@ -276,7 +276,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
           onExport={handleExport}
           settings={settings}
           onSettings={handleSettings}
-          onBack={handleBack}
+          onBack={onBack ? handleBack : undefined}
           canvasBg={canvasBg}
           onBgChange={setCanvasBg}
           workspaceBg={workspaceBg}
@@ -291,7 +291,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
           />
 
           {activePanel && (
-            <div style={{ width: 320, background: '#16213e', borderRight: '1px solid #0f3460', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
+            <div style={{ width: 320, background: 'var(--color-surface, var(--de-color-bg-elevated))', borderRight: '1px solid var(--color-border, var(--de-color-border))', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
               {activePanel === 'library'  && (
                 libraryPanel
                   ? typeof libraryPanel === 'function' ? libraryPanel({ onAddMedia: handleAddMedia }) : libraryPanel
@@ -420,7 +420,7 @@ export function DesignEditor({
   return (
     <EngineProvider>
       <EditorContextProvider value={ctx}>
-        <DesignEditorInner onBack={onBack!} initialScene={initialScene} className={className} libraryPanel={libraryPanel} title={title} />
+        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} libraryPanel={libraryPanel} title={title} />
         <Toaster position="bottom-right" />
       </EditorContextProvider>
     </EngineProvider>

@@ -65,3 +65,44 @@ Pass it to the editor:
 ```tsx
 <DesignEditor mediaProvider={createMyMediaProvider()} />
 ```
+
+## Best Practice: 3-Tier Caching Architecture
+
+For production applications dealing with high-res images and videos, we strongly recommend implementing a **Memory → IndexedDB → Cloud** pipeline. This provides instant zero-latency UI updates while safely uploading large files in the background without crashing the browser's `localStorage` (which is limited to ~5MB).
+
+Here is a conceptual example using the lightweight `idb-keyval` library for IndexedDB:
+
+```tsx
+import { get, set } from 'idb-keyval'
+import type { MediaProvider } from '@fastlabai/design-editor'
+
+export const advancedMediaProvider: MediaProvider = {
+  list: async () => {
+    // Load previously uploaded items from local IndexedDB
+    const cached = (await get('my_local_media')) || []
+    
+    // Regenerate Object URLs for instant preview
+    const items = cached.map(item => ({
+      ...item,
+      url: URL.createObjectURL(item.file)
+    }))
+    
+    return { items }
+  },
+  
+  upload: async (file: File) => {
+    // 1. Memory (Fast Preview): Create a local blob URL instantly
+    const url = URL.createObjectURL(file)
+    const item = { id: Date.now().toString(), url, name: file.name, mimeType: file.type }
+
+    // 2. IndexedDB (Persistent Cache): Save binary blob to browser storage
+    const cached = (await get('my_local_media')) || []
+    await set('my_local_media', [{ ...item, file }, ...cached])
+
+    // 3. Cloud (Background Upload): Send to S3/CDN asynchronously
+    // uploadToS3(file).then(realUrl => updateItem(item.id, realUrl))
+
+    return item
+  }
+}
+```

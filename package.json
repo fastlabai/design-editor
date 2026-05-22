@@ -1,6 +1,6 @@
 {
   "name": "@fastlabai/design-editor",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "Open-source image design editor for React and Next.js",
   "license": "MIT",
   "author": "fastlab.ai",
@@ -41,7 +41,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsup && node scripts/postbuild-use-client.mjs",
+    "build": "tsup && tailwindcss -i src/theme/theme.css -o dist/theme.css && node scripts/postbuild-use-client.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -81,10 +81,12 @@
     "@vitest/coverage-v8": "^4.1.7",
     "jsdom": "^29.1.1",
     "lodash": "^4.18.1",
+    "postcss": "^8.5.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "resize-observer-polyfill": "^1.5.1",
     "size-limit": "^11.1.6",
+    "tailwindcss": "^3.4.19",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"

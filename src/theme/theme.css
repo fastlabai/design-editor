@@ -1,3 +1,6 @@
+@tailwind components;
+@tailwind utilities;
+
 /* @fastlabai/design-editor theme tokens */
 :root {
   --de-color-bg: #ffffff;
@@ -8,6 +11,14 @@
   --de-color-primary: #2563eb;
   --de-color-primary-fg: #ffffff;
   --de-color-danger: #dc2626;
+
+  /* Legacy component color aliases */
+  --color-bg: var(--de-color-bg);
+  --color-surface: var(--de-color-bg-elevated);
+  --color-text: var(--de-color-fg);
+  --color-text-muted: var(--de-color-fg-muted);
+  --color-border: var(--de-color-border);
+  --color-primary: var(--de-color-primary);
 
   --de-radius-sm: 4px;
   --de-radius-md: 8px;
@@ -35,6 +46,14 @@
 }
 
 .de-reset, .de-reset * { box-sizing: border-box; }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 /* Button styles */
 .de-btn {

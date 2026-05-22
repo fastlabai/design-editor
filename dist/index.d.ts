@@ -381,6 +381,6 @@ declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, mediaP
  * @packageDocumentation
  */
 /** Current package version. */
-declare const VERSION = "0.0.0";
+declare const VERSION = "1.0.0-beta.3";
 
 export { type BackgroundRemovalProvider, DesignEditor, type DesignEditorProps, type FontDescriptor, type FontProvider, type ILayer, type IScene, type MediaItem, type MediaListResult, type MediaProvider, type PersistenceProvider, VERSION, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence, createNullMediaProvider };

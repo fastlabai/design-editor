@@ -14,12 +14,6 @@ import { dirname } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const distDir = join(__dirname, '..', 'dist')
 
-// ── 1. Copy theme.css ────────────────────────────────────────────────────────
-const themeSrc = join(__dirname, '..', 'src', 'theme', 'theme.css')
-const themeDest = join(distDir, 'theme.css')
-copyFileSync(themeSrc, themeDest)
-console.log(`[postbuild] copied theme.css → dist/theme.css`)
-
 // ── 2. Prepend 'use client' to JS outputs ────────────────────────────────────
 function walk(dir) {
   const entries = readdirSync(dir)

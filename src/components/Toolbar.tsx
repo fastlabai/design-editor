@@ -27,7 +27,7 @@ interface Props {
   onToggleLayers: () => void
   exporting: boolean
   onExport: () => void
-  onBack: () => void
+  onBack?: () => void
   settings?: any
   onSettings: (patch: Partial<any>) => void
   canvasBg: string
@@ -118,32 +118,34 @@ export function Toolbar({
       }}
     >
       {/* Back */}
-      <button
-        onClick={() => Modal.confirm({
-          title: 'Leave without saving?',
-          content: 'Any unsaved changes will be lost.',
-          okText: 'Leave', cancelText: 'Stay', onOk: onBack,
-        })}
-        style={{
-          display: 'flex', alignItems: 'center', gap: 7,
-          background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
-          border: '1px solid var(--color-border)',
-          borderRadius: 9, padding: '6px 13px', cursor: 'pointer',
-          color: 'var(--color-text-muted)', fontSize: 12, fontWeight: 600,
-          transition: 'all 0.15s',
-          outline: 'none',
-        }}
-        onMouseEnter={e => {
-          (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text)';
-          (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 10%, transparent)';
-        }}
-        onMouseLeave={e => {
-          (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text-muted)';
-          (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 5%, transparent)';
-        }}
-      >
-        <ArrowLeftOutlined style={{ fontSize: 11 }} /> <span className="hidden md:inline">Back</span>
-      </button>
+      {onBack && (
+        <button
+          onClick={() => Modal.confirm({
+            title: 'Leave without saving?',
+            content: 'Any unsaved changes will be lost.',
+            okText: 'Leave', cancelText: 'Stay', onOk: onBack,
+          })}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 7,
+            background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+            border: '1px solid var(--color-border)',
+            borderRadius: 9, padding: '6px 13px', cursor: 'pointer',
+            color: 'var(--color-text-muted)', fontSize: 12, fontWeight: 600,
+            transition: 'all 0.15s',
+            outline: 'none',
+          }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text)';
+            (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 10%, transparent)';
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text-muted)';
+            (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 5%, transparent)';
+          }}
+        >
+          <ArrowLeftOutlined style={{ fontSize: 11 }} /> <span className="hidden md:inline">Back</span>
+        </button>
+      )}
 
       {/* Brand */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 8, marginRight: 4 }}>
