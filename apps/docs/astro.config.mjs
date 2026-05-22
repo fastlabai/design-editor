@@ -4,6 +4,11 @@ import starlight from '@astrojs/starlight'
 export default defineConfig({
   site: 'https://fastlabai.github.io',
   base: '/design-editor',
+  vite: {
+    ssr: {
+      external: ['postcss', 'nanoid'],
+    },
+  },
   integrations: [
     starlight({
       title: '@fastlab-ai/design-editor',
