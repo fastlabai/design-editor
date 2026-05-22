@@ -1,8 +1,12 @@
 /**
- * Post-build script: prepend 'use client' directive to all .js and .cjs files
- * in the dist/ directory so Next.js App Router treats them as client components.
+ * Post-build script:
+ * 1. Prepend 'use client' directive to all .js and .cjs files in dist/ so
+ *    Next.js App Router treats them as client components.
+ * 2. Copy src/theme/theme.css → dist/theme.css to satisfy the
+ *    "./theme.css": "./dist/theme.css" export map entry. tsup does not process
+ *    static CSS assets, so the copy must happen here.
  */
-import { readFileSync, writeFileSync, readdirSync, statSync } from 'fs'
+import { copyFileSync, readFileSync, writeFileSync, readdirSync, statSync } from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
@@ -10,6 +14,13 @@ import { dirname } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const distDir = join(__dirname, '..', 'dist')
 
+// ── 1. Copy theme.css ────────────────────────────────────────────────────────
+const themeSrc = join(__dirname, '..', 'src', 'theme', 'theme.css')
+const themeDest = join(distDir, 'theme.css')
+copyFileSync(themeSrc, themeDest)
+console.log(`[postbuild] copied theme.css → dist/theme.css`)
+
+// ── 2. Prepend 'use client' to JS outputs ────────────────────────────────────
 function walk(dir) {
   const entries = readdirSync(dir)
   for (const entry of entries) {
@@ -28,3 +39,4 @@ function walk(dir) {
 
 walk(distDir)
 console.log('[postbuild-use-client] done.')
+
