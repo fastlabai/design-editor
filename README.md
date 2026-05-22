@@ -56,9 +56,19 @@ export default function App() {
 />
 ```
 
-See the [providers docs](https://fastlabai.github.io/design-editor/providers/media)
-for the interfaces.
+See the documentation site for more examples.
 
+## API Reference
+
+Full typed API documentation is auto-generated and available on the docs site:
+- [`<DesignEditor />`](https://fastlabai.github.io/design-editor/api/functions/DesignEditor)
+- [`DesignEditorProps`](https://fastlabai.github.io/design-editor/api/interfaces/DesignEditorProps)
+- [`MediaProvider`](https://fastlabai.github.io/design-editor/api/interfaces/MediaProvider)
+- [`FontProvider`](https://fastlabai.github.io/design-editor/api/interfaces/FontProvider)
+- [`BackgroundRemovalProvider`](https://fastlabai.github.io/design-editor/api/interfaces/BackgroundRemovalProvider)
+- [`PersistenceProvider`](https://fastlabai.github.io/design-editor/api/interfaces/PersistenceProvider)
+- [`IScene`](https://fastlabai.github.io/design-editor/api/interfaces/IScene)
+- [`ILayer`](https://fastlabai.github.io/design-editor/api/type-aliases/ILayer)
 ## Docs & playground
 
 - Full documentation — <https://fastlabai.github.io/design-editor>
