@@ -15370,7 +15370,10 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }) {
     setRemovingBg(true);
     message2.info("Removing background...");
     try {
-      const { removeBackground } = await import('@imgly/background-removal');
+      const { removeBackground } = await import(
+        /* @vite-ignore */
+        '@imgly/background-removal'
+      );
       const blob = await removeBackground(activeObj.src);
       const newUrl = URL.createObjectURL(blob);
       editor?.objects.update({ src: newUrl });
