@@ -32,7 +32,7 @@ export function LibraryPanel() {
       {items.map((item) => (
         <div key={item.id} style={{ cursor: 'pointer', borderRadius: '4px', overflow: 'hidden' }} onClick={() => {
           // Typically we would add the image to the canvas here.
-          // The adspotMediaPanel previously dispatched to Redux.
+          // The fastlabaiMediaPanel previously dispatched to Redux.
           // Since this is just a panel, we rely on the parent (DesignEditor) or engine to handle additions.
           // For now, this is a simplified view.
         }}>

@@ -480,9 +480,9 @@ function StickerTile({
     e: React.DragEvent<HTMLButtonElement>
   ) => {
     e.dataTransfer.effectAllowed = 'copy'
-    e.dataTransfer.setData('text/x-adspot-type', 'sticker')
+    e.dataTransfer.setData('text/x-fastlabai-type', 'sticker')
     e.dataTransfer.setData(
-      'text/x-adspot-sticker-src',
+      'text/x-fastlabai-sticker-src',
       imageUrl
     )
   }

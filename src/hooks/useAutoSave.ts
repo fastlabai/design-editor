@@ -1,11 +1,13 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-export const AUTOSAVE_KEY = 'design_autosave'
+export const AUTOSAVE_KEY_PREFIX = 'design_autosave'
+export const getAutosaveKey = (sceneKey?: string) => sceneKey ? `${AUTOSAVE_KEY_PREFIX}_${sceneKey}` : AUTOSAVE_KEY_PREFIX
 
-export function useAutoSave(editor: any, canvasBg: string, workspaceBg: string) {
+export function useAutoSave(editor: any, canvasBg: string, workspaceBg: string, sceneKey?: string) {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
+  const key = getAutosaveKey(sceneKey)
 
   // Setup beforeunload to prevent accidental exit
   useEffect(() => {
@@ -34,7 +36,7 @@ export function useAutoSave(editor: any, canvasBg: string, workspaceBg: string) 
             canvasBg,
             workspaceBg
           }
-          localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(payload))
+          localStorage.setItem(key, JSON.stringify(payload))
         } catch {}
       }, 1500)
     }
@@ -47,7 +49,7 @@ export function useAutoSave(editor: any, canvasBg: string, workspaceBg: string) 
       canvas.off('object:removed',  schedule)
       clearTimeout(timerRef.current)
     }
-  }, [editor, canvasBg, workspaceBg])
+  }, [editor, canvasBg, workspaceBg, key])
 
   // Track background changes explicitly
   useEffect(() => {
@@ -61,21 +63,21 @@ export function useAutoSave(editor: any, canvasBg: string, workspaceBg: string) 
           canvasBg,
           workspaceBg
         }
-        localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(payload))
+        localStorage.setItem(key, JSON.stringify(payload))
       } catch {}
     }, 1500)
-  }, [canvasBg, workspaceBg, editor])
+  }, [canvasBg, workspaceBg, editor, key])
 
   return { hasUnsavedChanges, setHasUnsavedChanges }
 }
 
-export function loadAutosave(): any | null {
+export function loadAutosave(sceneKey?: string): any | null {
   try {
-    const raw = localStorage.getItem(AUTOSAVE_KEY)
+    const raw = localStorage.getItem(getAutosaveKey(sceneKey))
     return raw ? JSON.parse(raw) : null
   } catch { return null }
 }
 
-export function clearAutosave() {
-  localStorage.removeItem(AUTOSAVE_KEY)
+export function clearAutosave(sceneKey?: string) {
+  localStorage.removeItem(getAutosaveKey(sceneKey))
 }

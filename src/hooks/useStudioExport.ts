@@ -8,11 +8,11 @@ export function useStudioExport() {
   const toast = useToast()
   const { onExport } = useEditorContext()
 
-  async function exportToLibrary(blob: Blob, filename: string): Promise<boolean> {
+  async function exportToLibrary(blob: Blob, filename: string, scene: any): Promise<boolean> {
     setExporting(true)
     try {
       if (onExport) {
-        await onExport(blob, filename.endsWith('.png') ? 'png' : 'jpg')
+        await onExport(blob, filename.endsWith('.png') ? 'png' : 'jpg', scene)
       }
       toast.success('Saved to Media Library')
       return true

@@ -18,7 +18,7 @@ import { FontsPanel } from './panels/FontsPanel'
 import { useStudioExport } from '../hooks/useStudioExport'
 import { useCanvasSize } from '../hooks/useCanvasSize'
 import { useLayerPanel } from '../hooks/useLayerPanel'
-import { useAutoSave, loadAutosave } from '../hooks/useAutoSave'
+import { useAutoSave, loadAutosave, clearAutosave } from '../hooks/useAutoSave'
 
 import { EditorContextProvider, useEditorContext } from './EditorContext'
 import { Provider as EngineProvider } from '../engine/react'
@@ -40,13 +40,13 @@ function getStorageSafe(key: string, DEFAULT_SETTINGS: any) {
 
 type LibraryPanelRenderProp = React.ReactNode | ((props: { onAddMedia: (url: string) => void }) => React.ReactNode)
 
-function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { onBack: () => void; initialScene?: any; className?: string; libraryPanel?: LibraryPanelRenderProp }) {
+function DesignEditorInner({ onBack, initialScene, className, libraryPanel, title }: { onBack: () => void; initialScene?: any; className?: string; libraryPanel?: LibraryPanelRenderProp; title?: React.ReactNode }) {
   const editor    = useEditor()
   const activeObj = useActiveObject() as any
   const zoomRatio = useZoomRatio<number>()
   const { exportToLibrary, exporting } = useStudioExport()
   const message = useToast()
-  const { backgroundRemovalProvider } = useEditorContext()
+  const { backgroundRemovalProvider, sceneKey } = useEditorContext()
 
   const [activePanel,    setActivePanel]    = useState<PanelKey | null>(null)
   const [layerPanelOpen, setLayerPanelOpen] = useState(false)
@@ -65,7 +65,12 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
     return (initialScene as any)?.workspaceBg || getStorageSafe('studio_workspaceBg', '#1a1a2e')
   })
 
-  const { setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg)
+  const { setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey)
+
+  const handleBack = useCallback(() => {
+    clearAutosave(sceneKey)
+    onBack()
+  }, [onBack, sceneKey])
 
   type Settings = { showGrid: boolean; snapGrid: boolean; railSide: 'left' | 'right' }
   const [settings, setSettings] = useState<Settings>(() => {
@@ -96,24 +101,22 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
   useEffect(() => {
     if (!editor) return
 
-    if (initialScene) {
+    const saved = loadAutosave(sceneKey)
+    if (saved && Object.keys(saved).length > 0) {
+      if (saved.scene) editor.scene.importFromJSON(saved.scene).catch(() => {}).then(restoreShapes)
+      if (saved.canvasBg) setCanvasBg(saved.canvasBg)
+      if (saved.workspaceBg) setWorkspaceBg(saved.workspaceBg)
+    } else if (initialScene) {
       const scene = (initialScene as any).scene || initialScene
       editor.scene.importFromJSON(scene).catch(() => {}).then(restoreShapes)
       if ((initialScene as any).canvasBg) setCanvasBg((initialScene as any).canvasBg)
       if ((initialScene as any).workspaceBg) setWorkspaceBg((initialScene as any).workspaceBg)
-    } else {
-      const saved = loadAutosave()
-      if (saved) {
-        if (saved.scene) editor.scene.importFromJSON(saved.scene).catch(() => {}).then(restoreShapes)
-        if (saved.canvasBg) setCanvasBg(saved.canvasBg)
-        if (saved.workspaceBg) setWorkspaceBg(saved.workspaceBg)
-      }
     }
 
     const handleChange = () => setHasUnsavedChanges(true)
     editor.on('history:changed', handleChange)
     return () => editor.off('history:changed', handleChange)
-  }, [editor, initialScene, restoreShapes, setHasUnsavedChanges])
+  }, [editor, initialScene, restoreShapes, setHasUnsavedChanges, sceneKey])
 
   const zoomPct = Math.round(zoomRatio * 100)
 
@@ -123,17 +126,19 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
     handleSizeChange, handleApplyCustom
   } = useCanvasSize(editor)
 
-  const handleAddMedia = useCallback(async (url: string) => {
+  const handleAddMedia = useCallback(async (url: string, position?: { top: number; left: number }) => {
     if (!editor) return
     try {
-      const type = url.match(/\.(mp4|webm)$/i) ? 'Video' : 'StaticImage'
+      const type = url.match(/\.(mp4|webm)$/i) ? 'StaticVideo' : 'StaticImage'
       const options = {
-        type, url,
-        top: 100, left: 100,
-        metadata: { source: 'adspot' }
+        type, src: url,
+        top: position?.top ?? 100,
+        left: position?.left ?? 100,
+        metadata: { source: 'fastlabai' }
       }
       await editor?.objects.add(options)
-    } catch {
+    } catch (err: any) {
+      console.error('[handleAddMedia] Error:', err)
       message.error('Failed to add media')
     }
   }, [editor, message])
@@ -209,14 +214,42 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
       const scene = editor.scene.exportToJSON()
       const dataUrl: string = await (editor as any).renderer.toDataURL(scene, { format: 'png', quality: 1, multiplier: 2 })
       const blob    = await (await fetch(dataUrl)).blob()
-      const success = await exportToLibrary(blob, `design-${Date.now()}.png`)
+      const success = await exportToLibrary(blob, `design-${Date.now()}.png`, scene)
       if (success) {
         setHasUnsavedChanges(false)
+        clearAutosave(sceneKey)
       }
     } catch {
       message.error('Failed to export')
     }
   }, [editor, exportToLibrary, message, setHasUnsavedChanges])
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragOver(false)
+    if (!editor) return
+
+    const shapeSrc = e.dataTransfer.getData('text/x-fastlabai-shape-src')
+    const stickerSrc = e.dataTransfer.getData('text/x-fastlabai-sticker-src')
+    const mediaUrl = e.dataTransfer.getData('text/x-fastlabai-url')
+    
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
+    let left = e.clientX - rect.left
+    let top = e.clientY - rect.top
+
+    try {
+      const zoom = editor.canvas.canvas.getZoom() || 1
+      const vpt = editor.canvas.canvas.viewportTransform || [1, 0, 0, 1, 0, 0]
+      left = (left - vpt[4]) / zoom
+      top = (top - vpt[5]) / zoom
+    } catch { /* ignore if canvas not ready */ }
+
+    if (shapeSrc || stickerSrc) {
+      addImageToCanvas(shapeSrc || stickerSrc, top, left)
+    } else if (mediaUrl) {
+      handleAddMedia(mediaUrl, { top, left })
+    }
+  }, [editor, addImageToCanvas, handleAddMedia])
 
   return (
     <div data-de-root className={className} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--de-color-bg)', color: 'var(--de-color-fg)' }}>
@@ -243,11 +276,12 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
           onExport={handleExport}
           settings={settings}
           onSettings={handleSettings}
-          onBack={onBack || (() => {})}
+          onBack={handleBack}
           canvasBg={canvasBg}
           onBgChange={setCanvasBg}
           workspaceBg={workspaceBg}
           onWorkspaceBgChange={setWorkspaceBg}
+          title={title}
         />
 
         <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
@@ -266,7 +300,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
               {activePanel === 'text'     && <TextPanel onAddText={handleAddText} />}
               {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
               {activePanel === 'stickers' && <StickersPanel onAddSticker={url => addImageToCanvas(url)} />}
-              {activePanel === 'upload'   && <UploadPanel onUploadFile={handleAddMedia} />}
+              {activePanel === 'upload'   && <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />}
               {activePanel === 'fonts'    && <FontsPanel onApplyFont={(family) => editor?.objects.update({ fontFamily: family } as any)} />}
             </div>
           )}
@@ -278,7 +312,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
               dragOver={dragOver}
               onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
               onDragLeave={() => setDragOver(false)}
-              onDrop={(e) => { e.preventDefault(); setDragOver(false) }}
+              onDrop={handleDrop}
             />
             {removingBg && shimmerRect && (
               <div style={{
@@ -328,8 +362,8 @@ export interface DesignEditorProps {
   sceneKey?: string
   /** Called when the user clicks the back button in the toolbar. */
   onBack?: () => void
-  /** Called when the user exports the design. Receives the rendered Blob and the output format. */
-  onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg') => void | Promise<void>
+  /** Called when the user exports the design. Receives the rendered Blob, output format, and raw scene JSON. */
+  onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: IScene) => void | Promise<void>
   /** Media library provider. Defaults to a null provider (empty Library panel). */
   mediaProvider?: MediaProvider
   /** Font provider. Defaults to a Google Fonts provider. */
@@ -342,6 +376,8 @@ export interface DesignEditorProps {
   className?: string
   /** Custom render override for the Library panel — useful to inject host-app media UI. */
   libraryPanel?: LibraryPanelRenderProp
+  /** Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio". */
+  title?: React.ReactNode
 }
 
 /**
@@ -372,6 +408,7 @@ export function DesignEditor({
   persistenceProvider = createLocalStoragePersistence(),
   className,
   libraryPanel,
+  title,
 }: DesignEditorProps) {
   const resolvedBackgroundRemovalProvider =
     backgroundRemovalProvider ?? createImglyBackgroundRemoval()
@@ -383,7 +420,7 @@ export function DesignEditor({
   return (
     <EngineProvider>
       <EditorContextProvider value={ctx}>
-        <DesignEditorInner onBack={onBack!} initialScene={initialScene} className={className} libraryPanel={libraryPanel} />
+        <DesignEditorInner onBack={onBack!} initialScene={initialScene} className={className} libraryPanel={libraryPanel} title={title} />
         <Toaster position="bottom-right" />
       </EditorContextProvider>
     </EngineProvider>

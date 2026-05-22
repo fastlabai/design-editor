@@ -37,7 +37,10 @@ Pass props to wire host integrations:
 <DesignEditor
   mediaProvider={createMyMediaProvider()}
   fontProvider={createMyFontProvider()}
-  onExport={async (blob) => uploadToS3(blob)}
+  onExport={async (blob, format, scene) => {
+    const url = await uploadToS3(blob)
+    await saveToDatabase(scene) // Save raw JSON to re-edit later
+  }}
   onBack={() => router.push('/dashboard')}
 />
 ```

@@ -122,10 +122,10 @@
 
 //   const handleDragStart = (e: React.DragEvent<HTMLButtonElement>) => {
 //     e.dataTransfer.effectAllowed = 'copy'
-//     e.dataTransfer.setData('text/x-adspot-type', 'shape')
-//     e.dataTransfer.setData('text/x-adspot-shape-d', shape.d)
-//     e.dataTransfer.setData('text/x-adspot-shape-viewbox', shape.viewBox)
-//     e.dataTransfer.setData('text/x-adspot-shape-style', styleType)
+//     e.dataTransfer.setData('text/x-fastlabai-type', 'shape')
+//     e.dataTransfer.setData('text/x-fastlabai-shape-d', shape.d)
+//     e.dataTransfer.setData('text/x-fastlabai-shape-viewbox', shape.viewBox)
+//     e.dataTransfer.setData('text/x-fastlabai-shape-style', styleType)
 //   }
 
 //   return (
@@ -666,9 +666,9 @@ function ShapeTile({
     e: React.DragEvent<HTMLButtonElement>
   ) => {
     e.dataTransfer.effectAllowed = 'copy'
-    e.dataTransfer.setData('text/x-adspot-type', 'shape')
+    e.dataTransfer.setData('text/x-fastlabai-type', 'shape')
     e.dataTransfer.setData(
-      'text/x-adspot-shape-src',
+      'text/x-fastlabai-shape-src',
       imageUrl
     )
   }

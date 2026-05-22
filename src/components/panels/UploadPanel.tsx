@@ -116,8 +116,8 @@ export function UploadPanel({ onUploadFile }: Props) {
                 draggable
                 onDragStart={(e) => {
                   e.dataTransfer.effectAllowed = 'copy'
-                  e.dataTransfer.setData('text/x-adspot-url', item.url)
-                  e.dataTransfer.setData('text/x-adspot-type', item.mimeType?.startsWith('video/') ? 'video' : 'image')
+                  e.dataTransfer.setData('text/x-fastlabai-url', item.url)
+                  e.dataTransfer.setData('text/x-fastlabai-type', item.mimeType?.startsWith('video/') ? 'video' : 'image')
                 }}
                 onClick={() => onUploadFile(item.url)}
                 style={{

@@ -8,7 +8,7 @@ export interface EditorContextValue {
   backgroundRemovalProvider: BackgroundRemovalProvider
   persistenceProvider: PersistenceProvider
   sceneKey?: string
-  onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg') => void | Promise<void>
+  onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: any) => void | Promise<void>
   onBack?: () => void
 }
 

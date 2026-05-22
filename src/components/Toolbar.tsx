@@ -34,6 +34,7 @@ interface Props {
   onBgChange: (color: string) => void
   workspaceBg: string
   onWorkspaceBgChange: (color: string) => void
+  title?: React.ReactNode
 }
 
 const TOOL_BTN: CSSProperties = {
@@ -56,6 +57,7 @@ export function Toolbar({
   handleSizeChange, handleApplyCustom,
   layerPanelOpen, onToggleLayers, exporting, onExport, onBack,
   settings, onSettings, canvasBg, onBgChange, workspaceBg, onWorkspaceBgChange,
+  title,
 }: Props) {
   const settingsContent = (
     <div style={{ width: 230, display: 'flex', flexDirection: 'column', gap: 14,
@@ -154,7 +156,7 @@ export function Toolbar({
           A
         </div>
         <span className="hidden md:inline" style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-text)', letterSpacing: '-0.01em' }}>
-          Adspot Design Studio
+          {title || 'FastlabAI Design Studio'}
         </span>
       </div>
 

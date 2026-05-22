@@ -92,11 +92,11 @@ Called when the user clicks the back button in the toolbar.
 
 ### onExport?
 
-> `optional` **onExport?**: (`blob`, `format`) => `void` \| `Promise`\<`void`\>
+> `optional` **onExport?**: (`blob`, `format`, `scene`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [components/DesignEditor.tsx:332](https://github.com/fastlabai/design-editor/blob/68d0ac81904a572d2be2f5ee4f6e6c015b8db98a/src/components/DesignEditor.tsx#L332)
+Defined in: [components/DesignEditor.tsx:366](https://github.com/fastlabai/design-editor/blob/main/src/components/DesignEditor.tsx#L366)
 
-Called when the user exports the design. Receives the rendered Blob and the output format.
+Called when the user exports the design. Receives the rendered Blob, output format, and raw scene JSON.
 
 #### Parameters
 
@@ -107,6 +107,10 @@ Called when the user exports the design. Receives the rendered Blob and the outp
 ##### format
 
 `"svg"` \| `"png"` \| `"jpg"`
+
+##### scene
+
+`IScene`
 
 #### Returns
 

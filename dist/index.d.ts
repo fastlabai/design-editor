@@ -335,8 +335,8 @@ interface DesignEditorProps {
     sceneKey?: string;
     /** Called when the user clicks the back button in the toolbar. */
     onBack?: () => void;
-    /** Called when the user exports the design. Receives the rendered Blob and the output format. */
-    onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg') => void | Promise<void>;
+    /** Called when the user exports the design. Receives the rendered Blob, output format, and raw scene JSON. */
+    onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: IScene) => void | Promise<void>;
     /** Media library provider. Defaults to a null provider (empty Library panel). */
     mediaProvider?: MediaProvider;
     /** Font provider. Defaults to a Google Fonts provider. */
@@ -349,6 +349,8 @@ interface DesignEditorProps {
     className?: string;
     /** Custom render override for the Library panel — useful to inject host-app media UI. */
     libraryPanel?: LibraryPanelRenderProp;
+    /** Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio". */
+    title?: React.ReactNode;
 }
 /**
  * The top-level image design editor. Renders a full-screen canvas-based editor
@@ -367,7 +369,7 @@ interface DesignEditorProps {
  * }
  * ```
  */
-declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, libraryPanel, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
+declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, libraryPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
 
 /**
  * @fastlabai/design-editor

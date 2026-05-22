@@ -4,7 +4,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![CI](https://github.com/fastlabai/design-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/fastlabai/design-editor/actions/workflows/ci.yml)
 
-An open-source image design editor for React and Next.js. Plug in your own
+An open-source image design editor for React and Next.js, brought to you by [FastlabAI](https://fastlab.ai). Plug in your own
 media library, fonts, and storage backend via simple provider interfaces.
 
 ![Design Editor screenshot](./screenshot.png)
@@ -42,10 +42,14 @@ export default function App() {
 
 ```tsx
 <DesignEditor
+  title="My Custom Studio Title"
   mediaProvider={myMediaProvider}
   fontProvider={myFontProvider}
   persistenceProvider={myPersistenceProvider}
-  onExport={async (blob) => uploadToS3(blob)}
+  onExport={async (blob, format, scene) => {
+    const url = await uploadToS3(blob)
+    await saveToDatabase(scene) // Save raw JSON to re-edit later
+  }}
   onBack={() => router.push('/dashboard')}
 />
 ```
