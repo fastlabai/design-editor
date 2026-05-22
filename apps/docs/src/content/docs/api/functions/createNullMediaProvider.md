@@ -1,3 +1,7 @@
+---
+title: "Function: createNullMediaProvider()"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

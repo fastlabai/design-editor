@@ -5,3 +5,5 @@ coverage/
 .eslintcache
 examples/*/dist/
 .next/
+apps/docs/dist/
+apps/docs/.astro/

@@ -1,3 +1,7 @@
+---
+title: "Interface: IScene"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

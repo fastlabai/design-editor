@@ -1,3 +1,7 @@
+---
+title: "@fastlab-ai/design-editor"
+---
+
 **@fastlab-ai/design-editor**
 
 ***

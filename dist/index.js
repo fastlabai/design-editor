@@ -7933,26 +7933,28 @@ function createGoogleFontsProvider(opts = {}) {
   };
 }
 
+// src/internal/dynamicImport.ts
+var dynamicImport = new Function("specifier", "return import(specifier)");
+function importOptionalPeer(specifier) {
+  return dynamicImport(specifier);
+}
+
 // src/providers/defaults/imglyBackgroundRemoval.ts
 function createImglyBackgroundRemoval() {
   return {
     async remove(input, opts) {
+      let removeBackground;
       try {
-        const dynamicImport = new Function(
-          "m",
-          "return import(m)"
-        );
-        const { removeBackground } = await dynamicImport(
-          "@imgly/background-removal"
-        );
-        return removeBackground(input, {
-          progress: opts?.onProgress ? (_key, current, total) => opts.onProgress(current / total) : void 0
-        });
+        ;
+        ({ removeBackground } = await importOptionalPeer("@imgly/background-removal"));
       } catch {
         throw new Error(
           "@imgly/background-removal is not installed. Either install it as a peer dependency or pass a custom backgroundRemovalProvider prop."
         );
       }
+      return removeBackground(input, {
+        progress: opts?.onProgress ? (_key, current, total) => opts.onProgress(current / total) : void 0
+      });
     }
   };
 }

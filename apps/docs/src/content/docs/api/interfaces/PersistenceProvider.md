@@ -1,3 +1,7 @@
+---
+title: "Interface: PersistenceProvider"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

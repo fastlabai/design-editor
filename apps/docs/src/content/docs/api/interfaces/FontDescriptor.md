@@ -1,3 +1,7 @@
+---
+title: "Interface: FontDescriptor"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: "Function: DesignEditor()"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

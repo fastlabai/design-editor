@@ -1,3 +1,7 @@
+---
+title: "Interface: MediaListResult"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

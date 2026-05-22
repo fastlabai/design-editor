@@ -1,3 +1,7 @@
+---
+title: "Interface: MediaProvider"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

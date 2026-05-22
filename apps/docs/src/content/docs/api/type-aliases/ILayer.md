@@ -1,3 +1,7 @@
+---
+title: "Type Alias: ILayer"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

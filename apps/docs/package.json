@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "build:api": "typedoc"
+    "build:api": "typedoc && node scripts/add-typedoc-frontmatter.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",

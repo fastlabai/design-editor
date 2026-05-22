@@ -1,3 +1,7 @@
+---
+title: "Function: createGoogleFontsProvider()"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

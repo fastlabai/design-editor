@@ -1,3 +1,7 @@
+---
+title: "Function: createLocalStoragePersistence()"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***

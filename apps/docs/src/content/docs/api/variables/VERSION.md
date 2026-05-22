@@ -1,3 +1,7 @@
+---
+title: "Variable: VERSION"
+---
+
 [**@fastlab-ai/design-editor**](../README.md)
 
 ***
