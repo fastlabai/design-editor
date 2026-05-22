@@ -15267,6 +15267,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }) {
   const zoomRatio = useZoomRatio();
   const { exportToLibrary, exporting } = useStudioExport();
   const message2 = useToast();
+  const { backgroundRemovalProvider } = useEditorContext();
   const [activePanel, setActivePanel] = React.useState(null);
   const [layerPanelOpen, setLayerPanelOpen] = React.useState(false);
   const [removingBg, setRemovingBg] = React.useState(false);
@@ -15396,11 +15397,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }) {
     setRemovingBg(true);
     message2.info("Removing background...");
     try {
-      const { removeBackground } = await import(
-        /* @vite-ignore */
-        '@imgly/background-removal'
-      );
-      const blob = await removeBackground(activeObj.src);
+      const blob = await backgroundRemovalProvider.remove(activeObj.src);
       const newUrl = URL.createObjectURL(blob);
       editor?.objects.update({ src: newUrl });
       message2.success("Background removed successfully!");
@@ -15411,7 +15408,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }) {
       setRemovingBg(false);
       setShimmerRect(null);
     }
-  }, [editor, activeObj, message2]);
+  }, [editor, activeObj, message2, backgroundRemovalProvider]);
   const handleExport = React.useCallback(async () => {
     if (!editor) return;
     try {

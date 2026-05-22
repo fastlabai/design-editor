@@ -20,7 +20,7 @@ import { useCanvasSize } from '../hooks/useCanvasSize'
 import { useLayerPanel } from '../hooks/useLayerPanel'
 import { useAutoSave, loadAutosave } from '../hooks/useAutoSave'
 
-import { EditorContextProvider } from './EditorContext'
+import { EditorContextProvider, useEditorContext } from './EditorContext'
 import { Provider as EngineProvider } from '../engine/react'
 import { Toaster } from './primitives/Toast'
 import { useToast } from '../hooks/useToast'
@@ -46,6 +46,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
   const zoomRatio = useZoomRatio<number>()
   const { exportToLibrary, exporting } = useStudioExport()
   const message = useToast()
+  const { backgroundRemovalProvider } = useEditorContext()
 
   const [activePanel,    setActivePanel]    = useState<PanelKey | null>(null)
   const [layerPanelOpen, setLayerPanelOpen] = useState(false)
@@ -187,8 +188,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
     setRemovingBg(true)
     message.info('Removing background...')
     try {
-      const { removeBackground } = await import(/* @vite-ignore */ '@imgly/background-removal')
-      const blob = await removeBackground(activeObj.src)
+      const blob = await backgroundRemovalProvider.remove(activeObj.src)
       const newUrl = URL.createObjectURL(blob)
 
       editor?.objects.update({ src: newUrl })
@@ -201,7 +201,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel }: { 
       setRemovingBg(false)
       setShimmerRect(null)
     }
-  }, [editor, activeObj, message])
+  }, [editor, activeObj, message, backgroundRemovalProvider])
 
   const handleExport = useCallback(async () => {
     if (!editor) return
