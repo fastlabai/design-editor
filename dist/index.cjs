@@ -1,4 +1,3 @@
-'use client'
 'use strict';
 
 var React = require('react');
@@ -7963,9 +7962,9 @@ function createImglyBackgroundRemoval() {
     async remove(input, opts) {
       let removeBackground;
       try {
-        ({ removeBackground } = await import(
+        const pkgName = "@imgly/background-removal"({ removeBackground } = await import(
           /* @vite-ignore */
-          '@imgly/background-removal'
+          pkgName
         ));
       } catch {
         throw new Error(
