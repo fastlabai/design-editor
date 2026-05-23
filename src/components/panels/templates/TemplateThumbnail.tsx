@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react'
 import type { DesignTemplate } from '../../../providers/templates'
-import { useTemplateThumbnail } from './useTemplateThumbnail'
+import { useSceneThumbnail } from '../_shared/useSceneThumbnail'
 
 interface Props {
   template: DesignTemplate
@@ -10,7 +10,12 @@ interface Props {
 
 export function TemplateThumbnail({ template, onClick }: Props) {
   const ref = React.useRef<HTMLButtonElement>(null)
-  const { src, loading } = useTemplateThumbnail(template, ref as any)
+  const { src, loading } = useSceneThumbnail({
+    id: template.id,
+    scene: template.scene,
+    thumbnailUrl: template.thumbnailUrl,
+    canvasBg: template.canvasBg,
+  }, ref as any)
 
   const aspectRatio =
     template.scene?.frame && template.scene.frame.width && template.scene.frame.height

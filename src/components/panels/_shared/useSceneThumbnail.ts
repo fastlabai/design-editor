@@ -1,45 +1,45 @@
 'use client'
 import * as React from 'react'
 import { useEditor } from '../../../engine/react'
-import type { DesignTemplate } from '../../../providers/templates'
+import type { IScene } from '../../../engine'
 
 const cache = new Map<string, string>()
 const inFlight = new Map<string, Promise<string>>()
 
-interface UseTemplateThumbnailResult {
+interface UseSceneThumbnailResult {
   src: string | undefined
   loading: boolean
 }
 
 /**
- * Resolves a usable image src for a template thumbnail. If the template has a
- * `thumbnailUrl`, that wins. Otherwise, the scene is rendered via
+ * Resolves a usable image src for a scene thumbnail. If `thumbnailUrl` is
+ * provided, that wins. Otherwise, the scene is rendered via
  * `editor.renderer.toDataURL` once the element scrolls into view, and the
- * result is cached by template id for the lifetime of the page.
+ * result is cached by id for the lifetime of the page.
  *
  * The third arg is for tests; in real usage we read the editor from context.
  */
-export function useTemplateThumbnail(
-  template: DesignTemplate,
+export function useSceneThumbnail(
+  input: { id: string; scene: IScene; thumbnailUrl?: string; canvasBg?: string },
   ref: React.RefObject<HTMLElement>,
   editorOverride?: { renderer?: { toDataURL: (scene: any, opts: any) => Promise<string> } },
-): UseTemplateThumbnailResult {
+): UseSceneThumbnailResult {
   const hookEditor = useEditor() as any
   const editor = editorOverride ?? hookEditor
 
   const [src, setSrc] = React.useState<string | undefined>(() => {
-    if (template.thumbnailUrl) return template.thumbnailUrl
-    return cache.get(template.id)
+    if (input.thumbnailUrl) return input.thumbnailUrl
+    return cache.get(input.id)
   })
-  const [loading, setLoading] = React.useState<boolean>(() => !src && !template.thumbnailUrl)
+  const [loading, setLoading] = React.useState<boolean>(() => !src && !input.thumbnailUrl)
 
   React.useEffect(() => {
-    if (template.thumbnailUrl) {
-      setSrc(template.thumbnailUrl)
+    if (input.thumbnailUrl) {
+      setSrc(input.thumbnailUrl)
       setLoading(false)
       return
     }
-    const cached = cache.get(template.id)
+    const cached = cache.get(input.id)
     if (cached) {
       setSrc(cached)
       setLoading(false)
@@ -53,8 +53,8 @@ export function useTemplateThumbnail(
       if (!visible) return
       observer.disconnect()
 
-      // Deduplicate concurrent renders for the same template
-      const existing = inFlight.get(template.id)
+      // Deduplicate concurrent renders for the same id
+      const existing = inFlight.get(input.id)
       if (existing) {
         setLoading(true)
         try {
@@ -67,21 +67,21 @@ export function useTemplateThumbnail(
       }
 
       setLoading(true)
-      const promise = editor.renderer.toDataURL(template.scene, {
+      const promise = editor.renderer.toDataURL(input.scene, {
         format: 'png',
         quality: 0.85,
         multiplier: 0.5,
-        backgroundColor: template.canvasBg ?? '#ffffff',
+        backgroundColor: input.canvasBg ?? '#ffffff',
       })
-      inFlight.set(template.id, promise)
+      inFlight.set(input.id, promise)
       try {
         const dataUrl = await promise
-        cache.set(template.id, dataUrl)
-        inFlight.delete(template.id)
+        cache.set(input.id, dataUrl)
+        inFlight.delete(input.id)
         if (cancelled) return
         setSrc(dataUrl)
       } catch {
-        inFlight.delete(template.id)
+        inFlight.delete(input.id)
         if (!cancelled) setSrc(undefined)
       } finally {
         if (!cancelled) setLoading(false)
@@ -92,7 +92,7 @@ export function useTemplateThumbnail(
       cancelled = true
       observer.disconnect()
     }
-  }, [template.id, template.thumbnailUrl, template.scene, template.canvasBg, editor, ref])
+  }, [input.id, input.thumbnailUrl, input.scene, input.canvasBg, editor, ref])
 
   return { src, loading }
 }
