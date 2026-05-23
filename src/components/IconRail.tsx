@@ -1,14 +1,14 @@
 'use client'
 import React, { useState } from 'react'
 import {
-  PictureOutlined, AppstoreOutlined, SmileOutlined,
+  LayoutOutlined, AppstoreOutlined, SmileOutlined,
   FontSizeOutlined, UploadOutlined,
 } from '@ant-design/icons'
 
-export type PanelKey = 'library' | 'shapes' | 'stickers' | 'text' | 'upload' | 'fonts'
+export type PanelKey = 'templates' | 'shapes' | 'stickers' | 'text' | 'upload' | 'fonts'
 
 const ICONS: { key: PanelKey; icon: React.ReactNode; label: string }[] = [
-  { key: 'library',  icon: <PictureOutlined />,  label: 'Library'  },
+  { key: 'templates', icon: <LayoutOutlined />,  label: 'Templates' },
   { key: 'shapes',   icon: <AppstoreOutlined />,  label: 'Shapes'   },
   { key: 'stickers', icon: <SmileOutlined />,     label: 'Stickers' },
   { key: 'text',     icon: <FontSizeOutlined />,  label: 'Text'     },

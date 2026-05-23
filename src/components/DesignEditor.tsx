@@ -8,7 +8,8 @@ import { CanvasArea } from './Canvas'
 import { LayerPanel } from './LayerPanel'
 import { ObjectPropertiesBar } from './ObjectPropertiesBar'
 
-import { LibraryPanel } from './panels/LibraryPanel'
+import { TemplatesPanel } from './panels/templates/TemplatesPanel'
+import type { DesignTemplate } from '../providers/templates'
 import { ShapesPanel, SHAPES } from './panels/ShapesPanel'
 import { StickersPanel } from './panels/StickersPanel'
 import { TextPanel } from './panels/TextPanel'
@@ -24,8 +25,13 @@ import { EditorContextProvider, useEditorContext } from './EditorContext'
 import { Provider as EngineProvider } from '../engine/react'
 import { Toaster } from './primitives/Toast'
 import { useToast } from '../hooks/useToast'
-import { createNullMediaProvider, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence } from '../providers/defaults'
-import type { MediaProvider, FontProvider, BackgroundRemovalProvider, PersistenceProvider } from '../providers'
+import {
+  createDefaultTemplateProvider,
+  createGoogleFontsProvider,
+  createImglyBackgroundRemoval,
+  createLocalStoragePersistence,
+} from '../providers/defaults'
+import type { FontProvider, BackgroundRemovalProvider, PersistenceProvider, TemplateProvider } from '../providers'
 import type { IScene } from '../engine'
 
 const WORKSPACE_BG = 'var(--color-bg)'
@@ -38,15 +44,15 @@ function getStorageSafe(key: string, DEFAULT_SETTINGS: any) {
   } catch { return DEFAULT_SETTINGS }
 }
 
-type LibraryPanelRenderProp = React.ReactNode | ((props: { onAddMedia: (url: string) => void }) => React.ReactNode)
+type TemplatesPanelRenderProp = React.ReactNode | ((props: { onApplyTemplate: (t: DesignTemplate) => void }) => React.ReactNode)
 
-function DesignEditorInner({ onBack, initialScene, className, libraryPanel, title }: { onBack?: () => void; initialScene?: any; className?: string; libraryPanel?: LibraryPanelRenderProp; title?: React.ReactNode }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title }: { onBack?: () => void; initialScene?: any; className?: string; templatesPanel?: TemplatesPanelRenderProp; title?: React.ReactNode }) {
   const editor    = useEditor()
   const activeObj = useActiveObject() as any
   const zoomRatio = useZoomRatio<number>()
   const { exportToLibrary, exporting } = useStudioExport()
   const message = useToast()
-  const { backgroundRemovalProvider, sceneKey } = useEditorContext()
+  const { backgroundRemovalProvider, sceneKey, templateProvider } = useEditorContext()
 
   const [activePanel,    setActivePanel]    = useState<PanelKey | null>(null)
   const [layerPanelOpen, setLayerPanelOpen] = useState(false)
@@ -65,7 +71,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
     return (initialScene as any)?.workspaceBg || getStorageSafe('studio_workspaceBg', '#1a1a2e')
   })
 
-  const { setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey)
+  const { hasUnsavedChanges, setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey)
 
   const handleBack = useCallback(() => {
     clearAutosave(sceneKey)
@@ -180,6 +186,26 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
     }
   }, [editor, message])
 
+  const handleApplyTemplate = useCallback((template: DesignTemplate) => {
+    if (!editor) return
+    const proceed = () => {
+      editor.scene.importFromJSON(template.scene)
+        .catch(() => message.error('Failed to apply template'))
+        .then(() => {
+          if (template.canvasBg) setCanvasBg(template.canvasBg)
+          if (template.workspaceBg) setWorkspaceBg(template.workspaceBg)
+          clearAutosave(sceneKey)
+          setHasUnsavedChanges(false)
+          setActivePanel(null)
+        })
+    }
+    if (hasUnsavedChanges) {
+      const ok = window.confirm('Replace current design? Unsaved changes will be lost.')
+      if (!ok) return
+    }
+    proceed()
+  }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message])
+
   const handleRemoveBg = useCallback(async () => {
     if (!editor || !activeObj || activeObj.type !== 'StaticImage' || !activeObj.src) return
 
@@ -292,10 +318,10 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
 
           {activePanel && (
             <div style={{ width: 320, background: 'var(--color-surface, var(--de-color-bg-elevated))', borderRight: '1px solid var(--color-border, var(--de-color-border))', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
-              {activePanel === 'library'  && (
-                libraryPanel
-                  ? typeof libraryPanel === 'function' ? libraryPanel({ onAddMedia: handleAddMedia }) : libraryPanel
-                  : <LibraryPanel />
+              {activePanel === 'templates' && (
+                templatesPanel
+                  ? typeof templatesPanel === 'function' ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel
+                  : <TemplatesPanel provider={templateProvider} onApplyTemplate={handleApplyTemplate} />
               )}
               {activePanel === 'text'     && <TextPanel onAddText={handleAddText} />}
               {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
@@ -364,8 +390,8 @@ export interface DesignEditorProps {
   onBack?: () => void
   /** Called when the user exports the design. Receives the rendered Blob, output format, and raw scene JSON. */
   onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: IScene) => void | Promise<void>
-  /** Media library provider. Defaults to a null provider (empty Library panel). */
-  mediaProvider?: MediaProvider
+  /** Template provider. Defaults to a small bundled starter set. */
+  templateProvider?: TemplateProvider
   /** Font provider. Defaults to a Google Fonts provider. */
   fontProvider?: FontProvider
   /** Background removal provider. Defaults to `@imgly/background-removal` if installed. */
@@ -374,8 +400,8 @@ export interface DesignEditorProps {
   persistenceProvider?: PersistenceProvider
   /** Optional className applied to the editor root for outer styling. */
   className?: string
-  /** Custom render override for the Library panel — useful to inject host-app media UI. */
-  libraryPanel?: LibraryPanelRenderProp
+  /** Custom render override for the Templates panel — useful to inject host-app template UI. */
+  templatesPanel?: TemplatesPanelRenderProp
   /** Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio". */
   title?: React.ReactNode
 }
@@ -385,7 +411,7 @@ export interface DesignEditorProps {
  * with toolbar, side panels, layer panel, and object properties bar.
  *
  * Configure host integration via the provider props
- * (`mediaProvider`, `fontProvider`, `backgroundRemovalProvider`, `persistenceProvider`).
+ * (`templateProvider`, `fontProvider`, `backgroundRemovalProvider`, `persistenceProvider`).
  *
  * @example
  * ```tsx
@@ -402,25 +428,25 @@ export function DesignEditor({
   sceneKey,
   onBack,
   onExport,
-  mediaProvider = createNullMediaProvider(),
+  templateProvider = createDefaultTemplateProvider(),
   fontProvider = createGoogleFontsProvider(),
   backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,
-  libraryPanel,
+  templatesPanel,
   title,
 }: DesignEditorProps) {
   const resolvedBackgroundRemovalProvider =
     backgroundRemovalProvider ?? createImglyBackgroundRemoval()
   const ctx = React.useMemo(
-    () => ({ mediaProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
-    [mediaProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack],
+    () => ({ templateProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
+    [templateProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack],
   )
 
   return (
     <EngineProvider>
       <EditorContextProvider value={ctx}>
-        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} libraryPanel={libraryPanel} title={title} />
+        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} templatesPanel={templatesPanel} title={title} />
         <Toaster position="bottom-right" />
       </EditorContextProvider>
     </EngineProvider>

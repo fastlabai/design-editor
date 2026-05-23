@@ -1,12 +1,17 @@
 'use client'
 import * as React from 'react'
-import type { MediaProvider, FontProvider, BackgroundRemovalProvider, PersistenceProvider } from '../providers'
+import type {
+  FontProvider,
+  BackgroundRemovalProvider,
+  PersistenceProvider,
+  TemplateProvider,
+} from '../providers'
 
 export interface EditorContextValue {
-  mediaProvider: MediaProvider
   fontProvider: FontProvider
   backgroundRemovalProvider: BackgroundRemovalProvider
   persistenceProvider: PersistenceProvider
+  templateProvider: TemplateProvider
   sceneKey?: string
   onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: any) => void | Promise<void>
   onBack?: () => void
