@@ -7,6 +7,7 @@ describe('defaultTemplateProvider', () => {
     const cats = await p.categories()
     expect(cats.map(c => c.id)).toEqual([
       'signage',
+      'tv-ads',
       'ads-retail',
       'social-media',
       'posters',
