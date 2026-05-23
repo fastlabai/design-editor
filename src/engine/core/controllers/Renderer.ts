@@ -10,15 +10,20 @@ class Renderer {
   public async toDataURL(template: IScene, params: Record<string, any>) {
     return new Promise(async (resolve, reject) => {
       const staticCanvas = new fabric.StaticCanvas(null)
+      if (params.backgroundColor) {
+        staticCanvas.setBackgroundColor(params.backgroundColor, () => {})
+      }
       await this.loadTemplate(staticCanvas, template, params)
-      // IF CONTAINS VIDEO, add await
+      const { format = 'png', quality = 1, multiplier = 1 } = params
       const data = staticCanvas.toDataURL({
+        format,
+        quality,
+        multiplier,
         top: 0,
         left: 0,
         height: staticCanvas.getHeight(),
         width: staticCanvas.getWidth(),
       })
-      // return data
       resolve(data)
     })
   }

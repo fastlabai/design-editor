@@ -69,8 +69,9 @@ export function useTemplateThumbnail(
       setLoading(true)
       const promise = editor.renderer.toDataURL(template.scene, {
         format: 'png',
-        quality: 0.7,
-        multiplier: 0.25,
+        quality: 0.85,
+        multiplier: 0.5,
+        backgroundColor: template.canvasBg ?? '#ffffff',
       })
       inFlight.set(template.id, promise)
       try {
@@ -91,7 +92,7 @@ export function useTemplateThumbnail(
       cancelled = true
       observer.disconnect()
     }
-  }, [template.id, template.thumbnailUrl, template.scene, editor, ref])
+  }, [template.id, template.thumbnailUrl, template.scene, template.canvasBg, editor, ref])
 
   return { src, loading }
 }
