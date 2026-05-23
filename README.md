@@ -76,7 +76,7 @@ Full typed API documentation is auto-generated and available on the docs site:
 
 - Full documentation — <https://fastlabai.github.io/design-editor>
 - Live playground — <https://fastlabai.github.io/design-editor/playground>
-- Examples — [`examples/`](./examples) (Next.js App Router, Pages Router, Vite, custom providers)
+- Examples — [`examples/`](./examples) (Next.js App Router, Pages Router, React/Vite, custom providers)
 
 ## License
 
