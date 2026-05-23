@@ -20,6 +20,7 @@ export default defineConfig({
       ],
       sidebar: [
         { label: 'Getting Started', link: '/getting-started' },
+        { label: 'React.js', link: '/react' },
         { label: 'Next.js', link: '/nextjs' },
         {
           label: 'Providers',

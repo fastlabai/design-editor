@@ -1,0 +1,46 @@
+---
+title: React.js
+description: Use the editor in a plain React SPA (e.g. Vite or Create React App).
+---
+
+The editor is a standard React component that runs entirely on the client side.
+
+## Installation
+
+```bash
+npm install @fastlabai/design-editor
+```
+
+## Basic Setup
+
+If you're using a standard client-rendered React application built with **Vite** or **Create React App**, you can use the `<DesignEditor />` component directly. 
+
+Simply import the component and the theme CSS:
+
+```tsx
+// src/App.tsx
+import { DesignEditor } from '@fastlabai/design-editor'
+import '@fastlabai/design-editor/theme.css'
+
+export default function App() {
+  return (
+    <div style={{ height: '100vh', width: '100vw' }}>
+      <DesignEditor title="FastlabAI Studio" sceneKey="my-scene" />
+    </div>
+  )
+}
+```
+
+:::note
+Make sure the parent container of `<DesignEditor />` has an explicit height (like `100vh` or `800px`). The editor fills `100%` of its parent's height and width.
+:::
+
+## CSS Integration
+
+Since `@fastlabai/design-editor` relies heavily on CSS variables for theming, you only need to import `theme.css` once in your application entry point (e.g., `main.tsx` or `App.tsx`).
+
+All internal styles are safely scoped inside the `[data-de-root]` attribute, guaranteeing that they won't interfere with your host app's styling frameworks like TailwindCSS or Bootstrap.
+
+## Vite Support
+
+If you are using Vite, there is zero configuration needed. Vite will automatically resolve and bundle the ESM build of the package.
