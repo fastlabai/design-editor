@@ -4,27 +4,24 @@ import React from 'react';
 /** Describes a font family available to the editor. */
 interface FontDescriptor {
     family: string;
-    weights?: number[];
-    styles?: ('normal' | 'italic')[];
-    category?: 'serif' | 'sans-serif' | 'display' | 'handwriting' | 'monospace';
-    previewUrl?: string;
+    source: 'google' | 'custom';
+    url?: string;
 }
+type FontChangeHandler = () => void;
 /**
- * Plug in your own font source. The editor calls `list` to populate the Fonts
- * panel and `load` when the user selects a font (the provider is responsible
- * for injecting the @font-face declaration or stylesheet).
+ * Plug in your own font source. The editor calls `list` to populate the font
+ * picker, `load` when the user selects a font, `upload` to add a custom font
+ * from a file, and `onChange` to subscribe to updates (e.g. after an upload).
  */
 interface FontProvider {
-    /** Return the list of available fonts, optionally filtered by search. */
-    list(opts?: {
-        search?: string;
-        signal?: AbortSignal;
-    }): Promise<FontDescriptor[]>;
-    /** Load a font family (and optional weight/style) so it can be rendered on canvas. */
-    load(family: string, opts?: {
-        weight?: number;
-        style?: string;
-    }): Promise<void>;
+    /** Return the full list of available fonts. */
+    list(): Promise<FontDescriptor[]>;
+    /** Load a font family so it can be rendered on canvas. */
+    load(family: string): Promise<void>;
+    /** Upload a font file and register it as a custom font. */
+    upload(file: File): Promise<FontDescriptor>;
+    /** Subscribe to changes (e.g. new uploads). Returns an unsubscribe function. */
+    onChange?(handler: FontChangeHandler): () => void;
 }
 
 /**
@@ -278,10 +275,6 @@ declare function createLocalStoragePersistence(opts?: {
     prefix?: string;
 }): PersistenceProvider;
 
-declare function createGoogleFontsProvider(opts?: {
-    apiKey?: string;
-}): FontProvider;
-
 declare function createImglyBackgroundRemoval(): BackgroundRemovalProvider;
 
 /** A single design template — a fully composed scene the user can apply as a starting point. */
@@ -338,6 +331,64 @@ interface TemplateProvider {
  */
 declare function createDefaultTemplateProvider(): TemplateProvider;
 
+/** A single text design — a pre-composed text layout the user can apply as a starting point. */
+interface TextDesign {
+    id: string;
+    name: string;
+    categoryId: string;
+    /** Pre-rendered thumbnail. If omitted, the editor renders one at runtime from `scene`. */
+    thumbnailUrl?: string;
+    scene: IScene;
+    /** Canvas background colour applied when this design is clicked. */
+    canvasBg?: string;
+    /** Free-text tags used for search matching alongside `name`. */
+    tags?: string[];
+}
+/** A grouping of text designs (e.g. "Headings", "Quotes"). */
+interface TextDesignCategory {
+    id: string;
+    name: string;
+    description?: string;
+    /** Lower values sort earlier in the panel. */
+    order?: number;
+}
+interface TextDesignListOpts {
+    categoryId?: string;
+    search?: string;
+    cursor?: string;
+    /** Defaults to 12 if omitted. */
+    limit?: number;
+    signal?: AbortSignal;
+}
+interface TextDesignListResult {
+    items: TextDesign[];
+    /** Opaque cursor for the next page. Undefined when no more pages. */
+    nextCursor?: string;
+}
+/**
+ * Plug in your own text design library. The editor calls `categories()` once
+ * to render the panel, then `list()` per category, per search query,
+ * and on "Load more".
+ */
+interface TextDesignProvider {
+    categories(opts?: {
+        signal?: AbortSignal;
+    }): Promise<TextDesignCategory[]>;
+    list(opts: TextDesignListOpts): Promise<TextDesignListResult>;
+}
+
+/**
+ * The default text design provider — backed by a small bundled JSON.
+ * Host apps should supply their own `TextDesignProvider` for production use.
+ */
+declare function createDefaultTextDesignProvider(): TextDesignProvider;
+
+/**
+ * Default font provider: 30+ Google Font families + custom uploaded fonts.
+ * Each factory call returns an independent provider instance with its own state.
+ */
+declare function createDefaultFontProvider(): FontProvider;
+
 type TemplatesPanelRenderProp = React.ReactNode | ((props: {
     onApplyTemplate: (t: DesignTemplate) => void;
 }) => React.ReactNode);
@@ -353,6 +404,8 @@ interface DesignEditorProps {
     onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: IScene) => void | Promise<void>;
     /** Template provider. Defaults to a small bundled starter set. */
     templateProvider?: TemplateProvider;
+    /** Text design provider. Defaults to the bundled text designs set. */
+    textDesignProvider?: TextDesignProvider;
     /** Font provider. Defaults to a Google Fonts provider. */
     fontProvider?: FontProvider;
     /** Background removal provider. Defaults to `@imgly/background-removal` if installed. */
@@ -383,7 +436,7 @@ interface DesignEditorProps {
  * }
  * ```
  */
-declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templateProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, templatesPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
+declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templateProvider, textDesignProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, templatesPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
 
 /**
  * @fastlabai/design-editor
@@ -397,4 +450,4 @@ declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templa
 /** Current package version. */
 declare const VERSION = "1.0.0-beta.3";
 
-export { type BackgroundRemovalProvider, DesignEditor, type DesignEditorProps, type DesignTemplate, type FontDescriptor, type FontProvider, type ILayer, type IScene, type PersistenceProvider, type TemplateCategory, type TemplateListOpts, type TemplateListResult, type TemplateProvider, VERSION, createDefaultTemplateProvider, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };
+export { type BackgroundRemovalProvider, DesignEditor, type DesignEditorProps, type DesignTemplate, type FontChangeHandler, type FontDescriptor, type FontProvider, type ILayer, type IScene, type PersistenceProvider, type TemplateCategory, type TemplateListOpts, type TemplateListResult, type TemplateProvider, VERSION, createDefaultFontProvider, createDefaultTemplateProvider, createDefaultTextDesignProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };

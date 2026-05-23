@@ -1,6 +1,5 @@
-'use client'
-import * as React23 from 'react';
-import React23__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
+import * as React24 from 'react';
+import React24__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
 import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import { fabric } from 'fabric';
 import { Switch, Modal, InputNumber, message } from 'antd';
@@ -7890,48 +7889,6 @@ function createLocalStoragePersistence(opts = {}) {
   };
 }
 
-// src/providers/defaults/googleFonts.ts
-var GOOGLE_FONTS_API = "https://www.googleapis.com/webfonts/v1/webfonts";
-var CURATED_FONTS = [
-  { family: "Inter", category: "sans-serif" },
-  { family: "Roboto", category: "sans-serif" },
-  { family: "Open Sans", category: "sans-serif" },
-  { family: "Lato", category: "sans-serif" },
-  { family: "Montserrat", category: "sans-serif" },
-  { family: "Playfair Display", category: "serif" },
-  { family: "Merriweather", category: "serif" },
-  { family: "JetBrains Mono", category: "monospace" }
-];
-function createGoogleFontsProvider(opts = {}) {
-  const loaded2 = /* @__PURE__ */ new Set();
-  return {
-    async list({ search, signal } = {}) {
-      if (!opts.apiKey) {
-        return CURATED_FONTS.filter(
-          (f) => !search || f.family.toLowerCase().includes(search.toLowerCase())
-        );
-      }
-      const url = `${GOOGLE_FONTS_API}?key=${opts.apiKey}&sort=popularity`;
-      const res = await fetch(url, { signal });
-      const data = await res.json();
-      return data.items.map((it) => ({
-        family: it.family,
-        weights: it.variants.filter((v) => /^\d+$/.test(v)).map(Number),
-        category: it.category
-      }));
-    },
-    async load(family) {
-      if (loaded2.has(family)) return;
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@400;700&display=swap`;
-      document.head.appendChild(link);
-      await document.fonts.ready;
-      loaded2.add(family);
-    }
-  };
-}
-
 // src/internal/dynamicImport.ts
 var dynamicImport = new Function("specifier", "return import(specifier)");
 function importOptionalPeer(specifier) {
@@ -12184,7 +12141,817 @@ function createDefaultTemplateProvider() {
     }
   };
 }
-var Context = React23.createContext({
+
+// src/providers/defaults/textDesigns.data.json
+var textDesigns_data_default = {
+  categories: [
+    {
+      id: "headings",
+      name: "Headings",
+      order: 1
+    },
+    {
+      id: "quotes",
+      name: "Quotes",
+      order: 2
+    },
+    {
+      id: "promos",
+      name: "Promos",
+      order: 3
+    },
+    {
+      id: "greetings",
+      name: "Greetings",
+      order: 4
+    },
+    {
+      id: "decorative",
+      name: "Decorative",
+      order: 5
+    }
+  ],
+  textDesigns: [
+    {
+      id: "td-heading-glow",
+      name: "Glow Heading",
+      categoryId: "headings",
+      tags: ["heading", "glow", "bold", "impact", "dark"],
+      canvasBg: "#1f1f1f",
+      scene: {
+        id: "td-heading-glow",
+        frame: { width: 800, height: 260 },
+        layers: [
+          {
+            id: "td-heading-glow-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 220,
+            fill: "#ffe082",
+            fontFamily: "Bebas Neue",
+            fontSize: 180,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "GLOW"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-heading-italic-tilted",
+      name: "Italic Tilted",
+      categoryId: "headings",
+      tags: ["heading", "italic", "tilted", "bold", "impact"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-heading-italic-tilted",
+        frame: { width: 900, height: 200 },
+        layers: [
+          {
+            id: "td-heading-italic-tilted-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 30,
+            width: 860,
+            height: 130,
+            fill: "#1f1f1f",
+            fontFamily: "Anton",
+            fontSize: 100,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1,
+            textAlign: "center",
+            angle: -8,
+            text: "ITALIC TILTED"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-heading-serif-title",
+      name: "Serif Title",
+      categoryId: "headings",
+      tags: ["heading", "serif", "elegant", "classic", "playfair"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-heading-serif-title",
+        frame: { width: 900, height: 180 },
+        layers: [
+          {
+            id: "td-heading-serif-title-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 860,
+            height: 140,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 96,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Serif Title"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-quote-classic",
+      name: "Classic Quote",
+      categoryId: "quotes",
+      tags: ["quote", "classic", "italic", "playfair", "attribution"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-quote-classic",
+        frame: { width: 800, height: 300 },
+        layers: [
+          {
+            id: "td-quote-classic-quote",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 40,
+            width: 720,
+            height: 160,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 32,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1.4,
+            textAlign: "center",
+            text: '"A quote is just a clever way to sound wise."'
+          },
+          {
+            id: "td-quote-classic-attr",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 220,
+            width: 720,
+            height: 50,
+            fill: "#7e57c2",
+            fontFamily: "Lato",
+            fontSize: 22,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2014 Someone smart"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-quote-bubble",
+      name: "Speech Bubble",
+      categoryId: "quotes",
+      tags: ["quote", "bubble", "speech", "fun", "message"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-quote-bubble",
+        frame: { width: 800, height: 220 },
+        layers: [
+          {
+            id: "td-quote-bubble-label",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 20,
+            width: 720,
+            height: 40,
+            fill: "#7e57c2",
+            fontFamily: "Lato",
+            fontSize: 18,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "[ SPEECH BUBBLE ]"
+          },
+          {
+            id: "td-quote-bubble-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 70,
+            width: 720,
+            height: 120,
+            fill: "#1f1f1f",
+            fontFamily: "Open Sans",
+            fontSize: 30,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.4,
+            textAlign: "center",
+            text: "Speech bubbles are very useful sometimes."
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-promo-get20",
+      name: "Get 20% Off",
+      categoryId: "promos",
+      tags: ["promo", "discount", "20%", "sale", "offer"],
+      canvasBg: "#0277bd",
+      scene: {
+        id: "td-promo-get20",
+        frame: { width: 800, height: 300 },
+        layers: [
+          {
+            id: "td-promo-get20-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 30,
+            width: 720,
+            height: 50,
+            fill: "#ffe082",
+            fontFamily: "Lato",
+            fontSize: 24,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 300,
+            text: "PROMO CODE"
+          },
+          {
+            id: "td-promo-get20-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 90,
+            width: 720,
+            height: 180,
+            fill: "#ffffff",
+            fontFamily: "Anton",
+            fontSize: 140,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "GET 20% OFF"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-promo-flash-sale",
+      name: "Flash Sale",
+      categoryId: "promos",
+      tags: ["promo", "flash sale", "sale", "today", "urgent"],
+      canvasBg: "#ff5252",
+      scene: {
+        id: "td-promo-flash-sale",
+        frame: { width: 800, height: 280 },
+        layers: [
+          {
+            id: "td-promo-flash-sale-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 160,
+            fill: "#ffffff",
+            fontFamily: "Anton",
+            fontSize: 110,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "FLASH SALE"
+          },
+          {
+            id: "td-promo-flash-sale-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 200,
+            width: 760,
+            height: 60,
+            fill: "#ffe082",
+            fontFamily: "Lato",
+            fontSize: 36,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "TODAY ONLY"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-promo-limited",
+      name: "Limited Offer",
+      categoryId: "promos",
+      tags: ["promo", "limited", "offer", "oswald", "dark"],
+      canvasBg: "#1f1f1f",
+      scene: {
+        id: "td-promo-limited",
+        frame: { width: 900, height: 200 },
+        layers: [
+          {
+            id: "td-promo-limited-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 30,
+            width: 860,
+            height: 140,
+            fill: "#ff8a65",
+            fontFamily: "Oswald",
+            fontSize: 90,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 400,
+            text: "LIMITED OFFER"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-greet-thank-you",
+      name: "Thank You",
+      categoryId: "greetings",
+      tags: ["greeting", "thank you", "purchase", "gratitude", "elegant"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-greet-thank-you",
+        frame: { width: 800, height: 280 },
+        layers: [
+          {
+            id: "td-greet-thank-you-main",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 160,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 96,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Thank You"
+          },
+          {
+            id: "td-greet-thank-you-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 200,
+            width: 760,
+            height: 50,
+            fill: "#26a69a",
+            fontFamily: "Lato",
+            fontSize: 24,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "for your purchase"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-greet-hugs-kisses",
+      name: "Hugs & Kisses",
+      categoryId: "greetings",
+      tags: ["greeting", "hugs", "kisses", "love", "pink", "bold"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-greet-hugs-kisses",
+        frame: { width: 700, height: 320 },
+        layers: [
+          {
+            id: "td-greet-hugs-kisses-line1",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 660,
+            height: 140,
+            fill: "#ec407a",
+            fontFamily: "Anton",
+            fontSize: 110,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "HUGS +"
+          },
+          {
+            id: "td-greet-hugs-kisses-line2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 170,
+            width: 660,
+            height: 140,
+            fill: "#1f1f1f",
+            fontFamily: "Anton",
+            fontSize: 110,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "KISSES"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-greet-sweet-greetings",
+      name: "Sweet Greetings",
+      categoryId: "greetings",
+      tags: ["greeting", "sweet", "costa rica", "serif", "travel"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-greet-sweet-greetings",
+        frame: { width: 800, height: 300 },
+        layers: [
+          {
+            id: "td-greet-sweet-greetings-main",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 160,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 80,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 100,
+            text: "SWEET GREETINGS"
+          },
+          {
+            id: "td-greet-sweet-greetings-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 210,
+            width: 760,
+            height: 60,
+            fill: "#26a69a",
+            fontFamily: "Lato",
+            fontSize: 30,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "from COSTA RICA"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-sunny-spain",
+      name: "Sunny in Spain",
+      categoryId: "decorative",
+      tags: ["decorative", "spain", "travel", "script", "pacifico", "tilted"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-sunny-spain",
+        frame: { width: 900, height: 220 },
+        layers: [
+          {
+            id: "td-deco-sunny-spain-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 860,
+            height: 180,
+            fill: "#7e57c2",
+            fontFamily: "Pacifico",
+            fontSize: 80,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            angle: -5,
+            text: "It's Sunny in Spain"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-keep-it-simple",
+      name: "Keep It Simple",
+      categoryId: "decorative",
+      tags: ["decorative", "minimal", "simple", "bold", "stacked"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-keep-it-simple",
+        frame: { width: 700, height: 300 },
+        layers: [
+          {
+            id: "td-deco-keep-it-simple-line1",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 30,
+            width: 660,
+            height: 120,
+            fill: "#1f1f1f",
+            fontFamily: "Oswald",
+            fontSize: 90,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "KEEP IT"
+          },
+          {
+            id: "td-deco-keep-it-simple-line2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 165,
+            width: 660,
+            height: 120,
+            fill: "#1f1f1f",
+            fontFamily: "Oswald",
+            fontSize: 90,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "SIMPLE"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-something-nice",
+      name: "Something Nice",
+      categoryId: "decorative",
+      tags: ["decorative", "large", "oswald", "pink", "bold"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-something-nice",
+        frame: { width: 1e3, height: 200 },
+        layers: [
+          {
+            id: "td-deco-something-nice-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 960,
+            height: 160,
+            fill: "#ec407a",
+            fontFamily: "Oswald",
+            fontSize: 120,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 150,
+            text: "SOMETHING NICE"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-le-marais",
+      name: "Le Marais",
+      categoryId: "decorative",
+      tags: ["decorative", "paris", "travel", "script", "dancing script", "france"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-le-marais",
+        frame: { width: 800, height: 380 },
+        layers: [
+          {
+            id: "td-deco-le-marais-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 50,
+            fill: "#1f1f1f",
+            fontFamily: "Lato",
+            fontSize: 22,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 300,
+            text: "GREETINGS FROM"
+          },
+          {
+            id: "td-deco-le-marais-main",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 70,
+            width: 760,
+            height: 220,
+            fill: "#7e57c2",
+            fontFamily: "Dancing Script",
+            fontSize: 140,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Le Marais"
+          },
+          {
+            id: "td-deco-le-marais-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 310,
+            width: 760,
+            height: 50,
+            fill: "#1f1f1f",
+            fontFamily: "Lato",
+            fontSize: 24,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Paris, France"
+          }
+        ],
+        metadata: {}
+      }
+    }
+  ]
+};
+
+// src/providers/defaults/textDesigns.ts
+var DEFAULT_LIMIT2 = 12;
+function compareCategories2(a, b) {
+  const ao = a.order ?? Number.MAX_SAFE_INTEGER;
+  const bo = b.order ?? Number.MAX_SAFE_INTEGER;
+  if (ao !== bo) return ao - bo;
+  return a.name.localeCompare(b.name);
+}
+function matchesSearch2(design, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  if (design.name.toLowerCase().includes(q)) return true;
+  return (design.tags ?? []).some((tag) => tag.toLowerCase().includes(q));
+}
+function createDefaultTextDesignProvider() {
+  const bundled = textDesigns_data_default;
+  return {
+    async categories() {
+      return [...bundled.categories].sort(compareCategories2);
+    },
+    async list(opts) {
+      const limit = opts.limit ?? DEFAULT_LIMIT2;
+      let filtered = bundled.textDesigns.slice();
+      if (opts.categoryId) {
+        filtered = filtered.filter((d) => d.categoryId === opts.categoryId);
+      }
+      if (opts.search) {
+        filtered = filtered.filter((d) => matchesSearch2(d, opts.search));
+      }
+      filtered.sort((a, b) => a.id.localeCompare(b.id));
+      let startIndex = 0;
+      if (opts.cursor) {
+        const idx = filtered.findIndex((d) => d.id === opts.cursor);
+        startIndex = idx >= 0 ? idx + 1 : 0;
+      }
+      const slice = filtered.slice(startIndex, startIndex + limit);
+      const last = slice[slice.length - 1];
+      const nextCursor = last && startIndex + slice.length < filtered.length ? last.id : void 0;
+      return { items: slice, nextCursor };
+    }
+  };
+}
+
+// src/providers/defaults/fonts.ts
+var GOOGLE_FONT_FAMILIES = [
+  "Roboto",
+  "Open Sans",
+  "Lato",
+  "Montserrat",
+  "Oswald",
+  "Source Sans Pro",
+  "Raleway",
+  "PT Sans",
+  "Merriweather",
+  "Nunito",
+  "Playfair Display",
+  "Ubuntu",
+  "Poppins",
+  "Muli",
+  "PT Serif",
+  "Josefin Sans",
+  "Fira Sans",
+  "Noto Sans",
+  "Dosis",
+  "Quicksand",
+  "Cabin",
+  "Varela Round",
+  "Lobster",
+  "Pacifico",
+  "Dancing Script",
+  "Comfortaa",
+  "Righteous",
+  "Satisfy",
+  "Abril Fatface",
+  "Bebas Neue",
+  "Anton",
+  "Permanent Marker"
+];
+var GOOGLE_DESCRIPTORS = GOOGLE_FONT_FAMILIES.map((family) => ({
+  family,
+  source: "google"
+}));
+function familyFromFilename(filename) {
+  const base = filename.replace(/\.[^.]+$/, "");
+  const spaced = base.replace(/[-_]/g, " ");
+  return spaced.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+function createDefaultFontProvider() {
+  const loadedFamilies = /* @__PURE__ */ new Set();
+  const uploads = /* @__PURE__ */ new Map();
+  const subscribers = /* @__PURE__ */ new Set();
+  function notify() {
+    subscribers.forEach((h) => h());
+  }
+  function loadGoogleFont2(family) {
+    if (loadedFamilies.has(family)) return;
+    loadedFamilies.add(family);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}&display=swap`;
+    document.head.appendChild(link);
+  }
+  return {
+    async list() {
+      return [...GOOGLE_DESCRIPTORS, ...uploads.values()];
+    },
+    async load(family) {
+      if (uploads.has(family)) return;
+      loadGoogleFont2(family);
+    },
+    async upload(file) {
+      const family = familyFromFilename(file.name);
+      const buffer = await file.arrayBuffer();
+      const face = new FontFace(family, buffer);
+      document.fonts.add(face);
+      await face.load();
+      const descriptor = {
+        family,
+        source: "custom"
+      };
+      uploads.set(family, descriptor);
+      notify();
+      return descriptor;
+    },
+    onChange(handler) {
+      subscribers.add(handler);
+      return () => subscribers.delete(handler);
+    }
+  };
+}
+var Context = React24.createContext({
   zoomRatio: 1,
   activeObject: null,
   contextMenuRequest: null,
@@ -12205,12 +12972,12 @@ var Context = React23.createContext({
   }
 });
 var Provider = ({ children }) => {
-  const [zoomRatio, setZoomRatio] = React23.useState(1);
-  const [activeObject, setActiveObject] = React23.useState(null);
-  const [frame, setFrame] = React23.useState(null);
-  const [editor, setEditor] = React23.useState(null);
-  const [contextMenuRequest, setContextMenuRequest] = React23.useState(null);
-  const [objects, setObjects] = React23.useState([]);
+  const [zoomRatio, setZoomRatio] = React24.useState(1);
+  const [activeObject, setActiveObject] = React24.useState(null);
+  const [frame, setFrame] = React24.useState(null);
+  const [editor, setEditor] = React24.useState(null);
+  const [contextMenuRequest, setContextMenuRequest] = React24.useState(null);
+  const [objects, setObjects] = React24.useState([]);
   return /* @__PURE__ */ jsx(
     Context.Provider,
     {
@@ -12233,19 +13000,19 @@ var Provider = ({ children }) => {
   );
 };
 function useZoomRatio() {
-  const { zoomRatio } = React23__default.useContext(Context);
+  const { zoomRatio } = React24__default.useContext(Context);
   return zoomRatio;
 }
 function useEditor() {
-  const { editor } = React23__default.useContext(Context);
+  const { editor } = React24__default.useContext(Context);
   return editor;
 }
 function useObjects() {
-  const { objects } = React23__default.useContext(Context);
+  const { objects } = React24__default.useContext(Context);
   return objects;
 }
 function useActiveObject() {
-  const { activeObject } = React23__default.useContext(Context);
+  const { activeObject } = React24__default.useContext(Context);
   return activeObject;
 }
 var FrameObject = class extends fabric.Rect {
@@ -16578,7 +17345,7 @@ var ResizeObserver2 = (
   }
   return ResizeObserver2;
 }))();
-var Button = React23.forwardRef(
+var Button = React24.forwardRef(
   ({ variant = "secondary", size = "md", iconOnly, className, ...rest }, ref) => /* @__PURE__ */ jsx(
     "button",
     {
@@ -16610,7 +17377,7 @@ function Popover({ children, content, open, onOpenChange, placement = "bottom", 
     ) })
   ] });
 }
-var Input = React23.forwardRef(
+var Input = React24.forwardRef(
   ({ className, size = "md", ...rest }, ref) => /* @__PURE__ */ jsx(
     "input",
     {
@@ -16622,7 +17389,7 @@ var Input = React23.forwardRef(
   )
 );
 Input.displayName = "Input";
-var Tooltip = React23.forwardRef(({ children, title, placement = "top", className }, ref) => {
+var Tooltip = React24.forwardRef(({ children, title, placement = "top", className }, ref) => {
   if (!title) return /* @__PURE__ */ jsx(Fragment, { children });
   return /* @__PURE__ */ jsx(RadixTooltip.Provider, { delayDuration: 200, children: /* @__PURE__ */ jsxs(RadixTooltip.Root, { children: [
     /* @__PURE__ */ jsx(RadixTooltip.Trigger, { asChild: true, ref, children }),
@@ -16640,7 +17407,7 @@ var Tooltip = React23.forwardRef(({ children, title, placement = "top", classNam
     ) })
   ] }) });
 });
-var Select = React23.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
+var Select = React24.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
   return /* @__PURE__ */ jsxs(RadixSelect.Root, { value, defaultValue, onValueChange, children: [
     /* @__PURE__ */ jsxs(RadixSelect.Trigger, { ref, className: clsx("de-select-trigger", className), style, children: [
       /* @__PURE__ */ jsx(RadixSelect.Value, { placeholder }),
@@ -17729,6 +18496,196 @@ var ICON_BTN = {
   display: "flex",
   alignItems: "center"
 };
+function FontPickerPopover({ fontProvider, currentFamily, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [fonts, setFonts] = useState([]);
+  const [search, setSearch] = useState("");
+  const fileInputRef = useRef(null);
+  useEffect(() => {
+    if (!fontProvider.onChange) return;
+    const unsub = fontProvider.onChange(() => {
+      fontProvider.list().then(setFonts);
+    });
+    return unsub;
+  }, [fontProvider]);
+  const handleOpenChange = useCallback((next) => {
+    setOpen(next);
+    if (next) {
+      fontProvider.list().then((list) => {
+        setFonts(list);
+        list.forEach((f) => {
+          fontProvider.load(f.family).catch(() => {
+          });
+        });
+      });
+    } else {
+      setSearch("");
+    }
+  }, [fontProvider]);
+  const filtered = fonts.filter(
+    (f) => f.family.toLowerCase().includes(search.toLowerCase())
+  );
+  const handleSelect = useCallback(async (family) => {
+    await fontProvider.load(family).catch(() => {
+    });
+    onChange(family);
+    setOpen(false);
+    setSearch("");
+  }, [fontProvider, onChange]);
+  const handleUpload = useCallback(async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      await fontProvider.upload(file);
+    } catch {
+    }
+    e.target.value = "";
+  }, [fontProvider]);
+  const trigger = /* @__PURE__ */ jsxs(
+    "button",
+    {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 4,
+        padding: "4px 8px",
+        background: "var(--color-bg)",
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        color: "var(--color-text)",
+        fontSize: 12,
+        cursor: "pointer",
+        outline: "none",
+        fontFamily: currentFamily ? `'${currentFamily}', sans-serif` : "inherit",
+        maxWidth: 140,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
+      },
+      children: [
+        /* @__PURE__ */ jsx("span", { style: { flex: 1, overflow: "hidden", textOverflow: "ellipsis" }, children: currentFamily ?? "Default" }),
+        /* @__PURE__ */ jsx(DownOutlined, { style: { fontSize: 9, flexShrink: 0 } })
+      ]
+    }
+  );
+  const popoverContent = /* @__PURE__ */ jsxs("div", { style: { width: 240, display: "flex", flexDirection: "column", gap: 0 }, children: [
+    /* @__PURE__ */ jsx("div", { style: { padding: "8px 8px 4px" }, children: /* @__PURE__ */ jsx(
+      Input,
+      {
+        placeholder: "Search fonts\u2026",
+        value: search,
+        onChange: (e) => setSearch(e.target.value),
+        style: { width: "100%", fontSize: 12 },
+        autoFocus: true
+      }
+    ) }),
+    /* @__PURE__ */ jsxs("div", { style: { maxHeight: 360, overflowY: "auto", padding: "4px 0" }, children: [
+      filtered.map((f) => /* @__PURE__ */ jsxs(
+        "div",
+        {
+          onClick: () => handleSelect(f.family),
+          style: {
+            padding: "6px 12px",
+            cursor: "pointer",
+            background: f.family === currentFamily ? "color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))" : "transparent",
+            borderLeft: f.family === currentFamily ? "2px solid var(--color-primary)" : "2px solid transparent",
+            display: "flex",
+            flexDirection: "column",
+            gap: 1
+          },
+          onMouseEnter: (e) => {
+            if (f.family !== currentFamily) {
+              e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 6%, var(--color-surface))";
+            }
+          },
+          onMouseLeave: (e) => {
+            if (f.family !== currentFamily) {
+              e.currentTarget.style.background = "transparent";
+            }
+          },
+          children: [
+            /* @__PURE__ */ jsxs("span", { style: { fontSize: 10, color: "var(--color-text-muted)", fontWeight: 600 }, children: [
+              f.family,
+              f.source === "custom" && /* @__PURE__ */ jsx("span", { style: { marginLeft: 4, fontSize: 9, color: "var(--color-primary)" }, children: "Custom" })
+            ] }),
+            /* @__PURE__ */ jsx(
+              "span",
+              {
+                style: {
+                  fontFamily: `'${f.family}', sans-serif`,
+                  fontSize: 17,
+                  color: "var(--color-text)",
+                  lineHeight: 1.2
+                },
+                children: "Aa Bb Cc 123"
+              }
+            )
+          ]
+        },
+        f.family
+      )),
+      filtered.length === 0 && /* @__PURE__ */ jsx("div", { style: { padding: "12px", fontSize: 12, color: "var(--color-text-muted)", textAlign: "center" }, children: "No fonts found" })
+    ] }),
+    /* @__PURE__ */ jsxs(
+      "div",
+      {
+        style: {
+          borderTop: "1px solid var(--color-border)",
+          padding: "8px"
+        },
+        children: [
+          /* @__PURE__ */ jsxs(
+            "button",
+            {
+              onClick: () => fileInputRef.current?.click(),
+              style: {
+                width: "100%",
+                padding: "7px",
+                background: "color-mix(in srgb, var(--color-primary) 10%, transparent)",
+                border: "1px dashed color-mix(in srgb, var(--color-primary) 35%, transparent)",
+                borderRadius: 6,
+                color: "var(--color-primary)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 5,
+                fontSize: 11,
+                fontWeight: 600,
+                outline: "none"
+              },
+              children: [
+                /* @__PURE__ */ jsx(UploadOutlined, { style: { fontSize: 11 } }),
+                "Upload font"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsx(
+            "input",
+            {
+              ref: fileInputRef,
+              type: "file",
+              accept: ".ttf,.otf,.woff,.woff2",
+              style: { display: "none" },
+              onChange: handleUpload
+            }
+          )
+        ]
+      }
+    )
+  ] });
+  return /* @__PURE__ */ jsx(
+    Popover,
+    {
+      content: popoverContent,
+      open,
+      onOpenChange: handleOpenChange,
+      placement: "top",
+      children: trigger
+    }
+  );
+}
+var DEFAULT_FONT_PROVIDER = createDefaultFontProvider();
 function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
   const type = activeObj?.type;
   const isImage = type === "StaticImage" || type === "BackgroundImage";
@@ -17738,6 +18695,64 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
   useEffect(() => {
     setOpacity(Math.round((activeObj?.opacity ?? 1) * 100));
   }, [activeObj?.id]);
+  const [fontFamily, setFontFamily] = useState(
+    () => activeObj?.fontFamily
+  );
+  const [charSpacing, setCharSpacing] = useState(
+    () => (activeObj?.charSpacing ?? 0) / 1e3
+  );
+  const [lineHeight, setLineHeight] = useState(
+    () => activeObj?.lineHeight ?? 1.2
+  );
+  const [textTransform, setTextTransform] = useState("none");
+  const originalTextRef = useRef(void 0);
+  useEffect(() => {
+    setFontFamily(activeObj?.fontFamily);
+    setCharSpacing((activeObj?.charSpacing ?? 0) / 1e3);
+    setLineHeight(activeObj?.lineHeight ?? 1.2);
+    setTextTransform("none");
+    originalTextRef.current = void 0;
+  }, [activeObj?.id]);
+  const handleFontChange = useCallback((family) => {
+    setFontFamily(family);
+    editor?.objects.update({ fontFamily: family });
+  }, [editor]);
+  const handleCharSpacingChange = useCallback((val) => {
+    const clamped = Math.max(-0.5, Math.min(2, val));
+    setCharSpacing(clamped);
+    editor?.objects.update({ charSpacing: Math.round(clamped * 1e3) });
+  }, [editor]);
+  const handleLineHeightChange = useCallback((val) => {
+    const clamped = Math.max(0.5, Math.min(4, val));
+    setLineHeight(clamped);
+    editor?.objects.update({ lineHeight: clamped });
+  }, [editor]);
+  const handleTextTransformChange = useCallback((transform) => {
+    const currentText = activeObj?.text ?? "";
+    if (transform !== "none" && originalTextRef.current === void 0) {
+      originalTextRef.current = currentText;
+    }
+    const base = originalTextRef.current ?? currentText;
+    let transformed;
+    switch (transform) {
+      case "upper":
+        transformed = base.toUpperCase();
+        break;
+      case "lower":
+        transformed = base.toLowerCase();
+        break;
+      case "title":
+        transformed = base.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+        break;
+      case "none":
+      default:
+        transformed = base;
+        originalTextRef.current = void 0;
+        break;
+    }
+    setTextTransform(transform);
+    editor?.objects.update({ text: transformed });
+  }, [editor, activeObj]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
@@ -17894,41 +18909,12 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
           /* @__PURE__ */ jsx(PDivider, {}),
           /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Font" }),
           /* @__PURE__ */ jsx(
-            "select",
+            FontPickerPopover,
             {
-              defaultValue: activeObj?.fontFamily ?? "sans-serif",
-              style: {
-                background: "var(--color-bg)",
-                border: "1px solid var(--color-border)",
-                borderRadius: 6,
-                color: "var(--color-text)",
-                fontSize: 11,
-                padding: "4px 6px",
-                maxWidth: 120,
-                cursor: "pointer",
-                outline: "none"
-              },
-              onChange: (e) => editor?.objects.update({ fontFamily: e.target.value }),
-              children: [
-                "sans-serif",
-                "serif",
-                "monospace",
-                "Roboto",
-                "Open Sans",
-                "Montserrat",
-                "Lato",
-                "Oswald",
-                "Playfair Display",
-                "Pacifico",
-                "Lobster",
-                "Dancing Script",
-                "Bebas Neue",
-                "Anton"
-              ].map(
-                (f) => /* @__PURE__ */ jsx("option", { value: f, style: { background: "var(--color-surface)", color: "var(--color-text)" }, children: f }, f)
-              )
-            },
-            activeObj?.id + "-ff"
+              fontProvider: DEFAULT_FONT_PROVIDER,
+              currentFamily: fontFamily,
+              onChange: handleFontChange
+            }
           ),
           /* @__PURE__ */ jsx(PDivider, {}),
           /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Size" }),
@@ -17986,7 +18972,73 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
           /* @__PURE__ */ jsx(PDivider, {}),
           /* @__PURE__ */ jsx(PBtn, { title: "Align left", onClick: () => editor?.objects.update({ textAlign: "left" }), active: activeObj?.textAlign === "left", children: /* @__PURE__ */ jsx(AlignLeftOutlined, {}) }),
           /* @__PURE__ */ jsx(PBtn, { title: "Align center", onClick: () => editor?.objects.update({ textAlign: "center" }), active: activeObj?.textAlign === "center", children: /* @__PURE__ */ jsx(AlignCenterOutlined, {}) }),
-          /* @__PURE__ */ jsx(PBtn, { title: "Align right", onClick: () => editor?.objects.update({ textAlign: "right" }), active: activeObj?.textAlign === "right", children: /* @__PURE__ */ jsx(AlignRightOutlined, {}) })
+          /* @__PURE__ */ jsx(PBtn, { title: "Align right", onClick: () => editor?.objects.update({ textAlign: "right" }), active: activeObj?.textAlign === "right", children: /* @__PURE__ */ jsx(AlignRightOutlined, {}) }),
+          /* @__PURE__ */ jsx(PDivider, {}),
+          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Spacing" }),
+          /* @__PURE__ */ jsx(
+            "input",
+            {
+              type: "number",
+              min: -0.5,
+              max: 2,
+              step: 0.01,
+              value: charSpacing,
+              style: {
+                width: 52,
+                background: "var(--color-bg)",
+                border: "1px solid var(--color-border)",
+                borderRadius: 6,
+                color: "var(--color-text)",
+                fontSize: 12,
+                padding: "4px 6px",
+                textAlign: "center",
+                outline: "none"
+              },
+              onChange: (e) => handleCharSpacingChange(Number(e.target.value))
+            },
+            activeObj?.id + "-ls"
+          ),
+          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Leading" }),
+          /* @__PURE__ */ jsx(
+            "input",
+            {
+              type: "number",
+              min: 0.5,
+              max: 4,
+              step: 0.1,
+              value: lineHeight,
+              style: {
+                width: 52,
+                background: "var(--color-bg)",
+                border: "1px solid var(--color-border)",
+                borderRadius: 6,
+                color: "var(--color-text)",
+                fontSize: 12,
+                padding: "4px 6px",
+                textAlign: "center",
+                outline: "none"
+              },
+              onChange: (e) => handleLineHeightChange(Number(e.target.value))
+            },
+            activeObj?.id + "-lh"
+          ),
+          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Case" }),
+          /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 2 }, children: [
+            { value: "none", label: "Aa" },
+            { value: "upper", label: "AA" },
+            { value: "lower", label: "aa" },
+            { value: "title", label: "Tt" }
+          ].map((opt) => /* @__PURE__ */ jsx(
+            PBtn,
+            {
+              title: opt.value === "none" ? "No transform" : opt.value === "upper" ? "Uppercase" : opt.value === "lower" ? "Lowercase" : "Title case",
+              active: textTransform === opt.value,
+              onClick: () => handleTextTransformChange(opt.value),
+              style: { width: 26, height: 26, fontSize: 10, fontWeight: 700 },
+              children: opt.label
+            },
+            opt.value
+          )) })
         ] }),
         (isShape || !isImage && !isText) && /* @__PURE__ */ jsxs(Fragment, { children: [
           /* @__PURE__ */ jsx(PDivider, {}),
@@ -18282,13 +19334,13 @@ function PropertyColorPicker({
   );
 }
 function TemplateSearchBar({ value, onChange, debounceMs = 300 }) {
-  const [local, setLocal] = React23.useState(value);
-  const lastEmittedRef = React23.useRef(value);
-  React23.useEffect(() => {
+  const [local, setLocal] = React24.useState(value);
+  const lastEmittedRef = React24.useRef(value);
+  React24.useEffect(() => {
     setLocal(value);
     lastEmittedRef.current = value;
   }, [value]);
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     if (local === lastEmittedRef.current) return;
     const id = setTimeout(() => {
       lastEmittedRef.current = local;
@@ -18318,21 +19370,21 @@ function TemplateSearchBar({ value, onChange, debounceMs = 300 }) {
 }
 var cache = /* @__PURE__ */ new Map();
 var inFlight = /* @__PURE__ */ new Map();
-function useTemplateThumbnail(template, ref, editorOverride) {
+function useSceneThumbnail(input, ref, editorOverride) {
   const hookEditor = useEditor();
   const editor = hookEditor;
-  const [src, setSrc] = React23.useState(() => {
-    if (template.thumbnailUrl) return template.thumbnailUrl;
-    return cache.get(template.id);
+  const [src, setSrc] = React24.useState(() => {
+    if (input.thumbnailUrl) return input.thumbnailUrl;
+    return cache.get(input.id);
   });
-  const [loading, setLoading] = React23.useState(() => !src && !template.thumbnailUrl);
-  React23.useEffect(() => {
-    if (template.thumbnailUrl) {
-      setSrc(template.thumbnailUrl);
+  const [loading, setLoading] = React24.useState(() => !src && !input.thumbnailUrl);
+  React24.useEffect(() => {
+    if (input.thumbnailUrl) {
+      setSrc(input.thumbnailUrl);
       setLoading(false);
       return;
     }
-    const cached = cache.get(template.id);
+    const cached = cache.get(input.id);
     if (cached) {
       setSrc(cached);
       setLoading(false);
@@ -18344,7 +19396,7 @@ function useTemplateThumbnail(template, ref, editorOverride) {
       const visible = entries.some((e) => e.isIntersecting);
       if (!visible) return;
       observer.disconnect();
-      const existing = inFlight.get(template.id);
+      const existing = inFlight.get(input.id);
       if (existing) {
         setLoading(true);
         try {
@@ -18359,21 +19411,21 @@ function useTemplateThumbnail(template, ref, editorOverride) {
         return;
       }
       setLoading(true);
-      const promise = editor.renderer.toDataURL(template.scene, {
+      const promise = editor.renderer.toDataURL(input.scene, {
         format: "png",
         quality: 0.85,
         multiplier: 0.5,
-        backgroundColor: template.canvasBg ?? "#ffffff"
+        backgroundColor: input.canvasBg ?? "#ffffff"
       });
-      inFlight.set(template.id, promise);
+      inFlight.set(input.id, promise);
       try {
         const dataUrl = await promise;
-        cache.set(template.id, dataUrl);
-        inFlight.delete(template.id);
+        cache.set(input.id, dataUrl);
+        inFlight.delete(input.id);
         if (cancelled) return;
         setSrc(dataUrl);
       } catch {
-        inFlight.delete(template.id);
+        inFlight.delete(input.id);
         if (!cancelled) setSrc(void 0);
       } finally {
         if (!cancelled) setLoading(false);
@@ -18384,12 +19436,17 @@ function useTemplateThumbnail(template, ref, editorOverride) {
       cancelled = true;
       observer.disconnect();
     };
-  }, [template.id, template.thumbnailUrl, template.scene, template.canvasBg, editor, ref]);
+  }, [input.id, input.thumbnailUrl, input.scene, input.canvasBg, editor, ref]);
   return { src, loading };
 }
 function TemplateThumbnail({ template, onClick }) {
-  const ref = React23.useRef(null);
-  const { src, loading } = useTemplateThumbnail(template, ref);
+  const ref = React24.useRef(null);
+  const { src, loading } = useSceneThumbnail({
+    id: template.id,
+    scene: template.scene,
+    thumbnailUrl: template.thumbnailUrl,
+    canvasBg: template.canvasBg
+  }, ref);
   const aspectRatio = template.scene?.frame && template.scene.frame.width && template.scene.frame.height ? `${template.scene.frame.width} / ${template.scene.frame.height}` : "1 / 1";
   return /* @__PURE__ */ jsx(
     "button",
@@ -18433,10 +19490,10 @@ function TemplateThumbnail({ template, onClick }) {
 }
 var ROW_LIMIT = 6;
 function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
-  const [items, setItems] = React23.useState([]);
-  const [loading, setLoading] = React23.useState(true);
-  const [error, setError] = React23.useState(false);
-  const load = React23.useCallback(() => {
+  const [items, setItems] = React24.useState([]);
+  const [loading, setLoading] = React24.useState(true);
+  const [error, setError] = React24.useState(false);
+  const load = React24.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -18457,7 +19514,7 @@ function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
       ac.abort();
     };
   }, [provider, category.id]);
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     return load();
   }, [load]);
   return /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
@@ -18510,12 +19567,12 @@ function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
   ] });
 }
 function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
-  const [items, setItems] = React23.useState([]);
-  const [cursor, setCursor] = React23.useState(void 0);
-  const [loading, setLoading] = React23.useState(true);
-  const [loadingMore, setLoadingMore] = React23.useState(false);
-  const [error, setError] = React23.useState(null);
-  React23.useEffect(() => {
+  const [items, setItems] = React24.useState([]);
+  const [cursor, setCursor] = React24.useState(void 0);
+  const [loading, setLoading] = React24.useState(true);
+  const [loadingMore, setLoadingMore] = React24.useState(false);
+  const [error, setError] = React24.useState(null);
+  React24.useEffect(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -18534,7 +19591,7 @@ function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
       ac.abort();
     };
   }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
-  const loadMore = React23.useCallback(async () => {
+  const loadMore = React24.useCallback(async () => {
     if (!cursor) return;
     setLoadingMore(true);
     try {
@@ -18576,12 +19633,12 @@ function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
   ] });
 }
 function TemplatesPanel({ provider, onApplyTemplate }) {
-  const [categories, setCategories] = React23.useState([]);
-  const [loading, setLoading] = React23.useState(true);
-  const [error, setError] = React23.useState(false);
-  const [search, setSearch] = React23.useState("");
-  const [mode, setMode] = React23.useState({ kind: "browse" });
-  const loadCategories = React23.useCallback(() => {
+  const [categories, setCategories] = React24.useState([]);
+  const [loading, setLoading] = React24.useState(true);
+  const [error, setError] = React24.useState(false);
+  const [search, setSearch] = React24.useState("");
+  const [mode, setMode] = React24.useState({ kind: "browse" });
+  const loadCategories = React24.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -18602,8 +19659,8 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
       ac.abort();
     };
   }, [provider]);
-  React23.useEffect(() => loadCategories(), [loadCategories]);
-  const handleSearchChange = React23.useCallback((next) => {
+  React24.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React24.useCallback((next) => {
     setSearch(next);
     if (next.trim()) {
       setMode({ kind: "search", query: next.trim() });
@@ -18611,10 +19668,10 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
       setMode({ kind: "browse" });
     }
   }, []);
-  const handleSeeMore = React23.useCallback((categoryId) => {
+  const handleSeeMore = React24.useCallback((categoryId) => {
     setMode({ kind: "category", categoryId });
   }, []);
-  const handleBack = React23.useCallback(() => {
+  const handleBack = React24.useCallback(() => {
     setMode({ kind: "browse" });
   }, []);
   const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
@@ -19001,7 +20058,7 @@ function ScrollRow({
   shapes,
   onAddShape
 }) {
-  const scrollRef = React23__default.useRef(null);
+  const scrollRef = React24__default.useRef(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -19373,7 +20430,7 @@ function ScrollRow2({
   stickers,
   onAddSticker
 }) {
-  const scrollRef = React23__default.useRef(null);
+  const scrollRef = React24__default.useRef(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -19475,51 +20532,369 @@ function StickerTile({
     }
   ) });
 }
-var PRESETS = [
-  { label: "Add Heading", displaySize: 22, weight: 800, fontSize: 72 },
-  { label: "Add Subheading", displaySize: 15, weight: 600, fontSize: 48 },
-  { label: "Add Body Text", displaySize: 13, weight: 400, fontSize: 28 }
-];
-function TextPanel({ onAddText }) {
-  return /* @__PURE__ */ jsxs("div", { style: { padding: 12, display: "flex", flexDirection: "column", gap: 8 }, children: [
-    /* @__PURE__ */ jsx("p", { style: { color: "var(--color-text-muted)", fontSize: 11, margin: "4px 0 8px", lineHeight: 1.4 }, children: "Click to add text, then double-click on canvas to edit." }),
-    PRESETS.map(({ label, displaySize, weight, fontSize }) => /* @__PURE__ */ jsx(
-      TextPresetBtn,
-      {
-        label,
-        size: displaySize,
-        weight,
-        onClick: () => onAddText(label.replace("Add ", ""), fontSize)
-      },
-      label
-    ))
-  ] });
+function TextDesignSearchBar({ value, onChange, debounceMs = 300 }) {
+  const [local, setLocal] = React24.useState(value);
+  const lastEmittedRef = React24.useRef(value);
+  React24.useEffect(() => {
+    setLocal(value);
+    lastEmittedRef.current = value;
+  }, [value]);
+  React24.useEffect(() => {
+    if (local === lastEmittedRef.current) return;
+    const id = setTimeout(() => {
+      lastEmittedRef.current = local;
+      onChange(local);
+    }, debounceMs);
+    return () => clearTimeout(id);
+  }, [local, debounceMs, onChange]);
+  return /* @__PURE__ */ jsx("div", { style: { padding: "12px 12px 0 12px" }, children: /* @__PURE__ */ jsx(
+    "input",
+    {
+      type: "search",
+      placeholder: "Search text designs",
+      value: local,
+      onChange: (e) => setLocal(e.target.value),
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: 13,
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        background: "var(--color-bg)",
+        color: "var(--color-text)",
+        outline: "none"
+      }
+    }
+  ) });
 }
-function TextPresetBtn({ label, size, weight, onClick }) {
-  const [hov, setHov] = useState(false);
+function TextDesignThumbnail({ textDesign, onClick }) {
+  const ref = React24.useRef(null);
+  const { src, loading } = useSceneThumbnail({
+    id: textDesign.id,
+    scene: textDesign.scene,
+    thumbnailUrl: textDesign.thumbnailUrl,
+    canvasBg: textDesign.canvasBg
+  }, ref);
+  const aspectRatio = textDesign.scene?.frame && textDesign.scene.frame.width && textDesign.scene.frame.height ? `${textDesign.scene.frame.width} / ${textDesign.scene.frame.height}` : "1 / 1";
   return /* @__PURE__ */ jsx(
     "button",
     {
-      onClick,
-      onMouseEnter: () => setHov(true),
-      onMouseLeave: () => setHov(false),
+      ref,
+      onClick: () => onClick(textDesign),
+      title: textDesign.name,
       style: {
+        display: "block",
         width: "100%",
-        padding: "12px 14px",
-        cursor: "pointer",
-        textAlign: "left",
-        background: hov ? "color-mix(in srgb, var(--color-primary) 12%, var(--color-surface-2))" : "color-mix(in srgb, var(--color-text) 4%, var(--color-surface-2))",
-        border: `1px solid ${hov ? "var(--color-primary)" : "var(--color-border)"}`,
-        borderRadius: 10,
-        color: "var(--color-text)",
-        fontSize: size,
-        fontWeight: weight,
-        transition: "all 0.15s",
-        outline: "none"
+        aspectRatio,
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        overflow: "hidden",
+        padding: 0,
+        background: "var(--color-surface)",
+        cursor: "pointer"
       },
-      children: label
+      children: src ? /* @__PURE__ */ jsx(
+        "img",
+        {
+          src,
+          alt: textDesign.name,
+          style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+        }
+      ) : /* @__PURE__ */ jsx(
+        "div",
+        {
+          "aria-label": loading ? "Loading thumbnail" : "No preview available",
+          style: {
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(90deg, var(--color-surface) 0%, var(--color-bg) 50%, var(--color-surface) 100%)",
+            backgroundSize: "200% 100%",
+            animation: loading ? "shimmer 1.5s infinite" : "none"
+          }
+        }
+      )
     }
   );
+}
+var ROW_LIMIT2 = 6;
+function TextDesignCategoryRow({ category, provider, onSelect, onSeeMore }) {
+  const [items, setItems] = React24.useState([]);
+  const [loading, setLoading] = React24.useState(true);
+  const [error, setError] = React24.useState(false);
+  const load = React24.useCallback(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(false);
+    provider.list({ categoryId: category.id, limit: ROW_LIMIT2, signal: ac.signal }).then((res) => {
+      if (!cancelled) {
+        setItems(res.items);
+        setLoading(false);
+      }
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") {
+        setError(true);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider, category.id]);
+  React24.useEffect(() => {
+    return load();
+  }, [load]);
+  return /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
+    /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }, children: [
+      /* @__PURE__ */ jsx("h3", { style: { margin: 0, fontSize: 14, fontWeight: 600, color: "var(--color-text)" }, children: category.name }),
+      /* @__PURE__ */ jsx(
+        "button",
+        {
+          onClick: () => onSeeMore(category.id),
+          style: {
+            all: "unset",
+            cursor: "pointer",
+            fontSize: 12,
+            fontWeight: 600,
+            color: "var(--color-primary)"
+          },
+          children: "See more"
+        }
+      )
+    ] }),
+    error ? /* @__PURE__ */ jsxs("div", { style: { fontSize: 12 }, children: [
+      "Failed to load \u2014",
+      " ",
+      /* @__PURE__ */ jsx("button", { onClick: load, style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" }, children: "Retry" })
+    ] }) : loading ? /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 8, overflowX: "auto" }, children: [0, 1, 2].map((i) => /* @__PURE__ */ jsx(
+      "div",
+      {
+        style: {
+          flex: "0 0 130px",
+          aspectRatio: "1 / 1",
+          background: "var(--color-surface)",
+          borderRadius: 6
+        }
+      },
+      i
+    )) }) : items.length === 0 ? /* @__PURE__ */ jsx("div", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "No text designs yet" }) : /* @__PURE__ */ jsx(
+      "div",
+      {
+        style: {
+          display: "grid",
+          gridAutoFlow: "column",
+          gridAutoColumns: "130px",
+          gap: 8,
+          overflowX: "auto",
+          paddingBottom: 4
+        },
+        children: items.map((t) => /* @__PURE__ */ jsx(TextDesignThumbnail, { textDesign: t, onClick: onSelect }, t.id))
+      }
+    )
+  ] });
+}
+function TextDesignGrid({ provider, listOpts, emptyMessage, onSelect }) {
+  const [items, setItems] = React24.useState([]);
+  const [cursor, setCursor] = React24.useState(void 0);
+  const [loading, setLoading] = React24.useState(true);
+  const [loadingMore, setLoadingMore] = React24.useState(false);
+  const [error, setError] = React24.useState(null);
+  React24.useEffect(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(null);
+    provider.list({ ...listOpts, signal: ac.signal }).then((res) => {
+      if (cancelled) return;
+      setItems(res.items);
+      setCursor(res.nextCursor);
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") setError("Failed to load text designs");
+    }).finally(() => {
+      if (!cancelled) setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
+  const loadMore = React24.useCallback(async () => {
+    if (!cursor) return;
+    setLoadingMore(true);
+    try {
+      const res = await provider.list({ ...listOpts, cursor });
+      setItems((prev) => [...prev, ...res.items]);
+      setCursor(res.nextCursor);
+    } catch {
+      setError("Failed to load more text designs");
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [provider, listOpts, cursor]);
+  if (loading) return /* @__PURE__ */ jsx("div", { style: { padding: 16 }, children: "Loading..." });
+  if (error) return /* @__PURE__ */ jsxs("div", { style: { padding: 16 }, children: [
+    error,
+    " \u2014",
+    " ",
+    /* @__PURE__ */ jsx("button", { onClick: () => setItems([]), style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" }, children: "Retry" })
+  ] });
+  if (items.length === 0) return /* @__PURE__ */ jsx("div", { style: { padding: 16, color: "var(--color-text-muted)" }, children: emptyMessage });
+  return /* @__PURE__ */ jsxs("div", { style: { padding: 12 }, children: [
+    /* @__PURE__ */ jsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }, children: items.map((t) => /* @__PURE__ */ jsx(TextDesignThumbnail, { textDesign: t, onClick: onSelect }, t.id)) }),
+    cursor && /* @__PURE__ */ jsx("div", { style: { display: "flex", justifyContent: "center", marginTop: 12 }, children: /* @__PURE__ */ jsx(
+      "button",
+      {
+        onClick: loadMore,
+        disabled: loadingMore,
+        style: {
+          padding: "6px 14px",
+          borderRadius: 6,
+          border: "1px solid var(--color-border)",
+          background: "transparent",
+          color: "var(--color-text)",
+          cursor: "pointer"
+        },
+        children: loadingMore ? "Loading..." : "Load more"
+      }
+    ) })
+  ] });
+}
+var QUICK_ADD_PRESETS = [
+  { label: "Heading", preset: "heading", fontSize: 72, fontWeight: 800 },
+  { label: "Subheading", preset: "subheading", fontSize: 48, fontWeight: 600 },
+  { label: "Body", preset: "body", fontSize: 28, fontWeight: 400 }
+];
+function TextPanel({ provider, onApplyTextDesign, onAddPlainText }) {
+  const [categories, setCategories] = React24.useState([]);
+  const [loading, setLoading] = React24.useState(true);
+  const [error, setError] = React24.useState(false);
+  const [search, setSearch] = React24.useState("");
+  const [mode, setMode] = React24.useState({ kind: "browse" });
+  const loadCategories = React24.useCallback(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(false);
+    provider.categories({ signal: ac.signal }).then((cats) => {
+      if (!cancelled) {
+        setCategories(cats);
+        setLoading(false);
+      }
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") {
+        setError(true);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider]);
+  React24.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React24.useCallback((next) => {
+    setSearch(next);
+    if (next.trim()) {
+      setMode({ kind: "search", query: next.trim() });
+    } else {
+      setMode({ kind: "browse" });
+    }
+  }, []);
+  const handleSeeMore = React24.useCallback((categoryId) => {
+    setMode({ kind: "category", categoryId });
+  }, []);
+  const handleBack = React24.useCallback(() => {
+    setMode({ kind: "browse" });
+  }, []);
+  const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
+  return /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }, children: [
+    /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 0 12px" }, children: [
+      /* @__PURE__ */ jsx("h2", { style: { margin: "0 0 10px 0", fontSize: 15, fontWeight: 700, color: "var(--color-text)" }, children: "Text Designs" }),
+      onAddPlainText && /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 6, marginBottom: 4 }, children: QUICK_ADD_PRESETS.map(({ label, preset, fontSize, fontWeight }) => /* @__PURE__ */ jsxs(
+        "button",
+        {
+          onClick: () => onAddPlainText(preset),
+          title: `Add ${label} (${fontSize}px)`,
+          style: {
+            flex: 1,
+            padding: "6px 4px",
+            fontSize: 11,
+            fontWeight,
+            cursor: "pointer",
+            background: "color-mix(in srgb, var(--color-text) 4%, var(--color-surface-2))",
+            border: "1px solid var(--color-border)",
+            borderRadius: 6,
+            color: "var(--color-text)",
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            transition: "all 0.15s"
+          },
+          children: [
+            label,
+            /* @__PURE__ */ jsxs("span", { style: { display: "block", fontSize: 9, fontWeight: 400, opacity: 0.6 }, children: [
+              fontSize,
+              "px"
+            ] })
+          ]
+        },
+        preset
+      )) })
+    ] }),
+    /* @__PURE__ */ jsx(TextDesignSearchBar, { value: search, onChange: handleSearchChange }),
+    /* @__PURE__ */ jsx("div", { style: { flex: 1, overflowY: "auto" }, children: mode.kind === "search" ? /* @__PURE__ */ jsx(
+      TextDesignGrid,
+      {
+        provider,
+        listOpts: { search: mode.query, limit: 12 },
+        emptyMessage: `No text designs match "${mode.query}"`,
+        onSelect: onApplyTextDesign
+      }
+    ) : mode.kind === "category" && activeCategory ? /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 0 12px", display: "flex", alignItems: "center", gap: 12 }, children: [
+        /* @__PURE__ */ jsx(
+          "button",
+          {
+            onClick: handleBack,
+            style: { all: "unset", cursor: "pointer", fontSize: 12, color: "var(--color-primary)" },
+            children: "\u2190 Back"
+          }
+        ),
+        /* @__PURE__ */ jsx("h3", { style: { margin: 0, fontSize: 14, fontWeight: 600 }, children: activeCategory.name })
+      ] }),
+      /* @__PURE__ */ jsx(
+        TextDesignGrid,
+        {
+          provider,
+          listOpts: { categoryId: activeCategory.id, limit: 12 },
+          emptyMessage: "No text designs in this category",
+          onSelect: onApplyTextDesign
+        }
+      )
+    ] }) : loading ? /* @__PURE__ */ jsx("div", { style: { padding: 16 }, children: "Loading..." }) : error ? /* @__PURE__ */ jsxs("div", { style: { padding: 16 }, children: [
+      "Failed to load text designs \u2014",
+      " ",
+      /* @__PURE__ */ jsx(
+        "button",
+        {
+          onClick: loadCategories,
+          style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" },
+          children: "Retry"
+        }
+      )
+    ] }) : categories.length === 0 ? /* @__PURE__ */ jsx("div", { style: { padding: 16, color: "var(--color-text-muted)" }, children: "No text designs available. Host apps can supply a textDesignProvider." }) : categories.map((c) => /* @__PURE__ */ jsx(
+      TextDesignCategoryRow,
+      {
+        category: c,
+        provider,
+        onSelect: onApplyTextDesign,
+        onSeeMore: handleSeeMore
+      },
+      c.id
+    )) })
+  ] });
 }
 
 // src/hooks/useToast.ts
@@ -19735,9 +21110,9 @@ function FontsPanel({ onApplyFont }) {
     filtered.map((f) => /* @__PURE__ */ jsx(FontTile, { name: f }, f))
   ] });
 }
-var Ctx = React23.createContext(null);
+var Ctx = React24.createContext(null);
 function useEditorContext() {
-  const v = React23.useContext(Ctx);
+  const v = React24.useContext(Ctx);
   if (!v) throw new Error("useEditorContext must be used inside <DesignEditor>");
   return v;
 }
@@ -19878,7 +21253,7 @@ function getStorageSafe(key, DEFAULT_SETTINGS) {
     return DEFAULT_SETTINGS;
   }
 }
-function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title, textDesignProvider }) {
   const editor = useEditor();
   const activeObj = useActiveObject();
   const zoomRatio = useZoomRatio();
@@ -20200,7 +21575,11 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         ] }),
         /* @__PURE__ */ jsxs("div", { style: { flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }, children: [
           activePanel === "templates" && (templatesPanel ? typeof templatesPanel === "function" ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel : /* @__PURE__ */ jsx(TemplatesPanel, { provider: templateProvider, onApplyTemplate: handleApplyTemplate })),
-          activePanel === "text" && /* @__PURE__ */ jsx(TextPanel, { onAddText: handleAddText }),
+          activePanel === "text" && /* @__PURE__ */ jsx(TextPanel, { provider: textDesignProvider, onApplyTextDesign: () => {
+          }, onAddPlainText: (preset) => {
+            const map = { heading: 72, subheading: 48, body: 28 };
+            handleAddText(preset, map[preset]);
+          } }),
           activePanel === "shapes" && /* @__PURE__ */ jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
           activePanel === "stickers" && /* @__PURE__ */ jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
           activePanel === "upload" && /* @__PURE__ */ jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) }),
@@ -20263,7 +21642,8 @@ function DesignEditor({
   onBack,
   onExport,
   templateProvider = createDefaultTemplateProvider(),
-  fontProvider = createGoogleFontsProvider(),
+  textDesignProvider = createDefaultTextDesignProvider(),
+  fontProvider = createDefaultFontProvider(),
   backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,
@@ -20271,12 +21651,12 @@ function DesignEditor({
   title
 }) {
   const resolvedBackgroundRemovalProvider = backgroundRemovalProvider ?? createImglyBackgroundRemoval();
-  const ctx = React23__default.useMemo(
+  const ctx = React24__default.useMemo(
     () => ({ templateProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
     [templateProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
   );
   return /* @__PURE__ */ jsx(Provider, { children: /* @__PURE__ */ jsxs(EditorContextProvider, { value: ctx, children: [
-    /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title }),
+    /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title, textDesignProvider }),
     /* @__PURE__ */ jsx(Toaster, { position: "bottom-right" })
   ] }) });
 }
@@ -20296,6 +21676,6 @@ lodash/lodash.js:
    *)
 */
 
-export { DesignEditor, VERSION, createDefaultTemplateProvider, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };
+export { DesignEditor, VERSION, createDefaultFontProvider, createDefaultTemplateProvider, createDefaultTextDesignProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

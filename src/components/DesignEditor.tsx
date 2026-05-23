@@ -28,7 +28,7 @@ import { useToast } from '../hooks/useToast'
 import {
   createDefaultTemplateProvider,
   createDefaultTextDesignProvider,
-  createGoogleFontsProvider,
+  createDefaultFontProvider,
   createImglyBackgroundRemoval,
   createLocalStoragePersistence,
 } from '../providers/defaults'
@@ -497,7 +497,7 @@ export function DesignEditor({
   onExport,
   templateProvider = createDefaultTemplateProvider(),
   textDesignProvider = createDefaultTextDesignProvider(),
-  fontProvider = createGoogleFontsProvider(),
+  fontProvider = createDefaultFontProvider(),
   backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,

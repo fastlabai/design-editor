@@ -9,6 +9,10 @@ import {
   AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined,
 } from '@ant-design/icons'
 import { PDivider, PBtn } from './primitives'
+import { FontPickerPopover } from './toolbars/FontPickerPopover'
+import { createDefaultFontProvider } from '../providers/defaults/fonts'
+
+const DEFAULT_FONT_PROVIDER = createDefaultFontProvider()
 
 interface Props {
   activeObj: any
@@ -27,6 +31,66 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
   useEffect(() => {
     setOpacity(Math.round((activeObj?.opacity ?? 1) * 100))
   }, [activeObj?.id])
+
+  // ── Text-specific state ──────────────────────────────────────────────────
+  const [fontFamily, setFontFamily] = useState<string | undefined>(
+    () => activeObj?.fontFamily as string | undefined,
+  )
+  const [charSpacing, setCharSpacing] = useState<number>(
+    () => ((activeObj?.charSpacing as number | undefined) ?? 0) / 1000,
+  )
+  const [lineHeight, setLineHeight] = useState<number>(
+    () => (activeObj?.lineHeight as number | undefined) ?? 1.2,
+  )
+  type TextTransform = 'none' | 'upper' | 'lower' | 'title'
+  const [textTransform, setTextTransform] = useState<TextTransform>('none')
+  const originalTextRef = useRef<string | undefined>(undefined)
+
+  useEffect(() => {
+    setFontFamily(activeObj?.fontFamily as string | undefined)
+    setCharSpacing(((activeObj?.charSpacing as number | undefined) ?? 0) / 1000)
+    setLineHeight((activeObj?.lineHeight as number | undefined) ?? 1.2)
+    setTextTransform('none')
+    originalTextRef.current = undefined
+  }, [activeObj?.id])
+
+  const handleFontChange = useCallback((family: string) => {
+    setFontFamily(family)
+    editor?.objects.update({ fontFamily: family })
+  }, [editor])
+
+  const handleCharSpacingChange = useCallback((val: number) => {
+    const clamped = Math.max(-0.5, Math.min(2, val))
+    setCharSpacing(clamped)
+    editor?.objects.update({ charSpacing: Math.round(clamped * 1000) })
+  }, [editor])
+
+  const handleLineHeightChange = useCallback((val: number) => {
+    const clamped = Math.max(0.5, Math.min(4, val))
+    setLineHeight(clamped)
+    editor?.objects.update({ lineHeight: clamped })
+  }, [editor])
+
+  const handleTextTransformChange = useCallback((transform: TextTransform) => {
+    const currentText = (activeObj?.text as string | undefined) ?? ''
+    if (transform !== 'none' && originalTextRef.current === undefined) {
+      originalTextRef.current = currentText
+    }
+    const base = originalTextRef.current ?? currentText
+    let transformed: string
+    switch (transform) {
+      case 'upper': transformed = base.toUpperCase(); break
+      case 'lower': transformed = base.toLowerCase(); break
+      case 'title': transformed = base.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()); break
+      case 'none':
+      default:
+        transformed = base
+        originalTextRef.current = undefined
+        break
+    }
+    setTextTransform(transform)
+    editor?.objects.update({ text: transformed })
+  }, [editor, activeObj])
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   useEffect(() => {
@@ -175,21 +239,11 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
         <>
           <PDivider />
           <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Font</span>
-          <select
-            key={activeObj?.id + '-ff'}
-            defaultValue={activeObj?.fontFamily ?? 'sans-serif'}
-            style={{
-              background: 'var(--color-bg)', border: '1px solid var(--color-border)', borderRadius: 6,
-              color: 'var(--color-text)', fontSize: 11, padding: '4px 6px', maxWidth: 120, cursor: 'pointer',
-              outline: 'none',
-            }}
-            onChange={(e) => editor?.objects.update({ fontFamily: e.target.value })}
-          >
-            {['sans-serif','serif','monospace','Roboto','Open Sans','Montserrat','Lato','Oswald',
-              'Playfair Display','Pacifico','Lobster','Dancing Script','Bebas Neue','Anton'].map(f =>
-              <option key={f} value={f} style={{ background: 'var(--color-surface)', color: 'var(--color-text)' }}>{f}</option>
-            )}
-          </select>
+          <FontPickerPopover
+            fontProvider={DEFAULT_FONT_PROVIDER}
+            currentFamily={fontFamily}
+            onChange={handleFontChange}
+          />
           <PDivider />
           <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Size</span>
           <input
@@ -235,6 +289,53 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
           <PBtn title="Align right"  onClick={() => editor?.objects.update({ textAlign: 'right' })}  active={activeObj?.textAlign === 'right'}>
             <AlignRightOutlined />
           </PBtn>
+          <PDivider />
+          {/* Letter spacing */}
+          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Spacing</span>
+          <input
+            key={activeObj?.id + '-ls'}
+            type="number" min={-0.5} max={2} step={0.01}
+            value={charSpacing}
+            style={{
+              width: 52, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
+              borderRadius: 6, color: 'var(--color-text)', fontSize: 12,
+              padding: '4px 6px', textAlign: 'center', outline: 'none',
+            }}
+            onChange={(e) => handleCharSpacingChange(Number(e.target.value))}
+          />
+          {/* Line height */}
+          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Leading</span>
+          <input
+            key={activeObj?.id + '-lh'}
+            type="number" min={0.5} max={4} step={0.1}
+            value={lineHeight}
+            style={{
+              width: 52, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
+              borderRadius: 6, color: 'var(--color-text)', fontSize: 12,
+              padding: '4px 6px', textAlign: 'center', outline: 'none',
+            }}
+            onChange={(e) => handleLineHeightChange(Number(e.target.value))}
+          />
+          {/* Text transform */}
+          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Case</span>
+          <div style={{ display: 'flex', gap: 2 }}>
+            {([
+              { value: 'none',  label: 'Aa' },
+              { value: 'upper', label: 'AA' },
+              { value: 'lower', label: 'aa' },
+              { value: 'title', label: 'Tt' },
+            ] as { value: TextTransform; label: string }[]).map(opt => (
+              <PBtn
+                key={opt.value}
+                title={opt.value === 'none' ? 'No transform' : opt.value === 'upper' ? 'Uppercase' : opt.value === 'lower' ? 'Lowercase' : 'Title case'}
+                active={textTransform === opt.value}
+                onClick={() => handleTextTransformChange(opt.value)}
+                style={{ width: 26, height: 26, fontSize: 10, fontWeight: 700 }}
+              >
+                {opt.label}
+              </PBtn>
+            ))}
+          </div>
         </>
       )}
 

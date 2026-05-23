@@ -1,7 +1,6 @@
-'use client'
 'use strict';
 
-var React23 = require('react');
+var React24 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var fabric = require('fabric');
 var antd = require('antd');
@@ -31,7 +30,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React23__namespace = /*#__PURE__*/_interopNamespace(React23);
+var React24__namespace = /*#__PURE__*/_interopNamespace(React24);
 var RadixPopover__namespace = /*#__PURE__*/_interopNamespace(RadixPopover);
 var RadixTooltip__namespace = /*#__PURE__*/_interopNamespace(RadixTooltip);
 var RadixSelect__namespace = /*#__PURE__*/_interopNamespace(RadixSelect);
@@ -7914,48 +7913,6 @@ function createLocalStoragePersistence(opts = {}) {
   };
 }
 
-// src/providers/defaults/googleFonts.ts
-var GOOGLE_FONTS_API = "https://www.googleapis.com/webfonts/v1/webfonts";
-var CURATED_FONTS = [
-  { family: "Inter", category: "sans-serif" },
-  { family: "Roboto", category: "sans-serif" },
-  { family: "Open Sans", category: "sans-serif" },
-  { family: "Lato", category: "sans-serif" },
-  { family: "Montserrat", category: "sans-serif" },
-  { family: "Playfair Display", category: "serif" },
-  { family: "Merriweather", category: "serif" },
-  { family: "JetBrains Mono", category: "monospace" }
-];
-function createGoogleFontsProvider(opts = {}) {
-  const loaded2 = /* @__PURE__ */ new Set();
-  return {
-    async list({ search, signal } = {}) {
-      if (!opts.apiKey) {
-        return CURATED_FONTS.filter(
-          (f) => !search || f.family.toLowerCase().includes(search.toLowerCase())
-        );
-      }
-      const url = `${GOOGLE_FONTS_API}?key=${opts.apiKey}&sort=popularity`;
-      const res = await fetch(url, { signal });
-      const data = await res.json();
-      return data.items.map((it) => ({
-        family: it.family,
-        weights: it.variants.filter((v) => /^\d+$/.test(v)).map(Number),
-        category: it.category
-      }));
-    },
-    async load(family) {
-      if (loaded2.has(family)) return;
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@400;700&display=swap`;
-      document.head.appendChild(link);
-      await document.fonts.ready;
-      loaded2.add(family);
-    }
-  };
-}
-
 // src/internal/dynamicImport.ts
 var dynamicImport = new Function("specifier", "return import(specifier)");
 function importOptionalPeer(specifier) {
@@ -12208,7 +12165,817 @@ function createDefaultTemplateProvider() {
     }
   };
 }
-var Context = React23__namespace.createContext({
+
+// src/providers/defaults/textDesigns.data.json
+var textDesigns_data_default = {
+  categories: [
+    {
+      id: "headings",
+      name: "Headings",
+      order: 1
+    },
+    {
+      id: "quotes",
+      name: "Quotes",
+      order: 2
+    },
+    {
+      id: "promos",
+      name: "Promos",
+      order: 3
+    },
+    {
+      id: "greetings",
+      name: "Greetings",
+      order: 4
+    },
+    {
+      id: "decorative",
+      name: "Decorative",
+      order: 5
+    }
+  ],
+  textDesigns: [
+    {
+      id: "td-heading-glow",
+      name: "Glow Heading",
+      categoryId: "headings",
+      tags: ["heading", "glow", "bold", "impact", "dark"],
+      canvasBg: "#1f1f1f",
+      scene: {
+        id: "td-heading-glow",
+        frame: { width: 800, height: 260 },
+        layers: [
+          {
+            id: "td-heading-glow-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 220,
+            fill: "#ffe082",
+            fontFamily: "Bebas Neue",
+            fontSize: 180,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "GLOW"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-heading-italic-tilted",
+      name: "Italic Tilted",
+      categoryId: "headings",
+      tags: ["heading", "italic", "tilted", "bold", "impact"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-heading-italic-tilted",
+        frame: { width: 900, height: 200 },
+        layers: [
+          {
+            id: "td-heading-italic-tilted-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 30,
+            width: 860,
+            height: 130,
+            fill: "#1f1f1f",
+            fontFamily: "Anton",
+            fontSize: 100,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1,
+            textAlign: "center",
+            angle: -8,
+            text: "ITALIC TILTED"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-heading-serif-title",
+      name: "Serif Title",
+      categoryId: "headings",
+      tags: ["heading", "serif", "elegant", "classic", "playfair"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-heading-serif-title",
+        frame: { width: 900, height: 180 },
+        layers: [
+          {
+            id: "td-heading-serif-title-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 860,
+            height: 140,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 96,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Serif Title"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-quote-classic",
+      name: "Classic Quote",
+      categoryId: "quotes",
+      tags: ["quote", "classic", "italic", "playfair", "attribution"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-quote-classic",
+        frame: { width: 800, height: 300 },
+        layers: [
+          {
+            id: "td-quote-classic-quote",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 40,
+            width: 720,
+            height: 160,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 32,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1.4,
+            textAlign: "center",
+            text: '"A quote is just a clever way to sound wise."'
+          },
+          {
+            id: "td-quote-classic-attr",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 220,
+            width: 720,
+            height: 50,
+            fill: "#7e57c2",
+            fontFamily: "Lato",
+            fontSize: 22,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2014 Someone smart"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-quote-bubble",
+      name: "Speech Bubble",
+      categoryId: "quotes",
+      tags: ["quote", "bubble", "speech", "fun", "message"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-quote-bubble",
+        frame: { width: 800, height: 220 },
+        layers: [
+          {
+            id: "td-quote-bubble-label",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 20,
+            width: 720,
+            height: 40,
+            fill: "#7e57c2",
+            fontFamily: "Lato",
+            fontSize: 18,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "[ SPEECH BUBBLE ]"
+          },
+          {
+            id: "td-quote-bubble-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 70,
+            width: 720,
+            height: 120,
+            fill: "#1f1f1f",
+            fontFamily: "Open Sans",
+            fontSize: 30,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.4,
+            textAlign: "center",
+            text: "Speech bubbles are very useful sometimes."
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-promo-get20",
+      name: "Get 20% Off",
+      categoryId: "promos",
+      tags: ["promo", "discount", "20%", "sale", "offer"],
+      canvasBg: "#0277bd",
+      scene: {
+        id: "td-promo-get20",
+        frame: { width: 800, height: 300 },
+        layers: [
+          {
+            id: "td-promo-get20-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 30,
+            width: 720,
+            height: 50,
+            fill: "#ffe082",
+            fontFamily: "Lato",
+            fontSize: 24,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 300,
+            text: "PROMO CODE"
+          },
+          {
+            id: "td-promo-get20-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 90,
+            width: 720,
+            height: 180,
+            fill: "#ffffff",
+            fontFamily: "Anton",
+            fontSize: 140,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "GET 20% OFF"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-promo-flash-sale",
+      name: "Flash Sale",
+      categoryId: "promos",
+      tags: ["promo", "flash sale", "sale", "today", "urgent"],
+      canvasBg: "#ff5252",
+      scene: {
+        id: "td-promo-flash-sale",
+        frame: { width: 800, height: 280 },
+        layers: [
+          {
+            id: "td-promo-flash-sale-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 160,
+            fill: "#ffffff",
+            fontFamily: "Anton",
+            fontSize: 110,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "FLASH SALE"
+          },
+          {
+            id: "td-promo-flash-sale-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 200,
+            width: 760,
+            height: 60,
+            fill: "#ffe082",
+            fontFamily: "Lato",
+            fontSize: 36,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "TODAY ONLY"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-promo-limited",
+      name: "Limited Offer",
+      categoryId: "promos",
+      tags: ["promo", "limited", "offer", "oswald", "dark"],
+      canvasBg: "#1f1f1f",
+      scene: {
+        id: "td-promo-limited",
+        frame: { width: 900, height: 200 },
+        layers: [
+          {
+            id: "td-promo-limited-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 30,
+            width: 860,
+            height: 140,
+            fill: "#ff8a65",
+            fontFamily: "Oswald",
+            fontSize: 90,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 400,
+            text: "LIMITED OFFER"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-greet-thank-you",
+      name: "Thank You",
+      categoryId: "greetings",
+      tags: ["greeting", "thank you", "purchase", "gratitude", "elegant"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-greet-thank-you",
+        frame: { width: 800, height: 280 },
+        layers: [
+          {
+            id: "td-greet-thank-you-main",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 160,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 96,
+            fontWeight: "normal",
+            fontStyle: "italic",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Thank You"
+          },
+          {
+            id: "td-greet-thank-you-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 200,
+            width: 760,
+            height: 50,
+            fill: "#26a69a",
+            fontFamily: "Lato",
+            fontSize: 24,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "for your purchase"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-greet-hugs-kisses",
+      name: "Hugs & Kisses",
+      categoryId: "greetings",
+      tags: ["greeting", "hugs", "kisses", "love", "pink", "bold"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-greet-hugs-kisses",
+        frame: { width: 700, height: 320 },
+        layers: [
+          {
+            id: "td-greet-hugs-kisses-line1",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 660,
+            height: 140,
+            fill: "#ec407a",
+            fontFamily: "Anton",
+            fontSize: 110,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "HUGS +"
+          },
+          {
+            id: "td-greet-hugs-kisses-line2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 170,
+            width: 660,
+            height: 140,
+            fill: "#1f1f1f",
+            fontFamily: "Anton",
+            fontSize: 110,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "KISSES"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-greet-sweet-greetings",
+      name: "Sweet Greetings",
+      categoryId: "greetings",
+      tags: ["greeting", "sweet", "costa rica", "serif", "travel"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-greet-sweet-greetings",
+        frame: { width: 800, height: 300 },
+        layers: [
+          {
+            id: "td-greet-sweet-greetings-main",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 160,
+            fill: "#1f1f1f",
+            fontFamily: "Playfair Display",
+            fontSize: 80,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 100,
+            text: "SWEET GREETINGS"
+          },
+          {
+            id: "td-greet-sweet-greetings-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 210,
+            width: 760,
+            height: 60,
+            fill: "#26a69a",
+            fontFamily: "Lato",
+            fontSize: 30,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "from COSTA RICA"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-sunny-spain",
+      name: "Sunny in Spain",
+      categoryId: "decorative",
+      tags: ["decorative", "spain", "travel", "script", "pacifico", "tilted"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-sunny-spain",
+        frame: { width: 900, height: 220 },
+        layers: [
+          {
+            id: "td-deco-sunny-spain-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 860,
+            height: 180,
+            fill: "#7e57c2",
+            fontFamily: "Pacifico",
+            fontSize: 80,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            angle: -5,
+            text: "It's Sunny in Spain"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-keep-it-simple",
+      name: "Keep It Simple",
+      categoryId: "decorative",
+      tags: ["decorative", "minimal", "simple", "bold", "stacked"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-keep-it-simple",
+        frame: { width: 700, height: 300 },
+        layers: [
+          {
+            id: "td-deco-keep-it-simple-line1",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 30,
+            width: 660,
+            height: 120,
+            fill: "#1f1f1f",
+            fontFamily: "Oswald",
+            fontSize: 90,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "KEEP IT"
+          },
+          {
+            id: "td-deco-keep-it-simple-line2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 165,
+            width: 660,
+            height: 120,
+            fill: "#1f1f1f",
+            fontFamily: "Oswald",
+            fontSize: 90,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 200,
+            text: "SIMPLE"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-something-nice",
+      name: "Something Nice",
+      categoryId: "decorative",
+      tags: ["decorative", "large", "oswald", "pink", "bold"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-something-nice",
+        frame: { width: 1e3, height: 200 },
+        layers: [
+          {
+            id: "td-deco-something-nice-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 960,
+            height: 160,
+            fill: "#ec407a",
+            fontFamily: "Oswald",
+            fontSize: 120,
+            fontWeight: "700",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            charSpacing: 150,
+            text: "SOMETHING NICE"
+          }
+        ],
+        metadata: {}
+      }
+    },
+    {
+      id: "td-deco-le-marais",
+      name: "Le Marais",
+      categoryId: "decorative",
+      tags: ["decorative", "paris", "travel", "script", "dancing script", "france"],
+      canvasBg: "#f5f5f5",
+      scene: {
+        id: "td-deco-le-marais",
+        frame: { width: 800, height: 380 },
+        layers: [
+          {
+            id: "td-deco-le-marais-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 20,
+            width: 760,
+            height: 50,
+            fill: "#1f1f1f",
+            fontFamily: "Lato",
+            fontSize: 22,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            charSpacing: 300,
+            text: "GREETINGS FROM"
+          },
+          {
+            id: "td-deco-le-marais-main",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 70,
+            width: 760,
+            height: 220,
+            fill: "#7e57c2",
+            fontFamily: "Dancing Script",
+            fontSize: 140,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Le Marais"
+          },
+          {
+            id: "td-deco-le-marais-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 20,
+            top: 310,
+            width: 760,
+            height: 50,
+            fill: "#1f1f1f",
+            fontFamily: "Lato",
+            fontSize: 24,
+            fontWeight: "normal",
+            fontStyle: "normal",
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Paris, France"
+          }
+        ],
+        metadata: {}
+      }
+    }
+  ]
+};
+
+// src/providers/defaults/textDesigns.ts
+var DEFAULT_LIMIT2 = 12;
+function compareCategories2(a, b) {
+  const ao = a.order ?? Number.MAX_SAFE_INTEGER;
+  const bo = b.order ?? Number.MAX_SAFE_INTEGER;
+  if (ao !== bo) return ao - bo;
+  return a.name.localeCompare(b.name);
+}
+function matchesSearch2(design, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  if (design.name.toLowerCase().includes(q)) return true;
+  return (design.tags ?? []).some((tag) => tag.toLowerCase().includes(q));
+}
+function createDefaultTextDesignProvider() {
+  const bundled = textDesigns_data_default;
+  return {
+    async categories() {
+      return [...bundled.categories].sort(compareCategories2);
+    },
+    async list(opts) {
+      const limit = opts.limit ?? DEFAULT_LIMIT2;
+      let filtered = bundled.textDesigns.slice();
+      if (opts.categoryId) {
+        filtered = filtered.filter((d) => d.categoryId === opts.categoryId);
+      }
+      if (opts.search) {
+        filtered = filtered.filter((d) => matchesSearch2(d, opts.search));
+      }
+      filtered.sort((a, b) => a.id.localeCompare(b.id));
+      let startIndex = 0;
+      if (opts.cursor) {
+        const idx = filtered.findIndex((d) => d.id === opts.cursor);
+        startIndex = idx >= 0 ? idx + 1 : 0;
+      }
+      const slice = filtered.slice(startIndex, startIndex + limit);
+      const last = slice[slice.length - 1];
+      const nextCursor = last && startIndex + slice.length < filtered.length ? last.id : void 0;
+      return { items: slice, nextCursor };
+    }
+  };
+}
+
+// src/providers/defaults/fonts.ts
+var GOOGLE_FONT_FAMILIES = [
+  "Roboto",
+  "Open Sans",
+  "Lato",
+  "Montserrat",
+  "Oswald",
+  "Source Sans Pro",
+  "Raleway",
+  "PT Sans",
+  "Merriweather",
+  "Nunito",
+  "Playfair Display",
+  "Ubuntu",
+  "Poppins",
+  "Muli",
+  "PT Serif",
+  "Josefin Sans",
+  "Fira Sans",
+  "Noto Sans",
+  "Dosis",
+  "Quicksand",
+  "Cabin",
+  "Varela Round",
+  "Lobster",
+  "Pacifico",
+  "Dancing Script",
+  "Comfortaa",
+  "Righteous",
+  "Satisfy",
+  "Abril Fatface",
+  "Bebas Neue",
+  "Anton",
+  "Permanent Marker"
+];
+var GOOGLE_DESCRIPTORS = GOOGLE_FONT_FAMILIES.map((family) => ({
+  family,
+  source: "google"
+}));
+function familyFromFilename(filename) {
+  const base = filename.replace(/\.[^.]+$/, "");
+  const spaced = base.replace(/[-_]/g, " ");
+  return spaced.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+function createDefaultFontProvider() {
+  const loadedFamilies = /* @__PURE__ */ new Set();
+  const uploads = /* @__PURE__ */ new Map();
+  const subscribers = /* @__PURE__ */ new Set();
+  function notify() {
+    subscribers.forEach((h) => h());
+  }
+  function loadGoogleFont2(family) {
+    if (loadedFamilies.has(family)) return;
+    loadedFamilies.add(family);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}&display=swap`;
+    document.head.appendChild(link);
+  }
+  return {
+    async list() {
+      return [...GOOGLE_DESCRIPTORS, ...uploads.values()];
+    },
+    async load(family) {
+      if (uploads.has(family)) return;
+      loadGoogleFont2(family);
+    },
+    async upload(file) {
+      const family = familyFromFilename(file.name);
+      const buffer = await file.arrayBuffer();
+      const face = new FontFace(family, buffer);
+      document.fonts.add(face);
+      await face.load();
+      const descriptor = {
+        family,
+        source: "custom"
+      };
+      uploads.set(family, descriptor);
+      notify();
+      return descriptor;
+    },
+    onChange(handler) {
+      subscribers.add(handler);
+      return () => subscribers.delete(handler);
+    }
+  };
+}
+var Context = React24__namespace.createContext({
   zoomRatio: 1,
   activeObject: null,
   contextMenuRequest: null,
@@ -12229,12 +12996,12 @@ var Context = React23__namespace.createContext({
   }
 });
 var Provider = ({ children }) => {
-  const [zoomRatio, setZoomRatio] = React23__namespace.useState(1);
-  const [activeObject, setActiveObject] = React23__namespace.useState(null);
-  const [frame, setFrame] = React23__namespace.useState(null);
-  const [editor, setEditor] = React23__namespace.useState(null);
-  const [contextMenuRequest, setContextMenuRequest] = React23__namespace.useState(null);
-  const [objects, setObjects] = React23__namespace.useState([]);
+  const [zoomRatio, setZoomRatio] = React24__namespace.useState(1);
+  const [activeObject, setActiveObject] = React24__namespace.useState(null);
+  const [frame, setFrame] = React24__namespace.useState(null);
+  const [editor, setEditor] = React24__namespace.useState(null);
+  const [contextMenuRequest, setContextMenuRequest] = React24__namespace.useState(null);
+  const [objects, setObjects] = React24__namespace.useState([]);
   return /* @__PURE__ */ jsxRuntime.jsx(
     Context.Provider,
     {
@@ -12257,19 +13024,19 @@ var Provider = ({ children }) => {
   );
 };
 function useZoomRatio() {
-  const { zoomRatio } = React23__namespace.default.useContext(Context);
+  const { zoomRatio } = React24__namespace.default.useContext(Context);
   return zoomRatio;
 }
 function useEditor() {
-  const { editor } = React23__namespace.default.useContext(Context);
+  const { editor } = React24__namespace.default.useContext(Context);
   return editor;
 }
 function useObjects() {
-  const { objects } = React23__namespace.default.useContext(Context);
+  const { objects } = React24__namespace.default.useContext(Context);
   return objects;
 }
 function useActiveObject() {
-  const { activeObject } = React23__namespace.default.useContext(Context);
+  const { activeObject } = React24__namespace.default.useContext(Context);
   return activeObject;
 }
 var FrameObject = class extends fabric.fabric.Rect {
@@ -16602,7 +17369,7 @@ var ResizeObserver2 = (
   }
   return ResizeObserver2;
 }))();
-var Button = React23__namespace.forwardRef(
+var Button = React24__namespace.forwardRef(
   ({ variant = "secondary", size = "md", iconOnly, className, ...rest }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "button",
     {
@@ -16634,7 +17401,7 @@ function Popover({ children, content, open, onOpenChange, placement = "bottom", 
     ) })
   ] });
 }
-var Input = React23__namespace.forwardRef(
+var Input = React24__namespace.forwardRef(
   ({ className, size = "md", ...rest }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "input",
     {
@@ -16646,7 +17413,7 @@ var Input = React23__namespace.forwardRef(
   )
 );
 Input.displayName = "Input";
-var Tooltip = React23__namespace.forwardRef(({ children, title, placement = "top", className }, ref) => {
+var Tooltip = React24__namespace.forwardRef(({ children, title, placement = "top", className }, ref) => {
   if (!title) return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children });
   return /* @__PURE__ */ jsxRuntime.jsx(RadixTooltip__namespace.Provider, { delayDuration: 200, children: /* @__PURE__ */ jsxRuntime.jsxs(RadixTooltip__namespace.Root, { children: [
     /* @__PURE__ */ jsxRuntime.jsx(RadixTooltip__namespace.Trigger, { asChild: true, ref, children }),
@@ -16664,7 +17431,7 @@ var Tooltip = React23__namespace.forwardRef(({ children, title, placement = "top
     ) })
   ] }) });
 });
-var Select = React23__namespace.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
+var Select = React24__namespace.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsxs(RadixSelect__namespace.Root, { value, defaultValue, onValueChange, children: [
     /* @__PURE__ */ jsxRuntime.jsxs(RadixSelect__namespace.Trigger, { ref, className: clsx.clsx("de-select-trigger", className), style, children: [
       /* @__PURE__ */ jsxRuntime.jsx(RadixSelect__namespace.Value, { placeholder }),
@@ -16720,15 +17487,15 @@ var AD_SIZES = [
   { label: "Custom\u2026", value: "custom" }
 ];
 function useCanvasSize(editor) {
-  const [size, setSize] = React23.useState("1920x1080");
-  const [customOpen, setCustomOpen] = React23.useState(false);
-  const [customW, setCustomW] = React23.useState(1920);
-  const [customH, setCustomH] = React23.useState(1080);
-  const applySize = React23.useCallback((w, h) => {
+  const [size, setSize] = React24.useState("1920x1080");
+  const [customOpen, setCustomOpen] = React24.useState(false);
+  const [customW, setCustomW] = React24.useState(1920);
+  const [customH, setCustomH] = React24.useState(1080);
+  const applySize = React24.useCallback((w, h) => {
     if (!editor) return;
     editor.frame.resize({ width: w, height: h });
   }, [editor]);
-  const handleSizeChange = React23.useCallback((value) => {
+  const handleSizeChange = React24.useCallback((value) => {
     if (value === "custom") {
       setCustomOpen(true);
       return;
@@ -16738,7 +17505,7 @@ function useCanvasSize(editor) {
     const [w, h] = value.split("x").map(Number);
     applySize(w, h);
   }, [applySize]);
-  const handleApplyCustom = React23.useCallback(() => {
+  const handleApplyCustom = React24.useCallback(() => {
     const w = Math.max(100, Math.min(8e3, customW));
     const h = Math.max(100, Math.min(8e3, customH));
     setCustomOpen(false);
@@ -17114,12 +17881,12 @@ function ColorPickerBtn({
   tooltip,
   checkerboard
 }) {
-  const [open, setOpen] = React23.useState(false);
-  const [hex, setHex] = React23.useState(color);
-  React23.useEffect(() => {
+  const [open, setOpen] = React24.useState(false);
+  const [hex, setHex] = React24.useState(color);
+  React24.useEffect(() => {
     setHex(color);
   }, [color]);
-  const commitHex = React23.useCallback((val) => {
+  const commitHex = React24.useCallback((val) => {
     const clean = val.startsWith("#") ? val : `#${val}`;
     if (/^#[0-9a-fA-F]{6}$/.test(clean)) {
       onChange(clean);
@@ -17336,7 +18103,7 @@ function IconRail({ activePanel, onTogglePanel }) {
   );
 }
 function RailButton({ icon, label, active, onClick }) {
-  const [hov, setHov] = React23.useState(false);
+  const [hov, setHov] = React24.useState(false);
   return /* @__PURE__ */ jsxRuntime.jsxs(
     "button",
     {
@@ -17382,14 +18149,14 @@ function RailButton({ icon, label, active, onClick }) {
   );
 }
 var WORKSPACE_BG = "var(--color-bg)";
-var FrozenCanvas = React23.memo(
+var FrozenCanvas = React24.memo(
   function FrozenCanvas2({
     config,
     contextRef,
     canvasBg
   }) {
-    const containerRef = React23.useRef(null);
-    React23.useEffect(() => {
+    const containerRef = React24.useRef(null);
+    React24.useEffect(() => {
       const container = containerRef.current;
       if (!container) return;
       const initTimer = window.setTimeout(() => {
@@ -17456,12 +18223,12 @@ var CANVAS_CONFIG = {
   shortcuts: true
 };
 function CanvasContextBridge({ canvasBg }) {
-  const context = React23.useContext(Context);
-  const contextRef = React23.useRef(null);
+  const context = React24.useContext(Context);
+  const contextRef = React24.useRef(null);
   if (contextRef.current === null) contextRef.current = context;
   return /* @__PURE__ */ jsxRuntime.jsx(FrozenCanvas, { config: CANVAS_CONFIG, contextRef, canvasBg });
 }
-var CanvasArea = React23.memo(function CanvasArea2({
+var CanvasArea = React24.memo(function CanvasArea2({
   dragOver,
   onDragOver,
   onDragLeave,
@@ -17519,7 +18286,7 @@ var TYPE_ICONS = {
   Group: /* @__PURE__ */ jsxRuntime.jsx(icons.FolderOutlined, {})
 };
 function LayerPanel({ layers, activeId, editor, onClose }) {
-  const [selectedIds, setSelectedIds] = React23.useState(/* @__PURE__ */ new Set());
+  const [selectedIds, setSelectedIds] = React24.useState(/* @__PURE__ */ new Set());
   const toggleSelect = (id, multi) => {
     if (multi) {
       setSelectedIds((prev) => {
@@ -17619,12 +18386,12 @@ function LayerPanel({ layers, activeId, editor, onClose }) {
   );
 }
 function LayerRow({ layer, isActive, isSelected, depth, onSelect, onToggleVisible, onDelete, onCopy, onRename, editor }) {
-  const [hov, setHov] = React23.useState(false);
-  const [editing, setEditing] = React23.useState(false);
-  const [editVal, setEditVal] = React23.useState(layer.name);
-  const [collapsed, setCollapsed] = React23.useState(false);
-  const inputRef = React23.useRef(null);
-  React23.useEffect(() => {
+  const [hov, setHov] = React24.useState(false);
+  const [editing, setEditing] = React24.useState(false);
+  const [editVal, setEditVal] = React24.useState(layer.name);
+  const [collapsed, setCollapsed] = React24.useState(false);
+  const inputRef = React24.useRef(null);
+  React24.useEffect(() => {
     if (editing) inputRef.current?.focus();
   }, [editing]);
   const commitRename = () => {
@@ -17753,24 +18520,272 @@ var ICON_BTN = {
   display: "flex",
   alignItems: "center"
 };
+function FontPickerPopover({ fontProvider, currentFamily, onChange }) {
+  const [open, setOpen] = React24.useState(false);
+  const [fonts, setFonts] = React24.useState([]);
+  const [search, setSearch] = React24.useState("");
+  const fileInputRef = React24.useRef(null);
+  React24.useEffect(() => {
+    if (!fontProvider.onChange) return;
+    const unsub = fontProvider.onChange(() => {
+      fontProvider.list().then(setFonts);
+    });
+    return unsub;
+  }, [fontProvider]);
+  const handleOpenChange = React24.useCallback((next) => {
+    setOpen(next);
+    if (next) {
+      fontProvider.list().then((list) => {
+        setFonts(list);
+        list.forEach((f) => {
+          fontProvider.load(f.family).catch(() => {
+          });
+        });
+      });
+    } else {
+      setSearch("");
+    }
+  }, [fontProvider]);
+  const filtered = fonts.filter(
+    (f) => f.family.toLowerCase().includes(search.toLowerCase())
+  );
+  const handleSelect = React24.useCallback(async (family) => {
+    await fontProvider.load(family).catch(() => {
+    });
+    onChange(family);
+    setOpen(false);
+    setSearch("");
+  }, [fontProvider, onChange]);
+  const handleUpload = React24.useCallback(async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      await fontProvider.upload(file);
+    } catch {
+    }
+    e.target.value = "";
+  }, [fontProvider]);
+  const trigger = /* @__PURE__ */ jsxRuntime.jsxs(
+    "button",
+    {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 4,
+        padding: "4px 8px",
+        background: "var(--color-bg)",
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        color: "var(--color-text)",
+        fontSize: 12,
+        cursor: "pointer",
+        outline: "none",
+        fontFamily: currentFamily ? `'${currentFamily}', sans-serif` : "inherit",
+        maxWidth: 140,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsx("span", { style: { flex: 1, overflow: "hidden", textOverflow: "ellipsis" }, children: currentFamily ?? "Default" }),
+        /* @__PURE__ */ jsxRuntime.jsx(icons.DownOutlined, { style: { fontSize: 9, flexShrink: 0 } })
+      ]
+    }
+  );
+  const popoverContent = /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { width: 240, display: "flex", flexDirection: "column", gap: 0 }, children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: "8px 8px 4px" }, children: /* @__PURE__ */ jsxRuntime.jsx(
+      Input,
+      {
+        placeholder: "Search fonts\u2026",
+        value: search,
+        onChange: (e) => setSearch(e.target.value),
+        style: { width: "100%", fontSize: 12 },
+        autoFocus: true
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { maxHeight: 360, overflowY: "auto", padding: "4px 0" }, children: [
+      filtered.map((f) => /* @__PURE__ */ jsxRuntime.jsxs(
+        "div",
+        {
+          onClick: () => handleSelect(f.family),
+          style: {
+            padding: "6px 12px",
+            cursor: "pointer",
+            background: f.family === currentFamily ? "color-mix(in srgb, var(--color-primary) 12%, var(--color-surface))" : "transparent",
+            borderLeft: f.family === currentFamily ? "2px solid var(--color-primary)" : "2px solid transparent",
+            display: "flex",
+            flexDirection: "column",
+            gap: 1
+          },
+          onMouseEnter: (e) => {
+            if (f.family !== currentFamily) {
+              e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 6%, var(--color-surface))";
+            }
+          },
+          onMouseLeave: (e) => {
+            if (f.family !== currentFamily) {
+              e.currentTarget.style.background = "transparent";
+            }
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntime.jsxs("span", { style: { fontSize: 10, color: "var(--color-text-muted)", fontWeight: 600 }, children: [
+              f.family,
+              f.source === "custom" && /* @__PURE__ */ jsxRuntime.jsx("span", { style: { marginLeft: 4, fontSize: 9, color: "var(--color-primary)" }, children: "Custom" })
+            ] }),
+            /* @__PURE__ */ jsxRuntime.jsx(
+              "span",
+              {
+                style: {
+                  fontFamily: `'${f.family}', sans-serif`,
+                  fontSize: 17,
+                  color: "var(--color-text)",
+                  lineHeight: 1.2
+                },
+                children: "Aa Bb Cc 123"
+              }
+            )
+          ]
+        },
+        f.family
+      )),
+      filtered.length === 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: "12px", fontSize: 12, color: "var(--color-text-muted)", textAlign: "center" }, children: "No fonts found" })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
+      {
+        style: {
+          borderTop: "1px solid var(--color-border)",
+          padding: "8px"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsxs(
+            "button",
+            {
+              onClick: () => fileInputRef.current?.click(),
+              style: {
+                width: "100%",
+                padding: "7px",
+                background: "color-mix(in srgb, var(--color-primary) 10%, transparent)",
+                border: "1px dashed color-mix(in srgb, var(--color-primary) 35%, transparent)",
+                borderRadius: 6,
+                color: "var(--color-primary)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 5,
+                fontSize: 11,
+                fontWeight: 600,
+                outline: "none"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(icons.UploadOutlined, { style: { fontSize: 11 } }),
+                "Upload font"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "input",
+            {
+              ref: fileInputRef,
+              type: "file",
+              accept: ".ttf,.otf,.woff,.woff2",
+              style: { display: "none" },
+              onChange: handleUpload
+            }
+          )
+        ]
+      }
+    )
+  ] });
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    Popover,
+    {
+      content: popoverContent,
+      open,
+      onOpenChange: handleOpenChange,
+      placement: "top",
+      children: trigger
+    }
+  );
+}
+var DEFAULT_FONT_PROVIDER = createDefaultFontProvider();
 function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
   const type = activeObj?.type;
   const isImage = type === "StaticImage" || type === "BackgroundImage";
   const isText = type === "StaticText" || type === "DynamicText";
   const isShape = type === "StaticPath" || type === "StaticVector";
-  const [opacity, setOpacity] = React23.useState(() => Math.round((activeObj?.opacity ?? 1) * 100));
-  React23.useEffect(() => {
+  const [opacity, setOpacity] = React24.useState(() => Math.round((activeObj?.opacity ?? 1) * 100));
+  React24.useEffect(() => {
     setOpacity(Math.round((activeObj?.opacity ?? 1) * 100));
   }, [activeObj?.id]);
-  const [isMobile, setIsMobile] = React23.useState(window.innerWidth < 768);
-  React23.useEffect(() => {
+  const [fontFamily, setFontFamily] = React24.useState(
+    () => activeObj?.fontFamily
+  );
+  const [charSpacing, setCharSpacing] = React24.useState(
+    () => (activeObj?.charSpacing ?? 0) / 1e3
+  );
+  const [lineHeight, setLineHeight] = React24.useState(
+    () => activeObj?.lineHeight ?? 1.2
+  );
+  const [textTransform, setTextTransform] = React24.useState("none");
+  const originalTextRef = React24.useRef(void 0);
+  React24.useEffect(() => {
+    setFontFamily(activeObj?.fontFamily);
+    setCharSpacing((activeObj?.charSpacing ?? 0) / 1e3);
+    setLineHeight(activeObj?.lineHeight ?? 1.2);
+    setTextTransform("none");
+    originalTextRef.current = void 0;
+  }, [activeObj?.id]);
+  const handleFontChange = React24.useCallback((family) => {
+    setFontFamily(family);
+    editor?.objects.update({ fontFamily: family });
+  }, [editor]);
+  const handleCharSpacingChange = React24.useCallback((val) => {
+    const clamped = Math.max(-0.5, Math.min(2, val));
+    setCharSpacing(clamped);
+    editor?.objects.update({ charSpacing: Math.round(clamped * 1e3) });
+  }, [editor]);
+  const handleLineHeightChange = React24.useCallback((val) => {
+    const clamped = Math.max(0.5, Math.min(4, val));
+    setLineHeight(clamped);
+    editor?.objects.update({ lineHeight: clamped });
+  }, [editor]);
+  const handleTextTransformChange = React24.useCallback((transform) => {
+    const currentText = activeObj?.text ?? "";
+    if (transform !== "none" && originalTextRef.current === void 0) {
+      originalTextRef.current = currentText;
+    }
+    const base = originalTextRef.current ?? currentText;
+    let transformed;
+    switch (transform) {
+      case "upper":
+        transformed = base.toUpperCase();
+        break;
+      case "lower":
+        transformed = base.toLowerCase();
+        break;
+      case "title":
+        transformed = base.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+        break;
+      case "none":
+      default:
+        transformed = base;
+        originalTextRef.current = void 0;
+        break;
+    }
+    setTextTransform(transform);
+    editor?.objects.update({ text: transformed });
+  }, [editor, activeObj]);
+  const [isMobile, setIsMobile] = React24.useState(window.innerWidth < 768);
+  React24.useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
-  const [pos, setPos] = React23.useState(null);
-  const dragRef = React23.useRef(null);
-  const onDragStart = React23.useCallback((e) => {
+  const [pos, setPos] = React24.useState(null);
+  const dragRef = React24.useRef(null);
+  const onDragStart = React24.useCallback((e) => {
     if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
     e.preventDefault();
     const bar = e.currentTarget.parentElement;
@@ -17918,41 +18933,12 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
           /* @__PURE__ */ jsxRuntime.jsx(PDivider, {}),
           /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Font" }),
           /* @__PURE__ */ jsxRuntime.jsx(
-            "select",
+            FontPickerPopover,
             {
-              defaultValue: activeObj?.fontFamily ?? "sans-serif",
-              style: {
-                background: "var(--color-bg)",
-                border: "1px solid var(--color-border)",
-                borderRadius: 6,
-                color: "var(--color-text)",
-                fontSize: 11,
-                padding: "4px 6px",
-                maxWidth: 120,
-                cursor: "pointer",
-                outline: "none"
-              },
-              onChange: (e) => editor?.objects.update({ fontFamily: e.target.value }),
-              children: [
-                "sans-serif",
-                "serif",
-                "monospace",
-                "Roboto",
-                "Open Sans",
-                "Montserrat",
-                "Lato",
-                "Oswald",
-                "Playfair Display",
-                "Pacifico",
-                "Lobster",
-                "Dancing Script",
-                "Bebas Neue",
-                "Anton"
-              ].map(
-                (f) => /* @__PURE__ */ jsxRuntime.jsx("option", { value: f, style: { background: "var(--color-surface)", color: "var(--color-text)" }, children: f }, f)
-              )
-            },
-            activeObj?.id + "-ff"
+              fontProvider: DEFAULT_FONT_PROVIDER,
+              currentFamily: fontFamily,
+              onChange: handleFontChange
+            }
           ),
           /* @__PURE__ */ jsxRuntime.jsx(PDivider, {}),
           /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Size" }),
@@ -18010,7 +18996,73 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
           /* @__PURE__ */ jsxRuntime.jsx(PDivider, {}),
           /* @__PURE__ */ jsxRuntime.jsx(PBtn, { title: "Align left", onClick: () => editor?.objects.update({ textAlign: "left" }), active: activeObj?.textAlign === "left", children: /* @__PURE__ */ jsxRuntime.jsx(icons.AlignLeftOutlined, {}) }),
           /* @__PURE__ */ jsxRuntime.jsx(PBtn, { title: "Align center", onClick: () => editor?.objects.update({ textAlign: "center" }), active: activeObj?.textAlign === "center", children: /* @__PURE__ */ jsxRuntime.jsx(icons.AlignCenterOutlined, {}) }),
-          /* @__PURE__ */ jsxRuntime.jsx(PBtn, { title: "Align right", onClick: () => editor?.objects.update({ textAlign: "right" }), active: activeObj?.textAlign === "right", children: /* @__PURE__ */ jsxRuntime.jsx(icons.AlignRightOutlined, {}) })
+          /* @__PURE__ */ jsxRuntime.jsx(PBtn, { title: "Align right", onClick: () => editor?.objects.update({ textAlign: "right" }), active: activeObj?.textAlign === "right", children: /* @__PURE__ */ jsxRuntime.jsx(icons.AlignRightOutlined, {}) }),
+          /* @__PURE__ */ jsxRuntime.jsx(PDivider, {}),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Spacing" }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "input",
+            {
+              type: "number",
+              min: -0.5,
+              max: 2,
+              step: 0.01,
+              value: charSpacing,
+              style: {
+                width: 52,
+                background: "var(--color-bg)",
+                border: "1px solid var(--color-border)",
+                borderRadius: 6,
+                color: "var(--color-text)",
+                fontSize: 12,
+                padding: "4px 6px",
+                textAlign: "center",
+                outline: "none"
+              },
+              onChange: (e) => handleCharSpacingChange(Number(e.target.value))
+            },
+            activeObj?.id + "-ls"
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Leading" }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "input",
+            {
+              type: "number",
+              min: 0.5,
+              max: 4,
+              step: 0.1,
+              value: lineHeight,
+              style: {
+                width: 52,
+                background: "var(--color-bg)",
+                border: "1px solid var(--color-border)",
+                borderRadius: 6,
+                color: "var(--color-text)",
+                fontSize: 12,
+                padding: "4px 6px",
+                textAlign: "center",
+                outline: "none"
+              },
+              onChange: (e) => handleLineHeightChange(Number(e.target.value))
+            },
+            activeObj?.id + "-lh"
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Case" }),
+          /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "flex", gap: 2 }, children: [
+            { value: "none", label: "Aa" },
+            { value: "upper", label: "AA" },
+            { value: "lower", label: "aa" },
+            { value: "title", label: "Tt" }
+          ].map((opt) => /* @__PURE__ */ jsxRuntime.jsx(
+            PBtn,
+            {
+              title: opt.value === "none" ? "No transform" : opt.value === "upper" ? "Uppercase" : opt.value === "lower" ? "Lowercase" : "Title case",
+              active: textTransform === opt.value,
+              onClick: () => handleTextTransformChange(opt.value),
+              style: { width: 26, height: 26, fontSize: 10, fontWeight: 700 },
+              children: opt.label
+            },
+            opt.value
+          )) })
         ] }),
         (isShape || !isImage && !isText) && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsx(PDivider, {}),
@@ -18123,11 +19175,11 @@ function PropertyColorPicker({
   tooltip,
   activeObjId
 }) {
-  const [hex, setHex] = React23.useState(color);
-  React23.useEffect(() => {
+  const [hex, setHex] = React24.useState(color);
+  React24.useEffect(() => {
     setHex(color);
   }, [color, activeObjId]);
-  const commitHex = React23.useCallback((val) => {
+  const commitHex = React24.useCallback((val) => {
     const clean = val.startsWith("#") ? val : `#${val}`;
     if (/^#[0-9a-fA-F]{6}$/.test(clean)) {
       onChange(clean);
@@ -18306,13 +19358,13 @@ function PropertyColorPicker({
   );
 }
 function TemplateSearchBar({ value, onChange, debounceMs = 300 }) {
-  const [local, setLocal] = React23__namespace.useState(value);
-  const lastEmittedRef = React23__namespace.useRef(value);
-  React23__namespace.useEffect(() => {
+  const [local, setLocal] = React24__namespace.useState(value);
+  const lastEmittedRef = React24__namespace.useRef(value);
+  React24__namespace.useEffect(() => {
     setLocal(value);
     lastEmittedRef.current = value;
   }, [value]);
-  React23__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     if (local === lastEmittedRef.current) return;
     const id = setTimeout(() => {
       lastEmittedRef.current = local;
@@ -18342,21 +19394,21 @@ function TemplateSearchBar({ value, onChange, debounceMs = 300 }) {
 }
 var cache = /* @__PURE__ */ new Map();
 var inFlight = /* @__PURE__ */ new Map();
-function useTemplateThumbnail(template, ref, editorOverride) {
+function useSceneThumbnail(input, ref, editorOverride) {
   const hookEditor = useEditor();
   const editor = hookEditor;
-  const [src, setSrc] = React23__namespace.useState(() => {
-    if (template.thumbnailUrl) return template.thumbnailUrl;
-    return cache.get(template.id);
+  const [src, setSrc] = React24__namespace.useState(() => {
+    if (input.thumbnailUrl) return input.thumbnailUrl;
+    return cache.get(input.id);
   });
-  const [loading, setLoading] = React23__namespace.useState(() => !src && !template.thumbnailUrl);
-  React23__namespace.useEffect(() => {
-    if (template.thumbnailUrl) {
-      setSrc(template.thumbnailUrl);
+  const [loading, setLoading] = React24__namespace.useState(() => !src && !input.thumbnailUrl);
+  React24__namespace.useEffect(() => {
+    if (input.thumbnailUrl) {
+      setSrc(input.thumbnailUrl);
       setLoading(false);
       return;
     }
-    const cached = cache.get(template.id);
+    const cached = cache.get(input.id);
     if (cached) {
       setSrc(cached);
       setLoading(false);
@@ -18368,7 +19420,7 @@ function useTemplateThumbnail(template, ref, editorOverride) {
       const visible = entries.some((e) => e.isIntersecting);
       if (!visible) return;
       observer.disconnect();
-      const existing = inFlight.get(template.id);
+      const existing = inFlight.get(input.id);
       if (existing) {
         setLoading(true);
         try {
@@ -18383,21 +19435,21 @@ function useTemplateThumbnail(template, ref, editorOverride) {
         return;
       }
       setLoading(true);
-      const promise = editor.renderer.toDataURL(template.scene, {
+      const promise = editor.renderer.toDataURL(input.scene, {
         format: "png",
         quality: 0.85,
         multiplier: 0.5,
-        backgroundColor: template.canvasBg ?? "#ffffff"
+        backgroundColor: input.canvasBg ?? "#ffffff"
       });
-      inFlight.set(template.id, promise);
+      inFlight.set(input.id, promise);
       try {
         const dataUrl = await promise;
-        cache.set(template.id, dataUrl);
-        inFlight.delete(template.id);
+        cache.set(input.id, dataUrl);
+        inFlight.delete(input.id);
         if (cancelled) return;
         setSrc(dataUrl);
       } catch {
-        inFlight.delete(template.id);
+        inFlight.delete(input.id);
         if (!cancelled) setSrc(void 0);
       } finally {
         if (!cancelled) setLoading(false);
@@ -18408,12 +19460,17 @@ function useTemplateThumbnail(template, ref, editorOverride) {
       cancelled = true;
       observer.disconnect();
     };
-  }, [template.id, template.thumbnailUrl, template.scene, template.canvasBg, editor, ref]);
+  }, [input.id, input.thumbnailUrl, input.scene, input.canvasBg, editor, ref]);
   return { src, loading };
 }
 function TemplateThumbnail({ template, onClick }) {
-  const ref = React23__namespace.useRef(null);
-  const { src, loading } = useTemplateThumbnail(template, ref);
+  const ref = React24__namespace.useRef(null);
+  const { src, loading } = useSceneThumbnail({
+    id: template.id,
+    scene: template.scene,
+    thumbnailUrl: template.thumbnailUrl,
+    canvasBg: template.canvasBg
+  }, ref);
   const aspectRatio = template.scene?.frame && template.scene.frame.width && template.scene.frame.height ? `${template.scene.frame.width} / ${template.scene.frame.height}` : "1 / 1";
   return /* @__PURE__ */ jsxRuntime.jsx(
     "button",
@@ -18457,10 +19514,10 @@ function TemplateThumbnail({ template, onClick }) {
 }
 var ROW_LIMIT = 6;
 function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
-  const [items, setItems] = React23__namespace.useState([]);
-  const [loading, setLoading] = React23__namespace.useState(true);
-  const [error, setError] = React23__namespace.useState(false);
-  const load = React23__namespace.useCallback(() => {
+  const [items, setItems] = React24__namespace.useState([]);
+  const [loading, setLoading] = React24__namespace.useState(true);
+  const [error, setError] = React24__namespace.useState(false);
+  const load = React24__namespace.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -18481,7 +19538,7 @@ function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
       ac.abort();
     };
   }, [provider, category.id]);
-  React23__namespace.useEffect(() => {
+  React24__namespace.useEffect(() => {
     return load();
   }, [load]);
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
@@ -18534,12 +19591,12 @@ function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
   ] });
 }
 function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
-  const [items, setItems] = React23__namespace.useState([]);
-  const [cursor, setCursor] = React23__namespace.useState(void 0);
-  const [loading, setLoading] = React23__namespace.useState(true);
-  const [loadingMore, setLoadingMore] = React23__namespace.useState(false);
-  const [error, setError] = React23__namespace.useState(null);
-  React23__namespace.useEffect(() => {
+  const [items, setItems] = React24__namespace.useState([]);
+  const [cursor, setCursor] = React24__namespace.useState(void 0);
+  const [loading, setLoading] = React24__namespace.useState(true);
+  const [loadingMore, setLoadingMore] = React24__namespace.useState(false);
+  const [error, setError] = React24__namespace.useState(null);
+  React24__namespace.useEffect(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -18558,7 +19615,7 @@ function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
       ac.abort();
     };
   }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
-  const loadMore = React23__namespace.useCallback(async () => {
+  const loadMore = React24__namespace.useCallback(async () => {
     if (!cursor) return;
     setLoadingMore(true);
     try {
@@ -18600,12 +19657,12 @@ function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
   ] });
 }
 function TemplatesPanel({ provider, onApplyTemplate }) {
-  const [categories, setCategories] = React23__namespace.useState([]);
-  const [loading, setLoading] = React23__namespace.useState(true);
-  const [error, setError] = React23__namespace.useState(false);
-  const [search, setSearch] = React23__namespace.useState("");
-  const [mode, setMode] = React23__namespace.useState({ kind: "browse" });
-  const loadCategories = React23__namespace.useCallback(() => {
+  const [categories, setCategories] = React24__namespace.useState([]);
+  const [loading, setLoading] = React24__namespace.useState(true);
+  const [error, setError] = React24__namespace.useState(false);
+  const [search, setSearch] = React24__namespace.useState("");
+  const [mode, setMode] = React24__namespace.useState({ kind: "browse" });
+  const loadCategories = React24__namespace.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -18626,8 +19683,8 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
       ac.abort();
     };
   }, [provider]);
-  React23__namespace.useEffect(() => loadCategories(), [loadCategories]);
-  const handleSearchChange = React23__namespace.useCallback((next) => {
+  React24__namespace.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React24__namespace.useCallback((next) => {
     setSearch(next);
     if (next.trim()) {
       setMode({ kind: "search", query: next.trim() });
@@ -18635,10 +19692,10 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
       setMode({ kind: "browse" });
     }
   }, []);
-  const handleSeeMore = React23__namespace.useCallback((categoryId) => {
+  const handleSeeMore = React24__namespace.useCallback((categoryId) => {
     setMode({ kind: "category", categoryId });
   }, []);
-  const handleBack = React23__namespace.useCallback(() => {
+  const handleBack = React24__namespace.useCallback(() => {
     setMode({ kind: "browse" });
   }, []);
   const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
@@ -18939,7 +19996,7 @@ var CATEGORY_ORDER = [
   { key: "abstract_image", label: "Abstract Image" }
 ];
 function ShapesPanel({ onAddShape }) {
-  const [search, setSearch] = React23.useState("");
+  const [search, setSearch] = React24.useState("");
   const filteredShapes = search.trim() ? SHAPES.filter(
     (s) => s.label.toLowerCase().includes(search.toLowerCase()) || s.id.toLowerCase().includes(search.toLowerCase())
   ) : SHAPES;
@@ -18985,7 +20042,7 @@ function ShapeCategory({
   shapes,
   onAddShape
 }) {
-  const [expanded, setExpanded] = React23.useState(false);
+  const [expanded, setExpanded] = React24.useState(false);
   if (shapes.length === 0) return null;
   const hasMore = shapes.length > 0;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "mt-5", children: [
@@ -19025,8 +20082,8 @@ function ScrollRow({
   shapes,
   onAddShape
 }) {
-  const scrollRef = React23__namespace.default.useRef(null);
-  const [canScrollRight, setCanScrollRight] = React23.useState(true);
+  const scrollRef = React24__namespace.default.useRef(null);
+  const [canScrollRight, setCanScrollRight] = React24.useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -19083,7 +20140,7 @@ function ShapeTile({
   onClick,
   expanded = false
 }) {
-  const [hovered, setHovered] = React23.useState(false);
+  const [hovered, setHovered] = React24.useState(false);
   const imageUrl = `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/shapes/${shape.category}/${shape.file}`;
   const handleDragStart = (e) => {
     e.dataTransfer.effectAllowed = "copy";
@@ -19306,8 +20363,8 @@ var CATEGORY_ORDER2 = [
   { key: "florals", label: "Florals" }
 ];
 function StickersPanel({ onAddSticker }) {
-  const [search, setSearch] = React23.useState("");
-  const filteredStickers = React23.useMemo(() => {
+  const [search, setSearch] = React24.useState("");
+  const filteredStickers = React24.useMemo(() => {
     if (!search.trim()) return STICKERS;
     const q = search.toLowerCase();
     return STICKERS.filter(
@@ -19357,7 +20414,7 @@ function StickerCategory({
   stickers,
   onAddSticker
 }) {
-  const [expanded, setExpanded] = React23.useState(false);
+  const [expanded, setExpanded] = React24.useState(false);
   if (stickers.length === 0) return null;
   const hasMore = stickers.length > 0;
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "mt-5", children: [
@@ -19397,8 +20454,8 @@ function ScrollRow2({
   stickers,
   onAddSticker
 }) {
-  const scrollRef = React23__namespace.default.useRef(null);
-  const [canScrollRight, setCanScrollRight] = React23.useState(true);
+  const scrollRef = React24__namespace.default.useRef(null);
+  const [canScrollRight, setCanScrollRight] = React24.useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -19455,7 +20512,7 @@ function StickerTile({
   onClick,
   expanded = false
 }) {
-  const [hovered, setHovered] = React23.useState(false);
+  const [hovered, setHovered] = React24.useState(false);
   const imageUrl = `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/${sticker.category}/${sticker.file}`;
   const handleDragStart = (e) => {
     e.dataTransfer.effectAllowed = "copy";
@@ -19499,51 +20556,369 @@ function StickerTile({
     }
   ) });
 }
-var PRESETS = [
-  { label: "Add Heading", displaySize: 22, weight: 800, fontSize: 72 },
-  { label: "Add Subheading", displaySize: 15, weight: 600, fontSize: 48 },
-  { label: "Add Body Text", displaySize: 13, weight: 400, fontSize: 28 }
-];
-function TextPanel({ onAddText }) {
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: 12, display: "flex", flexDirection: "column", gap: 8 }, children: [
-    /* @__PURE__ */ jsxRuntime.jsx("p", { style: { color: "var(--color-text-muted)", fontSize: 11, margin: "4px 0 8px", lineHeight: 1.4 }, children: "Click to add text, then double-click on canvas to edit." }),
-    PRESETS.map(({ label, displaySize, weight, fontSize }) => /* @__PURE__ */ jsxRuntime.jsx(
-      TextPresetBtn,
-      {
-        label,
-        size: displaySize,
-        weight,
-        onClick: () => onAddText(label.replace("Add ", ""), fontSize)
-      },
-      label
-    ))
-  ] });
+function TextDesignSearchBar({ value, onChange, debounceMs = 300 }) {
+  const [local, setLocal] = React24__namespace.useState(value);
+  const lastEmittedRef = React24__namespace.useRef(value);
+  React24__namespace.useEffect(() => {
+    setLocal(value);
+    lastEmittedRef.current = value;
+  }, [value]);
+  React24__namespace.useEffect(() => {
+    if (local === lastEmittedRef.current) return;
+    const id = setTimeout(() => {
+      lastEmittedRef.current = local;
+      onChange(local);
+    }, debounceMs);
+    return () => clearTimeout(id);
+  }, [local, debounceMs, onChange]);
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: "12px 12px 0 12px" }, children: /* @__PURE__ */ jsxRuntime.jsx(
+    "input",
+    {
+      type: "search",
+      placeholder: "Search text designs",
+      value: local,
+      onChange: (e) => setLocal(e.target.value),
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: 13,
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        background: "var(--color-bg)",
+        color: "var(--color-text)",
+        outline: "none"
+      }
+    }
+  ) });
 }
-function TextPresetBtn({ label, size, weight, onClick }) {
-  const [hov, setHov] = React23.useState(false);
+function TextDesignThumbnail({ textDesign, onClick }) {
+  const ref = React24__namespace.useRef(null);
+  const { src, loading } = useSceneThumbnail({
+    id: textDesign.id,
+    scene: textDesign.scene,
+    thumbnailUrl: textDesign.thumbnailUrl,
+    canvasBg: textDesign.canvasBg
+  }, ref);
+  const aspectRatio = textDesign.scene?.frame && textDesign.scene.frame.width && textDesign.scene.frame.height ? `${textDesign.scene.frame.width} / ${textDesign.scene.frame.height}` : "1 / 1";
   return /* @__PURE__ */ jsxRuntime.jsx(
     "button",
     {
-      onClick,
-      onMouseEnter: () => setHov(true),
-      onMouseLeave: () => setHov(false),
+      ref,
+      onClick: () => onClick(textDesign),
+      title: textDesign.name,
       style: {
+        display: "block",
         width: "100%",
-        padding: "12px 14px",
-        cursor: "pointer",
-        textAlign: "left",
-        background: hov ? "color-mix(in srgb, var(--color-primary) 12%, var(--color-surface-2))" : "color-mix(in srgb, var(--color-text) 4%, var(--color-surface-2))",
-        border: `1px solid ${hov ? "var(--color-primary)" : "var(--color-border)"}`,
-        borderRadius: 10,
-        color: "var(--color-text)",
-        fontSize: size,
-        fontWeight: weight,
-        transition: "all 0.15s",
-        outline: "none"
+        aspectRatio,
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        overflow: "hidden",
+        padding: 0,
+        background: "var(--color-surface)",
+        cursor: "pointer"
       },
-      children: label
+      children: src ? /* @__PURE__ */ jsxRuntime.jsx(
+        "img",
+        {
+          src,
+          alt: textDesign.name,
+          style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+        }
+      ) : /* @__PURE__ */ jsxRuntime.jsx(
+        "div",
+        {
+          "aria-label": loading ? "Loading thumbnail" : "No preview available",
+          style: {
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(90deg, var(--color-surface) 0%, var(--color-bg) 50%, var(--color-surface) 100%)",
+            backgroundSize: "200% 100%",
+            animation: loading ? "shimmer 1.5s infinite" : "none"
+          }
+        }
+      )
     }
   );
+}
+var ROW_LIMIT2 = 6;
+function TextDesignCategoryRow({ category, provider, onSelect, onSeeMore }) {
+  const [items, setItems] = React24__namespace.useState([]);
+  const [loading, setLoading] = React24__namespace.useState(true);
+  const [error, setError] = React24__namespace.useState(false);
+  const load = React24__namespace.useCallback(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(false);
+    provider.list({ categoryId: category.id, limit: ROW_LIMIT2, signal: ac.signal }).then((res) => {
+      if (!cancelled) {
+        setItems(res.items);
+        setLoading(false);
+      }
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") {
+        setError(true);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider, category.id]);
+  React24__namespace.useEffect(() => {
+    return load();
+  }, [load]);
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }, children: [
+      /* @__PURE__ */ jsxRuntime.jsx("h3", { style: { margin: 0, fontSize: 14, fontWeight: 600, color: "var(--color-text)" }, children: category.name }),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "button",
+        {
+          onClick: () => onSeeMore(category.id),
+          style: {
+            all: "unset",
+            cursor: "pointer",
+            fontSize: 12,
+            fontWeight: 600,
+            color: "var(--color-primary)"
+          },
+          children: "See more"
+        }
+      )
+    ] }),
+    error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { fontSize: 12 }, children: [
+      "Failed to load \u2014",
+      " ",
+      /* @__PURE__ */ jsxRuntime.jsx("button", { onClick: load, style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" }, children: "Retry" })
+    ] }) : loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "flex", gap: 8, overflowX: "auto" }, children: [0, 1, 2].map((i) => /* @__PURE__ */ jsxRuntime.jsx(
+      "div",
+      {
+        style: {
+          flex: "0 0 130px",
+          aspectRatio: "1 / 1",
+          background: "var(--color-surface)",
+          borderRadius: 6
+        }
+      },
+      i
+    )) }) : items.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("div", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "No text designs yet" }) : /* @__PURE__ */ jsxRuntime.jsx(
+      "div",
+      {
+        style: {
+          display: "grid",
+          gridAutoFlow: "column",
+          gridAutoColumns: "130px",
+          gap: 8,
+          overflowX: "auto",
+          paddingBottom: 4
+        },
+        children: items.map((t) => /* @__PURE__ */ jsxRuntime.jsx(TextDesignThumbnail, { textDesign: t, onClick: onSelect }, t.id))
+      }
+    )
+  ] });
+}
+function TextDesignGrid({ provider, listOpts, emptyMessage, onSelect }) {
+  const [items, setItems] = React24__namespace.useState([]);
+  const [cursor, setCursor] = React24__namespace.useState(void 0);
+  const [loading, setLoading] = React24__namespace.useState(true);
+  const [loadingMore, setLoadingMore] = React24__namespace.useState(false);
+  const [error, setError] = React24__namespace.useState(null);
+  React24__namespace.useEffect(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(null);
+    provider.list({ ...listOpts, signal: ac.signal }).then((res) => {
+      if (cancelled) return;
+      setItems(res.items);
+      setCursor(res.nextCursor);
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") setError("Failed to load text designs");
+    }).finally(() => {
+      if (!cancelled) setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
+  const loadMore = React24__namespace.useCallback(async () => {
+    if (!cursor) return;
+    setLoadingMore(true);
+    try {
+      const res = await provider.list({ ...listOpts, cursor });
+      setItems((prev) => [...prev, ...res.items]);
+      setCursor(res.nextCursor);
+    } catch {
+      setError("Failed to load more text designs");
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [provider, listOpts, cursor]);
+  if (loading) return /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: 16 }, children: "Loading..." });
+  if (error) return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: 16 }, children: [
+    error,
+    " \u2014",
+    " ",
+    /* @__PURE__ */ jsxRuntime.jsx("button", { onClick: () => setItems([]), style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" }, children: "Retry" })
+  ] });
+  if (items.length === 0) return /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: 16, color: "var(--color-text-muted)" }, children: emptyMessage });
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: 12 }, children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }, children: items.map((t) => /* @__PURE__ */ jsxRuntime.jsx(TextDesignThumbnail, { textDesign: t, onClick: onSelect }, t.id)) }),
+    cursor && /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "flex", justifyContent: "center", marginTop: 12 }, children: /* @__PURE__ */ jsxRuntime.jsx(
+      "button",
+      {
+        onClick: loadMore,
+        disabled: loadingMore,
+        style: {
+          padding: "6px 14px",
+          borderRadius: 6,
+          border: "1px solid var(--color-border)",
+          background: "transparent",
+          color: "var(--color-text)",
+          cursor: "pointer"
+        },
+        children: loadingMore ? "Loading..." : "Load more"
+      }
+    ) })
+  ] });
+}
+var QUICK_ADD_PRESETS = [
+  { label: "Heading", preset: "heading", fontSize: 72, fontWeight: 800 },
+  { label: "Subheading", preset: "subheading", fontSize: 48, fontWeight: 600 },
+  { label: "Body", preset: "body", fontSize: 28, fontWeight: 400 }
+];
+function TextPanel({ provider, onApplyTextDesign, onAddPlainText }) {
+  const [categories, setCategories] = React24__namespace.useState([]);
+  const [loading, setLoading] = React24__namespace.useState(true);
+  const [error, setError] = React24__namespace.useState(false);
+  const [search, setSearch] = React24__namespace.useState("");
+  const [mode, setMode] = React24__namespace.useState({ kind: "browse" });
+  const loadCategories = React24__namespace.useCallback(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(false);
+    provider.categories({ signal: ac.signal }).then((cats) => {
+      if (!cancelled) {
+        setCategories(cats);
+        setLoading(false);
+      }
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") {
+        setError(true);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider]);
+  React24__namespace.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React24__namespace.useCallback((next) => {
+    setSearch(next);
+    if (next.trim()) {
+      setMode({ kind: "search", query: next.trim() });
+    } else {
+      setMode({ kind: "browse" });
+    }
+  }, []);
+  const handleSeeMore = React24__namespace.useCallback((categoryId) => {
+    setMode({ kind: "category", categoryId });
+  }, []);
+  const handleBack = React24__namespace.useCallback(() => {
+    setMode({ kind: "browse" });
+  }, []);
+  const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "12px 12px 0 12px" }, children: [
+      /* @__PURE__ */ jsxRuntime.jsx("h2", { style: { margin: "0 0 10px 0", fontSize: 15, fontWeight: 700, color: "var(--color-text)" }, children: "Text Designs" }),
+      onAddPlainText && /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "flex", gap: 6, marginBottom: 4 }, children: QUICK_ADD_PRESETS.map(({ label, preset, fontSize, fontWeight }) => /* @__PURE__ */ jsxRuntime.jsxs(
+        "button",
+        {
+          onClick: () => onAddPlainText(preset),
+          title: `Add ${label} (${fontSize}px)`,
+          style: {
+            flex: 1,
+            padding: "6px 4px",
+            fontSize: 11,
+            fontWeight,
+            cursor: "pointer",
+            background: "color-mix(in srgb, var(--color-text) 4%, var(--color-surface-2))",
+            border: "1px solid var(--color-border)",
+            borderRadius: 6,
+            color: "var(--color-text)",
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            transition: "all 0.15s"
+          },
+          children: [
+            label,
+            /* @__PURE__ */ jsxRuntime.jsxs("span", { style: { display: "block", fontSize: 9, fontWeight: 400, opacity: 0.6 }, children: [
+              fontSize,
+              "px"
+            ] })
+          ]
+        },
+        preset
+      )) })
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(TextDesignSearchBar, { value: search, onChange: handleSearchChange }),
+    /* @__PURE__ */ jsxRuntime.jsx("div", { style: { flex: 1, overflowY: "auto" }, children: mode.kind === "search" ? /* @__PURE__ */ jsxRuntime.jsx(
+      TextDesignGrid,
+      {
+        provider,
+        listOpts: { search: mode.query, limit: 12 },
+        emptyMessage: `No text designs match "${mode.query}"`,
+        onSelect: onApplyTextDesign
+      }
+    ) : mode.kind === "category" && activeCategory ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "12px 12px 0 12px", display: "flex", alignItems: "center", gap: 12 }, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(
+          "button",
+          {
+            onClick: handleBack,
+            style: { all: "unset", cursor: "pointer", fontSize: 12, color: "var(--color-primary)" },
+            children: "\u2190 Back"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsx("h3", { style: { margin: 0, fontSize: 14, fontWeight: 600 }, children: activeCategory.name })
+      ] }),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        TextDesignGrid,
+        {
+          provider,
+          listOpts: { categoryId: activeCategory.id, limit: 12 },
+          emptyMessage: "No text designs in this category",
+          onSelect: onApplyTextDesign
+        }
+      )
+    ] }) : loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: 16 }, children: "Loading..." }) : error ? /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: 16 }, children: [
+      "Failed to load text designs \u2014",
+      " ",
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "button",
+        {
+          onClick: loadCategories,
+          style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" },
+          children: "Retry"
+        }
+      )
+    ] }) : categories.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("div", { style: { padding: 16, color: "var(--color-text-muted)" }, children: "No text designs available. Host apps can supply a textDesignProvider." }) : categories.map((c) => /* @__PURE__ */ jsxRuntime.jsx(
+      TextDesignCategoryRow,
+      {
+        category: c,
+        provider,
+        onSelect: onApplyTextDesign,
+        onSeeMore: handleSeeMore
+      },
+      c.id
+    )) })
+  ] });
 }
 
 // src/hooks/useToast.ts
@@ -19551,10 +20926,10 @@ function useToast() {
   return toastApi;
 }
 function UploadPanel({ onUploadFile }) {
-  const fileInputRef = React23.useRef(null);
-  const [hov, setHov] = React23.useState(false);
+  const fileInputRef = React24.useRef(null);
+  const [hov, setHov] = React24.useState(false);
   const toast2 = useToast();
-  const [isUploading, setIsUploading] = React23.useState(false);
+  const [isUploading, setIsUploading] = React24.useState(false);
   const handleFileChange = async (e) => {
     const f = e.target.files?.[0];
     if (!f) return;
@@ -19663,9 +21038,9 @@ function loadGoogleFont(family) {
   document.head.appendChild(link);
 }
 function FontsPanel({ onApplyFont }) {
-  const [search, setSearch] = React23.useState("");
-  const [customFonts, setCustomFonts] = React23.useState([]);
-  const fileRef = React23.useRef(null);
+  const [search, setSearch] = React24.useState("");
+  const [customFonts, setCustomFonts] = React24.useState([]);
+  const fileRef = React24.useRef(null);
   const filtered = GOOGLE_FONTS.filter((f) => f.toLowerCase().includes(search.toLowerCase()));
   const handleUpload = (e) => {
     const file = e.target.files?.[0];
@@ -19759,9 +21134,9 @@ function FontsPanel({ onApplyFont }) {
     filtered.map((f) => /* @__PURE__ */ jsxRuntime.jsx(FontTile, { name: f }, f))
   ] });
 }
-var Ctx = React23__namespace.createContext(null);
+var Ctx = React24__namespace.createContext(null);
 function useEditorContext() {
-  const v = React23__namespace.useContext(Ctx);
+  const v = React24__namespace.useContext(Ctx);
   if (!v) throw new Error("useEditorContext must be used inside <DesignEditor>");
   return v;
 }
@@ -19769,7 +21144,7 @@ var EditorContextProvider = Ctx.Provider;
 
 // src/hooks/useStudioExport.ts
 function useStudioExport() {
-  const [exporting, setExporting] = React23.useState(false);
+  const [exporting, setExporting] = React24.useState(false);
   const toast2 = useToast();
   const { onExport } = useEditorContext();
   async function exportToLibrary(blob, filename, scene) {
@@ -19821,10 +21196,10 @@ function useLayerPanel() {
 var AUTOSAVE_KEY_PREFIX = "design_autosave";
 var getAutosaveKey = (sceneKey) => sceneKey ? `${AUTOSAVE_KEY_PREFIX}_${sceneKey}` : AUTOSAVE_KEY_PREFIX;
 function useAutoSave(editor, canvasBg, workspaceBg, sceneKey) {
-  const [hasUnsavedChanges, setHasUnsavedChanges] = React23.useState(false);
-  const timerRef = React23.useRef();
+  const [hasUnsavedChanges, setHasUnsavedChanges] = React24.useState(false);
+  const timerRef = React24.useRef();
   const key = getAutosaveKey(sceneKey);
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     const handleBeforeUnload = (e) => {
       if (hasUnsavedChanges) {
         e.preventDefault();
@@ -19834,7 +21209,7 @@ function useAutoSave(editor, canvasBg, workspaceBg, sceneKey) {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, [hasUnsavedChanges]);
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     if (!editor) return;
     const canvas = editor.canvas?.canvas;
     if (!canvas) return;
@@ -19863,7 +21238,7 @@ function useAutoSave(editor, canvasBg, workspaceBg, sceneKey) {
       clearTimeout(timerRef.current);
     };
   }, [editor, canvasBg, workspaceBg, key]);
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     if (!editor) return;
     setHasUnsavedChanges(true);
     clearTimeout(timerRef.current);
@@ -19902,26 +21277,26 @@ function getStorageSafe(key, DEFAULT_SETTINGS) {
     return DEFAULT_SETTINGS;
   }
 }
-function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title, textDesignProvider }) {
   const editor = useEditor();
   const activeObj = useActiveObject();
   const zoomRatio = useZoomRatio();
   const { exportToLibrary, exporting } = useStudioExport();
   const message2 = useToast();
   const { backgroundRemovalProvider, sceneKey, templateProvider } = useEditorContext();
-  const [activePanel, setActivePanel] = React23.useState(null);
-  const [layerPanelOpen, setLayerPanelOpen] = React23.useState(false);
-  const [removingBg, setRemovingBg] = React23.useState(false);
-  const [shimmerRect, setShimmerRect] = React23.useState(null);
-  const [dragOver, setDragOver] = React23.useState(false);
+  const [activePanel, setActivePanel] = React24.useState(null);
+  const [layerPanelOpen, setLayerPanelOpen] = React24.useState(false);
+  const [removingBg, setRemovingBg] = React24.useState(false);
+  const [shimmerRect, setShimmerRect] = React24.useState(null);
+  const [dragOver, setDragOver] = React24.useState(false);
   const { layers, activeId } = useLayerPanel();
-  const [canvasBg, setCanvasBg] = React23.useState(() => {
+  const [canvasBg, setCanvasBg] = React24.useState(() => {
     return initialScene?.canvasBg || getStorageSafe("studio_canvasBg", "#ffffff");
   });
-  const [workspaceBg, setWorkspaceBg] = React23.useState(() => {
+  const [workspaceBg, setWorkspaceBg] = React24.useState(() => {
     return initialScene?.workspaceBg || getStorageSafe("studio_workspaceBg", "#f5f5f5");
   });
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     if (editor && canvasBg) {
       try {
         editor.frame?.setBackgroundColor?.(canvasBg);
@@ -19931,21 +21306,21 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     }
   }, [editor, canvasBg]);
   const { hasUnsavedChanges, setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey);
-  const handleBack = React23.useCallback(() => {
+  const handleBack = React24.useCallback(() => {
     clearAutosave(sceneKey);
     if (onBack) onBack();
   }, [onBack, sceneKey]);
-  const [settings, setSettings] = React23.useState(() => {
+  const [settings, setSettings] = React24.useState(() => {
     return getStorageSafe("studio_settings", { showGrid: false, snapGrid: false, railSide: "left" });
   });
-  const handleSettings = React23.useCallback((patch) => {
+  const handleSettings = React24.useCallback((patch) => {
     setSettings((prev) => {
       const next = { ...prev, ...patch };
       localStorage.setItem("studio_settings", JSON.stringify(next));
       return next;
     });
   }, []);
-  const restoreShapes = React23.useCallback(() => {
+  const restoreShapes = React24.useCallback(() => {
     if (!editor) return;
     const objs = editor.scene.exportToJSON()?.layers || [];
     objs.forEach((o) => {
@@ -19957,7 +21332,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       }
     });
   }, [editor]);
-  React23.useEffect(() => {
+  React24.useEffect(() => {
     if (!editor) return;
     const saved = loadAutosave(sceneKey);
     if (saved && Object.keys(saved).length > 0) {
@@ -20016,7 +21391,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     handleSizeChange,
     handleApplyCustom
   } = useCanvasSize(editor);
-  const handleAddMedia = React23.useCallback(async (url, position) => {
+  const handleAddMedia = React24.useCallback(async (url, position) => {
     if (!editor) return;
     try {
       const type = url.match(/\.(mp4|webm)$/i) ? "StaticVideo" : "StaticImage";
@@ -20033,7 +21408,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       message2.error("Failed to add media");
     }
   }, [editor, message2]);
-  const addImageToCanvas = React23.useCallback((url, top = 100, left = 100) => {
+  const addImageToCanvas = React24.useCallback((url, top = 100, left = 100) => {
     if (!editor) return;
     const img = new Image();
     img.crossOrigin = "anonymous";
@@ -20059,7 +21434,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     };
     img.onerror = () => message2.error("Failed to load image.");
   }, [editor, message2]);
-  const handleAddText = React23.useCallback(async (text, fontSize) => {
+  const handleAddText = React24.useCallback(async (text, fontSize) => {
     if (!editor) return;
     try {
       await editor?.objects.add({ type: "StaticText", text, fontSize, fill: "#1a1a1a", top: 100, left: 100 });
@@ -20067,7 +21442,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       message2.error("Failed to add text");
     }
   }, [editor, message2]);
-  const handleApplyTemplate = React23.useCallback((template) => {
+  const handleApplyTemplate = React24.useCallback((template) => {
     if (!editor) return;
     const proceed = () => {
       editor.scene.importFromJSON(template.scene).catch(() => message2.error("Failed to apply template")).then(() => {
@@ -20091,7 +21466,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     }
     proceed();
   }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message2]);
-  const handleRemoveBg = React23.useCallback(async () => {
+  const handleRemoveBg = React24.useCallback(async () => {
     if (!editor || !activeObj || activeObj.type !== "StaticImage" || !activeObj.src) return;
     setShimmerRect({
       top: activeObj.top ?? 0,
@@ -20114,7 +21489,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       setShimmerRect(null);
     }
   }, [editor, activeObj, message2, backgroundRemovalProvider]);
-  const handleExport = React23.useCallback(async () => {
+  const handleExport = React24.useCallback(async () => {
     if (!editor) return;
     try {
       const scene = editor.scene.exportToJSON();
@@ -20129,7 +21504,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       message2.error("Failed to export");
     }
   }, [editor, exportToLibrary, message2, setHasUnsavedChanges]);
-  const handleDrop = React23.useCallback((e) => {
+  const handleDrop = React24.useCallback((e) => {
     e.preventDefault();
     setDragOver(false);
     if (!editor) return;
@@ -20224,7 +21599,11 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }, children: [
           activePanel === "templates" && (templatesPanel ? typeof templatesPanel === "function" ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel : /* @__PURE__ */ jsxRuntime.jsx(TemplatesPanel, { provider: templateProvider, onApplyTemplate: handleApplyTemplate })),
-          activePanel === "text" && /* @__PURE__ */ jsxRuntime.jsx(TextPanel, { onAddText: handleAddText }),
+          activePanel === "text" && /* @__PURE__ */ jsxRuntime.jsx(TextPanel, { provider: textDesignProvider, onApplyTextDesign: () => {
+          }, onAddPlainText: (preset) => {
+            const map = { heading: 72, subheading: 48, body: 28 };
+            handleAddText(preset, map[preset]);
+          } }),
           activePanel === "shapes" && /* @__PURE__ */ jsxRuntime.jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
           activePanel === "stickers" && /* @__PURE__ */ jsxRuntime.jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
           activePanel === "upload" && /* @__PURE__ */ jsxRuntime.jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) }),
@@ -20287,7 +21666,8 @@ function DesignEditor({
   onBack,
   onExport,
   templateProvider = createDefaultTemplateProvider(),
-  fontProvider = createGoogleFontsProvider(),
+  textDesignProvider = createDefaultTextDesignProvider(),
+  fontProvider = createDefaultFontProvider(),
   backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,
@@ -20295,12 +21675,12 @@ function DesignEditor({
   title
 }) {
   const resolvedBackgroundRemovalProvider = backgroundRemovalProvider ?? createImglyBackgroundRemoval();
-  const ctx = React23__namespace.default.useMemo(
+  const ctx = React24__namespace.default.useMemo(
     () => ({ templateProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
     [templateProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
   );
   return /* @__PURE__ */ jsxRuntime.jsx(Provider, { children: /* @__PURE__ */ jsxRuntime.jsxs(EditorContextProvider, { value: ctx, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title }),
+    /* @__PURE__ */ jsxRuntime.jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title, textDesignProvider }),
     /* @__PURE__ */ jsxRuntime.jsx(sonner.Toaster, { position: "bottom-right" })
   ] }) });
 }
@@ -20322,8 +21702,9 @@ lodash/lodash.js:
 
 exports.DesignEditor = DesignEditor;
 exports.VERSION = VERSION;
+exports.createDefaultFontProvider = createDefaultFontProvider;
 exports.createDefaultTemplateProvider = createDefaultTemplateProvider;
-exports.createGoogleFontsProvider = createGoogleFontsProvider;
+exports.createDefaultTextDesignProvider = createDefaultTextDesignProvider;
 exports.createImglyBackgroundRemoval = createImglyBackgroundRemoval;
 exports.createLocalStoragePersistence = createLocalStoragePersistence;
 //# sourceMappingURL=index.cjs.map
