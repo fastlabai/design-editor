@@ -1,10 +1,11 @@
 {
   "categories": [
-    { "id": "ads-retail",   "name": "Retail Ads",    "order": 1 },
-    { "id": "social-media", "name": "Social Media",  "order": 2 },
-    { "id": "posters",      "name": "Posters",       "order": 3 },
-    { "id": "banners",      "name": "Banners",       "order": 4 },
-    { "id": "cards",        "name": "Cards",         "order": 5 }
+    { "id": "signage",      "name": "Industry Signage", "order": 1 },
+    { "id": "ads-retail",   "name": "Retail Ads",       "order": 2 },
+    { "id": "social-media", "name": "Social Media",     "order": 3 },
+    { "id": "posters",      "name": "Posters",          "order": 4 },
+    { "id": "banners",      "name": "Banners",          "order": 5 },
+    { "id": "cards",        "name": "Cards",            "order": 6 }
   ],
   "templates": [
     {
@@ -289,6 +290,209 @@
           { "id": "cd-002-title", "name": "StaticText", "type": "StaticText", "left": 80, "top": 400, "width": 1040, "height": 200, "fill": "#881337", "fontFamily": "Lato", "fontSize": 140, "lineHeight": 1.0, "textAlign": "center", "text": "Save the Date" },
           { "id": "cd-002-names", "name": "StaticText", "type": "StaticText", "left": 80, "top": 700, "width": 1040, "height": 80, "fill": "#9F1239", "fontFamily": "Lato", "fontSize": 56, "lineHeight": 1.2, "textAlign": "center", "text": "ALEX & SAM" },
           { "id": "cd-002-date", "name": "StaticText", "type": "StaticText", "left": 80, "top": 820, "width": 1040, "height": 60, "fill": "#9F1239", "fontFamily": "Lato", "fontSize": 40, "lineHeight": 1.2, "textAlign": "center", "text": "SEPTEMBER · 14 · 2026" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-001",
+      "name": "Cafe Daily Brew",
+      "categoryId": "signage",
+      "tags": ["cafe", "coffee", "food", "restaurant", "menu"],
+      "canvasBg": "#FEF3C7",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-001",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-001-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-001-floral", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg", "left": 820, "top": 1140, "width": 260, "height": 260, "scaleX": 1, "scaleY": 1, "angle": 12, "opacity": 0.6, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-001-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1180, "width": 920, "height": 60, "fill": "#92400E", "fontFamily": "Lato", "fontSize": 38, "lineHeight": 1.2, "textAlign": "center", "text": "★ FRESHLY BREWED ★" },
+          { "id": "sg-001-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1260, "width": 960, "height": 200, "fill": "#7C2D12", "fontFamily": "Lato", "fontSize": 150, "lineHeight": 1.0, "textAlign": "center", "text": "DAILY BREW" },
+          { "id": "sg-001-price", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1480, "width": 960, "height": 220, "fill": "#7C2D12", "fontFamily": "Lato", "fontSize": 220, "lineHeight": 1.0, "textAlign": "center", "text": "$4.50" },
+          { "id": "sg-001-sub", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1740, "width": 960, "height": 60, "fill": "#92400E", "fontFamily": "Lato", "fontSize": 36, "lineHeight": 1.2, "textAlign": "center", "text": "Mon — Fri · 7AM – 11AM" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-002",
+      "name": "Burger Special",
+      "categoryId": "signage",
+      "tags": ["burger", "food", "restaurant", "fast food", "menu"],
+      "canvasBg": "#B91C1C",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-002",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-002-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-002-thunder", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", "left": 60, "top": 1140, "width": 220, "height": 220, "scaleX": 1, "scaleY": 1, "angle": -15, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-002-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#FACC15", "fontFamily": "Lato", "fontSize": 42, "lineHeight": 1.2, "textAlign": "center", "text": "TODAY'S SPECIAL" },
+          { "id": "sg-002-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 280, "fill": "#FEF3C7", "fontFamily": "Lato", "fontSize": 180, "lineHeight": 0.95, "textAlign": "center", "text": "DOUBLE\nSTACK" },
+          { "id": "sg-002-price", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1620, "width": 960, "height": 180, "fill": "#FFFFFF", "fontFamily": "Lato", "fontSize": 160, "lineHeight": 1.0, "textAlign": "center", "text": "ONLY $7.99" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-003",
+      "name": "Fashion New Arrivals",
+      "categoryId": "signage",
+      "tags": ["fashion", "boutique", "apparel", "retail", "store"],
+      "canvasBg": "#0A0A0A",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-003",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-003-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1200, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-003-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1280, "width": 920, "height": 60, "fill": "#9CA3AF", "fontFamily": "Lato", "fontSize": 40, "lineHeight": 1.2, "textAlign": "center", "text": "SS / 26" },
+          { "id": "sg-003-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1380, "width": 960, "height": 280, "fill": "#FFFFFF", "fontFamily": "Lato", "fontSize": 150, "lineHeight": 0.92, "textAlign": "center", "text": "NEW\nARRIVALS" },
+          { "id": "sg-003-cta", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1720, "width": 960, "height": 60, "fill": "#D4D4D8", "fontFamily": "Lato", "fontSize": 38, "lineHeight": 1.2, "textAlign": "center", "text": "SHOP IN-STORE NOW" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-004",
+      "name": "Spa Wellness",
+      "categoryId": "signage",
+      "tags": ["spa", "beauty", "wellness", "salon", "skincare"],
+      "canvasBg": "#FCE7F3",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-004",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-004-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-004-floral", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", "left": 40, "top": 1140, "width": 240, "height": 240, "scaleX": 1, "scaleY": 1, "angle": -10, "opacity": 0.85, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-004-floral2", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", "left": 800, "top": 1700, "width": 240, "height": 240, "scaleX": 1, "scaleY": 1, "angle": 170, "opacity": 0.85, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-004-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1240, "width": 920, "height": 60, "fill": "#BE185D", "fontFamily": "Lato", "fontSize": 40, "lineHeight": 1.2, "textAlign": "center", "text": "WELLNESS · CARE · BLOOM" },
+          { "id": "sg-004-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1340, "width": 960, "height": 280, "fill": "#9D174D", "fontFamily": "Lato", "fontSize": 150, "lineHeight": 0.95, "textAlign": "center", "text": "RELAX\n& GLOW" },
+          { "id": "sg-004-cta", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1720, "width": 960, "height": 80, "fill": "#9F1239", "fontFamily": "Lato", "fontSize": 42, "lineHeight": 1.3, "textAlign": "center", "text": "Book your session today" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-005",
+      "name": "Gym Membership",
+      "categoryId": "signage",
+      "tags": ["gym", "fitness", "membership", "workout", "sports"],
+      "canvasBg": "#FACC15",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-005",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-005-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-005-thunder", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", "left": 820, "top": 1120, "width": 240, "height": 240, "scaleX": 1, "scaleY": 1, "angle": 18, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-005-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#7C2D12", "fontFamily": "Lato", "fontSize": 42, "lineHeight": 1.2, "textAlign": "center", "text": "NEW YEAR · NEW YOU" },
+          { "id": "sg-005-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 280, "fill": "#7C2D12", "fontFamily": "Lato", "fontSize": 180, "lineHeight": 0.92, "textAlign": "center", "text": "GET FIT\nNOW" },
+          { "id": "sg-005-price", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1640, "width": 960, "height": 180, "fill": "#7C2D12", "fontFamily": "Lato", "fontSize": 140, "lineHeight": 1.0, "textAlign": "center", "text": "$29 / MONTH" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-006",
+      "name": "Real Estate Open House",
+      "categoryId": "signage",
+      "tags": ["real estate", "house", "property", "open house", "listing"],
+      "canvasBg": "#0F172A",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-006",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-006-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-006-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#FBBF24", "fontFamily": "Lato", "fontSize": 42, "lineHeight": 1.2, "textAlign": "center", "text": "★ THIS SATURDAY ★" },
+          { "id": "sg-006-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 280, "fill": "#FAFAFA", "fontFamily": "Lato", "fontSize": 160, "lineHeight": 0.95, "textAlign": "center", "text": "OPEN\nHOUSE" },
+          { "id": "sg-006-address", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1660, "width": 960, "height": 60, "fill": "#FAFAFA", "fontFamily": "Lato", "fontSize": 44, "lineHeight": 1.2, "textAlign": "center", "text": "224 ELM STREET" },
+          { "id": "sg-006-time", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1740, "width": 960, "height": 60, "fill": "#94A3B8", "fontFamily": "Lato", "fontSize": 36, "lineHeight": 1.2, "textAlign": "center", "text": "10 AM — 2 PM · Sat May 24" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-007",
+      "name": "Auto Showcase",
+      "categoryId": "signage",
+      "tags": ["automotive", "car", "dealership", "vehicle", "financing"],
+      "canvasBg": "#18181B",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-007",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-007-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-007-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#FBBF24", "fontFamily": "Lato", "fontSize": 40, "lineHeight": 1.2, "textAlign": "center", "text": "PERFORMANCE · 2026 EDITION" },
+          { "id": "sg-007-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 280, "fill": "#FAFAFA", "fontFamily": "Lato", "fontSize": 170, "lineHeight": 0.95, "textAlign": "center", "text": "DRIVE\nTODAY" },
+          { "id": "sg-007-price", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1640, "width": 960, "height": 80, "fill": "#FBBF24", "fontFamily": "Lato", "fontSize": 64, "lineHeight": 1.0, "textAlign": "center", "text": "0% APR · 60 MO" },
+          { "id": "sg-007-foot", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1760, "width": 960, "height": 60, "fill": "#A1A1AA", "fontFamily": "Lato", "fontSize": 32, "lineHeight": 1.2, "textAlign": "center", "text": "Subject to approved credit" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-008",
+      "name": "Travel Escape",
+      "categoryId": "signage",
+      "tags": ["travel", "vacation", "beach", "destination", "tourism", "hotel"],
+      "canvasBg": "#0EA5E9",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-008",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-008-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-008-saturn", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg", "left": 820, "top": 1140, "width": 220, "height": 220, "scaleX": 1, "scaleY": 1, "angle": -12, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-008-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#FEF3C7", "fontFamily": "Lato", "fontSize": 40, "lineHeight": 1.2, "textAlign": "center", "text": "BOOK BY MAY 31" },
+          { "id": "sg-008-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 280, "fill": "#FFFFFF", "fontFamily": "Lato", "fontSize": 200, "lineHeight": 0.95, "textAlign": "center", "text": "ESCAPE" },
+          { "id": "sg-008-price", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1620, "width": 960, "height": 140, "fill": "#FEF3C7", "fontFamily": "Lato", "fontSize": 110, "lineHeight": 1.0, "textAlign": "center", "text": "FROM $499" },
+          { "id": "sg-008-sub", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1780, "width": 960, "height": 60, "fill": "#E0F2FE", "fontFamily": "Lato", "fontSize": 34, "lineHeight": 1.2, "textAlign": "center", "text": "3 nights · all-inclusive · per person" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-009",
+      "name": "Pharmacy Health Check",
+      "categoryId": "signage",
+      "tags": ["pharmacy", "healthcare", "clinic", "health", "medical"],
+      "canvasBg": "#065F46",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-009",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-009-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-009-heart", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg", "left": 60, "top": 1140, "width": 200, "height": 200, "scaleX": 1, "scaleY": 1, "angle": -10, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-009-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#A7F3D0", "fontFamily": "Lato", "fontSize": 40, "lineHeight": 1.2, "textAlign": "center", "text": "COMMUNITY HEALTH · MAY" },
+          { "id": "sg-009-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 280, "fill": "#FAFAFA", "fontFamily": "Lato", "fontSize": 150, "lineHeight": 0.95, "textAlign": "center", "text": "FREE\nHEALTH CHECK" },
+          { "id": "sg-009-foot", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1660, "width": 960, "height": 60, "fill": "#A7F3D0", "fontFamily": "Lato", "fontSize": 44, "lineHeight": 1.2, "textAlign": "center", "text": "Walk-ins welcome" },
+          { "id": "sg-009-time", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1740, "width": 960, "height": 60, "fill": "#D1FAE5", "fontFamily": "Lato", "fontSize": 34, "lineHeight": 1.2, "textAlign": "center", "text": "Sat May 24 · 9 AM – 5 PM" }
+        ],
+        "metadata": { "animated": false }
+      }
+    },
+    {
+      "id": "sg-010",
+      "name": "Tech Launch",
+      "categoryId": "signage",
+      "tags": ["tech", "electronics", "gadget", "launch", "product"],
+      "canvasBg": "#020617",
+      "workspaceBg": "#1a1a2e",
+      "scene": {
+        "id": "tpl-sg-010",
+        "frame": { "width": 1080, "height": 1920 },
+        "layers": [
+          { "id": "sg-010-photo", "name": "StaticImage", "type": "StaticImage", "src": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1080&h=1100&fit=crop&q=80&auto=format", "left": 0, "top": 0, "width": 1080, "height": 1100, "scaleX": 1, "scaleY": 1, "angle": 0, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-010-light", "name": "StaticImage", "type": "StaticImage", "src": "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png", "left": 800, "top": 1140, "width": 240, "height": 240, "scaleX": 1, "scaleY": 1, "angle": 12, "opacity": 1, "originX": "left", "originY": "top", "metadata": {} },
+          { "id": "sg-010-eyebrow", "name": "StaticText", "type": "StaticText", "left": 80, "top": 1200, "width": 920, "height": 60, "fill": "#A78BFA", "fontFamily": "Lato", "fontSize": 42, "lineHeight": 1.2, "textAlign": "center", "text": "AVAILABLE NOW" },
+          { "id": "sg-010-title", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1300, "width": 960, "height": 360, "fill": "#FAFAFA", "fontFamily": "Lato", "fontSize": 170, "lineHeight": 0.92, "textAlign": "center", "text": "NEXT-GEN\nIS HERE" },
+          { "id": "sg-010-cta", "name": "StaticText", "type": "StaticText", "left": 60, "top": 1740, "width": 960, "height": 80, "fill": "#C4B5FD", "fontFamily": "Lato", "fontSize": 44, "lineHeight": 1.2, "textAlign": "center", "text": "Visit us in-store →" }
         ],
         "metadata": { "animated": false }
       }
