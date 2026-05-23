@@ -12,7 +12,7 @@ import { TemplatesPanel } from './panels/templates/TemplatesPanel'
 import type { DesignTemplate } from '../providers/templates'
 import { ShapesPanel, SHAPES } from './panels/ShapesPanel'
 import { StickersPanel } from './panels/StickersPanel'
-import { TextPanel } from './panels/TextPanel'
+import { TextPanel } from './panels/text/TextPanel'
 import { UploadPanel } from './panels/UploadPanel'
 import { FontsPanel } from './panels/FontsPanel'
 
@@ -27,11 +27,13 @@ import { Toaster } from './primitives/Toast'
 import { useToast } from '../hooks/useToast'
 import {
   createDefaultTemplateProvider,
+  createDefaultTextDesignProvider,
   createGoogleFontsProvider,
   createImglyBackgroundRemoval,
   createLocalStoragePersistence,
 } from '../providers/defaults'
 import type { FontProvider, BackgroundRemovalProvider, PersistenceProvider, TemplateProvider } from '../providers'
+import type { TextDesignProvider } from '../providers/textDesigns'
 import type { IScene } from '../engine'
 
 const WORKSPACE_BG = 'var(--color-bg)'
@@ -46,7 +48,7 @@ function getStorageSafe(key: string, DEFAULT_SETTINGS: any) {
 
 type TemplatesPanelRenderProp = React.ReactNode | ((props: { onApplyTemplate: (t: DesignTemplate) => void }) => React.ReactNode)
 
-function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title }: { onBack?: () => void; initialScene?: any; className?: string; templatesPanel?: TemplatesPanelRenderProp; title?: React.ReactNode }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title, textDesignProvider }: { onBack?: () => void; initialScene?: any; className?: string; templatesPanel?: TemplatesPanelRenderProp; title?: React.ReactNode; textDesignProvider: TextDesignProvider }) {
   const editor    = useEditor()
   const activeObj = useActiveObject() as any
   const zoomRatio = useZoomRatio<number>()
@@ -385,7 +387,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
                     ? typeof templatesPanel === 'function' ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel
                     : <TemplatesPanel provider={templateProvider} onApplyTemplate={handleApplyTemplate} />
                 )}
-                {activePanel === 'text'     && <TextPanel onAddText={handleAddText} />}
+                {activePanel === 'text'     && <TextPanel provider={textDesignProvider} onApplyTextDesign={() => {}} onAddPlainText={(preset) => { const map = { heading: 72, subheading: 48, body: 28 } as const; handleAddText(preset, map[preset]) }} />}
                 {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
                 {activePanel === 'stickers' && <StickersPanel onAddSticker={url => addImageToCanvas(url)} />}
                 {activePanel === 'upload'   && <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />}
@@ -455,6 +457,8 @@ export interface DesignEditorProps {
   onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: IScene) => void | Promise<void>
   /** Template provider. Defaults to a small bundled starter set. */
   templateProvider?: TemplateProvider
+  /** Text design provider. Defaults to the bundled text designs set. */
+  textDesignProvider?: TextDesignProvider
   /** Font provider. Defaults to a Google Fonts provider. */
   fontProvider?: FontProvider
   /** Background removal provider. Defaults to `@imgly/background-removal` if installed. */
@@ -492,6 +496,7 @@ export function DesignEditor({
   onBack,
   onExport,
   templateProvider = createDefaultTemplateProvider(),
+  textDesignProvider = createDefaultTextDesignProvider(),
   fontProvider = createGoogleFontsProvider(),
   backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
@@ -509,7 +514,7 @@ export function DesignEditor({
   return (
     <EngineProvider>
       <EditorContextProvider value={ctx}>
-        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} templatesPanel={templatesPanel} title={title} />
+        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} templatesPanel={templatesPanel} title={title} textDesignProvider={textDesignProvider} />
         <Toaster position="bottom-right" />
       </EditorContextProvider>
     </EngineProvider>
