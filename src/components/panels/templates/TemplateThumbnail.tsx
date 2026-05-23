@@ -1,0 +1,58 @@
+'use client'
+import * as React from 'react'
+import type { DesignTemplate } from '../../../providers/templates'
+import { useTemplateThumbnail } from './useTemplateThumbnail'
+
+interface Props {
+  template: DesignTemplate
+  onClick: (t: DesignTemplate) => void
+}
+
+export function TemplateThumbnail({ template, onClick }: Props) {
+  const ref = React.useRef<HTMLButtonElement>(null)
+  const { src, loading } = useTemplateThumbnail(template, ref as any)
+
+  const aspectRatio =
+    template.scene?.frame && template.scene.frame.width && template.scene.frame.height
+      ? `${template.scene.frame.width} / ${template.scene.frame.height}`
+      : '1 / 1'
+
+  return (
+    <button
+      ref={ref}
+      onClick={() => onClick(template)}
+      title={template.name}
+      style={{
+        display: 'block',
+        width: '100%',
+        aspectRatio,
+        border: '1px solid var(--color-border)',
+        borderRadius: 6,
+        overflow: 'hidden',
+        padding: 0,
+        background: 'var(--color-surface)',
+        cursor: 'pointer',
+      }}
+    >
+      {src ? (
+        <img
+          src={src}
+          alt={template.name}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      ) : (
+        <div
+          aria-label={loading ? 'Loading thumbnail' : 'No preview available'}
+          style={{
+            width: '100%',
+            height: '100%',
+            background:
+              'linear-gradient(90deg, var(--color-surface) 0%, var(--color-bg) 50%, var(--color-surface) 100%)',
+            backgroundSize: '200% 100%',
+            animation: loading ? 'shimmer 1.5s infinite' : 'none',
+          }}
+        />
+      )}
+    </button>
+  )
+}
