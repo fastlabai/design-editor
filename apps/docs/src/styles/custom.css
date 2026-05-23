@@ -1,0 +1,144 @@
+/* Import Modern Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Vibrant Cyan / Blue Accent */
+  --sl-hue: 220;
+  --sl-color-accent-low: hsl(var(--sl-hue), 100%, 20%);
+  --sl-color-accent: hsl(var(--sl-hue), 100%, 60%);
+  --sl-color-accent-high: hsl(var(--sl-hue), 100%, 80%);
+
+  /* Clean Typography */
+  --sl-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --sl-font-mono: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* Deep, sleek dark mode */
+:root[data-theme='dark'] {
+  --sl-color-black: #050507;
+  --sl-color-bg: #050507;
+  --sl-color-bg-nav: rgba(5, 5, 7, 0.8);
+  --sl-color-bg-sidebar: rgba(5, 5, 7, 0.95);
+}
+
+:root[data-theme='light'] {
+  --sl-color-bg-nav: rgba(255, 255, 255, 0.8);
+}
+
+/* Add a subtle ambient gradient background */
+body {
+  background-image: radial-gradient(circle at top, rgba(0, 114, 255, 0.05) 0%, transparent 70%);
+  background-attachment: fixed;
+}
+
+/* Modern Headers */
+h1, h2, h3, h4, h5, h6, .site-title {
+  font-family: 'Outfit', var(--sl-font);
+}
+
+/* Modern Header Nav Glassmorphism */
+header.header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1) !important;
+}
+
+/* Hero Section Enhancements */
+.hero {
+  padding-top: 4rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.hero > h1 {
+  background: linear-gradient(135deg, #00E6A6 0%, #0072FF 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-family: 'Outfit', var(--sl-font);
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1 !important;
+  padding-bottom: 0.2em; /* Prevents clipping of descenders */
+}
+
+.hero > .tagline {
+  font-size: 1.25rem !important;
+  opacity: 0.8;
+  max-width: 800px;
+  margin-inline: auto;
+  line-height: 1.6 !important;
+}
+
+/* Hero Buttons */
+.sl-flex.actions > a.primary {
+  background: linear-gradient(135deg, #00E6A6 0%, #0072FF 100%) !important;
+  border: none !important;
+  color: #fff !important;
+  font-family: 'Outfit', var(--sl-font);
+  font-weight: 600 !important;
+  border-radius: 9999px !important;
+  padding: 0.75rem 2rem !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.sl-flex.actions > a.primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 114, 255, 0.3) !important;
+}
+
+.sl-flex.actions > a:not(.primary) {
+  border-radius: 9999px !important;
+  padding: 0.75rem 2rem !important;
+  font-family: 'Outfit', var(--sl-font);
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.sl-flex.actions > a:not(.primary):hover {
+  background: rgba(128, 128, 128, 0.1) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Modern Glassmorphism Cards */
+.card-grid > .card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+}
+
+:root[data-theme='light'] .card-grid > .card {
+  background: rgba(0, 0, 0, 0.01) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+.card-grid > .card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 30px rgba(0, 114, 255, 0.1) !important;
+  border-color: rgba(0, 114, 255, 0.2) !important;
+}
+
+.card-grid > .card > .title {
+  font-family: 'Outfit', var(--sl-font);
+  font-weight: 600 !important;
+  font-size: 1.25rem !important;
+}
+
+/* Micro-animations on links */
+.sl-markdown-content a:not(.actions a) {
+  text-decoration: none;
+  background: linear-gradient(to right, var(--sl-color-accent), var(--sl-color-accent));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.sl-markdown-content a:not(.actions a):hover {
+  background-size: 100% 2px;
+}

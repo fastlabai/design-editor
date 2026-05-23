@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## [1.0.0-beta.5] - 2026-05-23
+
+### Added
+- Complete modern documentation re-styling with glassmorphism, dynamic gradients, and custom fonts.
+- Rebranded positioning as "A lightweight React/Next.js editor SDK for embedding brand-safe template editing into SaaS products".
+- Updated `publishConfig` to target GitHub NPM registry.
+
 ## [1.0.0-beta.4] - 2026-05-23
 
 ### Breaking changes

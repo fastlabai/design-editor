@@ -7,3 +7,4 @@ examples/*/dist/
 .next/
 apps/docs/dist/
 apps/docs/.astro/
+.npmrc

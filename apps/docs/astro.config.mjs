@@ -14,6 +14,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: '@fastlabai/design-editor',
+      customCss: ['./src/styles/custom.css'],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/fastlabai/design-editor' },
       ],
