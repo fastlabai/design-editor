@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## [1.0.0-beta.4] - 2026-05-23
+
 ### Breaking changes
 
 - Removed `mediaProvider`, `libraryPanel`, `MediaProvider`, `MediaItem`, `MediaListResult`,

@@ -1,44 +1,6 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import React from 'react';
 
-/** A single media library item — image, video, or other asset. */
-interface MediaItem {
-    /** Stable unique identifier for this item. */
-    id: string;
-    /** Absolute or app-relative URL to the asset. */
-    url: string;
-    /** Optional thumbnail URL — falls back to `url` if omitted. */
-    thumbnailUrl?: string;
-    width?: number;
-    height?: number;
-    name?: string;
-    /** MIME type, e.g. `image/png` or `video/mp4`. */
-    mimeType?: string;
-}
-/** Paginated result returned by {@link MediaProvider.list}. */
-interface MediaListResult {
-    items: MediaItem[];
-    /** Opaque cursor for the next page, or undefined if no more pages. */
-    nextCursor?: string;
-}
-/**
- * Plug in your own media library backend. The editor calls `list` to populate
- * the Library panel and `upload` when the user drops a file into the Upload panel.
- */
-interface MediaProvider {
-    /** List media items, optionally paginated and filtered by search. */
-    list(opts: {
-        cursor?: string;
-        search?: string;
-        signal?: AbortSignal;
-    }): Promise<MediaListResult>;
-    /** Upload a file and return the resulting media item. */
-    upload(file: File, opts?: {
-        signal?: AbortSignal;
-        onProgress?: (pct: number) => void;
-    }): Promise<MediaItem>;
-}
-
 /** Describes a font family available to the editor. */
 interface FontDescriptor {
     family: string;
@@ -322,10 +284,62 @@ declare function createGoogleFontsProvider(opts?: {
 
 declare function createImglyBackgroundRemoval(): BackgroundRemovalProvider;
 
-declare function createNullMediaProvider(): MediaProvider;
+/** A single design template — a fully composed scene the user can apply as a starting point. */
+interface DesignTemplate {
+    id: string;
+    name: string;
+    categoryId: string;
+    /** Pre-rendered thumbnail. If omitted, the editor renders one at runtime from `scene`. */
+    thumbnailUrl?: string;
+    scene: IScene;
+    /** Canvas background colour applied when this template is clicked. */
+    canvasBg?: string;
+    /** Workspace background colour applied when this template is clicked. */
+    workspaceBg?: string;
+    /** Free-text tags used for search matching alongside `name`. */
+    tags?: string[];
+}
+/** A grouping of templates (e.g. "Social Media", "Posters"). */
+interface TemplateCategory {
+    id: string;
+    name: string;
+    description?: string;
+    /** Lower values sort earlier in the panel. */
+    order?: number;
+}
+interface TemplateListOpts {
+    categoryId?: string;
+    search?: string;
+    cursor?: string;
+    /** Defaults to 12 if omitted. */
+    limit?: number;
+    signal?: AbortSignal;
+}
+interface TemplateListResult {
+    items: DesignTemplate[];
+    /** Opaque cursor for the next page. Undefined when no more pages. */
+    nextCursor?: string;
+}
+/**
+ * Plug in your own template library. The editor calls `categories()` once
+ * to render the panel, then `list()` per category, per search query,
+ * and on "Load more".
+ */
+interface TemplateProvider {
+    categories(opts?: {
+        signal?: AbortSignal;
+    }): Promise<TemplateCategory[]>;
+    list(opts: TemplateListOpts): Promise<TemplateListResult>;
+}
 
-type LibraryPanelRenderProp = React.ReactNode | ((props: {
-    onAddMedia: (url: string) => void;
+/**
+ * The default template provider — backed by a small bundled JSON.
+ * Host apps should supply their own `TemplateProvider` for production use.
+ */
+declare function createDefaultTemplateProvider(): TemplateProvider;
+
+type TemplatesPanelRenderProp = React.ReactNode | ((props: {
+    onApplyTemplate: (t: DesignTemplate) => void;
 }) => React.ReactNode);
 /** Props for the top-level {@link DesignEditor} component. */
 interface DesignEditorProps {
@@ -337,8 +351,8 @@ interface DesignEditorProps {
     onBack?: () => void;
     /** Called when the user exports the design. Receives the rendered Blob, output format, and raw scene JSON. */
     onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: IScene) => void | Promise<void>;
-    /** Media library provider. Defaults to a null provider (empty Library panel). */
-    mediaProvider?: MediaProvider;
+    /** Template provider. Defaults to a small bundled starter set. */
+    templateProvider?: TemplateProvider;
     /** Font provider. Defaults to a Google Fonts provider. */
     fontProvider?: FontProvider;
     /** Background removal provider. Defaults to `@imgly/background-removal` if installed. */
@@ -347,8 +361,8 @@ interface DesignEditorProps {
     persistenceProvider?: PersistenceProvider;
     /** Optional className applied to the editor root for outer styling. */
     className?: string;
-    /** Custom render override for the Library panel — useful to inject host-app media UI. */
-    libraryPanel?: LibraryPanelRenderProp;
+    /** Custom render override for the Templates panel — useful to inject host-app template UI. */
+    templatesPanel?: TemplatesPanelRenderProp;
     /** Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio". */
     title?: React.ReactNode;
 }
@@ -357,7 +371,7 @@ interface DesignEditorProps {
  * with toolbar, side panels, layer panel, and object properties bar.
  *
  * Configure host integration via the provider props
- * (`mediaProvider`, `fontProvider`, `backgroundRemovalProvider`, `persistenceProvider`).
+ * (`templateProvider`, `fontProvider`, `backgroundRemovalProvider`, `persistenceProvider`).
  *
  * @example
  * ```tsx
@@ -369,7 +383,7 @@ interface DesignEditorProps {
  * }
  * ```
  */
-declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, mediaProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, libraryPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
+declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templateProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, templatesPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
 
 /**
  * @fastlabai/design-editor
@@ -383,4 +397,4 @@ declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, mediaP
 /** Current package version. */
 declare const VERSION = "1.0.0-beta.3";
 
-export { type BackgroundRemovalProvider, DesignEditor, type DesignEditorProps, type FontDescriptor, type FontProvider, type ILayer, type IScene, type MediaItem, type MediaListResult, type MediaProvider, type PersistenceProvider, VERSION, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence, createNullMediaProvider };
+export { type BackgroundRemovalProvider, DesignEditor, type DesignEditorProps, type DesignTemplate, type FontDescriptor, type FontProvider, type ILayer, type IScene, type PersistenceProvider, type TemplateCategory, type TemplateListOpts, type TemplateListResult, type TemplateProvider, VERSION, createDefaultTemplateProvider, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };

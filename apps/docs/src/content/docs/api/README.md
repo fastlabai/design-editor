@@ -18,13 +18,15 @@ provider interfaces.
 
 - [BackgroundRemovalProvider](interfaces/BackgroundRemovalProvider.md)
 - [DesignEditorProps](interfaces/DesignEditorProps.md)
+- [DesignTemplate](interfaces/DesignTemplate.md)
 - [FontDescriptor](interfaces/FontDescriptor.md)
 - [FontProvider](interfaces/FontProvider.md)
 - [IScene](interfaces/IScene.md)
-- [MediaItem](interfaces/MediaItem.md)
-- [MediaListResult](interfaces/MediaListResult.md)
-- [MediaProvider](interfaces/MediaProvider.md)
 - [PersistenceProvider](interfaces/PersistenceProvider.md)
+- [TemplateCategory](interfaces/TemplateCategory.md)
+- [TemplateListOpts](interfaces/TemplateListOpts.md)
+- [TemplateListResult](interfaces/TemplateListResult.md)
+- [TemplateProvider](interfaces/TemplateProvider.md)
 
 ## Type Aliases
 
@@ -36,8 +38,8 @@ provider interfaces.
 
 ## Functions
 
+- [createDefaultTemplateProvider](functions/createDefaultTemplateProvider.md)
 - [createGoogleFontsProvider](functions/createGoogleFontsProvider.md)
 - [createImglyBackgroundRemoval](functions/createImglyBackgroundRemoval.md)
 - [createLocalStoragePersistence](functions/createLocalStoragePersistence.md)
-- [createNullMediaProvider](functions/createNullMediaProvider.md)
 - [DesignEditor](functions/DesignEditor.md)

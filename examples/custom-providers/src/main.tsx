@@ -1,33 +1,34 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { DesignEditor, type MediaProvider, type FontProvider } from '@fastlabai/design-editor'
+import { DesignEditor, type TemplateProvider, type FontProvider } from '@fastlabai/design-editor'
 import '@fastlabai/design-editor/theme.css'
 
-// ── Demo media provider — serves a few Unsplash images via the public API ───
-const DEMO_IMAGES = [
-  { id: '1', url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800', name: 'circuit board' },
-  { id: '2', url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800', name: 'laptop' },
-  { id: '3', url: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800', name: 'work desk' },
-  { id: '4', url: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800', name: 'office' },
-]
-
-const myMediaProvider: MediaProvider = {
+// ── Demo template provider — serves a single custom template ───
+const myTemplateProvider: TemplateProvider = {
+  async categories() {
+    return [
+      { id: 'custom-cat', name: 'Custom Templates', order: 1 }
+    ]
+  },
   async list({ search = '' } = { search: '' }) {
     const q = search.toLowerCase()
+    const templates = [
+      {
+        id: 'tpl-001',
+        name: 'My Custom Template',
+        categoryId: 'custom-cat',
+        scene: {
+          id: 'scene-001',
+          frame: { width: 800, height: 600 },
+          layers: [],
+          metadata: {}
+        }
+      }
+    ]
     return {
-      items: DEMO_IMAGES.filter((i) => i.name.includes(q)).map((i) => ({
-        id: i.id,
-        url: i.url,
-        thumbnailUrl: i.url,
-        name: i.name,
-        mimeType: 'image/jpeg',
-      })),
+      items: templates.filter((t) => t.name.toLowerCase().includes(q)),
     }
-  },
-  async upload(file) {
-    const url = URL.createObjectURL(file)
-    return { id: crypto.randomUUID(), url, name: file.name, mimeType: file.type }
-  },
+  }
 }
 
 // ── Demo font provider — single custom font ─────────────────────────────────
@@ -50,7 +51,7 @@ const myFontProvider: FontProvider = {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <div style={{ height: '100vh' }}>
-      <DesignEditor mediaProvider={myMediaProvider} fontProvider={myFontProvider} />
+      <DesignEditor templateProvider={myTemplateProvider} fontProvider={myFontProvider} />
     </div>
   </StrictMode>,
 )

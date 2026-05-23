@@ -1,6 +1,6 @@
 'use client'
-import * as React from 'react';
-import React__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
+import * as React23 from 'react';
+import React23__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
 import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 import { fabric } from 'fabric';
 import { Switch, Modal, InputNumber, message } from 'antd';
@@ -10,7 +10,7 @@ import * as RadixPopover from '@radix-ui/react-popover';
 import * as RadixTooltip from '@radix-ui/react-tooltip';
 import * as RadixSelect from '@radix-ui/react-select';
 import { Toaster, toast } from 'sonner';
-import { ArrowLeftOutlined, UndoOutlined, RedoOutlined, ZoomOutOutlined, ZoomInOutlined, SettingOutlined, AppstoreOutlined, SaveOutlined, SearchOutlined, LoadingOutlined, CloudUploadOutlined, UploadOutlined, SwapOutlined, ScissorOutlined, BoldOutlined, ItalicOutlined, AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined, VerticalAlignTopOutlined, VerticalAlignBottomOutlined, CopyOutlined, DeleteOutlined, FolderOutlined, CloseOutlined, PictureOutlined, SmileOutlined, FontSizeOutlined, UpOutlined, DownOutlined, RightOutlined, EyeOutlined, EyeInvisibleOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, UndoOutlined, RedoOutlined, ZoomOutOutlined, ZoomInOutlined, SettingOutlined, AppstoreOutlined, SaveOutlined, SearchOutlined, LoadingOutlined, CloudUploadOutlined, UploadOutlined, SwapOutlined, ScissorOutlined, BoldOutlined, ItalicOutlined, AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined, VerticalAlignTopOutlined, VerticalAlignBottomOutlined, CopyOutlined, DeleteOutlined, FolderOutlined, CloseOutlined, LayoutOutlined, SmileOutlined, FontSizeOutlined, UpOutlined, DownOutlined, RightOutlined, EyeOutlined, EyeInvisibleOutlined, VideoCameraOutlined, PictureOutlined } from '@ant-design/icons';
 
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -1210,8 +1210,8 @@ var require_arraySome = __commonJS({
 // ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js
 var require_cacheHas = __commonJS({
   "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js"(exports, module) {
-    function cacheHas(cache, key) {
-      return cache.has(key);
+    function cacheHas(cache2, key) {
+      return cache2.has(key);
     }
     module.exports = cacheHas;
   }
@@ -1828,12 +1828,12 @@ var require_memoize = __commonJS({
         throw new TypeError(FUNC_ERROR_TEXT);
       }
       var memoized = function() {
-        var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache = memoized.cache;
-        if (cache.has(key)) {
-          return cache.get(key);
+        var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache2 = memoized.cache;
+        if (cache2.has(key)) {
+          return cache2.get(key);
         }
         var result = func.apply(this, args);
-        memoized.cache = cache.set(key, result) || cache;
+        memoized.cache = cache2.set(key, result) || cache2;
         return result;
       };
       memoized.cache = new (memoize.Cache || MapCache)();
@@ -1851,12 +1851,12 @@ var require_memoizeCapped = __commonJS({
     var MAX_MEMOIZE_SIZE = 500;
     function memoizeCapped(func) {
       var result = memoize(func, function(key) {
-        if (cache.size === MAX_MEMOIZE_SIZE) {
-          cache.clear();
+        if (cache2.size === MAX_MEMOIZE_SIZE) {
+          cache2.clear();
         }
         return key;
       });
-      var cache = result.cache;
+      var cache2 = result.cache;
       return result;
     }
     module.exports = memoizeCapped;
@@ -2742,8 +2742,8 @@ var require_lodash = __commonJS({
           return object[key];
         });
       }
-      function cacheHas(cache, key) {
-        return cache.has(key);
+      function cacheHas(cache2, key) {
+        return cache2.has(key);
       }
       function charsStartIndex(strSymbols, chrSymbols) {
         var index2 = -1, length = strSymbols.length;
@@ -3558,8 +3558,8 @@ var require_lodash = __commonJS({
               if (!(seen ? cacheHas(seen, computed) : includes2(result2, computed, comparator))) {
                 othIndex = othLength;
                 while (--othIndex) {
-                  var cache = caches[othIndex];
-                  if (!(cache ? cacheHas(cache, computed) : includes2(arrays[othIndex], computed, comparator))) {
+                  var cache2 = caches[othIndex];
+                  if (!(cache2 ? cacheHas(cache2, computed) : includes2(arrays[othIndex], computed, comparator))) {
                     continue outer;
                   }
                 }
@@ -5146,12 +5146,12 @@ var require_lodash = __commonJS({
         }
         function memoizeCapped(func) {
           var result2 = memoize(func, function(key) {
-            if (cache.size === MAX_MEMOIZE_SIZE) {
-              cache.clear();
+            if (cache2.size === MAX_MEMOIZE_SIZE) {
+              cache2.clear();
             }
             return key;
           });
-          var cache = result2.cache;
+          var cache2 = result2.cache;
           return result2;
         }
         function mergeData(data, source) {
@@ -6105,12 +6105,12 @@ var require_lodash = __commonJS({
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
           var memoized = function() {
-            var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache = memoized.cache;
-            if (cache.has(key)) {
-              return cache.get(key);
+            var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache2 = memoized.cache;
+            if (cache2.has(key)) {
+              return cache2.get(key);
             }
             var result2 = func.apply(this, args);
-            memoized.cache = cache.set(key, result2) || cache;
+            memoized.cache = cache2.set(key, result2) || cache2;
             return result2;
           };
           memoized.cache = new (memoize.Cache || MapCache)();
@@ -7958,20 +7958,552 @@ function createImglyBackgroundRemoval() {
   };
 }
 
-// src/providers/defaults/nullMedia.ts
-function createNullMediaProvider() {
-  return {
-    async list() {
-      return { items: [] };
+// src/providers/defaults/templates.data.json
+var templates_data_default = {
+  categories: [
+    { id: "signage", name: "Industry Signage", order: 1 },
+    { id: "ads-retail", name: "Retail Ads", order: 2 },
+    { id: "social-media", name: "Social Media", order: 3 },
+    { id: "posters", name: "Posters", order: 4 },
+    { id: "banners", name: "Banners", order: 5 },
+    { id: "cards", name: "Cards", order: 6 }
+  ],
+  templates: [
+    {
+      id: "ar-001",
+      name: "Christmas Offers",
+      categoryId: "ads-retail",
+      tags: ["christmas", "natal", "holiday", "retail", "flyer"],
+      canvasBg: "#B91C1C",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ar-001",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "ar-001-bg-top", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg", left: -40, top: -40, width: 400, height: 400, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.35, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-001-bg-bot", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg", left: 720, top: 1560, width: 400, height: 400, scaleX: 1, scaleY: 1, angle: 180, opacity: 0.35, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-001-sticker", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png", left: 60, top: 140, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -15, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-001-title", name: "StaticText", type: "StaticText", left: 80, top: 380, width: 920, height: 220, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 130, lineHeight: 1, textAlign: "center", text: "OFERTAS DE NATAL" },
+          { id: "ar-001-date", name: "StaticText", type: "StaticText", left: 80, top: 620, width: 920, height: 50, fill: "#FECACA", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "Valid 12/20 \u2014 12/26" },
+          { id: "ar-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 240, top: 740, width: 600, height: 720, scaleX: 1, scaleY: 1, angle: -3, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
+          { id: "ar-001-pricelabel", name: "StaticText", type: "StaticText", left: 80, top: 1540, width: 920, height: 60, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "FROM" },
+          { id: "ar-001-price", name: "StaticText", type: "StaticText", left: 80, top: 1610, width: 920, height: 200, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 180, lineHeight: 1, textAlign: "center", text: "$13.89" }
+        ],
+        metadata: { animated: false }
+      }
     },
-    async upload() {
-      throw new Error(
-        "No mediaProvider configured. Pass a mediaProvider prop to <DesignEditor /> to enable uploads."
-      );
+    {
+      id: "ar-002",
+      name: "Black Friday",
+      categoryId: "ads-retail",
+      tags: ["black friday", "sale", "discount", "retail"],
+      canvasBg: "#0A0A0A",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ar-002",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "ar-002-thunder1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: -40, top: 80, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: -20, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-002-thunder2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 800, top: 1480, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: 25, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-002-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 480, width: 920, height: 60, fill: "#FACC15", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "\u2605 ONE DAY ONLY \u2605" },
+          { id: "ar-002-title", name: "StaticText", type: "StaticText", left: 40, top: 580, width: 1e3, height: 320, fill: "#FACC15", fontFamily: "Lato", fontSize: 220, lineHeight: 0.95, textAlign: "center", text: "BLACK\nFRIDAY" },
+          { id: "ar-002-discount", name: "StaticText", type: "StaticText", left: 80, top: 960, width: 920, height: 280, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 280, lineHeight: 1, textAlign: "center", text: "70% OFF" },
+          { id: "ar-002-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 290, top: 1300, width: 500, height: 600, scaleX: 1, scaleY: 1, angle: 2, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ar-003",
+      name: "Mother's Day",
+      categoryId: "ads-retail",
+      tags: ["mother's day", "dia das maes", "mom", "flowers"],
+      canvasBg: "#FCE7F3",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ar-003",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "ar-003-floral-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg", left: -80, top: -80, width: 480, height: 480, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-003-floral-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", left: 720, top: 1540, width: 440, height: 440, scaleX: 1, scaleY: 1, angle: 180, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-003-heart", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg", left: 460, top: 420, width: 160, height: 160, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-003-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 620, width: 920, height: 60, fill: "#BE185D", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "WITH LOVE" },
+          { id: "ar-003-title", name: "StaticText", type: "StaticText", left: 80, top: 720, width: 920, height: 260, fill: "#9D174D", fontFamily: "Lato", fontSize: 130, lineHeight: 1, textAlign: "center", text: "DIA DAS M\xC3ES" },
+          { id: "ar-003-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 240, top: 1020, width: 600, height: 720, scaleX: 1, scaleY: 1, angle: -4, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Gift photo" } },
+          { id: "ar-003-cta", name: "StaticText", type: "StaticText", left: 80, top: 1800, width: 920, height: 60, fill: "#9F1239", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "Shop the collection \u2192" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ar-004",
+      name: "Weekend Special",
+      categoryId: "ads-retail",
+      tags: ["weekend", "sale", "multi-product", "flyer"],
+      canvasBg: "#FACC15",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ar-004",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "ar-004-rainbow", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png", left: 720, top: 60, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: 10, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ar-004-title", name: "StaticText", type: "StaticText", left: 60, top: 200, width: 1e3, height: 320, fill: "#7C2D12", fontFamily: "Lato", fontSize: 180, lineHeight: 0.92, textAlign: "left", text: "WEEKEND\nSPECIAL" },
+          { id: "ar-004-date", name: "StaticText", type: "StaticText", left: 60, top: 540, width: 1e3, height: 50, fill: "#7C2D12", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "left", text: "FRI \xB7 SAT \xB7 SUN" },
+          { id: "ar-004-polaroid-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 80, top: 660, width: 440, height: 540, scaleX: 1, scaleY: 1, angle: -5, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product A" } },
+          { id: "ar-004-polaroid-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 560, top: 720, width: 440, height: 540, scaleX: 1, scaleY: 1, angle: 6, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product B" } },
+          { id: "ar-004-pricebar", name: "StaticText", type: "StaticText", left: 60, top: 1380, width: 1e3, height: 280, fill: "#7C2D12", fontFamily: "Lato", fontSize: 240, lineHeight: 1, textAlign: "center", text: "UP TO 40%" },
+          { id: "ar-004-footer", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 1e3, height: 50, fill: "#7C2D12", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "Selected items only" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sm-001",
+      name: "Mega Sale Promo",
+      categoryId: "social-media",
+      tags: ["sale", "promo", "instagram", "square"],
+      canvasBg: "#DC2626",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sm-001",
+        frame: { width: 1080, height: 1080 },
+        layers: [
+          { id: "sm-001-megaphone", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png", left: 740, top: 60, width: 280, height: 280, scaleX: 1, scaleY: 1, angle: 18, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sm-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 60, top: 100, width: 480, height: 580, scaleX: 1, scaleY: 1, angle: -5, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
+          { id: "sm-001-title", name: "StaticText", type: "StaticText", left: 60, top: 740, width: 960, height: 200, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 180, lineHeight: 0.95, textAlign: "center", text: "MEGA SALE" },
+          { id: "sm-001-sub", name: "StaticText", type: "StaticText", left: 60, top: 940, width: 960, height: 60, fill: "#FECACA", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "50% OFF \xB7 ENDS SUNDAY" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sm-002",
+      name: "New Drop",
+      categoryId: "social-media",
+      tags: ["new", "drop", "launch", "minimal"],
+      canvasBg: "#FEF3C7",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sm-002",
+        frame: { width: 1080, height: 1080 },
+        layers: [
+          { id: "sm-002-floral", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_02.svg", left: -40, top: 700, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
+          { id: "sm-002-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 440, top: 90, width: 580, height: 700, scaleX: 1, scaleY: 1, angle: 6, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
+          { id: "sm-002-tape", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png", left: 600, top: 70, width: 240, height: 80, scaleX: 1, scaleY: 1, angle: -8, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sm-002-eyebrow", name: "StaticText", type: "StaticText", left: 60, top: 200, width: 380, height: 50, fill: "#92400E", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "left", text: "JUST LAUNCHED" },
+          { id: "sm-002-title", name: "StaticText", type: "StaticText", left: 60, top: 280, width: 380, height: 260, fill: "#7C2D12", fontFamily: "Lato", fontSize: 120, lineHeight: 1, textAlign: "left", text: "NEW\nDROP" },
+          { id: "sm-002-sub", name: "StaticText", type: "StaticText", left: 60, top: 880, width: 380, height: 80, fill: "#92400E", fontFamily: "Lato", fontSize: 30, lineHeight: 1.3, textAlign: "left", text: "Available\nthis Friday." }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sm-003",
+      name: "Quote Card",
+      categoryId: "social-media",
+      tags: ["quote", "minimal", "dark"],
+      canvasBg: "#0F172A",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sm-003",
+        frame: { width: 1080, height: 1080 },
+        layers: [
+          { id: "sm-003-light", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png", left: 440, top: 80, width: 200, height: 200, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sm-003-quote", name: "StaticText", type: "StaticText", left: 100, top: 360, width: 880, height: 320, fill: "#F8FAFC", fontFamily: "Lato", fontSize: 72, lineHeight: 1.3, textAlign: "center", text: "\u201CDesign like\nnobody is watching.\u201D" },
+          { id: "sm-003-author", name: "StaticText", type: "StaticText", left: 100, top: 760, width: 880, height: 50, fill: "#94A3B8", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "\u2014 ANON" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ps-001",
+      name: "Grand Opening",
+      categoryId: "posters",
+      tags: ["opening", "announcement", "elegant"],
+      canvasBg: "#FFFBEB",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ps-001",
+        frame: { width: 1240, height: 1754 },
+        layers: [
+          { id: "ps-001-floral-tl", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_01.svg", left: -40, top: -40, width: 360, height: 360, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
+          { id: "ps-001-floral-br", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_04.svg", left: 880, top: 1400, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 180, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
+          { id: "ps-001-eyebrow", name: "StaticText", type: "StaticText", left: 100, top: 380, width: 1040, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "\u2605 EST. 2026 \u2605" },
+          { id: "ps-001-title", name: "StaticText", type: "StaticText", left: 60, top: 480, width: 1120, height: 360, fill: "#0F172A", fontFamily: "Lato", fontSize: 160, lineHeight: 1, textAlign: "center", text: "GRAND\nOPENING" },
+          { id: "ps-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 320, top: 880, width: 600, height: 720, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Storefront photo" } },
+          { id: "ps-001-cta", name: "StaticText", type: "StaticText", left: 100, top: 1640, width: 1040, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 36, lineHeight: 1.2, textAlign: "center", text: "Saturday, March 15 \xB7 10AM" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ps-002",
+      name: "Sale Poster",
+      categoryId: "posters",
+      tags: ["sale", "promo", "dramatic"],
+      canvasBg: "#FEE2E2",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ps-002",
+        frame: { width: 1240, height: 1754 },
+        layers: [
+          { id: "ps-002-thunder", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 880, top: 80, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: 15, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ps-002-eyebrow", name: "StaticText", type: "StaticText", left: 100, top: 320, width: 1040, height: 60, fill: "#991B1B", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "LIMITED TIME" },
+          { id: "ps-002-title", name: "StaticText", type: "StaticText", left: 60, top: 440, width: 1120, height: 380, fill: "#7F1D1D", fontFamily: "Lato", fontSize: 280, lineHeight: 0.95, textAlign: "center", text: "MEGA\nSALE" },
+          { id: "ps-002-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 320, top: 880, width: 600, height: 660, scaleX: 1, scaleY: 1, angle: -3, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
+          { id: "ps-002-price", name: "StaticText", type: "StaticText", left: 100, top: 1580, width: 1040, height: 120, fill: "#7F1D1D", fontFamily: "Lato", fontSize: 120, lineHeight: 1, textAlign: "center", text: "FROM $9.99" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ps-003",
+      name: "Minimal Promo",
+      categoryId: "posters",
+      tags: ["minimal", "modern", "clean"],
+      canvasBg: "#F5F5F4",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-ps-003",
+        frame: { width: 1240, height: 1754 },
+        layers: [
+          { id: "ps-003-doodle", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_camera.svg", left: 920, top: 200, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: 12, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "ps-003-eyebrow", name: "StaticText", type: "StaticText", left: 100, top: 240, width: 600, height: 50, fill: "#78716C", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "left", text: "VOL. 01 \xB7 2026" },
+          { id: "ps-003-title", name: "StaticText", type: "StaticText", left: 100, top: 340, width: 1040, height: 360, fill: "#1C1917", fontFamily: "Lato", fontSize: 200, lineHeight: 0.92, textAlign: "left", text: "less\nis\nmore." },
+          { id: "ps-003-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 380, top: 900, width: 540, height: 640, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Hero image" } },
+          { id: "ps-003-foot", name: "StaticText", type: "StaticText", left: 100, top: 1600, width: 1040, height: 80, fill: "#44403C", fontFamily: "Lato", fontSize: 36, lineHeight: 1.3, textAlign: "left", text: "A design quarterly\nstudio.example" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "bn-001",
+      name: "Summer Collection",
+      categoryId: "banners",
+      tags: ["summer", "banner", "wide"],
+      canvasBg: "#0EA5E9",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-bn-001",
+        frame: { width: 1500, height: 500 },
+        layers: [
+          { id: "bn-001-doodle", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg", left: 1240, top: 40, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -10, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "bn-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 60, top: 30, width: 380, height: 440, scaleX: 1, scaleY: 1, angle: -7, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Hero image" } },
+          { id: "bn-001-title", name: "StaticText", type: "StaticText", left: 500, top: 140, width: 880, height: 140, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 110, lineHeight: 1, textAlign: "left", text: "SUMMER COLLECTION" },
+          { id: "bn-001-sub", name: "StaticText", type: "StaticText", left: 500, top: 300, width: 880, height: 60, fill: "#E0F2FE", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "left", text: "Fresh styles, breezy fits \u2014 shop now \u203A" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "bn-002",
+      name: "BOGO Banner",
+      categoryId: "banners",
+      tags: ["bogo", "discount", "banner"],
+      canvasBg: "#FACC15",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-bn-002",
+        frame: { width: 1500, height: 500 },
+        layers: [
+          { id: "bn-002-megaphone", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png", left: 60, top: 80, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: -15, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "bn-002-title", name: "StaticText", type: "StaticText", left: 420, top: 80, width: 1020, height: 200, fill: "#7C2D12", fontFamily: "Lato", fontSize: 170, lineHeight: 1, textAlign: "left", text: "BUY 1 GET 1" },
+          { id: "bn-002-sub", name: "StaticText", type: "StaticText", left: 420, top: 300, width: 1020, height: 60, fill: "#7C2D12", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "left", text: "ON ALL SELECTED ITEMS" },
+          { id: "bn-002-foot", name: "StaticText", type: "StaticText", left: 420, top: 380, width: 1020, height: 50, fill: "#7C2D12", fontFamily: "Lato", fontSize: 28, lineHeight: 1.2, textAlign: "left", text: "Ends Sunday at midnight." }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "cd-001",
+      name: "Birthday Card",
+      categoryId: "cards",
+      tags: ["birthday", "celebration", "card"],
+      canvasBg: "#FCE7F3",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-cd-001",
+        frame: { width: 1200, height: 1200 },
+        layers: [
+          { id: "cd-001-floral-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_06.svg", left: -40, top: -40, width: 360, height: 360, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "cd-001-floral-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_08.svg", left: 880, top: 860, width: 360, height: 360, scaleX: 1, scaleY: 1, angle: 180, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "cd-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 340, top: 220, width: 520, height: 520, scaleX: 1, scaleY: 1, angle: -4, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Photo" } },
+          { id: "cd-001-title", name: "StaticText", type: "StaticText", left: 80, top: 800, width: 1040, height: 200, fill: "#9D174D", fontFamily: "Lato", fontSize: 130, lineHeight: 1, textAlign: "center", text: "HAPPY BIRTHDAY" },
+          { id: "cd-001-sub", name: "StaticText", type: "StaticText", left: 80, top: 1020, width: 1040, height: 60, fill: "#BE185D", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "Wishing you a sweet year ahead \u{1F382}" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "cd-002",
+      name: "Save the Date",
+      categoryId: "cards",
+      tags: ["wedding", "invite", "save the date"],
+      canvasBg: "#FFE4E6",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-cd-002",
+        frame: { width: 1200, height: 1200 },
+        layers: [
+          { id: "cd-002-floral-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_09.svg", left: -20, top: 880, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "cd-002-floral-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_10.svg", left: 840, top: -40, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "cd-002-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 280, width: 1040, height: 60, fill: "#9F1239", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "WE ARE GETTING MARRIED" },
+          { id: "cd-002-title", name: "StaticText", type: "StaticText", left: 80, top: 400, width: 1040, height: 200, fill: "#881337", fontFamily: "Lato", fontSize: 140, lineHeight: 1, textAlign: "center", text: "Save the Date" },
+          { id: "cd-002-names", name: "StaticText", type: "StaticText", left: 80, top: 700, width: 1040, height: 80, fill: "#9F1239", fontFamily: "Lato", fontSize: 56, lineHeight: 1.2, textAlign: "center", text: "ALEX & SAM" },
+          { id: "cd-002-date", name: "StaticText", type: "StaticText", left: 80, top: 820, width: 1040, height: 60, fill: "#9F1239", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "SEPTEMBER \xB7 14 \xB7 2026" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-001",
+      name: "Cafe Daily Brew",
+      categoryId: "signage",
+      tags: ["cafe", "coffee", "food", "restaurant", "menu"],
+      canvasBg: "#FEF3C7",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-001",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-001-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-001-floral", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg", left: 820, top: 1140, width: 260, height: 260, scaleX: 1, scaleY: 1, angle: 12, opacity: 0.6, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-001-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1180, width: 920, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "\u2605 FRESHLY BREWED \u2605" },
+          { id: "sg-001-title", name: "StaticText", type: "StaticText", left: 60, top: 1260, width: 960, height: 200, fill: "#7C2D12", fontFamily: "Lato", fontSize: 150, lineHeight: 1, textAlign: "center", text: "DAILY BREW" },
+          { id: "sg-001-price", name: "StaticText", type: "StaticText", left: 60, top: 1480, width: 960, height: 220, fill: "#7C2D12", fontFamily: "Lato", fontSize: 220, lineHeight: 1, textAlign: "center", text: "$4.50" },
+          { id: "sg-001-sub", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 36, lineHeight: 1.2, textAlign: "center", text: "Mon \u2014 Fri \xB7 7AM \u2013 11AM" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-002",
+      name: "Burger Special",
+      categoryId: "signage",
+      tags: ["burger", "food", "restaurant", "fast food", "menu"],
+      canvasBg: "#B91C1C",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-002",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-002-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-002-thunder", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 60, top: 1140, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -15, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-002-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FACC15", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "TODAY'S SPECIAL" },
+          { id: "sg-002-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 180, lineHeight: 0.95, textAlign: "center", text: "DOUBLE\nSTACK" },
+          { id: "sg-002-price", name: "StaticText", type: "StaticText", left: 60, top: 1620, width: 960, height: 180, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 160, lineHeight: 1, textAlign: "center", text: "ONLY $7.99" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-003",
+      name: "Fashion New Arrivals",
+      categoryId: "signage",
+      tags: ["fashion", "boutique", "apparel", "retail", "store"],
+      canvasBg: "#0A0A0A",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-003",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-003-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1200, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-003-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1280, width: 920, height: 60, fill: "#9CA3AF", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "SS / 26" },
+          { id: "sg-003-title", name: "StaticText", type: "StaticText", left: 60, top: 1380, width: 960, height: 280, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 150, lineHeight: 0.92, textAlign: "center", text: "NEW\nARRIVALS" },
+          { id: "sg-003-cta", name: "StaticText", type: "StaticText", left: 60, top: 1720, width: 960, height: 60, fill: "#D4D4D8", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "SHOP IN-STORE NOW" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-004",
+      name: "Spa Wellness",
+      categoryId: "signage",
+      tags: ["spa", "beauty", "wellness", "salon", "skincare"],
+      canvasBg: "#FCE7F3",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-004",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-004-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-004-floral", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", left: 40, top: 1140, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: -10, opacity: 0.85, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-004-floral2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", left: 800, top: 1700, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: 170, opacity: 0.85, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-004-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1240, width: 920, height: 60, fill: "#BE185D", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "WELLNESS \xB7 CARE \xB7 BLOOM" },
+          { id: "sg-004-title", name: "StaticText", type: "StaticText", left: 60, top: 1340, width: 960, height: 280, fill: "#9D174D", fontFamily: "Lato", fontSize: 150, lineHeight: 0.95, textAlign: "center", text: "RELAX\n& GLOW" },
+          { id: "sg-004-cta", name: "StaticText", type: "StaticText", left: 60, top: 1720, width: 960, height: 80, fill: "#9F1239", fontFamily: "Lato", fontSize: 42, lineHeight: 1.3, textAlign: "center", text: "Book your session today" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-005",
+      name: "Gym Membership",
+      categoryId: "signage",
+      tags: ["gym", "fitness", "membership", "workout", "sports"],
+      canvasBg: "#FACC15",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-005",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-005-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-005-thunder", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 820, top: 1120, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: 18, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-005-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#7C2D12", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "NEW YEAR \xB7 NEW YOU" },
+          { id: "sg-005-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#7C2D12", fontFamily: "Lato", fontSize: 180, lineHeight: 0.92, textAlign: "center", text: "GET FIT\nNOW" },
+          { id: "sg-005-price", name: "StaticText", type: "StaticText", left: 60, top: 1640, width: 960, height: 180, fill: "#7C2D12", fontFamily: "Lato", fontSize: 140, lineHeight: 1, textAlign: "center", text: "$29 / MONTH" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-006",
+      name: "Real Estate Open House",
+      categoryId: "signage",
+      tags: ["real estate", "house", "property", "open house", "listing"],
+      canvasBg: "#0F172A",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-006",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-006-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-006-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FBBF24", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "\u2605 THIS SATURDAY \u2605" },
+          { id: "sg-006-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 160, lineHeight: 0.95, textAlign: "center", text: "OPEN\nHOUSE" },
+          { id: "sg-006-address", name: "StaticText", type: "StaticText", left: 60, top: 1660, width: 960, height: 60, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "224 ELM STREET" },
+          { id: "sg-006-time", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 60, fill: "#94A3B8", fontFamily: "Lato", fontSize: 36, lineHeight: 1.2, textAlign: "center", text: "10 AM \u2014 2 PM \xB7 Sat May 24" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-007",
+      name: "Auto Showcase",
+      categoryId: "signage",
+      tags: ["automotive", "car", "dealership", "vehicle", "financing"],
+      canvasBg: "#18181B",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-007",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-007-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-007-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FBBF24", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "PERFORMANCE \xB7 2026 EDITION" },
+          { id: "sg-007-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 170, lineHeight: 0.95, textAlign: "center", text: "DRIVE\nTODAY" },
+          { id: "sg-007-price", name: "StaticText", type: "StaticText", left: 60, top: 1640, width: 960, height: 80, fill: "#FBBF24", fontFamily: "Lato", fontSize: 64, lineHeight: 1, textAlign: "center", text: "0% APR \xB7 60 MO" },
+          { id: "sg-007-foot", name: "StaticText", type: "StaticText", left: 60, top: 1760, width: 960, height: 60, fill: "#A1A1AA", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "Subject to approved credit" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-008",
+      name: "Travel Escape",
+      categoryId: "signage",
+      tags: ["travel", "vacation", "beach", "destination", "tourism", "hotel"],
+      canvasBg: "#0EA5E9",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-008",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-008-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-008-saturn", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg", left: 820, top: 1140, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -12, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-008-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "BOOK BY MAY 31" },
+          { id: "sg-008-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 200, lineHeight: 0.95, textAlign: "center", text: "ESCAPE" },
+          { id: "sg-008-price", name: "StaticText", type: "StaticText", left: 60, top: 1620, width: 960, height: 140, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 110, lineHeight: 1, textAlign: "center", text: "FROM $499" },
+          { id: "sg-008-sub", name: "StaticText", type: "StaticText", left: 60, top: 1780, width: 960, height: 60, fill: "#E0F2FE", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "center", text: "3 nights \xB7 all-inclusive \xB7 per person" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-009",
+      name: "Pharmacy Health Check",
+      categoryId: "signage",
+      tags: ["pharmacy", "healthcare", "clinic", "health", "medical"],
+      canvasBg: "#065F46",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-009",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-009-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-009-heart", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg", left: 60, top: 1140, width: 200, height: 200, scaleX: 1, scaleY: 1, angle: -10, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-009-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#A7F3D0", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "COMMUNITY HEALTH \xB7 MAY" },
+          { id: "sg-009-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 150, lineHeight: 0.95, textAlign: "center", text: "FREE\nHEALTH CHECK" },
+          { id: "sg-009-foot", name: "StaticText", type: "StaticText", left: 60, top: 1660, width: 960, height: 60, fill: "#A7F3D0", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "Walk-ins welcome" },
+          { id: "sg-009-time", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 60, fill: "#D1FAE5", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "center", text: "Sat May 24 \xB7 9 AM \u2013 5 PM" }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-010",
+      name: "Tech Launch",
+      categoryId: "signage",
+      tags: ["tech", "electronics", "gadget", "launch", "product"],
+      canvasBg: "#020617",
+      workspaceBg: "#1a1a2e",
+      scene: {
+        id: "tpl-sg-010",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          { id: "sg-010-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-010-light", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png", left: 800, top: 1140, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: 12, opacity: 1, originX: "left", originY: "top", metadata: {} },
+          { id: "sg-010-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#A78BFA", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "AVAILABLE NOW" },
+          { id: "sg-010-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 360, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 170, lineHeight: 0.92, textAlign: "center", text: "NEXT-GEN\nIS HERE" },
+          { id: "sg-010-cta", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 80, fill: "#C4B5FD", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "Visit us in-store \u2192" }
+        ],
+        metadata: { animated: false }
+      }
+    }
+  ]
+};
+
+// src/providers/defaults/templates.ts
+var DEFAULT_LIMIT = 12;
+function compareCategories(a, b) {
+  const ao = a.order ?? Number.MAX_SAFE_INTEGER;
+  const bo = b.order ?? Number.MAX_SAFE_INTEGER;
+  if (ao !== bo) return ao - bo;
+  return a.name.localeCompare(b.name);
+}
+function matchesSearch(template, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  if (template.name.toLowerCase().includes(q)) return true;
+  return (template.tags ?? []).some((tag) => tag.toLowerCase().includes(q));
+}
+function createDefaultTemplateProvider() {
+  const bundled = templates_data_default;
+  return {
+    async categories() {
+      return [...bundled.categories].sort(compareCategories);
+    },
+    async list(opts) {
+      const limit = opts.limit ?? DEFAULT_LIMIT;
+      let filtered = bundled.templates.slice();
+      if (opts.categoryId) {
+        filtered = filtered.filter((t) => t.categoryId === opts.categoryId);
+      }
+      if (opts.search) {
+        filtered = filtered.filter((t) => matchesSearch(t, opts.search));
+      }
+      filtered.sort((a, b) => a.id.localeCompare(b.id));
+      let startIndex = 0;
+      if (opts.cursor) {
+        const idx = filtered.findIndex((t) => t.id === opts.cursor);
+        startIndex = idx >= 0 ? idx + 1 : 0;
+      }
+      const slice = filtered.slice(startIndex, startIndex + limit);
+      const last = slice[slice.length - 1];
+      const nextCursor = last && startIndex + slice.length < filtered.length ? last.id : void 0;
+      return { items: slice, nextCursor };
     }
   };
 }
-var Context = React.createContext({
+var Context = React23.createContext({
   zoomRatio: 1,
   activeObject: null,
   contextMenuRequest: null,
@@ -7992,12 +8524,12 @@ var Context = React.createContext({
   }
 });
 var Provider = ({ children }) => {
-  const [zoomRatio, setZoomRatio] = React.useState(1);
-  const [activeObject, setActiveObject] = React.useState(null);
-  const [frame, setFrame] = React.useState(null);
-  const [editor, setEditor] = React.useState(null);
-  const [contextMenuRequest, setContextMenuRequest] = React.useState(null);
-  const [objects, setObjects] = React.useState([]);
+  const [zoomRatio, setZoomRatio] = React23.useState(1);
+  const [activeObject, setActiveObject] = React23.useState(null);
+  const [frame, setFrame] = React23.useState(null);
+  const [editor, setEditor] = React23.useState(null);
+  const [contextMenuRequest, setContextMenuRequest] = React23.useState(null);
+  const [objects, setObjects] = React23.useState([]);
   return /* @__PURE__ */ jsx(
     Context.Provider,
     {
@@ -8020,19 +8552,19 @@ var Provider = ({ children }) => {
   );
 };
 function useZoomRatio() {
-  const { zoomRatio } = React__default.useContext(Context);
+  const { zoomRatio } = React23__default.useContext(Context);
   return zoomRatio;
 }
 function useEditor() {
-  const { editor } = React__default.useContext(Context);
+  const { editor } = React23__default.useContext(Context);
   return editor;
 }
 function useObjects() {
-  const { objects } = React__default.useContext(Context);
+  const { objects } = React23__default.useContext(Context);
   return objects;
 }
 function useActiveObject() {
-  const { activeObject } = React__default.useContext(Context);
+  const { activeObject } = React23__default.useContext(Context);
   return activeObject;
 }
 var FrameObject = class extends fabric.Rect {
@@ -11291,8 +11823,16 @@ var Renderer = class {
   async toDataURL(template, params) {
     return new Promise(async (resolve, reject) => {
       const staticCanvas = new fabric.StaticCanvas(null);
+      if (params.backgroundColor) {
+        staticCanvas.setBackgroundColor(params.backgroundColor, () => {
+        });
+      }
       await this.loadTemplate(staticCanvas, template, params);
+      const { format = "png", quality = 1, multiplier = 1 } = params;
       const data = staticCanvas.toDataURL({
+        format,
+        quality,
+        multiplier,
         top: 0,
         left: 0,
         height: staticCanvas.getHeight(),
@@ -12312,7 +12852,7 @@ var ResizeObserver2 = (
   }
   return ResizeObserver2;
 }))();
-var Button = React.forwardRef(
+var Button = React23.forwardRef(
   ({ variant = "secondary", size = "md", iconOnly, className, ...rest }, ref) => /* @__PURE__ */ jsx(
     "button",
     {
@@ -12344,7 +12884,7 @@ function Popover({ children, content, open, onOpenChange, placement = "bottom", 
     ) })
   ] });
 }
-var Input = React.forwardRef(
+var Input = React23.forwardRef(
   ({ className, size = "md", ...rest }, ref) => /* @__PURE__ */ jsx(
     "input",
     {
@@ -12356,7 +12896,7 @@ var Input = React.forwardRef(
   )
 );
 Input.displayName = "Input";
-var Tooltip = React.forwardRef(({ children, title, placement = "top", className }, ref) => {
+var Tooltip = React23.forwardRef(({ children, title, placement = "top", className }, ref) => {
   if (!title) return /* @__PURE__ */ jsx(Fragment, { children });
   return /* @__PURE__ */ jsx(RadixTooltip.Provider, { delayDuration: 200, children: /* @__PURE__ */ jsxs(RadixTooltip.Root, { children: [
     /* @__PURE__ */ jsx(RadixTooltip.Trigger, { asChild: true, ref, children }),
@@ -12374,7 +12914,7 @@ var Tooltip = React.forwardRef(({ children, title, placement = "top", className 
     ) })
   ] }) });
 });
-var Select = React.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
+var Select = React23.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
   return /* @__PURE__ */ jsxs(RadixSelect.Root, { value, defaultValue, onValueChange, children: [
     /* @__PURE__ */ jsxs(RadixSelect.Trigger, { ref, className: clsx("de-select-trigger", className), style, children: [
       /* @__PURE__ */ jsx(RadixSelect.Value, { placeholder }),
@@ -13009,7 +13549,7 @@ function hslToRgb(h, s, l) {
   return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
 }
 var ICONS = [
-  { key: "library", icon: /* @__PURE__ */ jsx(PictureOutlined, {}), label: "Library" },
+  { key: "templates", icon: /* @__PURE__ */ jsx(LayoutOutlined, {}), label: "Templates" },
   { key: "shapes", icon: /* @__PURE__ */ jsx(AppstoreOutlined, {}), label: "Shapes" },
   { key: "stickers", icon: /* @__PURE__ */ jsx(SmileOutlined, {}), label: "Stickers" },
   { key: "text", icon: /* @__PURE__ */ jsx(FontSizeOutlined, {}), label: "Text" },
@@ -14010,38 +14550,396 @@ function PropertyColorPicker({
     }
   );
 }
-var Ctx = React.createContext(null);
-function useEditorContext() {
-  const v = React.useContext(Ctx);
-  if (!v) throw new Error("useEditorContext must be used inside <DesignEditor>");
-  return v;
-}
-var EditorContextProvider = Ctx.Provider;
-function LibraryPanel() {
-  const { mediaProvider } = useEditorContext();
-  const [items, setItems] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  React.useEffect(() => {
-    let mounted = true;
-    const fetchMedia = async () => {
-      try {
-        setLoading(true);
-        const res = await mediaProvider.list({});
-        if (mounted) setItems(res.items);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        if (mounted) setLoading(false);
+function TemplateSearchBar({ value, onChange, debounceMs = 300 }) {
+  const [local, setLocal] = React23.useState(value);
+  const lastEmittedRef = React23.useRef(value);
+  React23.useEffect(() => {
+    setLocal(value);
+    lastEmittedRef.current = value;
+  }, [value]);
+  React23.useEffect(() => {
+    if (local === lastEmittedRef.current) return;
+    const id = setTimeout(() => {
+      lastEmittedRef.current = local;
+      onChange(local);
+    }, debounceMs);
+    return () => clearTimeout(id);
+  }, [local, debounceMs, onChange]);
+  return /* @__PURE__ */ jsx("div", { style: { padding: "12px 12px 0 12px" }, children: /* @__PURE__ */ jsx(
+    "input",
+    {
+      type: "search",
+      placeholder: "Search templates",
+      value: local,
+      onChange: (e) => setLocal(e.target.value),
+      style: {
+        width: "100%",
+        padding: "8px 12px",
+        fontSize: 13,
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        background: "var(--color-bg)",
+        color: "var(--color-text)",
+        outline: "none"
       }
-    };
-    fetchMedia();
+    }
+  ) });
+}
+var cache = /* @__PURE__ */ new Map();
+var inFlight = /* @__PURE__ */ new Map();
+function useTemplateThumbnail(template, ref, editorOverride) {
+  const hookEditor = useEditor();
+  const editor = hookEditor;
+  const [src, setSrc] = React23.useState(() => {
+    if (template.thumbnailUrl) return template.thumbnailUrl;
+    return cache.get(template.id);
+  });
+  const [loading, setLoading] = React23.useState(() => !src && !template.thumbnailUrl);
+  React23.useEffect(() => {
+    if (template.thumbnailUrl) {
+      setSrc(template.thumbnailUrl);
+      setLoading(false);
+      return;
+    }
+    const cached = cache.get(template.id);
+    if (cached) {
+      setSrc(cached);
+      setLoading(false);
+      return;
+    }
+    if (!ref.current || !editor?.renderer?.toDataURL) return;
+    let cancelled = false;
+    const observer = new IntersectionObserver(async (entries) => {
+      const visible = entries.some((e) => e.isIntersecting);
+      if (!visible) return;
+      observer.disconnect();
+      const existing = inFlight.get(template.id);
+      if (existing) {
+        setLoading(true);
+        try {
+          const dataUrl = await existing;
+          if (!cancelled) {
+            setSrc(dataUrl);
+            setLoading(false);
+          }
+        } catch {
+          if (!cancelled) setLoading(false);
+        }
+        return;
+      }
+      setLoading(true);
+      const promise = editor.renderer.toDataURL(template.scene, {
+        format: "png",
+        quality: 0.85,
+        multiplier: 0.5,
+        backgroundColor: template.canvasBg ?? "#ffffff"
+      });
+      inFlight.set(template.id, promise);
+      try {
+        const dataUrl = await promise;
+        cache.set(template.id, dataUrl);
+        inFlight.delete(template.id);
+        if (cancelled) return;
+        setSrc(dataUrl);
+      } catch {
+        inFlight.delete(template.id);
+        if (!cancelled) setSrc(void 0);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    });
+    observer.observe(ref.current);
     return () => {
-      mounted = false;
+      cancelled = true;
+      observer.disconnect();
     };
-  }, [mediaProvider]);
-  if (loading) return /* @__PURE__ */ jsx("div", { style: { padding: "1rem" }, children: "Loading library..." });
-  return /* @__PURE__ */ jsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", padding: "16px" }, children: items.map((item) => /* @__PURE__ */ jsx("div", { style: { cursor: "pointer", borderRadius: "4px", overflow: "hidden" }, onClick: () => {
-  }, children: /* @__PURE__ */ jsx("img", { src: item.thumbnailUrl || item.url, alt: item.name, style: { width: "100%", height: "auto", display: "block" } }) }, item.id)) });
+  }, [template.id, template.thumbnailUrl, template.scene, template.canvasBg, editor, ref]);
+  return { src, loading };
+}
+function TemplateThumbnail({ template, onClick }) {
+  const ref = React23.useRef(null);
+  const { src, loading } = useTemplateThumbnail(template, ref);
+  const aspectRatio = template.scene?.frame && template.scene.frame.width && template.scene.frame.height ? `${template.scene.frame.width} / ${template.scene.frame.height}` : "1 / 1";
+  return /* @__PURE__ */ jsx(
+    "button",
+    {
+      ref,
+      onClick: () => onClick(template),
+      title: template.name,
+      style: {
+        display: "block",
+        width: "100%",
+        aspectRatio,
+        border: "1px solid var(--color-border)",
+        borderRadius: 6,
+        overflow: "hidden",
+        padding: 0,
+        background: "var(--color-surface)",
+        cursor: "pointer"
+      },
+      children: src ? /* @__PURE__ */ jsx(
+        "img",
+        {
+          src,
+          alt: template.name,
+          style: { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+        }
+      ) : /* @__PURE__ */ jsx(
+        "div",
+        {
+          "aria-label": loading ? "Loading thumbnail" : "No preview available",
+          style: {
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(90deg, var(--color-surface) 0%, var(--color-bg) 50%, var(--color-surface) 100%)",
+            backgroundSize: "200% 100%",
+            animation: loading ? "shimmer 1.5s infinite" : "none"
+          }
+        }
+      )
+    }
+  );
+}
+var ROW_LIMIT = 6;
+function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
+  const [items, setItems] = React23.useState([]);
+  const [loading, setLoading] = React23.useState(true);
+  const [error, setError] = React23.useState(false);
+  const load = React23.useCallback(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(false);
+    provider.list({ categoryId: category.id, limit: ROW_LIMIT, signal: ac.signal }).then((res) => {
+      if (!cancelled) {
+        setItems(res.items);
+        setLoading(false);
+      }
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") {
+        setError(true);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider, category.id]);
+  React23.useEffect(() => {
+    return load();
+  }, [load]);
+  return /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
+    /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }, children: [
+      /* @__PURE__ */ jsx("h3", { style: { margin: 0, fontSize: 14, fontWeight: 600, color: "var(--color-text)" }, children: category.name }),
+      /* @__PURE__ */ jsx(
+        "button",
+        {
+          onClick: () => onSeeMore(category.id),
+          style: {
+            all: "unset",
+            cursor: "pointer",
+            fontSize: 12,
+            fontWeight: 600,
+            color: "var(--color-primary)"
+          },
+          children: "See more"
+        }
+      )
+    ] }),
+    error ? /* @__PURE__ */ jsxs("div", { style: { fontSize: 12 }, children: [
+      "Failed to load \u2014",
+      " ",
+      /* @__PURE__ */ jsx("button", { onClick: load, style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" }, children: "Retry" })
+    ] }) : loading ? /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 8, overflowX: "auto" }, children: [0, 1, 2].map((i) => /* @__PURE__ */ jsx(
+      "div",
+      {
+        style: {
+          flex: "0 0 130px",
+          aspectRatio: "1 / 1",
+          background: "var(--color-surface)",
+          borderRadius: 6
+        }
+      },
+      i
+    )) }) : items.length === 0 ? /* @__PURE__ */ jsx("div", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "No templates yet" }) : /* @__PURE__ */ jsx(
+      "div",
+      {
+        style: {
+          display: "grid",
+          gridAutoFlow: "column",
+          gridAutoColumns: "130px",
+          gap: 8,
+          overflowX: "auto",
+          paddingBottom: 4
+        },
+        children: items.map((t) => /* @__PURE__ */ jsx(TemplateThumbnail, { template: t, onClick: onSelect }, t.id))
+      }
+    )
+  ] });
+}
+function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
+  const [items, setItems] = React23.useState([]);
+  const [cursor, setCursor] = React23.useState(void 0);
+  const [loading, setLoading] = React23.useState(true);
+  const [loadingMore, setLoadingMore] = React23.useState(false);
+  const [error, setError] = React23.useState(null);
+  React23.useEffect(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(null);
+    provider.list({ ...listOpts, signal: ac.signal }).then((res) => {
+      if (cancelled) return;
+      setItems(res.items);
+      setCursor(res.nextCursor);
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") setError("Failed to load templates");
+    }).finally(() => {
+      if (!cancelled) setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
+  const loadMore = React23.useCallback(async () => {
+    if (!cursor) return;
+    setLoadingMore(true);
+    try {
+      const res = await provider.list({ ...listOpts, cursor });
+      setItems((prev) => [...prev, ...res.items]);
+      setCursor(res.nextCursor);
+    } catch {
+      setError("Failed to load more templates");
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [provider, listOpts, cursor]);
+  if (loading) return /* @__PURE__ */ jsx("div", { style: { padding: 16 }, children: "Loading..." });
+  if (error) return /* @__PURE__ */ jsxs("div", { style: { padding: 16 }, children: [
+    error,
+    " \u2014",
+    " ",
+    /* @__PURE__ */ jsx("button", { onClick: () => setItems([]), style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" }, children: "Retry" })
+  ] });
+  if (items.length === 0) return /* @__PURE__ */ jsx("div", { style: { padding: 16, color: "var(--color-text-muted)" }, children: emptyMessage });
+  return /* @__PURE__ */ jsxs("div", { style: { padding: 12 }, children: [
+    /* @__PURE__ */ jsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }, children: items.map((t) => /* @__PURE__ */ jsx(TemplateThumbnail, { template: t, onClick: onSelect }, t.id)) }),
+    cursor && /* @__PURE__ */ jsx("div", { style: { display: "flex", justifyContent: "center", marginTop: 12 }, children: /* @__PURE__ */ jsx(
+      "button",
+      {
+        onClick: loadMore,
+        disabled: loadingMore,
+        style: {
+          padding: "6px 14px",
+          borderRadius: 6,
+          border: "1px solid var(--color-border)",
+          background: "transparent",
+          color: "var(--color-text)",
+          cursor: "pointer"
+        },
+        children: loadingMore ? "Loading..." : "Load more"
+      }
+    ) })
+  ] });
+}
+function TemplatesPanel({ provider, onApplyTemplate }) {
+  const [categories, setCategories] = React23.useState([]);
+  const [loading, setLoading] = React23.useState(true);
+  const [error, setError] = React23.useState(false);
+  const [search, setSearch] = React23.useState("");
+  const [mode, setMode] = React23.useState({ kind: "browse" });
+  const loadCategories = React23.useCallback(() => {
+    let cancelled = false;
+    const ac = new AbortController();
+    setLoading(true);
+    setError(false);
+    provider.categories({ signal: ac.signal }).then((cats) => {
+      if (!cancelled) {
+        setCategories(cats);
+        setLoading(false);
+      }
+    }).catch((e) => {
+      if (!cancelled && e?.name !== "AbortError") {
+        setError(true);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+      ac.abort();
+    };
+  }, [provider]);
+  React23.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React23.useCallback((next) => {
+    setSearch(next);
+    if (next.trim()) {
+      setMode({ kind: "search", query: next.trim() });
+    } else {
+      setMode({ kind: "browse" });
+    }
+  }, []);
+  const handleSeeMore = React23.useCallback((categoryId) => {
+    setMode({ kind: "category", categoryId });
+  }, []);
+  const handleBack = React23.useCallback(() => {
+    setMode({ kind: "browse" });
+  }, []);
+  const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
+  return /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", height: "100%", overflow: "hidden" }, children: [
+    /* @__PURE__ */ jsx(TemplateSearchBar, { value: search, onChange: handleSearchChange }),
+    /* @__PURE__ */ jsx("div", { style: { flex: 1, overflowY: "auto" }, children: mode.kind === "search" ? /* @__PURE__ */ jsx(
+      TemplateGrid,
+      {
+        provider,
+        listOpts: { search: mode.query, limit: 12 },
+        emptyMessage: `No templates match "${mode.query}"`,
+        onSelect: onApplyTemplate
+      }
+    ) : mode.kind === "category" && activeCategory ? /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 0 12px", display: "flex", alignItems: "center", gap: 12 }, children: [
+        /* @__PURE__ */ jsx(
+          "button",
+          {
+            onClick: handleBack,
+            style: { all: "unset", cursor: "pointer", fontSize: 12, color: "var(--color-primary)" },
+            children: "\u2190 Back"
+          }
+        ),
+        /* @__PURE__ */ jsx("h3", { style: { margin: 0, fontSize: 14, fontWeight: 600 }, children: activeCategory.name })
+      ] }),
+      /* @__PURE__ */ jsx(
+        TemplateGrid,
+        {
+          provider,
+          listOpts: { categoryId: activeCategory.id, limit: 12 },
+          emptyMessage: "No templates in this category",
+          onSelect: onApplyTemplate
+        }
+      )
+    ] }) : loading ? /* @__PURE__ */ jsx("div", { style: { padding: 16 }, children: "Loading..." }) : error ? /* @__PURE__ */ jsxs("div", { style: { padding: 16 }, children: [
+      "Failed to load templates \u2014",
+      " ",
+      /* @__PURE__ */ jsx(
+        "button",
+        {
+          onClick: loadCategories,
+          style: { all: "unset", cursor: "pointer", color: "var(--color-primary)" },
+          children: "Retry"
+        }
+      )
+    ] }) : categories.length === 0 ? /* @__PURE__ */ jsx("div", { style: { padding: 16, color: "var(--color-text-muted)" }, children: "No templates available. Host apps can supply a templateProvider." }) : categories.map((c) => /* @__PURE__ */ jsx(
+      TemplateCategoryRow,
+      {
+        category: c,
+        provider,
+        onSelect: onApplyTemplate,
+        onSeeMore: handleSeeMore
+      },
+      c.id
+    )) })
+  ] });
 }
 var SHAPE_FILES = {
   filled: [
@@ -14358,7 +15256,7 @@ function ScrollRow({
   shapes,
   onAddShape
 }) {
-  const scrollRef = React__default.useRef(null);
+  const scrollRef = React23__default.useRef(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -14730,7 +15628,7 @@ function ScrollRow2({
   stickers,
   onAddSticker
 }) {
-  const scrollRef = React__default.useRef(null);
+  const scrollRef = React23__default.useRef(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -14886,41 +15784,24 @@ function useToast() {
 function UploadPanel({ onUploadFile }) {
   const fileInputRef = useRef(null);
   const [hov, setHov] = useState(false);
-  const { mediaProvider } = useEditorContext();
   const toast2 = useToast();
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  useEffect(() => {
-    if (!mediaProvider) return;
-    setIsLoading(true);
-    mediaProvider.list({}).then((res) => {
-      setItems(res.items);
-    }).finally(() => {
-      setIsLoading(false);
-    });
-  }, [mediaProvider]);
   const handleFileChange = async (e) => {
     const f = e.target.files?.[0];
-    if (f) {
-      if (f.size > 50 * 1024 * 1024) {
-        toast2.error("File size must be less than 50MB");
-        return;
-      }
-      if (!mediaProvider) {
-        toast2.error("Media provider not configured");
-        return;
-      }
-      try {
-        setIsUploading(true);
-        const newItem = await mediaProvider.upload(f);
-        setItems((prev) => [newItem, ...prev]);
-        toast2.success("Upload complete");
-      } catch (err) {
-        toast2.error(err instanceof Error ? err.message : "Upload failed");
-      } finally {
-        setIsUploading(false);
-      }
+    if (!f) return;
+    if (f.size > 50 * 1024 * 1024) {
+      toast2.error("File size must be less than 50MB");
+      return;
+    }
+    try {
+      setIsUploading(true);
+      const url = URL.createObjectURL(f);
+      onUploadFile(url);
+      toast2.success("Upload complete");
+    } catch (err) {
+      toast2.error(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setIsUploading(false);
       e.target.value = "";
     }
   };
@@ -14966,36 +15847,7 @@ function UploadPanel({ onUploadFile }) {
         ]
       }
     ),
-    /* @__PURE__ */ jsxs("div", { style: { marginTop: 24, flex: 1, overflowY: "auto" }, className: "scrollbar-hide", children: [
-      /* @__PURE__ */ jsx("h3", { style: { fontSize: 13, fontWeight: 600, color: "var(--color-text)", marginBottom: 12 }, children: "Your Uploads" }),
-      isLoading && items.length === 0 ? /* @__PURE__ */ jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--color-text-muted)" }, children: /* @__PURE__ */ jsx(LoadingOutlined, {}) }) : items.length === 0 ? /* @__PURE__ */ jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--color-text-muted)", fontSize: 12 }, children: "No uploads yet" }) : /* @__PURE__ */ jsx("div", { style: { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8 }, children: items.filter((m) => m.url).map((item) => /* @__PURE__ */ jsxs(
-        "div",
-        {
-          draggable: true,
-          onDragStart: (e) => {
-            e.dataTransfer.effectAllowed = "copy";
-            e.dataTransfer.setData("text/x-fastlabai-url", item.url);
-            e.dataTransfer.setData("text/x-fastlabai-type", item.mimeType?.startsWith("video/") ? "video" : "image");
-          },
-          onClick: () => onUploadFile(item.url),
-          style: {
-            position: "relative",
-            paddingTop: "100%",
-            borderRadius: 8,
-            overflow: "hidden",
-            cursor: "grab",
-            background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
-            border: "1px solid var(--color-border)"
-          },
-          className: "group",
-          children: [
-            item.mimeType?.startsWith("video/") ? /* @__PURE__ */ jsx("video", { src: item.url, style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" } }) : /* @__PURE__ */ jsx("img", { src: item.url, alt: item.name, draggable: false, style: { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" } }),
-            /* @__PURE__ */ jsx("div", { className: "absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center", children: /* @__PURE__ */ jsx("span", { className: "text-white text-xs font-semibold", children: "Use" }) })
-          ]
-        },
-        item.id
-      )) })
-    ] })
+    /* @__PURE__ */ jsx("div", { style: { marginTop: 24, flex: 1, overflowY: "auto" }, children: /* @__PURE__ */ jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--color-text-muted)", fontSize: 12 }, children: "Uploaded files are added directly to the canvas." }) })
   ] });
 }
 var GOOGLE_FONTS = [
@@ -15138,6 +15990,15 @@ function FontsPanel({ onApplyFont }) {
     filtered.map((f) => /* @__PURE__ */ jsx(FontTile, { name: f }, f))
   ] });
 }
+var Ctx = React23.createContext(null);
+function useEditorContext() {
+  const v = React23.useContext(Ctx);
+  if (!v) throw new Error("useEditorContext must be used inside <DesignEditor>");
+  return v;
+}
+var EditorContextProvider = Ctx.Provider;
+
+// src/hooks/useStudioExport.ts
 function useStudioExport() {
   const [exporting, setExporting] = useState(false);
   const toast2 = useToast();
@@ -15272,13 +16133,13 @@ function getStorageSafe(key, DEFAULT_SETTINGS) {
     return DEFAULT_SETTINGS;
   }
 }
-function DesignEditorInner({ onBack, initialScene, className, libraryPanel, title }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title }) {
   const editor = useEditor();
   const activeObj = useActiveObject();
   const zoomRatio = useZoomRatio();
   const { exportToLibrary, exporting } = useStudioExport();
   const message2 = useToast();
-  const { backgroundRemovalProvider, sceneKey } = useEditorContext();
+  const { backgroundRemovalProvider, sceneKey, templateProvider } = useEditorContext();
   const [activePanel, setActivePanel] = useState(null);
   const [layerPanelOpen, setLayerPanelOpen] = useState(false);
   const [removingBg, setRemovingBg] = useState(false);
@@ -15291,7 +16152,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
   const [workspaceBg, setWorkspaceBg] = useState(() => {
     return initialScene?.workspaceBg || getStorageSafe("studio_workspaceBg", "#1a1a2e");
   });
-  const { setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey);
+  const { hasUnsavedChanges, setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey);
   const handleBack = useCallback(() => {
     clearAutosave(sceneKey);
     if (onBack) onBack();
@@ -15400,6 +16261,23 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
       message2.error("Failed to add text");
     }
   }, [editor, message2]);
+  const handleApplyTemplate = useCallback((template) => {
+    if (!editor) return;
+    const proceed = () => {
+      editor.scene.importFromJSON(template.scene).catch(() => message2.error("Failed to apply template")).then(() => {
+        if (template.canvasBg) setCanvasBg(template.canvasBg);
+        if (template.workspaceBg) setWorkspaceBg(template.workspaceBg);
+        clearAutosave(sceneKey);
+        setHasUnsavedChanges(false);
+        setActivePanel(null);
+      });
+    };
+    if (hasUnsavedChanges) {
+      const ok = window.confirm("Replace current design? Unsaved changes will be lost.");
+      if (!ok) return;
+    }
+    proceed();
+  }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message2]);
   const handleRemoveBg = useCallback(async () => {
     if (!editor || !activeObj || activeObj.type !== "StaticImage" || !activeObj.src) return;
     setShimmerRect({
@@ -15506,7 +16384,7 @@ function DesignEditorInner({ onBack, initialScene, className, libraryPanel, titl
         }
       ),
       activePanel && /* @__PURE__ */ jsxs("div", { style: { width: 320, background: "var(--color-surface, var(--de-color-bg-elevated))", borderRight: "1px solid var(--color-border, var(--de-color-border))", display: "flex", flexDirection: "column", zIndex: 10 }, children: [
-        activePanel === "library" && (libraryPanel ? typeof libraryPanel === "function" ? libraryPanel({ onAddMedia: handleAddMedia }) : libraryPanel : /* @__PURE__ */ jsx(LibraryPanel, {})),
+        activePanel === "templates" && (templatesPanel ? typeof templatesPanel === "function" ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel : /* @__PURE__ */ jsx(TemplatesPanel, { provider: templateProvider, onApplyTemplate: handleApplyTemplate })),
         activePanel === "text" && /* @__PURE__ */ jsx(TextPanel, { onAddText: handleAddText }),
         activePanel === "shapes" && /* @__PURE__ */ jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
         activePanel === "stickers" && /* @__PURE__ */ jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
@@ -15568,21 +16446,21 @@ function DesignEditor({
   sceneKey,
   onBack,
   onExport,
-  mediaProvider = createNullMediaProvider(),
+  templateProvider = createDefaultTemplateProvider(),
   fontProvider = createGoogleFontsProvider(),
   backgroundRemovalProvider,
   persistenceProvider = createLocalStoragePersistence(),
   className,
-  libraryPanel,
+  templatesPanel,
   title
 }) {
   const resolvedBackgroundRemovalProvider = backgroundRemovalProvider ?? createImglyBackgroundRemoval();
-  const ctx = React__default.useMemo(
-    () => ({ mediaProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
-    [mediaProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
+  const ctx = React23__default.useMemo(
+    () => ({ templateProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
+    [templateProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
   );
   return /* @__PURE__ */ jsx(Provider, { children: /* @__PURE__ */ jsxs(EditorContextProvider, { value: ctx, children: [
-    /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, libraryPanel, title }),
+    /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title }),
     /* @__PURE__ */ jsx(Toaster, { position: "bottom-right" })
   ] }) });
 }
@@ -15602,6 +16480,6 @@ lodash/lodash.js:
    *)
 */
 
-export { DesignEditor, VERSION, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence, createNullMediaProvider };
+export { DesignEditor, VERSION, createDefaultTemplateProvider, createGoogleFontsProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

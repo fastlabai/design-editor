@@ -10,7 +10,7 @@ title: "Interface: DesignEditorProps"
 
 # Interface: DesignEditorProps
 
-Defined in: [components/DesignEditor.tsx:358](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L358)
+Defined in: [components/DesignEditor.tsx:384](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L384)
 
 Props for the top-level [DesignEditor](../functions/DesignEditor.md) component.
 
@@ -20,7 +20,7 @@ Props for the top-level [DesignEditor](../functions/DesignEditor.md) component.
 
 > `optional` **backgroundRemovalProvider?**: [`BackgroundRemovalProvider`](BackgroundRemovalProvider.md)
 
-Defined in: [components/DesignEditor.tsx:372](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L372)
+Defined in: [components/DesignEditor.tsx:398](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L398)
 
 Background removal provider. Defaults to `@imgly/background-removal` if installed.
 
@@ -30,7 +30,7 @@ Background removal provider. Defaults to `@imgly/background-removal` if installe
 
 > `optional` **className?**: `string`
 
-Defined in: [components/DesignEditor.tsx:376](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L376)
+Defined in: [components/DesignEditor.tsx:402](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L402)
 
 Optional className applied to the editor root for outer styling.
 
@@ -40,7 +40,7 @@ Optional className applied to the editor root for outer styling.
 
 > `optional` **fontProvider?**: [`FontProvider`](FontProvider.md)
 
-Defined in: [components/DesignEditor.tsx:370](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L370)
+Defined in: [components/DesignEditor.tsx:396](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L396)
 
 Font provider. Defaults to a Google Fonts provider.
 
@@ -50,29 +50,9 @@ Font provider. Defaults to a Google Fonts provider.
 
 > `optional` **initialScene?**: `any`
 
-Defined in: [components/DesignEditor.tsx:360](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L360)
+Defined in: [components/DesignEditor.tsx:386](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L386)
 
 A serialized scene to load on mount, or any scene-shaped object with optional `canvasBg`/`workspaceBg`.
-
-***
-
-### libraryPanel?
-
-> `optional` **libraryPanel?**: `LibraryPanelRenderProp`
-
-Defined in: [components/DesignEditor.tsx:378](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L378)
-
-Custom render override for the Library panel — useful to inject host-app media UI.
-
-***
-
-### mediaProvider?
-
-> `optional` **mediaProvider?**: [`MediaProvider`](MediaProvider.md)
-
-Defined in: [components/DesignEditor.tsx:368](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L368)
-
-Media library provider. Defaults to a null provider (empty Library panel).
 
 ***
 
@@ -80,7 +60,7 @@ Media library provider. Defaults to a null provider (empty Library panel).
 
 > `optional` **onBack?**: () => `void`
 
-Defined in: [components/DesignEditor.tsx:364](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L364)
+Defined in: [components/DesignEditor.tsx:390](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L390)
 
 Called when the user clicks the back button in the toolbar.
 
@@ -94,7 +74,7 @@ Called when the user clicks the back button in the toolbar.
 
 > `optional` **onExport?**: (`blob`, `format`, `scene`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [components/DesignEditor.tsx:366](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L366)
+Defined in: [components/DesignEditor.tsx:392](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L392)
 
 Called when the user exports the design. Receives the rendered Blob, output format, and raw scene JSON.
 
@@ -106,7 +86,7 @@ Called when the user exports the design. Receives the rendered Blob, output form
 
 ##### format
 
-`"svg"` \| `"png"` \| `"jpg"`
+`"png"` \| `"svg"` \| `"jpg"`
 
 ##### scene
 
@@ -122,7 +102,7 @@ Called when the user exports the design. Receives the rendered Blob, output form
 
 > `optional` **persistenceProvider?**: [`PersistenceProvider`](PersistenceProvider.md)
 
-Defined in: [components/DesignEditor.tsx:374](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L374)
+Defined in: [components/DesignEditor.tsx:400](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L400)
 
 Autosave/scene persistence provider. Defaults to a `localStorage` provider.
 
@@ -132,9 +112,29 @@ Autosave/scene persistence provider. Defaults to a `localStorage` provider.
 
 > `optional` **sceneKey?**: `string`
 
-Defined in: [components/DesignEditor.tsx:362](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L362)
+Defined in: [components/DesignEditor.tsx:388](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L388)
 
 Stable key identifying the scene for persistence; passed to the persistence provider.
+
+***
+
+### templateProvider?
+
+> `optional` **templateProvider?**: [`TemplateProvider`](TemplateProvider.md)
+
+Defined in: [components/DesignEditor.tsx:394](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L394)
+
+Template provider. Defaults to a small bundled starter set.
+
+***
+
+### templatesPanel?
+
+> `optional` **templatesPanel?**: `TemplatesPanelRenderProp`
+
+Defined in: [components/DesignEditor.tsx:404](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L404)
+
+Custom render override for the Templates panel — useful to inject host-app template UI.
 
 ***
 
@@ -142,6 +142,6 @@ Stable key identifying the scene for persistence; passed to the persistence prov
 
 > `optional` **title?**: `ReactNode`
 
-Defined in: [components/DesignEditor.tsx:380](https://github.com/fastlabai/design-editor/blob/d34b8234ba228c6b125e5206c129cbb9982505d2/src/components/DesignEditor.tsx#L380)
+Defined in: [components/DesignEditor.tsx:406](https://github.com/fastlabai/design-editor/blob/9bd2fcc50485e7aa4ad06da59efddb714ea87591/src/components/DesignEditor.tsx#L406)
 
 Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio".

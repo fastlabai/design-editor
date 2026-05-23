@@ -60,6 +60,10 @@
   pointer-events: none;
 }
 
+[data-de-root] .\!visible {
+  visibility: visible !important;
+}
+
 [data-de-root] .visible {
   visibility: visible;
 }
@@ -78,10 +82,6 @@
 
 [data-de-root] .relative {
   position: relative;
-}
-
-[data-de-root] .inset-0 {
-  inset: 0px;
 }
 
 [data-de-root] .bottom-\[66px\] {
@@ -354,10 +354,6 @@
   background-color: color-mix(in srgb,var(--color-text) 5%,transparent);
 }
 
-[data-de-root] .bg-black\/40 {
-  background-color: rgb(0 0 0 / 0.4);
-}
-
 [data-de-root] .bg-transparent {
   background-color: transparent;
 }
@@ -464,17 +460,8 @@
   color: var(--color-text-muted);
 }
 
-[data-de-root] .text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
 [data-de-root] .underline {
   text-decoration-line: underline;
-}
-
-[data-de-root] .opacity-0 {
-  opacity: 0;
 }
 
 [data-de-root] .shadow {
@@ -883,10 +870,6 @@
 
 [data-de-root] .hover\:text-\[var\(--color-primary\)\]:hover {
   color: var(--color-primary);
-}
-
-[data-de-root] :is(.group:hover .group-hover\:opacity-100) {
-  opacity: 1;
 }
 
 @media (min-width: 768px) {

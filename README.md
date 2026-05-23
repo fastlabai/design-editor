@@ -45,7 +45,7 @@ export default function App() {
 ```tsx
 <DesignEditor
   title="My Custom Studio Title"
-  mediaProvider={myMediaProvider}
+  templateProvider={myTemplateProvider}
   fontProvider={myFontProvider}
   persistenceProvider={myPersistenceProvider}
   onExport={async (blob, format, scene) => {
@@ -63,7 +63,7 @@ See the documentation site for more examples.
 Full typed API documentation is auto-generated and available on the docs site:
 - [`<DesignEditor />`](https://fastlabai.github.io/design-editor/api/functions/designeditor)
 - [`DesignEditorProps`](https://fastlabai.github.io/design-editor/api/interfaces/designeditorprops)
-- [`MediaProvider`](https://fastlabai.github.io/design-editor/api/interfaces/mediaprovider)
+- [`TemplateProvider`](https://fastlabai.github.io/design-editor/api/interfaces/templateprovider)
 - [`FontProvider`](https://fastlabai.github.io/design-editor/api/interfaces/fontprovider)
 - [`BackgroundRemovalProvider`](https://fastlabai.github.io/design-editor/api/interfaces/backgroundremovalprovider)
 - [`PersistenceProvider`](https://fastlabai.github.io/design-editor/api/interfaces/persistenceprovider)
