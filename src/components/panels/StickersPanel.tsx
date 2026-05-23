@@ -238,7 +238,7 @@ const CATEGORY_ORDER: {
   key: StickerCategoryType
   label: string
 }[] = [
-  { key: 'emoji',      label: 'Emoji'     },
+  // { key: 'emoji',      label: 'Emoji'     },
   { key: 'emoticons',  label: 'Emoticons' },
   { key: 'craft',      label: 'Craft'     },
   { key: '3Dstickers', label: '3D Grain'  },

@@ -76,23 +76,66 @@ class Frame extends Base {
   }
 
   public setBackgroundColor = (color: string) => {
-    const background = this.background
-    if (background) {
-      background.set({
+    let background = this.background
+    if (!background) {
+      background = new fabric.Background({
+        type: LayerType.BACKGROUND,
+        name: "Initial Frame",
         fill: color,
-      })
-      this.canvas.requestRenderAll()
-      this.editor.history.save()
+        id: "background",
+        selectable: false,
+        hasControls: false,
+        lockMovementY: true,
+        lockMovementX: true,
+        strokeWidth: 0,
+        padding: 0,
+        evented: false,
+        width: this.frame.width,
+        height: this.frame.height,
+        left: this.frame.left,
+        top: this.frame.top,
+        originX: this.frame.originX,
+        originY: this.frame.originY,
+        shadow: this.config.shadow,
+      }) as Required<fabric.Background>
+      this.canvas.insertAt(background, 1, false)
+    } else {
+      background.set({ fill: color })
+      background.dirty = true
     }
+    this.canvas.requestRenderAll()
+    this.editor.history.save()
   }
 
   public setBackgroundGradient = ({ angle, colors }: GradientOptions) => {
-    const background = this.background
-    if (background) {
-      setObjectGradient(background, angle, colors)
-      this.canvas.requestRenderAll()
-      this.editor.history.save()
+    let background = this.background
+    if (!background) {
+      background = new fabric.Background({
+        type: LayerType.BACKGROUND,
+        name: "Initial Frame",
+        fill: "#ffffff",
+        id: "background",
+        selectable: false,
+        hasControls: false,
+        lockMovementY: true,
+        lockMovementX: true,
+        strokeWidth: 0,
+        padding: 0,
+        evented: false,
+        width: this.frame.width,
+        height: this.frame.height,
+        left: this.frame.left,
+        top: this.frame.top,
+        originX: this.frame.originX,
+        originY: this.frame.originY,
+        shadow: this.config.shadow,
+      }) as Required<fabric.Background>
+      this.canvas.insertAt(background, 1, false)
     }
+    setObjectGradient(background, angle, colors)
+    background.dirty = true
+    this.canvas.requestRenderAll()
+    this.editor.history.save()
   }
 
   public getBoundingClientRect() {

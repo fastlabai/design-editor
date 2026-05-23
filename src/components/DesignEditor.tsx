@@ -68,8 +68,16 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     return (initialScene as any)?.canvasBg || getStorageSafe('studio_canvasBg', '#ffffff')
   })
   const [workspaceBg, setWorkspaceBg] = useState<string>(() => {
-    return (initialScene as any)?.workspaceBg || getStorageSafe('studio_workspaceBg', '#1a1a2e')
+    return (initialScene as any)?.workspaceBg || getStorageSafe('studio_workspaceBg', '#f5f5f5')
   })
+
+  useEffect(() => {
+    if (editor && canvasBg) {
+      try {
+        (editor as any).frame?.setBackgroundColor?.(canvasBg)
+      } catch (e) { console.error("Error setting bg:", e) }
+    }
+  }, [editor, canvasBg])
 
   const { hasUnsavedChanges, setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey)
 
@@ -109,12 +117,34 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
 
     const saved = loadAutosave(sceneKey)
     if (saved && Object.keys(saved).length > 0) {
-      if (saved.scene) editor.scene.importFromJSON(saved.scene).catch(() => {}).then(restoreShapes)
+      if (saved.scene) {
+        editor.scene.importFromJSON(saved.scene).catch(() => {}).then(() => {
+          restoreShapes()
+          if (saved.canvasBg) {
+            try { (editor as any).frame?.setBackgroundColor?.(saved.canvasBg) } catch {}
+          }
+          setTimeout(() => {
+            editor.history.reset()
+            editor.history.initialize()
+            setHasUnsavedChanges(false)
+          }, 50)
+        })
+      }
       if (saved.canvasBg) setCanvasBg(saved.canvasBg)
       if (saved.workspaceBg) setWorkspaceBg(saved.workspaceBg)
     } else if (initialScene) {
       const scene = (initialScene as any).scene || initialScene
-      editor.scene.importFromJSON(scene).catch(() => {}).then(restoreShapes)
+      editor.scene.importFromJSON(scene).catch(() => {}).then(() => {
+        restoreShapes()
+        if ((initialScene as any).canvasBg) {
+          try { (editor as any).frame?.setBackgroundColor?.((initialScene as any).canvasBg) } catch {}
+        }
+        setTimeout(() => {
+          editor.history.reset()
+          editor.history.initialize()
+          setHasUnsavedChanges(false)
+        }, 50)
+      })
       if ((initialScene as any).canvasBg) setCanvasBg((initialScene as any).canvasBg)
       if ((initialScene as any).workspaceBg) setWorkspaceBg((initialScene as any).workspaceBg)
     }
@@ -192,14 +222,20 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       editor.scene.importFromJSON(template.scene)
         .catch(() => message.error('Failed to apply template'))
         .then(() => {
-          if (template.canvasBg) setCanvasBg(template.canvasBg)
+          if (template.canvasBg) {
+            setCanvasBg(template.canvasBg)
+            try {
+              (editor as any).frame?.setBackgroundColor?.(template.canvasBg)
+            } catch {}
+          }
           if (template.workspaceBg) setWorkspaceBg(template.workspaceBg)
           clearAutosave(sceneKey)
           setHasUnsavedChanges(false)
-          setActivePanel(null)
+          setTimeout(() => editor.history.initialize(), 50)
         })
     }
-    if (hasUnsavedChanges) {
+    const hasHistoryUndo = (editor?.history?.status?.undos?.length ?? 0) > 0
+    if (hasUnsavedChanges && hasHistoryUndo) {
       const ok = window.confirm('Replace current design? Unsaved changes will be lost.')
       if (!ok) return
     }
@@ -318,16 +354,43 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
 
           {activePanel && (
             <div style={{ width: 320, background: 'var(--color-surface, var(--de-color-bg-elevated))', borderRight: '1px solid var(--color-border, var(--de-color-border))', display: 'flex', flexDirection: 'column', zIndex: 10 }}>
-              {activePanel === 'templates' && (
-                templatesPanel
-                  ? typeof templatesPanel === 'function' ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel
-                  : <TemplatesPanel provider={templateProvider} onApplyTemplate={handleApplyTemplate} />
-              )}
-              {activePanel === 'text'     && <TextPanel onAddText={handleAddText} />}
-              {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
-              {activePanel === 'stickers' && <StickersPanel onAddSticker={url => addImageToCanvas(url)} />}
-              {activePanel === 'upload'   && <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />}
-              {activePanel === 'fonts'    && <FontsPanel onApplyFont={(family) => editor?.objects.update({ fontFamily: family } as any)} />}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 12px 0 12px' }}>
+                <span style={{ fontSize: 14, fontWeight: 600, textTransform: 'capitalize', color: 'var(--color-text)' }}>
+                  {activePanel}
+                </span>
+                <button
+                  onClick={() => setActivePanel(null)}
+                  style={{
+                    all: 'unset',
+                    cursor: 'pointer',
+                    fontSize: 18,
+                    lineHeight: 1,
+                    color: 'var(--color-text-muted)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 24,
+                    height: 24,
+                    borderRadius: 4,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--color-border)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                >
+                  ×
+                </button>
+              </div>
+              <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                {activePanel === 'templates' && (
+                  templatesPanel
+                    ? typeof templatesPanel === 'function' ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel
+                    : <TemplatesPanel provider={templateProvider} onApplyTemplate={handleApplyTemplate} />
+                )}
+                {activePanel === 'text'     && <TextPanel onAddText={handleAddText} />}
+                {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
+                {activePanel === 'stickers' && <StickersPanel onAddSticker={url => addImageToCanvas(url)} />}
+                {activePanel === 'upload'   && <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />}
+                {activePanel === 'fonts'    && <FontsPanel onApplyFont={(family) => editor?.objects.update({ fontFamily: family } as any)} />}
+              </div>
             </div>
           )}
 

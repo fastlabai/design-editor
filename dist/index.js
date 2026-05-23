@@ -38,17 +38,17 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js
 var require_freeGlobal = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js"(exports, module) {
     var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
     module.exports = freeGlobal;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js
 var require_root = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js"(exports, module) {
     var freeGlobal = require_freeGlobal();
     var freeSelf = typeof self == "object" && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function("return this")();
@@ -56,18 +56,18 @@ var require_root = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js
 var require_Symbol = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js"(exports, module) {
     var root = require_root();
     var Symbol2 = root.Symbol;
     module.exports = Symbol2;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js
 var require_getRawTag = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
@@ -94,9 +94,9 @@ var require_getRawTag = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js
 var require_objectToString = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js"(exports, module) {
     var objectProto = Object.prototype;
     var nativeObjectToString = objectProto.toString;
     function objectToString(value) {
@@ -106,9 +106,9 @@ var require_objectToString = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js
 var require_baseGetTag = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var getRawTag = require_getRawTag();
     var objectToString = require_objectToString();
@@ -125,9 +125,9 @@ var require_baseGetTag = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js
 var require_isObject = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js"(exports, module) {
     function isObject(value) {
       var type = typeof value;
       return value != null && (type == "object" || type == "function");
@@ -136,9 +136,9 @@ var require_isObject = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js
 var require_isFunction = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isObject = require_isObject();
     var asyncTag = "[object AsyncFunction]";
@@ -156,18 +156,18 @@ var require_isFunction = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js
 var require_coreJsData = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js"(exports, module) {
     var root = require_root();
     var coreJsData = root["__core-js_shared__"];
     module.exports = coreJsData;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js
 var require_isMasked = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js"(exports, module) {
     var coreJsData = require_coreJsData();
     var maskSrcKey = (function() {
       var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
@@ -180,9 +180,9 @@ var require_isMasked = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js
 var require_toSource = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js"(exports, module) {
     var funcProto = Function.prototype;
     var funcToString = funcProto.toString;
     function toSource(func) {
@@ -202,9 +202,9 @@ var require_toSource = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js
 var require_baseIsNative = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js"(exports, module) {
     var isFunction = require_isFunction();
     var isMasked = require_isMasked();
     var isObject = require_isObject();
@@ -229,9 +229,9 @@ var require_baseIsNative = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js
 var require_getValue = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js"(exports, module) {
     function getValue(object, key) {
       return object == null ? void 0 : object[key];
     }
@@ -239,9 +239,9 @@ var require_getValue = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js
 var require_getNative = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js"(exports, module) {
     var baseIsNative = require_baseIsNative();
     var getValue = require_getValue();
     function getNative(object, key) {
@@ -252,9 +252,9 @@ var require_getNative = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js
 var require_defineProperty = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js"(exports, module) {
     var getNative = require_getNative();
     var defineProperty = (function() {
       try {
@@ -268,9 +268,9 @@ var require_defineProperty = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js
 var require_baseAssignValue = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js"(exports, module) {
     var defineProperty = require_defineProperty();
     function baseAssignValue(object, key, value) {
       if (key == "__proto__" && defineProperty) {
@@ -288,9 +288,9 @@ var require_baseAssignValue = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js
 var require_arrayAggregator = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js"(exports, module) {
     function arrayAggregator(array, setter, iteratee, accumulator) {
       var index2 = -1, length = array == null ? 0 : array.length;
       while (++index2 < length) {
@@ -303,9 +303,9 @@ var require_arrayAggregator = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js
 var require_createBaseFor = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js"(exports, module) {
     function createBaseFor(fromRight) {
       return function(object, iteratee, keysFunc) {
         var index2 = -1, iterable = Object(object), props = keysFunc(object), length = props.length;
@@ -322,18 +322,18 @@ var require_createBaseFor = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js
 var require_baseFor = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js"(exports, module) {
     var createBaseFor = require_createBaseFor();
     var baseFor = createBaseFor();
     module.exports = baseFor;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js
 var require_baseTimes = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js"(exports, module) {
     function baseTimes(n, iteratee) {
       var index2 = -1, result = Array(n);
       while (++index2 < n) {
@@ -345,9 +345,9 @@ var require_baseTimes = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js
 var require_isObjectLike = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js"(exports, module) {
     function isObjectLike(value) {
       return value != null && typeof value == "object";
     }
@@ -355,9 +355,9 @@ var require_isObjectLike = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js
 var require_baseIsArguments = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isObjectLike = require_isObjectLike();
     var argsTag = "[object Arguments]";
@@ -368,9 +368,9 @@ var require_baseIsArguments = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js
 var require_isArguments = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js"(exports, module) {
     var baseIsArguments = require_baseIsArguments();
     var isObjectLike = require_isObjectLike();
     var objectProto = Object.prototype;
@@ -385,17 +385,17 @@ var require_isArguments = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js
 var require_isArray = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js"(exports, module) {
     var isArray2 = Array.isArray;
     module.exports = isArray2;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js
 var require_stubFalse = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js"(exports, module) {
     function stubFalse() {
       return false;
     }
@@ -403,9 +403,9 @@ var require_stubFalse = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js
 var require_isBuffer = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js"(exports, module) {
     var root = require_root();
     var stubFalse = require_stubFalse();
     var freeExports = typeof exports == "object" && exports && !exports.nodeType && exports;
@@ -418,9 +418,9 @@ var require_isBuffer = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js
 var require_isIndex = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js"(exports, module) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     var reIsUint = /^(?:0|[1-9]\d*)$/;
     function isIndex(value, length) {
@@ -432,9 +432,9 @@ var require_isIndex = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js
 var require_isLength = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js"(exports, module) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     function isLength(value) {
       return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
@@ -443,9 +443,9 @@ var require_isLength = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js
 var require_baseIsTypedArray = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isLength = require_isLength();
     var isObjectLike = require_isObjectLike();
@@ -483,9 +483,9 @@ var require_baseIsTypedArray = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js
 var require_baseUnary = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js"(exports, module) {
     function baseUnary(func) {
       return function(value) {
         return func(value);
@@ -495,9 +495,9 @@ var require_baseUnary = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js
 var require_nodeUtil = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js"(exports, module) {
     var freeGlobal = require_freeGlobal();
     var freeExports = typeof exports == "object" && exports && !exports.nodeType && exports;
     var freeModule = freeExports && typeof module == "object" && module && !module.nodeType && module;
@@ -517,9 +517,9 @@ var require_nodeUtil = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js
 var require_isTypedArray = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js"(exports, module) {
     var baseIsTypedArray = require_baseIsTypedArray();
     var baseUnary = require_baseUnary();
     var nodeUtil = require_nodeUtil();
@@ -529,9 +529,9 @@ var require_isTypedArray = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js
 var require_arrayLikeKeys = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js"(exports, module) {
     var baseTimes = require_baseTimes();
     var isArguments = require_isArguments();
     var isArray2 = require_isArray();
@@ -557,9 +557,9 @@ var require_arrayLikeKeys = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js
 var require_isPrototype = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js"(exports, module) {
     var objectProto = Object.prototype;
     function isPrototype(value) {
       var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
@@ -569,9 +569,9 @@ var require_isPrototype = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js
 var require_overArg = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js"(exports, module) {
     function overArg(func, transform) {
       return function(arg) {
         return func(transform(arg));
@@ -581,18 +581,18 @@ var require_overArg = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js
 var require_nativeKeys = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js"(exports, module) {
     var overArg = require_overArg();
     var nativeKeys = overArg(Object.keys, Object);
     module.exports = nativeKeys;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js
 var require_baseKeys = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js"(exports, module) {
     var isPrototype = require_isPrototype();
     var nativeKeys = require_nativeKeys();
     var objectProto = Object.prototype;
@@ -613,9 +613,9 @@ var require_baseKeys = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js
 var require_isArrayLike = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js"(exports, module) {
     var isFunction = require_isFunction();
     var isLength = require_isLength();
     function isArrayLike(value) {
@@ -625,9 +625,9 @@ var require_isArrayLike = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js
 var require_keys = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js"(exports, module) {
     var arrayLikeKeys = require_arrayLikeKeys();
     var baseKeys = require_baseKeys();
     var isArrayLike = require_isArrayLike();
@@ -638,9 +638,9 @@ var require_keys = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js
 var require_baseForOwn = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js"(exports, module) {
     var baseFor = require_baseFor();
     var keys = require_keys();
     function baseForOwn(object, iteratee) {
@@ -650,9 +650,9 @@ var require_baseForOwn = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js
 var require_createBaseEach = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js"(exports, module) {
     var isArrayLike = require_isArrayLike();
     function createBaseEach(eachFunc, fromRight) {
       return function(collection, iteratee) {
@@ -675,9 +675,9 @@ var require_createBaseEach = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js
 var require_baseEach = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js"(exports, module) {
     var baseForOwn = require_baseForOwn();
     var createBaseEach = require_createBaseEach();
     var baseEach = createBaseEach(baseForOwn);
@@ -685,9 +685,9 @@ var require_baseEach = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js
 var require_baseAggregator = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js"(exports, module) {
     var baseEach = require_baseEach();
     function baseAggregator(collection, setter, iteratee, accumulator) {
       baseEach(collection, function(value, key, collection2) {
@@ -699,9 +699,9 @@ var require_baseAggregator = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js
 var require_listCacheClear = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js"(exports, module) {
     function listCacheClear() {
       this.__data__ = [];
       this.size = 0;
@@ -710,9 +710,9 @@ var require_listCacheClear = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js
 var require_eq = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js"(exports, module) {
     function eq(value, other) {
       return value === other || value !== value && other !== other;
     }
@@ -720,9 +720,9 @@ var require_eq = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js
 var require_assocIndexOf = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js"(exports, module) {
     var eq = require_eq();
     function assocIndexOf(array, key) {
       var length = array.length;
@@ -737,9 +737,9 @@ var require_assocIndexOf = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js
 var require_listCacheDelete = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     var arrayProto = Array.prototype;
     var splice = arrayProto.splice;
@@ -761,9 +761,9 @@ var require_listCacheDelete = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js
 var require_listCacheGet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheGet(key) {
       var data = this.__data__, index2 = assocIndexOf(data, key);
@@ -773,9 +773,9 @@ var require_listCacheGet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js
 var require_listCacheHas = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheHas(key) {
       return assocIndexOf(this.__data__, key) > -1;
@@ -784,9 +784,9 @@ var require_listCacheHas = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js
 var require_listCacheSet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheSet(key, value) {
       var data = this.__data__, index2 = assocIndexOf(data, key);
@@ -802,9 +802,9 @@ var require_listCacheSet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js
 var require_ListCache = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js"(exports, module) {
     var listCacheClear = require_listCacheClear();
     var listCacheDelete = require_listCacheDelete();
     var listCacheGet = require_listCacheGet();
@@ -827,9 +827,9 @@ var require_ListCache = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js
 var require_stackClear = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js"(exports, module) {
     var ListCache = require_ListCache();
     function stackClear() {
       this.__data__ = new ListCache();
@@ -839,9 +839,9 @@ var require_stackClear = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js
 var require_stackDelete = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js"(exports, module) {
     function stackDelete(key) {
       var data = this.__data__, result = data["delete"](key);
       this.size = data.size;
@@ -851,9 +851,9 @@ var require_stackDelete = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js
 var require_stackGet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js"(exports, module) {
     function stackGet(key) {
       return this.__data__.get(key);
     }
@@ -861,9 +861,9 @@ var require_stackGet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js
 var require_stackHas = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js"(exports, module) {
     function stackHas(key) {
       return this.__data__.has(key);
     }
@@ -871,9 +871,9 @@ var require_stackHas = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js
 var require_Map = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var Map2 = getNative(root, "Map");
@@ -881,18 +881,18 @@ var require_Map = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js
 var require_nativeCreate = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js"(exports, module) {
     var getNative = require_getNative();
     var nativeCreate = getNative(Object, "create");
     module.exports = nativeCreate;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js
 var require_hashClear = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     function hashClear() {
       this.__data__ = nativeCreate ? nativeCreate(null) : {};
@@ -902,9 +902,9 @@ var require_hashClear = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js
 var require_hashDelete = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js"(exports, module) {
     function hashDelete(key) {
       var result = this.has(key) && delete this.__data__[key];
       this.size -= result ? 1 : 0;
@@ -914,9 +914,9 @@ var require_hashDelete = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js
 var require_hashGet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     var objectProto = Object.prototype;
@@ -933,9 +933,9 @@ var require_hashGet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js
 var require_hashHas = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
@@ -947,9 +947,9 @@ var require_hashHas = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js
 var require_hashSet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     function hashSet(key, value) {
@@ -962,9 +962,9 @@ var require_hashSet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js
 var require_Hash = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js"(exports, module) {
     var hashClear = require_hashClear();
     var hashDelete = require_hashDelete();
     var hashGet = require_hashGet();
@@ -987,9 +987,9 @@ var require_Hash = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js
 var require_mapCacheClear = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js"(exports, module) {
     var Hash = require_Hash();
     var ListCache = require_ListCache();
     var Map2 = require_Map();
@@ -1005,9 +1005,9 @@ var require_mapCacheClear = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js
 var require_isKeyable = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js"(exports, module) {
     function isKeyable(value) {
       var type = typeof value;
       return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
@@ -1016,9 +1016,9 @@ var require_isKeyable = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js
 var require_getMapData = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js"(exports, module) {
     var isKeyable = require_isKeyable();
     function getMapData(map, key) {
       var data = map.__data__;
@@ -1028,9 +1028,9 @@ var require_getMapData = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js
 var require_mapCacheDelete = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheDelete(key) {
       var result = getMapData(this, key)["delete"](key);
@@ -1041,9 +1041,9 @@ var require_mapCacheDelete = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js
 var require_mapCacheGet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheGet(key) {
       return getMapData(this, key).get(key);
@@ -1052,9 +1052,9 @@ var require_mapCacheGet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js
 var require_mapCacheHas = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheHas(key) {
       return getMapData(this, key).has(key);
@@ -1063,9 +1063,9 @@ var require_mapCacheHas = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js
 var require_mapCacheSet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheSet(key, value) {
       var data = getMapData(this, key), size = data.size;
@@ -1077,9 +1077,9 @@ var require_mapCacheSet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js
 var require_MapCache = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js"(exports, module) {
     var mapCacheClear = require_mapCacheClear();
     var mapCacheDelete = require_mapCacheDelete();
     var mapCacheGet = require_mapCacheGet();
@@ -1102,9 +1102,9 @@ var require_MapCache = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js
 var require_stackSet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js"(exports, module) {
     var ListCache = require_ListCache();
     var Map2 = require_Map();
     var MapCache = require_MapCache();
@@ -1128,9 +1128,9 @@ var require_stackSet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js
 var require_Stack = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js"(exports, module) {
     var ListCache = require_ListCache();
     var stackClear = require_stackClear();
     var stackDelete = require_stackDelete();
@@ -1150,9 +1150,9 @@ var require_Stack = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js
 var require_setCacheAdd = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js"(exports, module) {
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     function setCacheAdd(value) {
       this.__data__.set(value, HASH_UNDEFINED);
@@ -1162,9 +1162,9 @@ var require_setCacheAdd = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js
 var require_setCacheHas = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js"(exports, module) {
     function setCacheHas(value) {
       return this.__data__.has(value);
     }
@@ -1172,9 +1172,9 @@ var require_setCacheHas = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js
 var require_SetCache = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js"(exports, module) {
     var MapCache = require_MapCache();
     var setCacheAdd = require_setCacheAdd();
     var setCacheHas = require_setCacheHas();
@@ -1191,9 +1191,9 @@ var require_SetCache = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js
 var require_arraySome = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js"(exports, module) {
     function arraySome(array, predicate) {
       var index2 = -1, length = array == null ? 0 : array.length;
       while (++index2 < length) {
@@ -1207,9 +1207,9 @@ var require_arraySome = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js
 var require_cacheHas = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js"(exports, module) {
     function cacheHas(cache2, key) {
       return cache2.has(key);
     }
@@ -1217,9 +1217,9 @@ var require_cacheHas = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js
 var require_equalArrays = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js"(exports, module) {
     var SetCache = require_SetCache();
     var arraySome = require_arraySome();
     var cacheHas = require_cacheHas();
@@ -1272,18 +1272,18 @@ var require_equalArrays = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js
 var require_Uint8Array = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js"(exports, module) {
     var root = require_root();
     var Uint8Array2 = root.Uint8Array;
     module.exports = Uint8Array2;
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js
 var require_mapToArray = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js"(exports, module) {
     function mapToArray(map) {
       var index2 = -1, result = Array(map.size);
       map.forEach(function(value, key) {
@@ -1295,9 +1295,9 @@ var require_mapToArray = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js
 var require_setToArray = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js"(exports, module) {
     function setToArray(set) {
       var index2 = -1, result = Array(set.size);
       set.forEach(function(value) {
@@ -1309,9 +1309,9 @@ var require_setToArray = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js
 var require_equalByTag = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var Uint8Array2 = require_Uint8Array();
     var eq = require_eq();
@@ -1383,9 +1383,9 @@ var require_equalByTag = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js
 var require_arrayPush = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js"(exports, module) {
     function arrayPush(array, values) {
       var index2 = -1, length = values.length, offset = array.length;
       while (++index2 < length) {
@@ -1397,9 +1397,9 @@ var require_arrayPush = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js
 var require_baseGetAllKeys = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js"(exports, module) {
     var arrayPush = require_arrayPush();
     var isArray2 = require_isArray();
     function baseGetAllKeys(object, keysFunc, symbolsFunc) {
@@ -1410,9 +1410,9 @@ var require_baseGetAllKeys = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js
 var require_arrayFilter = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js"(exports, module) {
     function arrayFilter(array, predicate) {
       var index2 = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
       while (++index2 < length) {
@@ -1427,9 +1427,9 @@ var require_arrayFilter = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js
 var require_stubArray = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js"(exports, module) {
     function stubArray() {
       return [];
     }
@@ -1437,9 +1437,9 @@ var require_stubArray = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js
 var require_getSymbols = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js"(exports, module) {
     var arrayFilter = require_arrayFilter();
     var stubArray = require_stubArray();
     var objectProto = Object.prototype;
@@ -1458,9 +1458,9 @@ var require_getSymbols = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js
 var require_getAllKeys = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js"(exports, module) {
     var baseGetAllKeys = require_baseGetAllKeys();
     var getSymbols = require_getSymbols();
     var keys = require_keys();
@@ -1471,9 +1471,9 @@ var require_getAllKeys = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js
 var require_equalObjects = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js"(exports, module) {
     var getAllKeys = require_getAllKeys();
     var COMPARE_PARTIAL_FLAG = 1;
     var objectProto = Object.prototype;
@@ -1525,9 +1525,9 @@ var require_equalObjects = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js
 var require_DataView = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var DataView = getNative(root, "DataView");
@@ -1535,9 +1535,9 @@ var require_DataView = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js
 var require_Promise = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var Promise2 = getNative(root, "Promise");
@@ -1545,9 +1545,9 @@ var require_Promise = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js
 var require_Set = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var Set2 = getNative(root, "Set");
@@ -1555,9 +1555,9 @@ var require_Set = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js
 var require_WeakMap = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var WeakMap2 = getNative(root, "WeakMap");
@@ -1565,9 +1565,9 @@ var require_WeakMap = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js
 var require_getTag = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js"(exports, module) {
     var DataView = require_DataView();
     var Map2 = require_Map();
     var Promise2 = require_Promise();
@@ -1611,9 +1611,9 @@ var require_getTag = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js
 var require_baseIsEqualDeep = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js"(exports, module) {
     var Stack = require_Stack();
     var equalArrays = require_equalArrays();
     var equalByTag = require_equalByTag();
@@ -1662,9 +1662,9 @@ var require_baseIsEqualDeep = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js
 var require_baseIsEqual = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js"(exports, module) {
     var baseIsEqualDeep = require_baseIsEqualDeep();
     var isObjectLike = require_isObjectLike();
     function baseIsEqual(value, other, bitmask, customizer, stack) {
@@ -1680,9 +1680,9 @@ var require_baseIsEqual = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js
 var require_baseIsMatch = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js"(exports, module) {
     var Stack = require_Stack();
     var baseIsEqual = require_baseIsEqual();
     var COMPARE_PARTIAL_FLAG = 1;
@@ -1722,9 +1722,9 @@ var require_baseIsMatch = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js
 var require_isStrictComparable = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js"(exports, module) {
     var isObject = require_isObject();
     function isStrictComparable(value) {
       return value === value && !isObject(value);
@@ -1733,9 +1733,9 @@ var require_isStrictComparable = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js
 var require_getMatchData = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js"(exports, module) {
     var isStrictComparable = require_isStrictComparable();
     var keys = require_keys();
     function getMatchData(object) {
@@ -1750,9 +1750,9 @@ var require_getMatchData = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js
 var require_matchesStrictComparable = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js"(exports, module) {
     function matchesStrictComparable(key, srcValue) {
       return function(object) {
         if (object == null) {
@@ -1765,9 +1765,9 @@ var require_matchesStrictComparable = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js
 var require_baseMatches = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js"(exports, module) {
     var baseIsMatch = require_baseIsMatch();
     var getMatchData = require_getMatchData();
     var matchesStrictComparable = require_matchesStrictComparable();
@@ -1784,9 +1784,9 @@ var require_baseMatches = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js
 var require_isSymbol = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isObjectLike = require_isObjectLike();
     var symbolTag = "[object Symbol]";
@@ -1797,9 +1797,9 @@ var require_isSymbol = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js
 var require_isKey = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js"(exports, module) {
     var isArray2 = require_isArray();
     var isSymbol = require_isSymbol();
     var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
@@ -1818,9 +1818,9 @@ var require_isKey = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js
 var require_memoize = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js"(exports, module) {
     var MapCache = require_MapCache();
     var FUNC_ERROR_TEXT = "Expected a function";
     function memoize(func, resolver) {
@@ -1844,9 +1844,9 @@ var require_memoize = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js
 var require_memoizeCapped = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js"(exports, module) {
     var memoize = require_memoize();
     var MAX_MEMOIZE_SIZE = 500;
     function memoizeCapped(func) {
@@ -1863,9 +1863,9 @@ var require_memoizeCapped = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js
 var require_stringToPath = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js"(exports, module) {
     var memoizeCapped = require_memoizeCapped();
     var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
     var reEscapeChar = /\\(\\)?/g;
@@ -1883,9 +1883,9 @@ var require_stringToPath = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js
 var require_arrayMap = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js"(exports, module) {
     function arrayMap(array, iteratee) {
       var index2 = -1, length = array == null ? 0 : array.length, result = Array(length);
       while (++index2 < length) {
@@ -1897,9 +1897,9 @@ var require_arrayMap = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js
 var require_baseToString = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var arrayMap = require_arrayMap();
     var isArray2 = require_isArray();
@@ -1923,9 +1923,9 @@ var require_baseToString = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js
 var require_toString = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js"(exports, module) {
     var baseToString = require_baseToString();
     function toString(value) {
       return value == null ? "" : baseToString(value);
@@ -1934,9 +1934,9 @@ var require_toString = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js
 var require_castPath = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js"(exports, module) {
     var isArray2 = require_isArray();
     var isKey = require_isKey();
     var stringToPath = require_stringToPath();
@@ -1951,9 +1951,9 @@ var require_castPath = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js
 var require_toKey = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js"(exports, module) {
     var isSymbol = require_isSymbol();
     function toKey(value) {
       if (typeof value == "string" || isSymbol(value)) {
@@ -1966,9 +1966,9 @@ var require_toKey = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js
 var require_baseGet = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js"(exports, module) {
     var castPath = require_castPath();
     var toKey = require_toKey();
     function baseGet(object, path2) {
@@ -1983,9 +1983,9 @@ var require_baseGet = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js
 var require_get = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js"(exports, module) {
     var baseGet = require_baseGet();
     function get(object, path2, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path2);
@@ -1995,9 +1995,9 @@ var require_get = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js
 var require_baseHasIn = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js"(exports, module) {
     function baseHasIn(object, key) {
       return object != null && key in Object(object);
     }
@@ -2005,9 +2005,9 @@ var require_baseHasIn = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js
 var require_hasPath = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js"(exports, module) {
     var castPath = require_castPath();
     var isArguments = require_isArguments();
     var isArray2 = require_isArray();
@@ -2034,9 +2034,9 @@ var require_hasPath = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js
 var require_hasIn = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js"(exports, module) {
     var baseHasIn = require_baseHasIn();
     var hasPath = require_hasPath();
     function hasIn(object, path2) {
@@ -2046,9 +2046,9 @@ var require_hasIn = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js
 var require_baseMatchesProperty = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js"(exports, module) {
     var baseIsEqual = require_baseIsEqual();
     var get = require_get();
     var hasIn = require_hasIn();
@@ -2071,9 +2071,9 @@ var require_baseMatchesProperty = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js
 var require_identity = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js"(exports, module) {
     function identity(value) {
       return value;
     }
@@ -2081,9 +2081,9 @@ var require_identity = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js
 var require_baseProperty = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js"(exports, module) {
     function baseProperty(key) {
       return function(object) {
         return object == null ? void 0 : object[key];
@@ -2093,9 +2093,9 @@ var require_baseProperty = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js
 var require_basePropertyDeep = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js"(exports, module) {
     var baseGet = require_baseGet();
     function basePropertyDeep(path2) {
       return function(object) {
@@ -2106,9 +2106,9 @@ var require_basePropertyDeep = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js
 var require_property = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js"(exports, module) {
     var baseProperty = require_baseProperty();
     var basePropertyDeep = require_basePropertyDeep();
     var isKey = require_isKey();
@@ -2120,9 +2120,9 @@ var require_property = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js
 var require_baseIteratee = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js"(exports, module) {
     var baseMatches = require_baseMatches();
     var baseMatchesProperty = require_baseMatchesProperty();
     var identity = require_identity();
@@ -2144,9 +2144,9 @@ var require_baseIteratee = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js
 var require_createAggregator = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js"(exports, module) {
     var arrayAggregator = require_arrayAggregator();
     var baseAggregator = require_baseAggregator();
     var baseIteratee = require_baseIteratee();
@@ -2161,9 +2161,9 @@ var require_createAggregator = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js
 var require_groupBy = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js"(exports, module) {
     var baseAssignValue = require_baseAssignValue();
     var createAggregator = require_createAggregator();
     var objectProto = Object.prototype;
@@ -2179,9 +2179,9 @@ var require_groupBy = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js
 var require_lodash = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js"(exports, module) {
     (function() {
       var undefined2;
       var VERSION2 = "4.18.1";
@@ -7677,9 +7677,9 @@ var require_lodash = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js
 var require_now = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js"(exports, module) {
     var root = require_root();
     var now = function() {
       return root.Date.now();
@@ -7688,9 +7688,9 @@ var require_now = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js
 var require_trimmedEndIndex = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js"(exports, module) {
     var reWhitespace = /\s/;
     function trimmedEndIndex(string) {
       var index2 = string.length;
@@ -7702,9 +7702,9 @@ var require_trimmedEndIndex = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js
 var require_baseTrim = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js"(exports, module) {
     var trimmedEndIndex = require_trimmedEndIndex();
     var reTrimStart = /^\s+/;
     function baseTrim(string) {
@@ -7714,9 +7714,9 @@ var require_baseTrim = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js
 var require_toNumber = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js"(exports, module) {
     var baseTrim = require_baseTrim();
     var isObject = require_isObject();
     var isSymbol = require_isSymbol();
@@ -7747,9 +7747,9 @@ var require_toNumber = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js
 var require_debounce = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js"(exports, module) {
     var isObject = require_isObject();
     var now = require_now();
     var toNumber = require_toNumber();
@@ -7841,9 +7841,9 @@ var require_debounce = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js
+// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js
 var require_throttle = __commonJS({
-  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js"(exports, module) {
+  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js"(exports, module) {
     var debounce = require_debounce();
     var isObject = require_isObject();
     var FUNC_ERROR_TEXT = "Expected a function";
@@ -7961,501 +7961,4182 @@ function createImglyBackgroundRemoval() {
 // src/providers/defaults/templates.data.json
 var templates_data_default = {
   categories: [
-    { id: "signage", name: "Industry Signage", order: 1 },
-    { id: "ads-retail", name: "Retail Ads", order: 2 },
-    { id: "social-media", name: "Social Media", order: 3 },
-    { id: "posters", name: "Posters", order: 4 },
-    { id: "banners", name: "Banners", order: 5 },
-    { id: "cards", name: "Cards", order: 6 }
+    {
+      id: "signage",
+      name: "Industry Signage",
+      order: 1
+    },
+    {
+      id: "tv-ads",
+      name: "TV & Horizontal Ads",
+      order: 1.5
+    },
+    {
+      id: "ads-retail",
+      name: "Retail Ads",
+      order: 2
+    },
+    {
+      id: "social-media",
+      name: "Social Media",
+      order: 3
+    },
+    {
+      id: "posters",
+      name: "Posters",
+      order: 4
+    },
+    {
+      id: "banners",
+      name: "Banners",
+      order: 5
+    },
+    {
+      id: "cards",
+      name: "Cards",
+      order: 6
+    }
   ],
   templates: [
     {
       id: "ar-001",
       name: "Christmas Offers",
       categoryId: "ads-retail",
-      tags: ["christmas", "natal", "holiday", "retail", "flyer"],
+      tags: [
+        "christmas",
+        "natal",
+        "holiday",
+        "retail",
+        "flyer"
+      ],
       canvasBg: "#B91C1C",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ar-001",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "ar-001-bg-top", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg", left: -40, top: -40, width: 400, height: 400, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.35, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-001-bg-bot", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg", left: 720, top: 1560, width: 400, height: 400, scaleX: 1, scaleY: 1, angle: 180, opacity: 0.35, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-001-sticker", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png", left: 60, top: 140, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -15, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-001-title", name: "StaticText", type: "StaticText", left: 80, top: 380, width: 920, height: 220, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 130, lineHeight: 1, textAlign: "center", text: "OFERTAS DE NATAL" },
-          { id: "ar-001-date", name: "StaticText", type: "StaticText", left: 80, top: 620, width: 920, height: 50, fill: "#FECACA", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "Valid 12/20 \u2014 12/26" },
-          { id: "ar-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 240, top: 740, width: 600, height: 720, scaleX: 1, scaleY: 1, angle: -3, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
-          { id: "ar-001-pricelabel", name: "StaticText", type: "StaticText", left: 80, top: 1540, width: 920, height: 60, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "FROM" },
-          { id: "ar-001-price", name: "StaticText", type: "StaticText", left: 80, top: 1610, width: 920, height: 200, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 180, lineHeight: 1, textAlign: "center", text: "$13.89" }
+          {
+            id: "ar-001-bg-top",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg",
+            left: -40,
+            top: -40,
+            width: 400,
+            height: 400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.35,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-001-bg-bot",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg",
+            left: 720,
+            top: 1560,
+            width: 400,
+            height: 400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 180,
+            opacity: 0.35,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-001-sticker",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png",
+            left: 60,
+            top: 140,
+            width: 800,
+            height: 800,
+            scaleX: 0.275,
+            scaleY: 0.275,
+            angle: -15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 380,
+            width: 920,
+            height: 220,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 130,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "OFERTAS DE NATAL"
+          },
+          {
+            id: "ar-001-date",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 620,
+            width: 920,
+            height: 50,
+            fill: "#FECACA",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Valid 12/20 \u2014 12/26"
+          },
+          {
+            id: "ar-001-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 240,
+            top: 740,
+            width: 657,
+            height: 800,
+            scaleX: 0.91324200913242,
+            scaleY: 0.9,
+            angle: -3,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product photo"
+            }
+          },
+          {
+            id: "ar-001-pricelabel",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1540,
+            width: 920,
+            height: 60,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "FROM"
+          },
+          {
+            id: "ar-001-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1610,
+            width: 920,
+            height: 200,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$13.89"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "ar-002",
       name: "Black Friday",
       categoryId: "ads-retail",
-      tags: ["black friday", "sale", "discount", "retail"],
+      tags: [
+        "black friday",
+        "sale",
+        "discount",
+        "retail"
+      ],
       canvasBg: "#0A0A0A",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ar-002",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "ar-002-thunder1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: -40, top: 80, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: -20, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-002-thunder2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 800, top: 1480, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: 25, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-002-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 480, width: 920, height: 60, fill: "#FACC15", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "\u2605 ONE DAY ONLY \u2605" },
-          { id: "ar-002-title", name: "StaticText", type: "StaticText", left: 40, top: 580, width: 1e3, height: 320, fill: "#FACC15", fontFamily: "Lato", fontSize: 220, lineHeight: 0.95, textAlign: "center", text: "BLACK\nFRIDAY" },
-          { id: "ar-002-discount", name: "StaticText", type: "StaticText", left: 80, top: 960, width: 920, height: 280, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 280, lineHeight: 1, textAlign: "center", text: "70% OFF" },
-          { id: "ar-002-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 290, top: 1300, width: 500, height: 600, scaleX: 1, scaleY: 1, angle: 2, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } }
+          {
+            id: "ar-002-thunder1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: -40,
+            top: 80,
+            width: 561,
+            height: 800,
+            scaleX: 0.5704099821746881,
+            scaleY: 0.4,
+            angle: -20,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-002-thunder2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 800,
+            top: 1480,
+            width: 561,
+            height: 800,
+            scaleX: 0.5704099821746881,
+            scaleY: 0.4,
+            angle: 25,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 480,
+            width: 920,
+            height: 60,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2605 ONE DAY ONLY \u2605"
+          },
+          {
+            id: "ar-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 40,
+            top: 580,
+            width: 1e3,
+            height: 320,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 220,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "BLACK\nFRIDAY"
+          },
+          {
+            id: "ar-002-discount",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 960,
+            width: 920,
+            height: 280,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 280,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "70% OFF"
+          },
+          {
+            id: "ar-002-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 290,
+            top: 1300,
+            width: 657,
+            height: 800,
+            scaleX: 0.76103500761035,
+            scaleY: 0.75,
+            angle: 2,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product photo"
+            }
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "ar-003",
       name: "Mother's Day",
       categoryId: "ads-retail",
-      tags: ["mother's day", "dia das maes", "mom", "flowers"],
+      tags: [
+        "mother's day",
+        "dia das maes",
+        "mom",
+        "flowers"
+      ],
       canvasBg: "#FCE7F3",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ar-003",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "ar-003-floral-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg", left: -80, top: -80, width: 480, height: 480, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-003-floral-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", left: 720, top: 1540, width: 440, height: 440, scaleX: 1, scaleY: 1, angle: 180, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-003-heart", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg", left: 460, top: 420, width: 160, height: 160, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-003-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 620, width: 920, height: 60, fill: "#BE185D", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "WITH LOVE" },
-          { id: "ar-003-title", name: "StaticText", type: "StaticText", left: 80, top: 720, width: 920, height: 260, fill: "#9D174D", fontFamily: "Lato", fontSize: 130, lineHeight: 1, textAlign: "center", text: "DIA DAS M\xC3ES" },
-          { id: "ar-003-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 240, top: 1020, width: 600, height: 720, scaleX: 1, scaleY: 1, angle: -4, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Gift photo" } },
-          { id: "ar-003-cta", name: "StaticText", type: "StaticText", left: 80, top: 1800, width: 920, height: 60, fill: "#9F1239", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "Shop the collection \u2192" }
+          {
+            id: "ar-003-floral-1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg",
+            left: -80,
+            top: -80,
+            width: 480,
+            height: 480,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-003-floral-2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
+            left: 720,
+            top: 1540,
+            width: 440,
+            height: 440,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 180,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-003-heart",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg",
+            left: 460,
+            top: 420,
+            width: 160,
+            height: 160,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-003-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 620,
+            width: 920,
+            height: 60,
+            fill: "#BE185D",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "WITH LOVE"
+          },
+          {
+            id: "ar-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 720,
+            width: 920,
+            height: 260,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 130,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "DIA DAS M\xC3ES"
+          },
+          {
+            id: "ar-003-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 240,
+            top: 1020,
+            width: 657,
+            height: 800,
+            scaleX: 0.91324200913242,
+            scaleY: 0.9,
+            angle: -4,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Gift photo"
+            }
+          },
+          {
+            id: "ar-003-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1800,
+            width: 920,
+            height: 60,
+            fill: "#9F1239",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Shop the collection \u2192"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "ar-004",
       name: "Weekend Special",
       categoryId: "ads-retail",
-      tags: ["weekend", "sale", "multi-product", "flyer"],
+      tags: [
+        "weekend",
+        "sale",
+        "multi-product",
+        "flyer"
+      ],
       canvasBg: "#FACC15",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ar-004",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "ar-004-rainbow", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png", left: 720, top: 60, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: 10, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ar-004-title", name: "StaticText", type: "StaticText", left: 60, top: 200, width: 1e3, height: 320, fill: "#7C2D12", fontFamily: "Lato", fontSize: 180, lineHeight: 0.92, textAlign: "left", text: "WEEKEND\nSPECIAL" },
-          { id: "ar-004-date", name: "StaticText", type: "StaticText", left: 60, top: 540, width: 1e3, height: 50, fill: "#7C2D12", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "left", text: "FRI \xB7 SAT \xB7 SUN" },
-          { id: "ar-004-polaroid-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 80, top: 660, width: 440, height: 540, scaleX: 1, scaleY: 1, angle: -5, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product A" } },
-          { id: "ar-004-polaroid-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 560, top: 720, width: 440, height: 540, scaleX: 1, scaleY: 1, angle: 6, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product B" } },
-          { id: "ar-004-pricebar", name: "StaticText", type: "StaticText", left: 60, top: 1380, width: 1e3, height: 280, fill: "#7C2D12", fontFamily: "Lato", fontSize: 240, lineHeight: 1, textAlign: "center", text: "UP TO 40%" },
-          { id: "ar-004-footer", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 1e3, height: 50, fill: "#7C2D12", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "Selected items only" }
+          {
+            id: "ar-004-rainbow",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png",
+            left: 720,
+            top: 60,
+            width: 801,
+            height: 565,
+            scaleX: 0.3995006242197253,
+            scaleY: 0.5663716814159292,
+            angle: 10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-004-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 200,
+            width: 1e3,
+            height: 320,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "WEEKEND\nSPECIAL"
+          },
+          {
+            id: "ar-004-date",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 540,
+            width: 1e3,
+            height: 50,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FRI \xB7 SAT \xB7 SUN"
+          },
+          {
+            id: "ar-004-polaroid-1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 80,
+            top: 660,
+            width: 657,
+            height: 800,
+            scaleX: 0.669710806697108,
+            scaleY: 0.675,
+            angle: -5,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product A"
+            }
+          },
+          {
+            id: "ar-004-polaroid-2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 560,
+            top: 720,
+            width: 657,
+            height: 800,
+            scaleX: 0.669710806697108,
+            scaleY: 0.675,
+            angle: 6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product B"
+            }
+          },
+          {
+            id: "ar-004-pricebar",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1380,
+            width: 1e3,
+            height: 280,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "UP TO 40%"
+          },
+          {
+            id: "ar-004-footer",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1740,
+            width: 1e3,
+            height: 50,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Selected items only"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sm-001",
       name: "Mega Sale Promo",
       categoryId: "social-media",
-      tags: ["sale", "promo", "instagram", "square"],
+      tags: [
+        "sale",
+        "promo",
+        "instagram",
+        "square"
+      ],
       canvasBg: "#DC2626",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sm-001",
-        frame: { width: 1080, height: 1080 },
+        frame: {
+          width: 1080,
+          height: 1080
+        },
         layers: [
-          { id: "sm-001-megaphone", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png", left: 740, top: 60, width: 280, height: 280, scaleX: 1, scaleY: 1, angle: 18, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sm-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 60, top: 100, width: 480, height: 580, scaleX: 1, scaleY: 1, angle: -5, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
-          { id: "sm-001-title", name: "StaticText", type: "StaticText", left: 60, top: 740, width: 960, height: 200, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 180, lineHeight: 0.95, textAlign: "center", text: "MEGA SALE" },
-          { id: "sm-001-sub", name: "StaticText", type: "StaticText", left: 60, top: 940, width: 960, height: 60, fill: "#FECACA", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "50% OFF \xB7 ENDS SUNDAY" }
+          {
+            id: "sm-001-megaphone",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png",
+            left: 740,
+            top: 60,
+            width: 800,
+            height: 800,
+            scaleX: 0.35,
+            scaleY: 0.35,
+            angle: 18,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sm-001-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 60,
+            top: 100,
+            width: 657,
+            height: 800,
+            scaleX: 0.730593607305936,
+            scaleY: 0.725,
+            angle: -5,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product photo"
+            }
+          },
+          {
+            id: "sm-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 740,
+            width: 960,
+            height: 200,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "MEGA SALE"
+          },
+          {
+            id: "sm-001-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 940,
+            width: 960,
+            height: 60,
+            fill: "#FECACA",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "50% OFF \xB7 ENDS SUNDAY"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sm-002",
       name: "New Drop",
       categoryId: "social-media",
-      tags: ["new", "drop", "launch", "minimal"],
+      tags: [
+        "new",
+        "drop",
+        "launch",
+        "minimal"
+      ],
       canvasBg: "#FEF3C7",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sm-002",
-        frame: { width: 1080, height: 1080 },
+        frame: {
+          width: 1080,
+          height: 1080
+        },
         layers: [
-          { id: "sm-002-floral", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_02.svg", left: -40, top: 700, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
-          { id: "sm-002-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 440, top: 90, width: 580, height: 700, scaleX: 1, scaleY: 1, angle: 6, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
-          { id: "sm-002-tape", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png", left: 600, top: 70, width: 240, height: 80, scaleX: 1, scaleY: 1, angle: -8, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sm-002-eyebrow", name: "StaticText", type: "StaticText", left: 60, top: 200, width: 380, height: 50, fill: "#92400E", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "left", text: "JUST LAUNCHED" },
-          { id: "sm-002-title", name: "StaticText", type: "StaticText", left: 60, top: 280, width: 380, height: 260, fill: "#7C2D12", fontFamily: "Lato", fontSize: 120, lineHeight: 1, textAlign: "left", text: "NEW\nDROP" },
-          { id: "sm-002-sub", name: "StaticText", type: "StaticText", left: 60, top: 880, width: 380, height: 80, fill: "#92400E", fontFamily: "Lato", fontSize: 30, lineHeight: 1.3, textAlign: "left", text: "Available\nthis Friday." }
+          {
+            id: "sm-002-floral",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_02.svg",
+            left: -40,
+            top: 700,
+            width: 380,
+            height: 380,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sm-002-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 440,
+            top: 90,
+            width: 657,
+            height: 800,
+            scaleX: 0.882800608828006,
+            scaleY: 0.875,
+            angle: 6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product photo"
+            }
+          },
+          {
+            id: "sm-002-tape",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
+            left: 600,
+            top: 70,
+            width: 786,
+            height: 800,
+            scaleX: 0.3053435114503817,
+            scaleY: 0.1,
+            angle: -8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sm-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 200,
+            width: 380,
+            height: 50,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "JUST LAUNCHED"
+          },
+          {
+            id: "sm-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 280,
+            width: 380,
+            height: 260,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 120,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "NEW\nDROP"
+          },
+          {
+            id: "sm-002-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 880,
+            width: 380,
+            height: 80,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 30,
+            lineHeight: 1.3,
+            textAlign: "left",
+            text: "Available\nthis Friday."
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sm-003",
       name: "Quote Card",
       categoryId: "social-media",
-      tags: ["quote", "minimal", "dark"],
+      tags: [
+        "quote",
+        "minimal",
+        "dark"
+      ],
       canvasBg: "#0F172A",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sm-003",
-        frame: { width: 1080, height: 1080 },
+        frame: {
+          width: 1080,
+          height: 1080
+        },
         layers: [
-          { id: "sm-003-light", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png", left: 440, top: 80, width: 200, height: 200, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sm-003-quote", name: "StaticText", type: "StaticText", left: 100, top: 360, width: 880, height: 320, fill: "#F8FAFC", fontFamily: "Lato", fontSize: 72, lineHeight: 1.3, textAlign: "center", text: "\u201CDesign like\nnobody is watching.\u201D" },
-          { id: "sm-003-author", name: "StaticText", type: "StaticText", left: 100, top: 760, width: 880, height: 50, fill: "#94A3B8", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "\u2014 ANON" }
+          {
+            id: "sm-003-light",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: 440,
+            top: 80,
+            width: 540,
+            height: 800,
+            scaleX: 0.37037037037037035,
+            scaleY: 0.25,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sm-003-quote",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 360,
+            width: 880,
+            height: 320,
+            fill: "#F8FAFC",
+            fontFamily: "Lato",
+            fontSize: 72,
+            lineHeight: 1.3,
+            textAlign: "center",
+            text: "\u201CDesign like\nnobody is watching.\u201D"
+          },
+          {
+            id: "sm-003-author",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 760,
+            width: 880,
+            height: 50,
+            fill: "#94A3B8",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2014 ANON"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "ps-001",
       name: "Grand Opening",
       categoryId: "posters",
-      tags: ["opening", "announcement", "elegant"],
+      tags: [
+        "opening",
+        "announcement",
+        "elegant"
+      ],
       canvasBg: "#FFFBEB",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ps-001",
-        frame: { width: 1240, height: 1754 },
+        frame: {
+          width: 1240,
+          height: 1754
+        },
         layers: [
-          { id: "ps-001-floral-tl", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_01.svg", left: -40, top: -40, width: 360, height: 360, scaleX: 1, scaleY: 1, angle: 0, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
-          { id: "ps-001-floral-br", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_04.svg", left: 880, top: 1400, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 180, opacity: 0.9, originX: "left", originY: "top", metadata: {} },
-          { id: "ps-001-eyebrow", name: "StaticText", type: "StaticText", left: 100, top: 380, width: 1040, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "\u2605 EST. 2026 \u2605" },
-          { id: "ps-001-title", name: "StaticText", type: "StaticText", left: 60, top: 480, width: 1120, height: 360, fill: "#0F172A", fontFamily: "Lato", fontSize: 160, lineHeight: 1, textAlign: "center", text: "GRAND\nOPENING" },
-          { id: "ps-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 320, top: 880, width: 600, height: 720, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Storefront photo" } },
-          { id: "ps-001-cta", name: "StaticText", type: "StaticText", left: 100, top: 1640, width: 1040, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 36, lineHeight: 1.2, textAlign: "center", text: "Saturday, March 15 \xB7 10AM" }
+          {
+            id: "ps-001-floral-tl",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_01.svg",
+            left: -40,
+            top: -40,
+            width: 360,
+            height: 360,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ps-001-floral-br",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_04.svg",
+            left: 880,
+            top: 1400,
+            width: 380,
+            height: 380,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 180,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ps-001-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 380,
+            width: 1040,
+            height: 60,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2605 EST. 2026 \u2605"
+          },
+          {
+            id: "ps-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 480,
+            width: 1120,
+            height: 360,
+            fill: "#0F172A",
+            fontFamily: "Lato",
+            fontSize: 160,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "GRAND\nOPENING"
+          },
+          {
+            id: "ps-001-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 320,
+            top: 880,
+            width: 657,
+            height: 800,
+            scaleX: 0.91324200913242,
+            scaleY: 0.9,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Storefront photo"
+            }
+          },
+          {
+            id: "ps-001-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 1640,
+            width: 1040,
+            height: 60,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Saturday, March 15 \xB7 10AM"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "ps-002",
       name: "Sale Poster",
       categoryId: "posters",
-      tags: ["sale", "promo", "dramatic"],
+      tags: [
+        "sale",
+        "promo",
+        "dramatic"
+      ],
       canvasBg: "#FEE2E2",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ps-002",
-        frame: { width: 1240, height: 1754 },
+        frame: {
+          width: 1240,
+          height: 1754
+        },
         layers: [
-          { id: "ps-002-thunder", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 880, top: 80, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: 15, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ps-002-eyebrow", name: "StaticText", type: "StaticText", left: 100, top: 320, width: 1040, height: 60, fill: "#991B1B", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "LIMITED TIME" },
-          { id: "ps-002-title", name: "StaticText", type: "StaticText", left: 60, top: 440, width: 1120, height: 380, fill: "#7F1D1D", fontFamily: "Lato", fontSize: 280, lineHeight: 0.95, textAlign: "center", text: "MEGA\nSALE" },
-          { id: "ps-002-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 320, top: 880, width: 600, height: 660, scaleX: 1, scaleY: 1, angle: -3, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Product photo" } },
-          { id: "ps-002-price", name: "StaticText", type: "StaticText", left: 100, top: 1580, width: 1040, height: 120, fill: "#7F1D1D", fontFamily: "Lato", fontSize: 120, lineHeight: 1, textAlign: "center", text: "FROM $9.99" }
+          {
+            id: "ps-002-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 880,
+            top: 80,
+            width: 561,
+            height: 800,
+            scaleX: 0.5704099821746881,
+            scaleY: 0.4,
+            angle: 15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ps-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 320,
+            width: 1040,
+            height: 60,
+            fill: "#991B1B",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "LIMITED TIME"
+          },
+          {
+            id: "ps-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 440,
+            width: 1120,
+            height: 380,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 280,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "MEGA\nSALE"
+          },
+          {
+            id: "ps-002-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 320,
+            top: 880,
+            width: 657,
+            height: 800,
+            scaleX: 0.91324200913242,
+            scaleY: 0.825,
+            angle: -3,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Product photo"
+            }
+          },
+          {
+            id: "ps-002-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 1580,
+            width: 1040,
+            height: 120,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 120,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "FROM $9.99"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "ps-003",
       name: "Minimal Promo",
       categoryId: "posters",
-      tags: ["minimal", "modern", "clean"],
+      tags: [
+        "minimal",
+        "modern",
+        "clean"
+      ],
       canvasBg: "#F5F5F4",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ps-003",
-        frame: { width: 1240, height: 1754 },
+        frame: {
+          width: 1240,
+          height: 1754
+        },
         layers: [
-          { id: "ps-003-doodle", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_camera.svg", left: 920, top: 200, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: 12, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "ps-003-eyebrow", name: "StaticText", type: "StaticText", left: 100, top: 240, width: 600, height: 50, fill: "#78716C", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "left", text: "VOL. 01 \xB7 2026" },
-          { id: "ps-003-title", name: "StaticText", type: "StaticText", left: 100, top: 340, width: 1040, height: 360, fill: "#1C1917", fontFamily: "Lato", fontSize: 200, lineHeight: 0.92, textAlign: "left", text: "less\nis\nmore." },
-          { id: "ps-003-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 380, top: 900, width: 540, height: 640, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Hero image" } },
-          { id: "ps-003-foot", name: "StaticText", type: "StaticText", left: 100, top: 1600, width: 1040, height: 80, fill: "#44403C", fontFamily: "Lato", fontSize: 36, lineHeight: 1.3, textAlign: "left", text: "A design quarterly\nstudio.example" }
+          {
+            id: "ps-003-doodle",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_camera.svg",
+            left: 920,
+            top: 200,
+            width: 220,
+            height: 220,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 12,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ps-003-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 240,
+            width: 600,
+            height: 50,
+            fill: "#78716C",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "VOL. 01 \xB7 2026"
+          },
+          {
+            id: "ps-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 340,
+            width: 1040,
+            height: 360,
+            fill: "#1C1917",
+            fontFamily: "Lato",
+            fontSize: 200,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "less\nis\nmore."
+          },
+          {
+            id: "ps-003-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 380,
+            top: 900,
+            width: 657,
+            height: 800,
+            scaleX: 0.821917808219178,
+            scaleY: 0.8,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Hero image"
+            }
+          },
+          {
+            id: "ps-003-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 1600,
+            width: 1040,
+            height: 80,
+            fill: "#44403C",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.3,
+            textAlign: "left",
+            text: "A design quarterly\nstudio.example"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "bn-001",
       name: "Summer Collection",
       categoryId: "banners",
-      tags: ["summer", "banner", "wide"],
+      tags: [
+        "summer",
+        "banner",
+        "wide"
+      ],
       canvasBg: "#0EA5E9",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-bn-001",
-        frame: { width: 1500, height: 500 },
+        frame: {
+          width: 1500,
+          height: 500
+        },
         layers: [
-          { id: "bn-001-doodle", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg", left: 1240, top: 40, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -10, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "bn-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 60, top: 30, width: 380, height: 440, scaleX: 1, scaleY: 1, angle: -7, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Hero image" } },
-          { id: "bn-001-title", name: "StaticText", type: "StaticText", left: 500, top: 140, width: 880, height: 140, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 110, lineHeight: 1, textAlign: "left", text: "SUMMER COLLECTION" },
-          { id: "bn-001-sub", name: "StaticText", type: "StaticText", left: 500, top: 300, width: 880, height: 60, fill: "#E0F2FE", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "left", text: "Fresh styles, breezy fits \u2014 shop now \u203A" }
+          {
+            id: "bn-001-doodle",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg",
+            left: 1240,
+            top: 40,
+            width: 220,
+            height: 220,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "bn-001-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 60,
+            top: 30,
+            width: 657,
+            height: 800,
+            scaleX: 0.578386605783866,
+            scaleY: 0.55,
+            angle: -7,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Hero image"
+            }
+          },
+          {
+            id: "bn-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 500,
+            top: 140,
+            width: 880,
+            height: 140,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 110,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "SUMMER COLLECTION"
+          },
+          {
+            id: "bn-001-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 500,
+            top: 300,
+            width: 880,
+            height: 60,
+            fill: "#E0F2FE",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "Fresh styles, breezy fits \u2014 shop now \u203A"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "bn-002",
       name: "BOGO Banner",
       categoryId: "banners",
-      tags: ["bogo", "discount", "banner"],
+      tags: [
+        "bogo",
+        "discount",
+        "banner"
+      ],
       canvasBg: "#FACC15",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-bn-002",
-        frame: { width: 1500, height: 500 },
+        frame: {
+          width: 1500,
+          height: 500
+        },
         layers: [
-          { id: "bn-002-megaphone", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png", left: 60, top: 80, width: 320, height: 320, scaleX: 1, scaleY: 1, angle: -15, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "bn-002-title", name: "StaticText", type: "StaticText", left: 420, top: 80, width: 1020, height: 200, fill: "#7C2D12", fontFamily: "Lato", fontSize: 170, lineHeight: 1, textAlign: "left", text: "BUY 1 GET 1" },
-          { id: "bn-002-sub", name: "StaticText", type: "StaticText", left: 420, top: 300, width: 1020, height: 60, fill: "#7C2D12", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "left", text: "ON ALL SELECTED ITEMS" },
-          { id: "bn-002-foot", name: "StaticText", type: "StaticText", left: 420, top: 380, width: 1020, height: 50, fill: "#7C2D12", fontFamily: "Lato", fontSize: 28, lineHeight: 1.2, textAlign: "left", text: "Ends Sunday at midnight." }
+          {
+            id: "bn-002-megaphone",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png",
+            left: 60,
+            top: 80,
+            width: 800,
+            height: 800,
+            scaleX: 0.4,
+            scaleY: 0.4,
+            angle: -15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "bn-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 420,
+            top: 80,
+            width: 1020,
+            height: 200,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 170,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "BUY 1 GET 1"
+          },
+          {
+            id: "bn-002-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 420,
+            top: 300,
+            width: 1020,
+            height: 60,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "ON ALL SELECTED ITEMS"
+          },
+          {
+            id: "bn-002-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 420,
+            top: 380,
+            width: 1020,
+            height: 50,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "Ends Sunday at midnight."
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "cd-001",
       name: "Birthday Card",
       categoryId: "cards",
-      tags: ["birthday", "celebration", "card"],
+      tags: [
+        "birthday",
+        "celebration",
+        "card"
+      ],
       canvasBg: "#FCE7F3",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-cd-001",
-        frame: { width: 1200, height: 1200 },
+        frame: {
+          width: 1200,
+          height: 1200
+        },
         layers: [
-          { id: "cd-001-floral-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_06.svg", left: -40, top: -40, width: 360, height: 360, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "cd-001-floral-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_08.svg", left: 880, top: 860, width: 360, height: 360, scaleX: 1, scaleY: 1, angle: 180, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "cd-001-polaroid", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png", left: 340, top: 220, width: 520, height: 520, scaleX: 1, scaleY: 1, angle: -4, opacity: 1, originX: "left", originY: "top", metadata: { placeholder: true, label: "Photo" } },
-          { id: "cd-001-title", name: "StaticText", type: "StaticText", left: 80, top: 800, width: 1040, height: 200, fill: "#9D174D", fontFamily: "Lato", fontSize: 130, lineHeight: 1, textAlign: "center", text: "HAPPY BIRTHDAY" },
-          { id: "cd-001-sub", name: "StaticText", type: "StaticText", left: 80, top: 1020, width: 1040, height: 60, fill: "#BE185D", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "Wishing you a sweet year ahead \u{1F382}" }
+          {
+            id: "cd-001-floral-1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_06.svg",
+            left: -40,
+            top: -40,
+            width: 360,
+            height: 360,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "cd-001-floral-2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_08.svg",
+            left: 880,
+            top: 860,
+            width: 360,
+            height: 360,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 180,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "cd-001-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 340,
+            top: 220,
+            width: 657,
+            height: 800,
+            scaleX: 0.791476407914764,
+            scaleY: 0.65,
+            angle: -4,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Photo"
+            }
+          },
+          {
+            id: "cd-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 800,
+            width: 1040,
+            height: 200,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 130,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "HAPPY BIRTHDAY"
+          },
+          {
+            id: "cd-001-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1020,
+            width: 1040,
+            height: 60,
+            fill: "#BE185D",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Wishing you a sweet year ahead \u{1F382}"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "cd-002",
       name: "Save the Date",
       categoryId: "cards",
-      tags: ["wedding", "invite", "save the date"],
+      tags: [
+        "wedding",
+        "invite",
+        "save the date"
+      ],
       canvasBg: "#FFE4E6",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-cd-002",
-        frame: { width: 1200, height: 1200 },
+        frame: {
+          width: 1200,
+          height: 1200
+        },
         layers: [
-          { id: "cd-002-floral-1", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_09.svg", left: -20, top: 880, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "cd-002-floral-2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_10.svg", left: 840, top: -40, width: 380, height: 380, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "cd-002-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 280, width: 1040, height: 60, fill: "#9F1239", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "WE ARE GETTING MARRIED" },
-          { id: "cd-002-title", name: "StaticText", type: "StaticText", left: 80, top: 400, width: 1040, height: 200, fill: "#881337", fontFamily: "Lato", fontSize: 140, lineHeight: 1, textAlign: "center", text: "Save the Date" },
-          { id: "cd-002-names", name: "StaticText", type: "StaticText", left: 80, top: 700, width: 1040, height: 80, fill: "#9F1239", fontFamily: "Lato", fontSize: 56, lineHeight: 1.2, textAlign: "center", text: "ALEX & SAM" },
-          { id: "cd-002-date", name: "StaticText", type: "StaticText", left: 80, top: 820, width: 1040, height: 60, fill: "#9F1239", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "SEPTEMBER \xB7 14 \xB7 2026" }
+          {
+            id: "cd-002-floral-1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_09.svg",
+            left: -20,
+            top: 880,
+            width: 380,
+            height: 380,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "cd-002-floral-2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_10.svg",
+            left: 840,
+            top: -40,
+            width: 380,
+            height: 380,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "cd-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 280,
+            width: 1040,
+            height: 60,
+            fill: "#9F1239",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "WE ARE GETTING MARRIED"
+          },
+          {
+            id: "cd-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 400,
+            width: 1040,
+            height: 200,
+            fill: "#881337",
+            fontFamily: "Lato",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Save the Date"
+          },
+          {
+            id: "cd-002-names",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 700,
+            width: 1040,
+            height: 80,
+            fill: "#9F1239",
+            fontFamily: "Lato",
+            fontSize: 56,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "ALEX & SAM"
+          },
+          {
+            id: "cd-002-date",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 820,
+            width: 1040,
+            height: 60,
+            fill: "#9F1239",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "SEPTEMBER \xB7 14 \xB7 2026"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-001",
       name: "Cafe Daily Brew",
       categoryId: "signage",
-      tags: ["cafe", "coffee", "food", "restaurant", "menu"],
+      tags: [
+        "cafe",
+        "coffee",
+        "food",
+        "restaurant",
+        "menu"
+      ],
       canvasBg: "#FEF3C7",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-001",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-001-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-001-floral", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg", left: 820, top: 1140, width: 260, height: 260, scaleX: 1, scaleY: 1, angle: 12, opacity: 0.6, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-001-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1180, width: 920, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "\u2605 FRESHLY BREWED \u2605" },
-          { id: "sg-001-title", name: "StaticText", type: "StaticText", left: 60, top: 1260, width: 960, height: 200, fill: "#7C2D12", fontFamily: "Lato", fontSize: 150, lineHeight: 1, textAlign: "center", text: "DAILY BREW" },
-          { id: "sg-001-price", name: "StaticText", type: "StaticText", left: 60, top: 1480, width: 960, height: 220, fill: "#7C2D12", fontFamily: "Lato", fontSize: 220, lineHeight: 1, textAlign: "center", text: "$4.50" },
-          { id: "sg-001-sub", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 60, fill: "#92400E", fontFamily: "Lato", fontSize: 36, lineHeight: 1.2, textAlign: "center", text: "Mon \u2014 Fri \xB7 7AM \u2013 11AM" }
+          {
+            id: "sg-001-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=1200&fit=crop&q=80&auto=format",
+            left: -60,
+            top: 440,
+            width: 1200,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -12,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-001-tape",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
+            left: 400,
+            top: 360,
+            width: 786,
+            height: 800,
+            scaleX: 0.3816793893129771,
+            scaleY: 0.125,
+            angle: -18,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-001-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 140,
+            width: 920,
+            height: 60,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2605 FRESHLY BREWED \u2605"
+          },
+          {
+            id: "sg-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: -80,
+            top: 180,
+            width: 1240,
+            height: 300,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "DAILY BREW"
+          },
+          {
+            id: "sg-001-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 660,
+            top: 1580,
+            width: 360,
+            height: 220,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 1,
+            textAlign: "right",
+            text: "$4.5"
+          },
+          {
+            id: "sg-001-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1780,
+            width: 920,
+            height: 60,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "Mon \u2014 Fri \xB7 7AM \u2013 11AM"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-002",
       name: "Burger Special",
       categoryId: "signage",
-      tags: ["burger", "food", "restaurant", "fast food", "menu"],
+      tags: [
+        "burger",
+        "food",
+        "restaurant",
+        "fast food",
+        "menu"
+      ],
       canvasBg: "#B91C1C",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-002",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-002-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-002-thunder", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 60, top: 1140, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -15, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-002-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FACC15", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "TODAY'S SPECIAL" },
-          { id: "sg-002-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 180, lineHeight: 0.95, textAlign: "center", text: "DOUBLE\nSTACK" },
-          { id: "sg-002-price", name: "StaticText", type: "StaticText", left: 60, top: 1620, width: 960, height: 180, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 160, lineHeight: 1, textAlign: "center", text: "ONLY $7.99" }
+          {
+            id: "sg-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 120,
+            width: 1080,
+            height: 400,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "DOUBLE\nSTACK"
+          },
+          {
+            id: "sg-002-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=1400&h=1400&fit=crop&q=80&auto=format",
+            left: -200,
+            top: 500,
+            width: 1480,
+            height: 1480,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-002-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 60,
+            top: 540,
+            width: 561,
+            height: 800,
+            scaleX: 0.5704099821746881,
+            scaleY: 0.4,
+            angle: 15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1700,
+            width: 920,
+            height: 60,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "TODAY'S SPECIAL"
+          },
+          {
+            id: "sg-002-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1760,
+            width: 920,
+            height: 140,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 120,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "$7.99"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-003",
       name: "Fashion New Arrivals",
       categoryId: "signage",
-      tags: ["fashion", "boutique", "apparel", "retail", "store"],
+      tags: [
+        "fashion",
+        "boutique",
+        "apparel",
+        "retail",
+        "store"
+      ],
       canvasBg: "#0A0A0A",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-003",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-003-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1200, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-003-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1280, width: 920, height: 60, fill: "#9CA3AF", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "SS / 26" },
-          { id: "sg-003-title", name: "StaticText", type: "StaticText", left: 60, top: 1380, width: 960, height: 280, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 150, lineHeight: 0.92, textAlign: "center", text: "NEW\nARRIVALS" },
-          { id: "sg-003-cta", name: "StaticText", type: "StaticText", left: 60, top: 1720, width: 960, height: 60, fill: "#D4D4D8", fontFamily: "Lato", fontSize: 38, lineHeight: 1.2, textAlign: "center", text: "SHOP IN-STORE NOW" }
+          {
+            id: "sg-003-photo1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format",
+            left: -120,
+            top: -80,
+            width: 800,
+            height: 1e3,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-003-photo2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format",
+            left: 400,
+            top: 460,
+            width: 800,
+            height: 1e3,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-003-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1400,
+            width: 920,
+            height: 60,
+            fill: "#9CA3AF",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "SS / 26"
+          },
+          {
+            id: "sg-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1480,
+            width: 960,
+            height: 280,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 170,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "NEW\nARRIVALS"
+          },
+          {
+            id: "sg-003-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1780,
+            width: 960,
+            height: 60,
+            fill: "#D4D4D8",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "SHOP IN-STORE NOW"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-004",
       name: "Spa Wellness",
       categoryId: "signage",
-      tags: ["spa", "beauty", "wellness", "salon", "skincare"],
+      tags: [
+        "spa",
+        "beauty",
+        "wellness",
+        "salon",
+        "skincare"
+      ],
       canvasBg: "#FCE7F3",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-004",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-004-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-004-floral", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", left: 40, top: 1140, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: -10, opacity: 0.85, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-004-floral2", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg", left: 800, top: 1700, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: 170, opacity: 0.85, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-004-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1240, width: 920, height: 60, fill: "#BE185D", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "WELLNESS \xB7 CARE \xB7 BLOOM" },
-          { id: "sg-004-title", name: "StaticText", type: "StaticText", left: 60, top: 1340, width: 960, height: 280, fill: "#9D174D", fontFamily: "Lato", fontSize: 150, lineHeight: 0.95, textAlign: "center", text: "RELAX\n& GLOW" },
-          { id: "sg-004-cta", name: "StaticText", type: "StaticText", left: 60, top: 1720, width: 960, height: 80, fill: "#9F1239", fontFamily: "Lato", fontSize: 42, lineHeight: 1.3, textAlign: "center", text: "Book your session today" }
+          {
+            id: "sg-004-floral-bg",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
+            left: -300,
+            top: -300,
+            width: 1600,
+            height: 1600,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -20,
+            opacity: 0.15,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-004-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 280,
+            top: 600,
+            width: 840,
+            height: 1280,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 4,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-004-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 180,
+            width: 920,
+            height: 60,
+            fill: "#BE185D",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "WELLNESS \xB7 CARE \xB7 BLOOM"
+          },
+          {
+            id: "sg-004-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 260,
+            width: 960,
+            height: 280,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "left",
+            text: "RELAX\n& GLOW"
+          },
+          {
+            id: "sg-004-floral2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg",
+            left: 60,
+            top: 700,
+            width: 320,
+            height: 320,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 45,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-004-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: -20,
+            top: 1600,
+            width: 460,
+            height: 160,
+            fill: "#9F1239",
+            fontFamily: "Lato",
+            fontSize: 60,
+            lineHeight: 1.3,
+            textAlign: "center",
+            text: "Book your\nsession"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-005",
       name: "Gym Membership",
       categoryId: "signage",
-      tags: ["gym", "fitness", "membership", "workout", "sports"],
+      tags: [
+        "gym",
+        "fitness",
+        "membership",
+        "workout",
+        "sports"
+      ],
       canvasBg: "#FACC15",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-005",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-005-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-005-thunder", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png", left: 820, top: 1120, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: 18, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-005-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#7C2D12", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "NEW YEAR \xB7 NEW YOU" },
-          { id: "sg-005-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#7C2D12", fontFamily: "Lato", fontSize: 180, lineHeight: 0.92, textAlign: "center", text: "GET FIT\nNOW" },
-          { id: "sg-005-price", name: "StaticText", type: "StaticText", left: 60, top: 1640, width: 960, height: 180, fill: "#7C2D12", fontFamily: "Lato", fontSize: 140, lineHeight: 1, textAlign: "center", text: "$29 / MONTH" }
+          {
+            id: "sg-005-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-005-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 820,
+            top: 1120,
+            width: 561,
+            height: 800,
+            scaleX: 0.42780748663101603,
+            scaleY: 0.3,
+            angle: 18,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-005-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1200,
+            width: 920,
+            height: 60,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "NEW YEAR \xB7 NEW YOU"
+          },
+          {
+            id: "sg-005-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1300,
+            width: 960,
+            height: 280,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 0.92,
+            textAlign: "center",
+            text: "GET FIT\nNOW"
+          },
+          {
+            id: "sg-005-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1640,
+            width: 960,
+            height: 180,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$29 / MONTH"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-006",
       name: "Real Estate Open House",
       categoryId: "signage",
-      tags: ["real estate", "house", "property", "open house", "listing"],
+      tags: [
+        "real estate",
+        "house",
+        "property",
+        "open house",
+        "listing"
+      ],
       canvasBg: "#0F172A",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-006",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-006-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-006-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FBBF24", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "\u2605 THIS SATURDAY \u2605" },
-          { id: "sg-006-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 160, lineHeight: 0.95, textAlign: "center", text: "OPEN\nHOUSE" },
-          { id: "sg-006-address", name: "StaticText", type: "StaticText", left: 60, top: 1660, width: 960, height: 60, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "224 ELM STREET" },
-          { id: "sg-006-time", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 60, fill: "#94A3B8", fontFamily: "Lato", fontSize: 36, lineHeight: 1.2, textAlign: "center", text: "10 AM \u2014 2 PM \xB7 Sat May 24" }
+          {
+            id: "sg-006-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-006-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1200,
+            width: 920,
+            height: 60,
+            fill: "#FBBF24",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2605 THIS SATURDAY \u2605"
+          },
+          {
+            id: "sg-006-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1300,
+            width: 960,
+            height: 280,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 160,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "OPEN\nHOUSE"
+          },
+          {
+            id: "sg-006-address",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1660,
+            width: 960,
+            height: 60,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "224 ELM STREET"
+          },
+          {
+            id: "sg-006-time",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1740,
+            width: 960,
+            height: 60,
+            fill: "#94A3B8",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "10 AM \u2014 2 PM \xB7 Sat May 24"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-007",
       name: "Auto Showcase",
       categoryId: "signage",
-      tags: ["automotive", "car", "dealership", "vehicle", "financing"],
+      tags: [
+        "automotive",
+        "car",
+        "dealership",
+        "vehicle",
+        "financing"
+      ],
       canvasBg: "#18181B",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-007",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-007-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-007-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FBBF24", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "PERFORMANCE \xB7 2026 EDITION" },
-          { id: "sg-007-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 170, lineHeight: 0.95, textAlign: "center", text: "DRIVE\nTODAY" },
-          { id: "sg-007-price", name: "StaticText", type: "StaticText", left: 60, top: 1640, width: 960, height: 80, fill: "#FBBF24", fontFamily: "Lato", fontSize: 64, lineHeight: 1, textAlign: "center", text: "0% APR \xB7 60 MO" },
-          { id: "sg-007-foot", name: "StaticText", type: "StaticText", left: 60, top: 1760, width: 960, height: 60, fill: "#A1A1AA", fontFamily: "Lato", fontSize: 32, lineHeight: 1.2, textAlign: "center", text: "Subject to approved credit" }
+          {
+            id: "sg-007-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-007-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1200,
+            width: 920,
+            height: 60,
+            fill: "#FBBF24",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "PERFORMANCE \xB7 2026 EDITION"
+          },
+          {
+            id: "sg-007-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1300,
+            width: 960,
+            height: 280,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 170,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "DRIVE\nTODAY"
+          },
+          {
+            id: "sg-007-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1640,
+            width: 960,
+            height: 80,
+            fill: "#FBBF24",
+            fontFamily: "Lato",
+            fontSize: 64,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "0% APR \xB7 60 MO"
+          },
+          {
+            id: "sg-007-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1760,
+            width: 960,
+            height: 60,
+            fill: "#A1A1AA",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Subject to approved credit"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-008",
       name: "Travel Escape",
       categoryId: "signage",
-      tags: ["travel", "vacation", "beach", "destination", "tourism", "hotel"],
+      tags: [
+        "travel",
+        "vacation",
+        "beach",
+        "destination",
+        "tourism",
+        "hotel"
+      ],
       canvasBg: "#0EA5E9",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-008",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-008-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-008-saturn", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg", left: 820, top: 1140, width: 220, height: 220, scaleX: 1, scaleY: 1, angle: -12, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-008-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "BOOK BY MAY 31" },
-          { id: "sg-008-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FFFFFF", fontFamily: "Lato", fontSize: 200, lineHeight: 0.95, textAlign: "center", text: "ESCAPE" },
-          { id: "sg-008-price", name: "StaticText", type: "StaticText", left: 60, top: 1620, width: 960, height: 140, fill: "#FEF3C7", fontFamily: "Lato", fontSize: 110, lineHeight: 1, textAlign: "center", text: "FROM $499" },
-          { id: "sg-008-sub", name: "StaticText", type: "StaticText", left: 60, top: 1780, width: 960, height: 60, fill: "#E0F2FE", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "center", text: "3 nights \xB7 all-inclusive \xB7 per person" }
+          {
+            id: "sg-008-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-008-saturn",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg",
+            left: 820,
+            top: 1140,
+            width: 220,
+            height: 220,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -12,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-008-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1200,
+            width: 920,
+            height: 60,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "BOOK BY MAY 31"
+          },
+          {
+            id: "sg-008-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1300,
+            width: 960,
+            height: 280,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "ESCAPE"
+          },
+          {
+            id: "sg-008-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1620,
+            width: 960,
+            height: 140,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 110,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "FROM $499"
+          },
+          {
+            id: "sg-008-sub",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1780,
+            width: 960,
+            height: 60,
+            fill: "#E0F2FE",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "3 nights \xB7 all-inclusive \xB7 per person"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-009",
       name: "Pharmacy Health Check",
       categoryId: "signage",
-      tags: ["pharmacy", "healthcare", "clinic", "health", "medical"],
+      tags: [
+        "pharmacy",
+        "healthcare",
+        "clinic",
+        "health",
+        "medical"
+      ],
       canvasBg: "#065F46",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-009",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-009-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-009-heart", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg", left: 60, top: 1140, width: 200, height: 200, scaleX: 1, scaleY: 1, angle: -10, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-009-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#A7F3D0", fontFamily: "Lato", fontSize: 40, lineHeight: 1.2, textAlign: "center", text: "COMMUNITY HEALTH \xB7 MAY" },
-          { id: "sg-009-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 280, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 150, lineHeight: 0.95, textAlign: "center", text: "FREE\nHEALTH CHECK" },
-          { id: "sg-009-foot", name: "StaticText", type: "StaticText", left: 60, top: 1660, width: 960, height: 60, fill: "#A7F3D0", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "Walk-ins welcome" },
-          { id: "sg-009-time", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 60, fill: "#D1FAE5", fontFamily: "Lato", fontSize: 34, lineHeight: 1.2, textAlign: "center", text: "Sat May 24 \xB7 9 AM \u2013 5 PM" }
+          {
+            id: "sg-009-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-009-heart",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg",
+            left: 60,
+            top: 1140,
+            width: 200,
+            height: 200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-009-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1200,
+            width: 920,
+            height: 60,
+            fill: "#A7F3D0",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "COMMUNITY HEALTH \xB7 MAY"
+          },
+          {
+            id: "sg-009-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1300,
+            width: 960,
+            height: 280,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 150,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "FREE\nHEALTH CHECK"
+          },
+          {
+            id: "sg-009-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1660,
+            width: 960,
+            height: 60,
+            fill: "#A7F3D0",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Walk-ins welcome"
+          },
+          {
+            id: "sg-009-time",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1740,
+            width: 960,
+            height: 60,
+            fill: "#D1FAE5",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Sat May 24 \xB7 9 AM \u2013 5 PM"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
       }
     },
     {
       id: "sg-010",
       name: "Tech Launch",
       categoryId: "signage",
-      tags: ["tech", "electronics", "gadget", "launch", "product"],
+      tags: [
+        "tech",
+        "electronics",
+        "gadget",
+        "launch",
+        "product"
+      ],
       canvasBg: "#020617",
-      workspaceBg: "#1a1a2e",
+      workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sg-010",
-        frame: { width: 1080, height: 1920 },
+        frame: {
+          width: 1080,
+          height: 1920
+        },
         layers: [
-          { id: "sg-010-photo", name: "StaticImage", type: "StaticImage", src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1080&h=1100&fit=crop&q=80&auto=format", left: 0, top: 0, width: 1080, height: 1100, scaleX: 1, scaleY: 1, angle: 0, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-010-light", name: "StaticImage", type: "StaticImage", src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png", left: 800, top: 1140, width: 240, height: 240, scaleX: 1, scaleY: 1, angle: 12, opacity: 1, originX: "left", originY: "top", metadata: {} },
-          { id: "sg-010-eyebrow", name: "StaticText", type: "StaticText", left: 80, top: 1200, width: 920, height: 60, fill: "#A78BFA", fontFamily: "Lato", fontSize: 42, lineHeight: 1.2, textAlign: "center", text: "AVAILABLE NOW" },
-          { id: "sg-010-title", name: "StaticText", type: "StaticText", left: 60, top: 1300, width: 960, height: 360, fill: "#FAFAFA", fontFamily: "Lato", fontSize: 170, lineHeight: 0.92, textAlign: "center", text: "NEXT-GEN\nIS HERE" },
-          { id: "sg-010-cta", name: "StaticText", type: "StaticText", left: 60, top: 1740, width: 960, height: 80, fill: "#C4B5FD", fontFamily: "Lato", fontSize: 44, lineHeight: 1.2, textAlign: "center", text: "Visit us in-store \u2192" }
+          {
+            id: "sg-010-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1080&h=1100&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-010-light",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: 800,
+            top: 1140,
+            width: 540,
+            height: 800,
+            scaleX: 0.4444444444444444,
+            scaleY: 0.3,
+            angle: 12,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-010-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1200,
+            width: 920,
+            height: 60,
+            fill: "#A78BFA",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "AVAILABLE NOW"
+          },
+          {
+            id: "sg-010-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1300,
+            width: 960,
+            height: 360,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 170,
+            lineHeight: 0.92,
+            textAlign: "center",
+            text: "NEXT-GEN\nIS HERE"
+          },
+          {
+            id: "sg-010-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1740,
+            width: 960,
+            height: 80,
+            fill: "#C4B5FD",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Visit us in-store \u2192"
+          }
         ],
-        metadata: { animated: false }
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-001",
+      name: "Smart Watch Promo",
+      categoryId: "tv-ads",
+      tags: [
+        "tech",
+        "watch",
+        "gadget",
+        "tv",
+        "horizontal"
+      ],
+      canvasBg: "#0F172A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-001",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "tv-001-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=1920&h=1080&fit=crop&q=80&auto=format",
+            left: 600,
+            top: -200,
+            width: 1400,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-001-light",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: 600,
+            top: 100,
+            width: 540,
+            height: 800,
+            scaleX: 0.7407407407407407,
+            scaleY: 0.5,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-001-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 160,
+            width: 800,
+            height: 60,
+            fill: "#38BDF8",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "INTRODUCING SERIES X"
+          },
+          {
+            id: "tv-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 240,
+            width: 1e3,
+            height: 400,
+            fill: "#F8FAFC",
+            fontFamily: "Lato",
+            fontSize: 260,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "TIME\nREDESIGNED"
+          },
+          {
+            id: "tv-001-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 780,
+            width: 800,
+            height: 120,
+            fill: "#38BDF8",
+            fontFamily: "Lato",
+            fontSize: 120,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "FROM $299"
+          },
+          {
+            id: "tv-001-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 920,
+            width: 800,
+            height: 60,
+            fill: "#94A3B8",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "Available now at all major retailers"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-002",
+      name: "King Size Combo",
+      categoryId: "tv-ads",
+      tags: [
+        "food",
+        "burger",
+        "combo",
+        "fast food",
+        "tv"
+      ],
+      canvasBg: "#B91C1C",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-002",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "tv-002-bg",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
+            left: -200,
+            top: -400,
+            width: 2e3,
+            height: 2e3,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -15,
+            opacity: 0.1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-002-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=1920&h=1080&fit=crop&q=80&auto=format",
+            left: -200,
+            top: 0,
+            width: 1100,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-002-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 740,
+            top: 120,
+            width: 561,
+            height: 800,
+            scaleX: 0.7130124777183601,
+            scaleY: 0.5,
+            angle: 25,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1e3,
+            top: 240,
+            width: 800,
+            height: 60,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 52,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "THE ULTIMATE MEAL"
+          },
+          {
+            id: "tv-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 800,
+            top: 320,
+            width: 1e3,
+            height: 400,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 280,
+            lineHeight: 0.9,
+            textAlign: "right",
+            text: "KING\nSIZE"
+          },
+          {
+            id: "tv-002-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1e3,
+            top: 860,
+            width: 800,
+            height: 120,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "right",
+            text: "$12.99"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-003",
+      name: "Summer Getaway",
+      categoryId: "tv-ads",
+      tags: [
+        "travel",
+        "vacation",
+        "resort",
+        "hotel",
+        "tv"
+      ],
+      canvasBg: "#0EA5E9",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-003",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "tv-003-bg",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1920&h=1080&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.4,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-003-polaroid",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            left: 660,
+            top: 100,
+            width: 657,
+            height: 800,
+            scaleX: 1.06544901065449,
+            scaleY: 1.05,
+            angle: 4,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {
+              placeholder: true,
+              label: "Destination Photo"
+            }
+          },
+          {
+            id: "tv-003-tape",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
+            left: 900,
+            top: 40,
+            width: 786,
+            height: 800,
+            scaleX: 0.3816793893129771,
+            scaleY: 0.125,
+            angle: -12,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 280,
+            width: 800,
+            height: 400,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "SUMMER\nVIBES"
+          },
+          {
+            id: "tv-003-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1360,
+            top: 600,
+            width: 460,
+            height: 280,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 140,
+            lineHeight: 0.9,
+            textAlign: "right",
+            text: "BOOK\nNOW"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "sg-011",
+      name: "Sneaker Drop",
+      categoryId: "signage",
+      tags: [
+        "shoes",
+        "sneakers",
+        "fashion",
+        "drop",
+        "retail"
+      ],
+      canvasBg: "#000000",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-011",
+        frame: {
+          width: 1080,
+          height: 1920
+        },
+        layers: [
+          {
+            id: "sg-011-title-bg",
+            name: "StaticText",
+            type: "StaticText",
+            left: -200,
+            top: 400,
+            width: 1480,
+            height: 600,
+            fill: "#1F2937",
+            fontFamily: "Lato",
+            fontSize: 380,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "DROP\n01"
+          },
+          {
+            id: "sg-011-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1552346154-21d32810baa3?w=1200&h=1200&fit=crop&q=80&auto=format",
+            left: -100,
+            top: 300,
+            width: 1280,
+            height: 1280,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -18,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-011-rainbow",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png",
+            left: 80,
+            top: 120,
+            width: 801,
+            height: 565,
+            scaleX: 0.449438202247191,
+            scaleY: 0.6371681415929203,
+            angle: -15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-011-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1480,
+            width: 920,
+            height: 60,
+            fill: "#D1D5DB",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "EXCLUSIVE RELEASE"
+          },
+          {
+            id: "sg-011-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1580,
+            width: 960,
+            height: 200,
+            fill: "#F9FAFB",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "AIR MAX"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "sg-012",
+      name: "Fitness Promo",
+      categoryId: "signage",
+      tags: [
+        "gym",
+        "fitness",
+        "workout",
+        "promo"
+      ],
+      canvasBg: "#DC2626",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-012",
+        frame: {
+          width: 1080,
+          height: 1920
+        },
+        layers: [
+          {
+            id: "sg-012-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1080&h=1920&fit=crop&q=80&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1920,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.5,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-012-tape",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
+            left: -80,
+            top: 1400,
+            width: 786,
+            height: 800,
+            scaleX: 0.5089058524173028,
+            scaleY: 0.125,
+            angle: -5,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-012-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1420,
+            width: 920,
+            height: 60,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "JOIN THE MOVEMENT"
+          },
+          {
+            id: "sg-012-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1500,
+            width: 960,
+            height: 300,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "NO\nEXCUSES"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "sg-013",
+      name: "Luxury Jewelry",
+      categoryId: "signage",
+      tags: [
+        "luxury",
+        "jewelry",
+        "boutique",
+        "fashion"
+      ],
+      canvasBg: "#020617",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-013",
+        frame: {
+          width: 1080,
+          height: 1920
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1515562141207-7a8efd38cd33?w=1080&h=1920&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1920,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.6,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 200,
+            width: 960,
+            height: 300,
+            fill: "#FDE047",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "ELEGANCE"
+          },
+          {
+            id: "l3",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1600,
+            width: 960,
+            height: 60,
+            fill: "#FEF08A",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "THE NEW COLLECTION"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "sg-014",
+      name: "Concert Event",
+      categoryId: "signage",
+      tags: [
+        "music",
+        "concert",
+        "event",
+        "nightlife"
+      ],
+      canvasBg: "#4C1D95",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-014",
+        frame: {
+          width: 1080,
+          height: 1920
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1200&h=1200&fit=crop&q=80",
+            left: -100,
+            top: -100,
+            width: 1280,
+            height: 1280,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 15,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1100,
+            width: 960,
+            height: 400,
+            fill: "#22D3EE",
+            fontFamily: "Lato",
+            fontSize: 260,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "LIVE\nMUSIC"
+          },
+          {
+            id: "l3",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1640,
+            width: 960,
+            height: 80,
+            fill: "#F8FAFC",
+            fontFamily: "Lato",
+            fontSize: 60,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FRIDAY 9PM"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "sg-015",
+      name: "Organic Market",
+      categoryId: "signage",
+      tags: [
+        "organic",
+        "food",
+        "market",
+        "grocery"
+      ],
+      canvasBg: "#14532D",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-015",
+        frame: {
+          width: 1080,
+          height: 1920
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1080&h=1920&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1920,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.8,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1500,
+            width: 960,
+            height: 200,
+            fill: "#BBF7D0",
+            fontFamily: "Lato",
+            fontSize: 160,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "FARM\nFRESH"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-004",
+      name: "Auto SUV",
+      categoryId: "tv-ads",
+      tags: [
+        "auto",
+        "car",
+        "suv",
+        "vehicle"
+      ],
+      canvasBg: "#1C1917",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-004",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.7,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 100,
+            width: 1720,
+            height: 260,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "CONQUER EVERY ROAD"
+          },
+          {
+            id: "l3",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 880,
+            width: 1720,
+            height: 60,
+            fill: "#D6D3D1",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "THE ALL NEW 2026 SUV"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-005",
+      name: "Streaming Series",
+      categoryId: "tv-ads",
+      tags: [
+        "movie",
+        "series",
+        "streaming",
+        "entertainment"
+      ],
+      canvasBg: "#09090B",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-005",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.5,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 400,
+            width: 1920,
+            height: 280,
+            fill: "#EF4444",
+            fontFamily: "Lato",
+            fontSize: 280,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "PREMIERES NOW"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-006",
+      name: "Iced Coffee",
+      categoryId: "tv-ads",
+      tags: [
+        "coffee",
+        "cafe",
+        "drink",
+        "morning"
+      ],
+      canvasBg: "#FCA5A5",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-006",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&h=1200&fit=crop&q=80",
+            left: -100,
+            top: -100,
+            width: 1200,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -5,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1100,
+            top: 300,
+            width: 700,
+            height: 400,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 200,
+            lineHeight: 0.9,
+            textAlign: "right",
+            text: "MORNING\nFUEL"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-007",
+      name: "Gaming Console",
+      categoryId: "tv-ads",
+      tags: [
+        "gaming",
+        "console",
+        "tech",
+        "entertainment"
+      ],
+      canvasBg: "#4C1D95",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-007",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.6,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 400,
+            width: 1e3,
+            height: 300,
+            fill: "#2DD4BF",
+            fontFamily: "Lato",
+            fontSize: 280,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "PLAY HARD"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-008",
+      name: "Winter Apparel",
+      categoryId: "tv-ads",
+      tags: [
+        "apparel",
+        "fashion",
+        "winter",
+        "clothes"
+      ],
+      canvasBg: "#E0F2FE",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-008",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&h=1200&fit=crop&q=80",
+            left: 700,
+            top: -100,
+            width: 1400,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 300,
+            width: 800,
+            height: 400,
+            fill: "#0369A1",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "WINTER\nIS HERE"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-009",
+      name: "Luxury Home",
+      categoryId: "tv-ads",
+      tags: [
+        "real estate",
+        "home",
+        "property",
+        "luxury"
+      ],
+      canvasBg: "#FFFFFF",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-009",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 800,
+            width: 800,
+            height: 160,
+            fill: "#1F2937",
+            fontFamily: "Lato",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "$2,400,000"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-010",
+      name: "Supermarket Deal",
+      categoryId: "tv-ads",
+      tags: [
+        "supermarket",
+        "groceries",
+        "deal",
+        "food"
+      ],
+      canvasBg: "#FACC15",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-010",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.3,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 200,
+            width: 1720,
+            height: 400,
+            fill: "#B91C1C",
+            fontFamily: "Lato",
+            fontSize: 320,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "BIG WEEKEND SALE"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-011",
+      name: "Laptop Tech",
+      categoryId: "tv-ads",
+      tags: [
+        "laptop",
+        "tech",
+        "computer",
+        "sale"
+      ],
+      canvasBg: "#F3F4F6",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-011",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200&h=1200&fit=crop&q=80",
+            left: -200,
+            top: 0,
+            width: 1200,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1e3,
+            top: 400,
+            width: 800,
+            height: 300,
+            fill: "#111827",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 0.9,
+            textAlign: "right",
+            text: "WORK\nANYWHERE"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-012",
+      name: "Fragrance",
+      categoryId: "tv-ads",
+      tags: [
+        "perfume",
+        "fragrance",
+        "beauty"
+      ],
+      canvasBg: "#FDF2F8",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-012",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.7,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 400,
+            width: 1720,
+            height: 200,
+            fill: "#831843",
+            fontFamily: "Lato",
+            fontSize: 180,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "EAU DE PARFUM"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-013",
+      name: "Credit Card",
+      categoryId: "tv-ads",
+      tags: [
+        "bank",
+        "credit card",
+        "finance"
+      ],
+      canvasBg: "#1E3A8A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-013",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.4,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 300,
+            width: 1720,
+            height: 400,
+            fill: "#DBEAFE",
+            fontFamily: "Lato",
+            fontSize: 260,
+            lineHeight: 0.9,
+            textAlign: "center",
+            text: "5% CASHBACK\nEVERYWHERE"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-014",
+      name: "Album Release",
+      categoryId: "tv-ads",
+      tags: [
+        "music",
+        "album",
+        "release",
+        "artist"
+      ],
+      canvasBg: "#000000",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-014",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=1200&fit=crop&q=80",
+            left: 800,
+            top: -100,
+            width: 1300,
+            height: 1300,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 400,
+            width: 800,
+            height: 300,
+            fill: "#FFFFFF",
+            fontFamily: "Lato",
+            fontSize: 240,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "NEW\nALBUM"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
+      }
+    },
+    {
+      id: "tv-015",
+      name: "Furniture Store",
+      categoryId: "tv-ads",
+      tags: [
+        "furniture",
+        "home",
+        "interior"
+      ],
+      canvasBg: "#FEF3C7",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-015",
+        frame: {
+          width: 1920,
+          height: 1080
+        },
+        layers: [
+          {
+            id: "l1",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&h=1080&fit=crop&q=80",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "l2",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 100,
+            width: 800,
+            height: 300,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 200,
+            lineHeight: 0.9,
+            textAlign: "left",
+            text: "MODERN\nLIVING"
+          }
+        ],
+        metadata: {
+          animated: false
+        }
       }
     }
   ]
@@ -9238,22 +12919,65 @@ var Frame = class extends Base_default {
     }
   };
   setBackgroundColor = (color) => {
-    const background = this.background;
-    if (background) {
-      background.set({
-        fill: color
+    let background = this.background;
+    if (!background) {
+      background = new fabric.Background({
+        type: "Background" /* BACKGROUND */,
+        name: "Initial Frame",
+        fill: color,
+        id: "background",
+        selectable: false,
+        hasControls: false,
+        lockMovementY: true,
+        lockMovementX: true,
+        strokeWidth: 0,
+        padding: 0,
+        evented: false,
+        width: this.frame.width,
+        height: this.frame.height,
+        left: this.frame.left,
+        top: this.frame.top,
+        originX: this.frame.originX,
+        originY: this.frame.originY,
+        shadow: this.config.shadow
       });
-      this.canvas.requestRenderAll();
-      this.editor.history.save();
+      this.canvas.insertAt(background, 1, false);
+    } else {
+      background.set({ fill: color });
+      background.dirty = true;
     }
+    this.canvas.requestRenderAll();
+    this.editor.history.save();
   };
   setBackgroundGradient = ({ angle, colors }) => {
-    const background = this.background;
-    if (background) {
-      fabric_default(background, angle, colors);
-      this.canvas.requestRenderAll();
-      this.editor.history.save();
+    let background = this.background;
+    if (!background) {
+      background = new fabric.Background({
+        type: "Background" /* BACKGROUND */,
+        name: "Initial Frame",
+        fill: "#ffffff",
+        id: "background",
+        selectable: false,
+        hasControls: false,
+        lockMovementY: true,
+        lockMovementX: true,
+        strokeWidth: 0,
+        padding: 0,
+        evented: false,
+        width: this.frame.width,
+        height: this.frame.height,
+        left: this.frame.left,
+        top: this.frame.top,
+        originX: this.frame.originX,
+        originY: this.frame.originY,
+        shadow: this.config.shadow
+      });
+      this.canvas.insertAt(background, 1, false);
     }
+    fabric_default(background, angle, colors);
+    background.dirty = true;
+    this.canvas.requestRenderAll();
+    this.editor.history.save();
   };
   getBoundingClientRect() {
     const frame = this.frame;
@@ -9892,7 +13616,8 @@ var Objects = class extends Base_default {
   };
   clear = () => {
     const frame = this.editor.frame.frame;
-    this.canvas.getObjects().forEach((object) => {
+    const objects = this.canvas.getObjects().slice();
+    objects.forEach((object) => {
       if (object.type !== "Frame" /* FRAME */) {
         this.canvas.remove(object);
       }
@@ -9904,7 +13629,8 @@ var Objects = class extends Base_default {
   };
   reset = () => {
     const background = this.editor.frame.background;
-    this.canvas.getObjects().forEach((object) => {
+    const objects = this.canvas.getObjects().slice();
+    objects.forEach((object) => {
       if (object.type !== "Frame" /* FRAME */ && object.type !== "Background" /* BACKGROUND */) {
         this.canvas.remove(object);
       }
@@ -12359,7 +16085,7 @@ var Editor = class extends event_manager_default {
   };
 };
 
-// ../../node_modules/.pnpm/resize-observer-polyfill@1.5.1/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
+// node_modules/.pnpm/resize-observer-polyfill@1.5.1/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
 var MapShim = (function() {
   if (typeof Map !== "undefined") {
     return Map;
@@ -13258,8 +16984,8 @@ function Toolbar({
                 value: size,
                 onValueChange: handleSizeChange,
                 options: AD_SIZES,
-                style: { width: 140 },
-                className: "studio-size-select md:w-[200px]"
+                style: { width: "auto", minWidth: 160, maxWidth: 220 },
+                className: "studio-size-select flex-1 md:flex-none"
               }
             )
           }
@@ -13413,7 +17139,7 @@ function ColorPickerBtn({
         /* @__PURE__ */ jsx("div", { style: {
           display: "grid",
           gridTemplateColumns: "repeat(7, 1fr)",
-          gap: 6
+          gap: 8
         }, children: SWATCHES.map((sw) => /* @__PURE__ */ jsx(
           "button",
           {
@@ -13425,27 +17151,27 @@ function ColorPickerBtn({
             style: {
               width: "100%",
               aspectRatio: "1/1",
-              borderRadius: 6,
-              border: color.toLowerCase() === sw.toLowerCase() ? "2px solid var(--color-primary)" : "1.5px solid rgba(0,0,0,0.1)",
+              borderRadius: "50%",
+              border: color.toLowerCase() === sw.toLowerCase() ? "2px solid var(--color-primary)" : "1.5px solid color-mix(in srgb, var(--color-text) 10%, transparent)",
               background: sw,
               cursor: "pointer",
-              transition: "transform 0.1s",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.12)"
+              transition: "transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s",
+              boxShadow: color.toLowerCase() === sw.toLowerCase() ? "0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary)" : "0 2px 4px rgba(0,0,0,0.1)"
             },
-            onMouseEnter: (e) => e.currentTarget.style.transform = "scale(1.18)",
+            onMouseEnter: (e) => e.currentTarget.style.transform = "scale(1.2)",
             onMouseLeave: (e) => e.currentTarget.style.transform = "scale(1)"
           },
           sw
         )) }),
-        /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: 8, alignItems: "center" }, children: [
+        /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: 12, alignItems: "center", marginTop: 4 }, children: [
           /* @__PURE__ */ jsxs("div", { style: { position: "relative", flexShrink: 0 }, children: [
             /* @__PURE__ */ jsx("div", { style: {
-              width: 36,
-              height: 36,
-              borderRadius: 10,
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
               background: color,
-              border: "2px solid var(--color-border)",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
+              border: "2px solid color-mix(in srgb, var(--color-text) 8%, transparent)",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               cursor: "pointer",
               overflow: "hidden"
             } }),
@@ -13471,34 +17197,39 @@ function ColorPickerBtn({
               }
             )
           ] }),
-          /* @__PURE__ */ jsx(
-            "input",
-            {
-              value: hex,
-              onChange: (e) => setHex(e.target.value),
-              onBlur: (e) => commitHex(e.target.value),
-              onKeyDown: (e) => e.key === "Enter" && commitHex(e.target.value),
-              maxLength: 7,
-              spellCheck: false,
-              style: {
-                flex: 1,
-                height: 36,
-                border: "1.5px solid var(--color-border)",
-                borderRadius: 8,
-                padding: "0 10px",
-                fontSize: 13,
-                fontFamily: "monospace",
-                fontWeight: 600,
-                letterSpacing: "0.04em",
-                background: "color-mix(in srgb, var(--color-text) 4%, var(--color-surface))",
-                color: "var(--color-text)",
-                outline: "none",
-                transition: "border-color 0.15s"
-              },
-              onFocus: (e) => e.target.style.borderColor = "var(--color-primary)",
-              onBlurCapture: (e) => e.target.style.borderColor = "var(--color-border)"
-            }
-          )
+          /* @__PURE__ */ jsxs("div", { style: { position: "relative", flex: 1 }, children: [
+            /* @__PURE__ */ jsx("span", { style: { position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--color-text-muted)", fontWeight: 600 }, children: "#" }),
+            /* @__PURE__ */ jsx(
+              "input",
+              {
+                value: hex.replace(/^#/, ""),
+                onChange: (e) => setHex(e.target.value),
+                onBlur: (e) => commitHex(e.target.value),
+                onKeyDown: (e) => e.key === "Enter" && commitHex(e.target.value),
+                maxLength: 6,
+                spellCheck: false,
+                style: {
+                  width: "100%",
+                  height: 40,
+                  boxSizing: "border-box",
+                  border: "none",
+                  borderRadius: 10,
+                  padding: "0 12px 0 28px",
+                  fontSize: 14,
+                  fontFamily: "var(--de-font-mono, monospace)",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+                  color: "var(--color-text)",
+                  outline: "none",
+                  transition: "box-shadow 0.2s",
+                  boxShadow: "inset 0 0 0 1px transparent"
+                },
+                onFocus: (e) => e.target.style.boxShadow = "inset 0 0 0 2px var(--color-primary)",
+                onBlurCapture: (e) => e.target.style.boxShadow = "inset 0 0 0 1px transparent"
+              }
+            )
+          ] })
         ] })
       ]
     }
@@ -14943,44 +18674,51 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
 }
 var SHAPE_FILES = {
   filled: [
-    "filled-arrow-archer.png",
-    "filled-arrow-fat.png",
-    "filled-arrow-thin-rounded.png",
-    "filled-arrow-thin.png",
-    "filled-arrow-wide.png",
+    // Geometric shapes
+    "filled-line.png",
+    "filled-square.png",
+    "filled-rectangle.png",
+    "filled-rounded-rectangle.png",
+    "filled-ellipse.png",
+    "filled-oval.png",
+    "filled-pill.png",
+    "filled-ring.png",
+    // Circular / arc shapes
+    "filled-pie.png",
+    "filled-semicircle.png",
+    "filled-quarter-circle.png",
+    "filled-quarter-circle-outline.png",
+    "filled-crescent.png",
+    // Polygon shapes
+    "filled-triangle.png",
+    "filled-triangle-right.png",
+    "filled-polygon.png",
+    "filled-rhombus.png",
+    "filled-kite.png",
+    // Decorative shapes
+    "filled-star.png",
+    "filled-star-round.png",
+    "filled-four-star.png",
+    "filled-sun.png",
+    "filled-cross.png",
+    "filled-heart.png",
+    "filled-trefoil.png",
+    "filled-quarterfoil.png",
+    // Organic / abstract shapes
     "filled-blob.png",
     "filled-cloud.png",
-    "filled-crescent.png",
-    "filled-cross.png",
-    "filled-ellipse.png",
-    "filled-four-star.png",
-    "filled-frame.png",
-    "filled-heart.png",
-    "filled-kite.png",
-    "filled-line.png",
-    "filled-oval.png",
-    "filled-pie.png",
-    "filled-pill.png",
-    "filled-polygon.png",
-    "filled-quarter-circle-outline.png",
-    "filled-quarter-circle.png",
-    "filled-quarterfoil.png",
-    "filled-rectangle-mask.png",
-    "filled-rectangle.png",
-    "filled-rhombus.png",
-    "filled-ring.png",
-    "filled-round-mask.png",
-    "filled-rounded-rectangle.png",
-    "filled-semicircle.png",
-    "filled-square.png",
-    "filled-star-round.png",
-    "filled-star.png",
-    "filled-sun.png",
-    "filled-trefoil.png",
-    "filled-triangle-right.png",
-    "filled-triangle.png",
     "filled-wiggle.png",
-    "filled-ziczac.png"
+    "filled-ziczac.png",
+    // Frames & masks
+    "filled-frame.png",
+    "filled-round-mask.png",
+    "filled-rectangle-mask.png",
+    // Arrows
+    "filled-arrow-thin.png",
+    "filled-arrow-thin-rounded.png",
+    "filled-arrow-wide.png",
+    "filled-arrow-fat.png",
+    "filled-arrow-archer.png"
   ],
   outline: [
     "outline-arrow-archer.png",
@@ -15061,44 +18799,51 @@ var SHAPE_FILES = {
     "gradient-ziczac.png"
   ],
   image: [
-    "image-arrow-archer.png",
-    "image-arrow-fat.png",
-    "image-arrow-thin-rounded.png",
-    "image-arrow-thin.png",
-    "image-arrow-wide.png",
+    // Geometric shapes
+    "image-line.png",
+    "image-square.png",
+    "image-rectangle.png",
+    "image-rounded-rectangle.png",
+    "image-ellipse.png",
+    "image-oval.png",
+    "image-pill.png",
+    "image-ring.png",
+    // Circular / arc shapes
+    "image-pie.png",
+    "image-semicircle.png",
+    "image-quarter-circle.png",
+    "image-quarter-circle-outline.png",
+    "image-crescent.png",
+    // Polygon shapes
+    "image-triangle.png",
+    "image-triangle-right.png",
+    "image-polygon.png",
+    "image-rhombus.png",
+    "image-kite.png",
+    // Decorative shapes
+    "image-star.png",
+    "image-star-round.png",
+    "image-four-star.png",
+    "image-sun.png",
+    "image-cross.png",
+    "image-heart.png",
+    "image-trefoil.png",
+    "image-quarterfoil.png",
+    // Organic / abstract shapes
     "image-blob.png",
     "image-cloud.png",
-    "image-crescent.png",
-    "image-cross.png",
-    "image-ellipse.png",
-    "image-four-star.png",
-    "image-frame.png",
-    "image-heart.png",
-    "image-kite.png",
-    "image-line.png",
-    "image-oval.png",
-    "image-pie.png",
-    "image-pill.png",
-    "image-polygon.png",
-    "image-quarter-circle-outline.png",
-    "image-quarter-circle.png",
-    "image-quarterfoil.png",
-    "image-rectangle-mask.png",
-    "image-rectangle.png",
-    "image-rhombus.png",
-    "image-ring.png",
-    "image-round-mask.png",
-    "image-rounded-rectangle.png",
-    "image-semicircle.png",
-    "image-square.png",
-    "image-star-round.png",
-    "image-star.png",
-    "image-sun.png",
-    "image-trefoil.png",
-    "image-triangle-right.png",
-    "image-triangle.png",
     "image-wiggle.png",
-    "image-ziczac.png"
+    "image-ziczac.png",
+    // Frames & masks
+    "image-frame.png",
+    "image-round-mask.png",
+    "image-rectangle-mask.png",
+    // Arrows
+    "image-arrow-thin.png",
+    "image-arrow-thin-rounded.png",
+    "image-arrow-wide.png",
+    "image-arrow-fat.png",
+    "image-arrow-archer.png"
   ],
   abstract: [
     "filled-organic-1.png",
@@ -15528,7 +19273,7 @@ var STICKERS = Object.entries(
   }))
 );
 var CATEGORY_ORDER2 = [
-  { key: "emoji", label: "Emoji" },
+  // { key: 'emoji',      label: 'Emoji'     },
   { key: "emoticons", label: "Emoticons" },
   { key: "craft", label: "Craft" },
   { key: "3Dstickers", label: "3D Grain" },
@@ -16150,8 +19895,17 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     return initialScene?.canvasBg || getStorageSafe("studio_canvasBg", "#ffffff");
   });
   const [workspaceBg, setWorkspaceBg] = useState(() => {
-    return initialScene?.workspaceBg || getStorageSafe("studio_workspaceBg", "#1a1a2e");
+    return initialScene?.workspaceBg || getStorageSafe("studio_workspaceBg", "#f5f5f5");
   });
+  useEffect(() => {
+    if (editor && canvasBg) {
+      try {
+        editor.frame?.setBackgroundColor?.(canvasBg);
+      } catch (e) {
+        console.error("Error setting bg:", e);
+      }
+    }
+  }, [editor, canvasBg]);
   const { hasUnsavedChanges, setHasUnsavedChanges } = useAutoSave(editor, canvasBg, workspaceBg, sceneKey);
   const handleBack = useCallback(() => {
     clearAutosave(sceneKey);
@@ -16183,14 +19937,42 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     if (!editor) return;
     const saved = loadAutosave(sceneKey);
     if (saved && Object.keys(saved).length > 0) {
-      if (saved.scene) editor.scene.importFromJSON(saved.scene).catch(() => {
-      }).then(restoreShapes);
+      if (saved.scene) {
+        editor.scene.importFromJSON(saved.scene).catch(() => {
+        }).then(() => {
+          restoreShapes();
+          if (saved.canvasBg) {
+            try {
+              editor.frame?.setBackgroundColor?.(saved.canvasBg);
+            } catch {
+            }
+          }
+          setTimeout(() => {
+            editor.history.reset();
+            editor.history.initialize();
+            setHasUnsavedChanges(false);
+          }, 50);
+        });
+      }
       if (saved.canvasBg) setCanvasBg(saved.canvasBg);
       if (saved.workspaceBg) setWorkspaceBg(saved.workspaceBg);
     } else if (initialScene) {
       const scene = initialScene.scene || initialScene;
       editor.scene.importFromJSON(scene).catch(() => {
-      }).then(restoreShapes);
+      }).then(() => {
+        restoreShapes();
+        if (initialScene.canvasBg) {
+          try {
+            editor.frame?.setBackgroundColor?.(initialScene.canvasBg);
+          } catch {
+          }
+        }
+        setTimeout(() => {
+          editor.history.reset();
+          editor.history.initialize();
+          setHasUnsavedChanges(false);
+        }, 50);
+      });
       if (initialScene.canvasBg) setCanvasBg(initialScene.canvasBg);
       if (initialScene.workspaceBg) setWorkspaceBg(initialScene.workspaceBg);
     }
@@ -16265,14 +20047,21 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     if (!editor) return;
     const proceed = () => {
       editor.scene.importFromJSON(template.scene).catch(() => message2.error("Failed to apply template")).then(() => {
-        if (template.canvasBg) setCanvasBg(template.canvasBg);
+        if (template.canvasBg) {
+          setCanvasBg(template.canvasBg);
+          try {
+            editor.frame?.setBackgroundColor?.(template.canvasBg);
+          } catch {
+          }
+        }
         if (template.workspaceBg) setWorkspaceBg(template.workspaceBg);
         clearAutosave(sceneKey);
         setHasUnsavedChanges(false);
-        setActivePanel(null);
+        setTimeout(() => editor.history.initialize(), 50);
       });
     };
-    if (hasUnsavedChanges) {
+    const hasHistoryUndo = (editor?.history?.status?.undos?.length ?? 0) > 0;
+    if (hasUnsavedChanges && hasHistoryUndo) {
       const ok = window.confirm("Replace current design? Unsaved changes will be lost.");
       if (!ok) return;
     }
@@ -16384,12 +20173,39 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         }
       ),
       activePanel && /* @__PURE__ */ jsxs("div", { style: { width: 320, background: "var(--color-surface, var(--de-color-bg-elevated))", borderRight: "1px solid var(--color-border, var(--de-color-border))", display: "flex", flexDirection: "column", zIndex: 10 }, children: [
-        activePanel === "templates" && (templatesPanel ? typeof templatesPanel === "function" ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel : /* @__PURE__ */ jsx(TemplatesPanel, { provider: templateProvider, onApplyTemplate: handleApplyTemplate })),
-        activePanel === "text" && /* @__PURE__ */ jsx(TextPanel, { onAddText: handleAddText }),
-        activePanel === "shapes" && /* @__PURE__ */ jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
-        activePanel === "stickers" && /* @__PURE__ */ jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
-        activePanel === "upload" && /* @__PURE__ */ jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) }),
-        activePanel === "fonts" && /* @__PURE__ */ jsx(FontsPanel, { onApplyFont: (family) => editor?.objects.update({ fontFamily: family }) })
+        /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 12px 0 12px" }, children: [
+          /* @__PURE__ */ jsx("span", { style: { fontSize: 14, fontWeight: 600, textTransform: "capitalize", color: "var(--color-text)" }, children: activePanel }),
+          /* @__PURE__ */ jsx(
+            "button",
+            {
+              onClick: () => setActivePanel(null),
+              style: {
+                all: "unset",
+                cursor: "pointer",
+                fontSize: 18,
+                lineHeight: 1,
+                color: "var(--color-text-muted)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 24,
+                height: 24,
+                borderRadius: 4
+              },
+              onMouseEnter: (e) => e.currentTarget.style.background = "var(--color-border)",
+              onMouseLeave: (e) => e.currentTarget.style.background = "transparent",
+              children: "\xD7"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs("div", { style: { flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }, children: [
+          activePanel === "templates" && (templatesPanel ? typeof templatesPanel === "function" ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel : /* @__PURE__ */ jsx(TemplatesPanel, { provider: templateProvider, onApplyTemplate: handleApplyTemplate })),
+          activePanel === "text" && /* @__PURE__ */ jsx(TextPanel, { onAddText: handleAddText }),
+          activePanel === "shapes" && /* @__PURE__ */ jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
+          activePanel === "stickers" && /* @__PURE__ */ jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
+          activePanel === "upload" && /* @__PURE__ */ jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) }),
+          activePanel === "fonts" && /* @__PURE__ */ jsx(FontsPanel, { onApplyFont: (family) => editor?.objects.update({ fontFamily: family }) })
+        ] })
       ] }),
       /* @__PURE__ */ jsxs("div", { style: { flex: 1, position: "relative", overflow: "hidden" }, children: [
         /* @__PURE__ */ jsx(

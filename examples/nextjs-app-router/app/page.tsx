@@ -10,7 +10,7 @@ const DesignEditor = dynamic(
 export default function Home() {
   return (
     <main style={{ height: '100vh' }}>
-      <DesignEditor />
+      <DesignEditor title="FastlabAI Studio" sceneKey="example-scene-1" />
     </main>
   )
 }

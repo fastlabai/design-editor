@@ -8,8 +8,8 @@ const DesignEditor = dynamic(
 
 export default function Home() {
   return (
-    <div style={{ height: '100vh' }}>
-      <DesignEditor />
-    </div>
+    <main style={{ height: '100vh' }}>
+      <DesignEditor title="FastlabAI Studio" sceneKey="example-scene-1" />
+    </main>
   )
 }

@@ -250,8 +250,8 @@ export function Toolbar({
           value={size}
           onValueChange={handleSizeChange}
           options={AD_SIZES}
-          style={{ width: 140 }}
-          className="studio-size-select md:w-[200px]"
+          style={{ width: 'auto', minWidth: 160, maxWidth: 220 }}
+          className="studio-size-select flex-1 md:flex-none"
         />
       </Popover>
 
@@ -377,7 +377,7 @@ function ColorPickerBtn({
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(7, 1fr)',
-        gap: 6,
+        gap: 8,
       }}>
         {SWATCHES.map(sw => (
           <button
@@ -386,29 +386,29 @@ function ColorPickerBtn({
             onClick={() => { onChange(sw); setHex(sw) }}
             style={{
               width: '100%', aspectRatio: '1/1',
-              borderRadius: 6,
+              borderRadius: '50%',
               border: color.toLowerCase() === sw.toLowerCase()
                 ? '2px solid var(--color-primary)'
-                : '1.5px solid rgba(0,0,0,0.1)',
+                : '1.5px solid color-mix(in srgb, var(--color-text) 10%, transparent)',
               background: sw,
               cursor: 'pointer',
-              transition: 'transform 0.1s',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
+              transition: 'transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s',
+              boxShadow: color.toLowerCase() === sw.toLowerCase() ? '0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary)' : '0 2px 4px rgba(0,0,0,0.1)',
             }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.18)')}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.2)')}
             onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
           />
         ))}
       </div>
 
       {/* ── Hex input + native picker ───────────────────────────────────── */}
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 4 }}>
         <div style={{ position: 'relative', flexShrink: 0 }}>
           <div style={{
-            width: 36, height: 36, borderRadius: 10,
+            width: 40, height: 40, borderRadius: '50%',
             background: color,
-            border: '2px solid var(--color-border)',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+            border: '2px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             cursor: 'pointer',
             overflow: 'hidden',
           }} />
@@ -422,31 +422,36 @@ function ColorPickerBtn({
             }}
           />
         </div>
-        <input
-          value={hex}
-          onChange={e => setHex(e.target.value)}
-          onBlur={e => commitHex(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && commitHex((e.target as HTMLInputElement).value)}
-          maxLength={7}
-          spellCheck={false}
-          style={{
-            flex: 1,
-            height: 36,
-            border: '1.5px solid var(--color-border)',
-            borderRadius: 8,
-            padding: '0 10px',
-            fontSize: 13,
-            fontFamily: 'monospace',
-            fontWeight: 600,
-            letterSpacing: '0.04em',
-            background: 'color-mix(in srgb, var(--color-text) 4%, var(--color-surface))',
-            color: 'var(--color-text)',
-            outline: 'none',
-            transition: 'border-color 0.15s',
-          }}
-          onFocus={e => (e.target.style.borderColor = 'var(--color-primary)')}
-          onBlurCapture={e => (e.target.style.borderColor = 'var(--color-border)')}
-        />
+        <div style={{ position: 'relative', flex: 1 }}>
+          <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--color-text-muted)', fontWeight: 600 }}>#</span>
+          <input
+            value={hex.replace(/^#/, '')}
+            onChange={e => setHex(e.target.value)}
+            onBlur={e => commitHex(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && commitHex((e.target as HTMLInputElement).value)}
+            maxLength={6}
+            spellCheck={false}
+            style={{
+              width: '100%',
+              height: 40,
+              boxSizing: 'border-box',
+              border: 'none',
+              borderRadius: 10,
+              padding: '0 12px 0 28px',
+              fontSize: 14,
+              fontFamily: 'var(--de-font-mono, monospace)',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+              color: 'var(--color-text)',
+              outline: 'none',
+              transition: 'box-shadow 0.2s',
+              boxShadow: 'inset 0 0 0 1px transparent',
+            }}
+            onFocus={e => (e.target.style.boxShadow = 'inset 0 0 0 2px var(--color-primary)')}
+            onBlurCapture={e => (e.target.style.boxShadow = 'inset 0 0 0 1px transparent')}
+          />
+        </div>
       </div>
     </div>
   )

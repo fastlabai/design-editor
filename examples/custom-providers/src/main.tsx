@@ -51,7 +51,7 @@ const myFontProvider: FontProvider = {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <div style={{ height: '100vh' }}>
-      <DesignEditor templateProvider={myTemplateProvider} fontProvider={myFontProvider} />
+      <DesignEditor title="Custom FastlabAI Studio" sceneKey="custom-scene-1" templateProvider={myTemplateProvider} fontProvider={myFontProvider} />
     </div>
   </StrictMode>,
 )

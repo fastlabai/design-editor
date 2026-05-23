@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## [1.0.0-beta.6] - 2026-05-23
+
+### Added
+- Added 15 new Best-in-Class designs to the bundled `TemplatesPanel` dataset for 'TV & Horizontal Ads' and 'Industry Signage' categories.
+- Added a unified close button header to all sub-panels (Templates, Shapes, Text, etc.) inside `<DesignEditor>`.
+
+### Fixed
+- Fixed an asynchronous race condition where `canvasBg` colors on imported templates were being overwritten and reset back to white, causing white text to disappear.
+- Fixed a bug where native stickers were improperly cropped in the canvas due to hardcoded image dimensions conflicting with intrinsic image resolutions.
+- Re-enabled keeping the side panel open upon clicking a template or component, instead of automatically closing it.
+
 ## [1.0.0-beta.5] - 2026-05-23
 
 ### Added

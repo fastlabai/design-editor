@@ -121,7 +121,8 @@ class Objects extends Base {
 
   public clear = () => {
     const frame = this.editor.frame.frame
-    this.canvas.getObjects().forEach((object) => {
+    const objects = this.canvas.getObjects().slice()
+    objects.forEach((object) => {
       if (object.type !== LayerType.FRAME) {
         this.canvas.remove(object)
       }
@@ -135,7 +136,8 @@ class Objects extends Base {
   public reset = () => {
     const background = this.editor.frame.background
 
-    this.canvas.getObjects().forEach((object) => {
+    const objects = this.canvas.getObjects().slice()
+    objects.forEach((object) => {
       if (object.type !== LayerType.FRAME && object.type !== LayerType.BACKGROUND) {
         this.canvas.remove(object)
       }

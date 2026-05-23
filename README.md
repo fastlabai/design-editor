@@ -45,7 +45,10 @@ export default function App() {
 ```tsx
 <DesignEditor
   title="My Custom Studio Title"
+  initialScene={{ name: "New Design", layers: [], frame: { width: 1080, height: 1080 } }}
+  sceneKey="my-unique-design-id"
   templateProvider={myTemplateProvider}
+  templatesPanel={({ onApplyTemplate }) => <MyCustomTemplatesPanel onApply={onApplyTemplate} />}
   fontProvider={myFontProvider}
   persistenceProvider={myPersistenceProvider}
   onExport={async (blob, format, scene) => {

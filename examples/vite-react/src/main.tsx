@@ -6,7 +6,7 @@ import '@fastlabai/design-editor/theme.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <div style={{ height: '100vh' }}>
-      <DesignEditor />
+      <DesignEditor title="FastlabAI Studio" sceneKey="example-scene-1" />
     </div>
   </StrictMode>,
 )
