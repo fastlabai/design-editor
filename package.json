@@ -48,7 +48,7 @@
     "test:watch": "vitest",
     "lint": "eslint src",
     "size": "size-limit",
-    "publish:all": "npm publish && npm publish --registry=https://npm.pkg.github.com"
+    "publish:all": "npm publish --tag beta && npm publish --registry=https://npm.pkg.github.com --tag beta"
   },
   "peerDependencies": {
     "react": ">=18",
