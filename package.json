@@ -48,7 +48,7 @@
     "test:watch": "vitest",
     "lint": "eslint src",
     "size": "size-limit",
-    "publish:all": "npm publish --tag latest --registry=https://registry.npmjs.org/ && npm publish --tag latest --registry=https://npm.pkg.github.com/"
+    "publish:all": "npm publish --tag latest --@fastlabai:registry=https://registry.npmjs.org/ && npm publish --tag latest"
   },
   "peerDependencies": {
     "react": ">=18",
