@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { useEditor, useActiveObject, useZoomRatio } from '../engine/react'
+import { generateId } from '../engine/core/utils/id'
+import type { TextDesign } from '../providers/textDesigns'
 
 import { Toolbar } from './Toolbar'
 import { IconRail } from './IconRail'
@@ -14,7 +16,7 @@ import { ShapesPanel, SHAPES } from './panels/ShapesPanel'
 import { StickersPanel } from './panels/StickersPanel'
 import { TextPanel } from './panels/text/TextPanel'
 import { UploadPanel } from './panels/UploadPanel'
-import { FontsPanel } from './panels/FontsPanel'
+import { ElementsPanel } from './panels/ElementsPanel'
 
 import { useStudioExport } from '../hooks/useStudioExport'
 import { useCanvasSize } from '../hooks/useCanvasSize'
@@ -218,6 +220,23 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     }
   }, [editor, message])
 
+  const handleApplyTextDesign = useCallback((design: TextDesign) => {
+    if (!editor) return
+    const frameOpts = (editor as any).frame?.options
+    const frameW: number = frameOpts?.width ?? 1080
+    const frameH: number = frameOpts?.height ?? 1080
+    const dx = (frameW - design.scene.frame.width) / 2
+    const dy = (frameH - design.scene.frame.height) / 2
+    for (const layer of design.scene.layers) {
+      editor.objects.add({
+        ...layer,
+        id: generateId(),
+        left: ((layer.left as number) ?? 0) + dx,
+        top: ((layer.top as number) ?? 0) + dy,
+      } as any)
+    }
+  }, [editor])
+
   const handleApplyTemplate = useCallback((template: DesignTemplate) => {
     if (!editor) return
     const proceed = () => {
@@ -387,11 +406,19 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
                     ? typeof templatesPanel === 'function' ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel
                     : <TemplatesPanel provider={templateProvider} onApplyTemplate={handleApplyTemplate} />
                 )}
-                {activePanel === 'text'     && <TextPanel provider={textDesignProvider} onApplyTextDesign={() => {}} onAddPlainText={(preset) => { const map = { heading: 72, subheading: 48, body: 28 } as const; handleAddText(preset, map[preset]) }} />}
+                {activePanel === 'elements' && (
+                  <ElementsPanel
+                    textDesignProvider={textDesignProvider}
+                    onApplyTextDesign={handleApplyTextDesign}
+                    onAddShape={(src) => addImageToCanvas(src)}
+                    onAddSticker={(src) => addImageToCanvas(src)}
+                    onSeeAll={(panel) => setActivePanel(panel)}
+                  />
+                )}
+                {activePanel === 'text'     && <TextPanel provider={textDesignProvider} onApplyTextDesign={handleApplyTextDesign} onAddPlainText={(preset) => { const map = { heading: 72, subheading: 48, body: 28 } as const; handleAddText(preset, map[preset]) }} />}
                 {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
                 {activePanel === 'stickers' && <StickersPanel onAddSticker={url => addImageToCanvas(url)} />}
                 {activePanel === 'upload'   && <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />}
-                {activePanel === 'fonts'    && <FontsPanel onApplyFont={(family) => editor?.objects.update({ fontFamily: family } as any)} />}
               </div>
             </div>
           )}
@@ -507,8 +534,8 @@ export function DesignEditor({
   const resolvedBackgroundRemovalProvider =
     backgroundRemovalProvider ?? createImglyBackgroundRemoval()
   const ctx = React.useMemo(
-    () => ({ templateProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
-    [templateProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack],
+    () => ({ templateProvider, textDesignProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
+    [templateProvider, textDesignProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack],
   )
 
   return (

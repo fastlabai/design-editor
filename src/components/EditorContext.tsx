@@ -5,6 +5,7 @@ import type {
   BackgroundRemovalProvider,
   PersistenceProvider,
   TemplateProvider,
+  TextDesignProvider,
 } from '../providers'
 
 export interface EditorContextValue {
@@ -12,6 +13,7 @@ export interface EditorContextValue {
   backgroundRemovalProvider: BackgroundRemovalProvider
   persistenceProvider: PersistenceProvider
   templateProvider: TemplateProvider
+  textDesignProvider: TextDesignProvider
   sceneKey?: string
   onExport?: (blob: Blob, format: 'png' | 'jpg' | 'svg', scene: any) => void | Promise<void>
   onBack?: () => void

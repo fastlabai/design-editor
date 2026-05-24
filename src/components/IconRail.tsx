@@ -2,18 +2,18 @@
 import React, { useState } from 'react'
 import {
   LayoutOutlined, AppstoreOutlined, SmileOutlined,
-  FontSizeOutlined, UploadOutlined,
+  FontSizeOutlined, UploadOutlined, BlockOutlined,
 } from '@ant-design/icons'
 
-export type PanelKey = 'templates' | 'shapes' | 'stickers' | 'text' | 'upload' | 'fonts'
+export type PanelKey = 'templates' | 'elements' | 'upload' | 'text' | 'shapes' | 'stickers'
 
 const ICONS: { key: PanelKey; icon: React.ReactNode; label: string }[] = [
-  { key: 'templates', icon: <LayoutOutlined />,  label: 'Templates' },
-  { key: 'shapes',   icon: <AppstoreOutlined />,  label: 'Shapes'   },
-  { key: 'stickers', icon: <SmileOutlined />,     label: 'Stickers' },
-  { key: 'text',     icon: <FontSizeOutlined />,  label: 'Text'     },
-  { key: 'fonts',    icon: <span style={{ fontSize: 13, fontWeight: 900, lineHeight: 1 }}>Aa</span>, label: 'Fonts' },
-  { key: 'upload',   icon: <UploadOutlined />,    label: 'Upload'   },
+  { key: 'templates', icon: <LayoutOutlined />,   label: 'Templates' },
+  { key: 'elements',  icon: <BlockOutlined />,    label: 'Elements'  },
+  { key: 'upload',    icon: <UploadOutlined />,   label: 'Upload'    },
+  { key: 'text',      icon: <FontSizeOutlined />, label: 'Text'      },
+  { key: 'shapes',    icon: <AppstoreOutlined />, label: 'Shapes'    },
+  { key: 'stickers',  icon: <SmileOutlined />,    label: 'Stickers'  },
 ]
 
 interface Props {

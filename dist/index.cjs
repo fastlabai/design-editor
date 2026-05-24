@@ -12939,7 +12939,7 @@ function createDefaultFontProvider() {
   function notify() {
     subscribers.forEach((h) => h());
   }
-  function loadGoogleFont2(family) {
+  function loadGoogleFont(family) {
     if (loadedFamilies.has(family)) return;
     loadedFamilies.add(family);
     const link = document.createElement("link");
@@ -12953,7 +12953,7 @@ function createDefaultFontProvider() {
     },
     async load(family) {
       if (uploads.has(family)) return;
-      loadGoogleFont2(family);
+      loadGoogleFont(family);
     },
     async upload(file) {
       const family = familyFromFilename(file.name);
@@ -18072,11 +18072,11 @@ function hslToRgb(h, s, l) {
 }
 var ICONS = [
   { key: "templates", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.LayoutOutlined, {}), label: "Templates" },
-  { key: "shapes", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.AppstoreOutlined, {}), label: "Shapes" },
-  { key: "stickers", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.SmileOutlined, {}), label: "Stickers" },
+  { key: "elements", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.BlockOutlined, {}), label: "Elements" },
+  { key: "upload", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.UploadOutlined, {}), label: "Upload" },
   { key: "text", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.FontSizeOutlined, {}), label: "Text" },
-  { key: "fonts", icon: /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 13, fontWeight: 900, lineHeight: 1 }, children: "Aa" }), label: "Fonts" },
-  { key: "upload", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.UploadOutlined, {}), label: "Upload" }
+  { key: "shapes", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.AppstoreOutlined, {}), label: "Shapes" },
+  { key: "stickers", icon: /* @__PURE__ */ jsxRuntime.jsx(icons.SmileOutlined, {}), label: "Stickers" }
 ];
 function IconRail({ activePanel, onTogglePanel }) {
   return /* @__PURE__ */ jsxRuntime.jsx(
@@ -20994,145 +20994,196 @@ function UploadPanel({ onUploadFile }) {
     /* @__PURE__ */ jsxRuntime.jsx("div", { style: { marginTop: 24, flex: 1, overflowY: "auto" }, children: /* @__PURE__ */ jsxRuntime.jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--color-text-muted)", fontSize: 12 }, children: "Uploaded files are added directly to the canvas." }) })
   ] });
 }
-var GOOGLE_FONTS = [
-  "Roboto",
-  "Open Sans",
-  "Lato",
-  "Montserrat",
-  "Oswald",
-  "Source Sans Pro",
-  "Raleway",
-  "PT Sans",
-  "Merriweather",
-  "Nunito",
-  "Playfair Display",
-  "Ubuntu",
-  "Poppins",
-  "Muli",
-  "PT Serif",
-  "Josefin Sans",
-  "Fira Sans",
-  "Noto Sans",
-  "Dosis",
-  "Quicksand",
-  "Cabin",
-  "Varela Round",
-  "Lobster",
-  "Pacifico",
-  "Dancing Script",
-  "Comfortaa",
-  "Righteous",
-  "Satisfy",
-  "Abril Fatface",
-  "Bebas Neue",
-  "Anton",
-  "Permanent Marker"
-];
-var loaded = /* @__PURE__ */ new Set();
-function loadGoogleFont(family) {
-  if (loaded.has(family)) return;
-  loaded.add(family);
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}&display=swap`;
-  document.head.appendChild(link);
+function ElementsPanel({
+  textDesignProvider,
+  onApplyTextDesign,
+  onAddShape,
+  onAddSticker,
+  onSeeAll
+}) {
+  const [textDesigns, setTextDesigns] = React24.useState([]);
+  React24.useEffect(() => {
+    textDesignProvider.list({ limit: 6 }).then((result) => {
+      setTextDesigns(result.items);
+    }).catch(() => {
+    });
+  }, [textDesignProvider]);
+  const previewShapes = SHAPES.slice(0, 6);
+  const previewStickers = STICKERS.slice(0, 6);
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", flexDirection: "column", height: "100%", overflowY: "auto", padding: "8px 0 24px" }, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(
+      Section,
+      {
+        title: "Text",
+        count: SHAPES.length,
+        onSeeAll: () => onSeeAll("text"),
+        totalOverride: textDesigns.length > 0 ? void 0 : void 0,
+        children: [
+          textDesigns.map((design) => /* @__PURE__ */ jsxRuntime.jsx(TextDesignThumb, { design, onClick: () => onApplyTextDesign(design) }, design.id)),
+          textDesigns.length === 0 && /* @__PURE__ */ jsxRuntime.jsx(PlaceholderThumb, { label: "Text" })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntime.jsx(Section, { title: "Shapes", count: SHAPES.length, onSeeAll: () => onSeeAll("shapes"), children: previewShapes.map((shape) => {
+      const src = `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/shapes/${shape.category}/${shape.file}`;
+      return /* @__PURE__ */ jsxRuntime.jsx(ImageThumb, { src, label: shape.label, onClick: () => onAddShape(src) }, shape.id);
+    }) }),
+    /* @__PURE__ */ jsxRuntime.jsx(Section, { title: "Stickers", count: STICKERS.length, onSeeAll: () => onSeeAll("stickers"), children: previewStickers.map((sticker) => {
+      const src = `https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/${sticker.category}/${sticker.file}`;
+      return /* @__PURE__ */ jsxRuntime.jsx(ImageThumb, { src, label: sticker.label, onClick: () => onAddSticker(src) }, sticker.id);
+    }) })
+  ] });
 }
-function FontsPanel({ onApplyFont }) {
-  const [search, setSearch] = React24.useState("");
-  const [customFonts, setCustomFonts] = React24.useState([]);
-  const fileRef = React24.useRef(null);
-  const filtered = GOOGLE_FONTS.filter((f) => f.toLowerCase().includes(search.toLowerCase()));
-  const handleUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const name = file.name.replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
-    const url = URL.createObjectURL(file);
-    const font = new FontFace(name, `url(${url})`);
-    font.load().then((f) => {
-      document.fonts.add(f);
-      setCustomFonts((prev) => [name, ...prev]);
-      antd.message.success(`Font "${name}" loaded`);
-    }).catch(() => antd.message.error("Failed to load font"));
-    e.target.value = "";
-  };
-  const FontTile = ({ name, isCustom }) => {
-    if (!isCustom) loadGoogleFont(name);
-    return /* @__PURE__ */ jsxRuntime.jsxs(
+function Section({
+  title,
+  count,
+  onSeeAll,
+  totalOverride,
+  children
+}) {
+  const displayCount = totalOverride ?? count;
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "12px 16px 0" }, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }, children: [
+      /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 13, fontWeight: 700, color: "var(--color-text)" }, children: title }),
+      /* @__PURE__ */ jsxRuntime.jsxs(
+        "button",
+        {
+          onClick: onSeeAll,
+          style: {
+            all: "unset",
+            cursor: "pointer",
+            fontSize: 11,
+            fontWeight: 600,
+            color: "var(--color-primary)",
+            display: "flex",
+            alignItems: "center",
+            gap: 3
+          },
+          children: [
+            "More (",
+            displayCount,
+            ") ",
+            /* @__PURE__ */ jsxRuntime.jsx(icons.RightOutlined, { style: { fontSize: 9 } })
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntime.jsx(
       "div",
       {
-        onClick: () => onApplyFont(name),
         style: {
-          padding: "10px 12px",
-          cursor: "pointer",
-          borderRadius: 8,
-          border: "1px solid var(--color-border)",
-          marginBottom: 6,
-          background: "color-mix(in srgb, var(--color-text) 3%, var(--color-surface-2))",
-          transition: "all 0.15s",
           display: "flex",
-          flexDirection: "column",
-          gap: 2
+          gap: 8,
+          overflowX: "auto",
+          paddingBottom: 4,
+          scrollbarWidth: "none",
+          msOverflowStyle: "none"
         },
-        onMouseEnter: (e) => {
-          e.currentTarget.style.borderColor = "var(--color-primary)";
-          e.currentTarget.style.background = "color-mix(in srgb, var(--color-primary) 8%, var(--color-surface-2))";
-        },
-        onMouseLeave: (e) => {
-          e.currentTarget.style.borderColor = "var(--color-border)";
-          e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 3%, var(--color-surface-2))";
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", fontWeight: 600 }, children: name }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontFamily: `'${name}', sans-serif`, fontSize: 18, color: "var(--color-text)", lineHeight: 1.2 }, children: "Aa Bb Cc" })
-        ]
+        children
       }
-    );
-  };
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { padding: "10px 10px 0" }, children: [
-    /* @__PURE__ */ jsxRuntime.jsx(
-      Input,
-      {
-        placeholder: "Search fonts\u2026",
-        value: search,
-        onChange: (e) => setSearch(e.target.value),
-        style: { marginBottom: 10, borderRadius: 8 }
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsxs(
-      "button",
-      {
-        onClick: () => fileRef.current?.click(),
-        style: {
-          width: "100%",
-          padding: "8px",
-          marginBottom: 10,
-          background: "color-mix(in srgb, var(--color-primary) 10%, transparent)",
-          border: "1px dashed color-mix(in srgb, var(--color-primary) 35%, transparent)",
-          borderRadius: 8,
-          color: "var(--color-primary)",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 6,
-          fontSize: 12,
-          fontWeight: 600,
-          outline: "none"
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx(icons.UploadOutlined, {}),
-          " Upload Custom Font (.ttf / .otf / .woff)"
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx("input", { ref: fileRef, type: "file", accept: ".ttf,.otf,.woff,.woff2", style: { display: "none" }, onChange: handleUpload }),
-    customFonts.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx("div", { style: { fontSize: 10, fontWeight: 700, color: "var(--color-text-muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 6 }, children: "Custom" }),
-      customFonts.map((f) => /* @__PURE__ */ jsxRuntime.jsx(FontTile, { name: f, isCustom: true }, f)),
-      /* @__PURE__ */ jsxRuntime.jsx("div", { style: { fontSize: 10, fontWeight: 700, color: "var(--color-text-muted)", textTransform: "uppercase", letterSpacing: "0.07em", margin: "10px 0 6px" }, children: "Google Fonts" })
-    ] }),
-    filtered.map((f) => /* @__PURE__ */ jsxRuntime.jsx(FontTile, { name: f }, f))
+    )
   ] });
+}
+function TextDesignThumb({ design, onClick }) {
+  const ref = React24.useRef(null);
+  const { src, loading } = useSceneThumbnail(
+    { id: design.id, scene: design.scene, thumbnailUrl: design.thumbnailUrl, canvasBg: design.canvasBg },
+    ref
+  );
+  const [hovered, setHovered] = React24.useState(false);
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "button",
+    {
+      ref,
+      onClick,
+      onMouseEnter: () => setHovered(true),
+      onMouseLeave: () => setHovered(false),
+      style: {
+        flexShrink: 0,
+        width: 140,
+        height: 140,
+        borderRadius: 10,
+        border: "none",
+        outline: "none",
+        cursor: "pointer",
+        overflow: "hidden",
+        background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+        boxShadow: hovered ? "0 0 0 2px var(--color-primary)" : "none",
+        transition: "box-shadow 0.15s",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      },
+      children: src ? /* @__PURE__ */ jsxRuntime.jsx(
+        "img",
+        {
+          src,
+          alt: design.name,
+          draggable: false,
+          style: { width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }
+        }
+      ) : loading ? /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 10, color: "var(--color-text-muted)" }, children: "\u2026" }) : /* @__PURE__ */ jsxRuntime.jsx("span", { style: { fontSize: 10, color: "var(--color-text-muted)" }, children: design.name })
+    }
+  );
+}
+function ImageThumb({ src, label, onClick }) {
+  const [hovered, setHovered] = React24.useState(false);
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "button",
+    {
+      onClick,
+      onMouseEnter: () => setHovered(true),
+      onMouseLeave: () => setHovered(false),
+      style: {
+        flexShrink: 0,
+        width: 140,
+        height: 140,
+        borderRadius: 10,
+        border: "none",
+        outline: "none",
+        cursor: "pointer",
+        overflow: "hidden",
+        background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+        boxShadow: hovered ? "0 0 0 2px var(--color-primary)" : "none",
+        transition: "box-shadow 0.15s",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      },
+      children: /* @__PURE__ */ jsxRuntime.jsx(
+        "img",
+        {
+          src,
+          alt: label,
+          draggable: false,
+          style: { width: "78%", height: "78%", objectFit: "contain", pointerEvents: "none" },
+          onError: (e) => {
+            e.currentTarget.style.display = "none";
+          }
+        }
+      )
+    }
+  );
+}
+function PlaceholderThumb({ label }) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      style: {
+        flexShrink: 0,
+        width: 140,
+        height: 140,
+        borderRadius: 10,
+        background: "color-mix(in srgb, var(--color-text) 4%, transparent)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 11,
+        color: "var(--color-text-muted)"
+      },
+      children: label
+    }
+  );
 }
 var Ctx = React24__namespace.createContext(null);
 function useEditorContext() {
@@ -21282,7 +21333,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
   const activeObj = useActiveObject();
   const zoomRatio = useZoomRatio();
   const { exportToLibrary, exporting } = useStudioExport();
-  const message2 = useToast();
+  const message = useToast();
   const { backgroundRemovalProvider, sceneKey, templateProvider } = useEditorContext();
   const [activePanel, setActivePanel] = React24.useState(null);
   const [layerPanelOpen, setLayerPanelOpen] = React24.useState(false);
@@ -21405,9 +21456,9 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       await editor?.objects.add(options);
     } catch (err) {
       console.error("[handleAddMedia] Error:", err);
-      message2.error("Failed to add media");
+      message.error("Failed to add media");
     }
-  }, [editor, message2]);
+  }, [editor, message]);
   const addImageToCanvas = React24.useCallback((url, top = 100, left = 100) => {
     if (!editor) return;
     const img = new Image();
@@ -21432,20 +21483,36 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         scaleY: scale
       });
     };
-    img.onerror = () => message2.error("Failed to load image.");
-  }, [editor, message2]);
+    img.onerror = () => message.error("Failed to load image.");
+  }, [editor, message]);
   const handleAddText = React24.useCallback(async (text, fontSize) => {
     if (!editor) return;
     try {
       await editor?.objects.add({ type: "StaticText", text, fontSize, fill: "#1a1a1a", top: 100, left: 100 });
     } catch {
-      message2.error("Failed to add text");
+      message.error("Failed to add text");
     }
-  }, [editor, message2]);
+  }, [editor, message]);
+  const handleApplyTextDesign = React24.useCallback((design) => {
+    if (!editor) return;
+    const frameOpts = editor.frame?.options;
+    const frameW = frameOpts?.width ?? 1080;
+    const frameH = frameOpts?.height ?? 1080;
+    const dx = (frameW - design.scene.frame.width) / 2;
+    const dy = (frameH - design.scene.frame.height) / 2;
+    for (const layer of design.scene.layers) {
+      editor.objects.add({
+        ...layer,
+        id: generateId(),
+        left: (layer.left ?? 0) + dx,
+        top: (layer.top ?? 0) + dy
+      });
+    }
+  }, [editor]);
   const handleApplyTemplate = React24.useCallback((template) => {
     if (!editor) return;
     const proceed = () => {
-      editor.scene.importFromJSON(template.scene).catch(() => message2.error("Failed to apply template")).then(() => {
+      editor.scene.importFromJSON(template.scene).catch(() => message.error("Failed to apply template")).then(() => {
         if (template.canvasBg) {
           setCanvasBg(template.canvasBg);
           try {
@@ -21465,7 +21532,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       if (!ok) return;
     }
     proceed();
-  }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message2]);
+  }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message]);
   const handleRemoveBg = React24.useCallback(async () => {
     if (!editor || !activeObj || activeObj.type !== "StaticImage" || !activeObj.src) return;
     setShimmerRect({
@@ -21475,20 +21542,20 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       height: (activeObj.height ?? 100) * (activeObj.scaleY ?? 1)
     });
     setRemovingBg(true);
-    message2.info("Removing background...");
+    message.info("Removing background...");
     try {
       const blob = await backgroundRemovalProvider.remove(activeObj.src);
       const newUrl = URL.createObjectURL(blob);
       editor?.objects.update({ src: newUrl });
-      message2.success("Background removed successfully!");
+      message.success("Background removed successfully!");
     } catch (err) {
       console.error("[handleRemoveBg] Error:", err);
-      message2.error(`Failed: ${err.message || "Unknown error"}`);
+      message.error(`Failed: ${err.message || "Unknown error"}`);
     } finally {
       setRemovingBg(false);
       setShimmerRect(null);
     }
-  }, [editor, activeObj, message2, backgroundRemovalProvider]);
+  }, [editor, activeObj, message, backgroundRemovalProvider]);
   const handleExport = React24.useCallback(async () => {
     if (!editor) return;
     try {
@@ -21501,9 +21568,9 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         clearAutosave(sceneKey);
       }
     } catch {
-      message2.error("Failed to export");
+      message.error("Failed to export");
     }
-  }, [editor, exportToLibrary, message2, setHasUnsavedChanges]);
+  }, [editor, exportToLibrary, message, setHasUnsavedChanges]);
   const handleDrop = React24.useCallback((e) => {
     e.preventDefault();
     setDragOver(false);
@@ -21599,15 +21666,23 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }, children: [
           activePanel === "templates" && (templatesPanel ? typeof templatesPanel === "function" ? templatesPanel({ onApplyTemplate: handleApplyTemplate }) : templatesPanel : /* @__PURE__ */ jsxRuntime.jsx(TemplatesPanel, { provider: templateProvider, onApplyTemplate: handleApplyTemplate })),
-          activePanel === "text" && /* @__PURE__ */ jsxRuntime.jsx(TextPanel, { provider: textDesignProvider, onApplyTextDesign: () => {
-          }, onAddPlainText: (preset) => {
+          activePanel === "elements" && /* @__PURE__ */ jsxRuntime.jsx(
+            ElementsPanel,
+            {
+              textDesignProvider,
+              onApplyTextDesign: handleApplyTextDesign,
+              onAddShape: (src) => addImageToCanvas(src),
+              onAddSticker: (src) => addImageToCanvas(src),
+              onSeeAll: (panel) => setActivePanel(panel)
+            }
+          ),
+          activePanel === "text" && /* @__PURE__ */ jsxRuntime.jsx(TextPanel, { provider: textDesignProvider, onApplyTextDesign: handleApplyTextDesign, onAddPlainText: (preset) => {
             const map = { heading: 72, subheading: 48, body: 28 };
             handleAddText(preset, map[preset]);
           } }),
           activePanel === "shapes" && /* @__PURE__ */ jsxRuntime.jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
           activePanel === "stickers" && /* @__PURE__ */ jsxRuntime.jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
-          activePanel === "upload" && /* @__PURE__ */ jsxRuntime.jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) }),
-          activePanel === "fonts" && /* @__PURE__ */ jsxRuntime.jsx(FontsPanel, { onApplyFont: (family) => editor?.objects.update({ fontFamily: family }) })
+          activePanel === "upload" && /* @__PURE__ */ jsxRuntime.jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) })
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsxs("div", { style: { flex: 1, position: "relative", overflow: "hidden" }, children: [
@@ -21676,8 +21751,8 @@ function DesignEditor({
 }) {
   const resolvedBackgroundRemovalProvider = backgroundRemovalProvider ?? createImglyBackgroundRemoval();
   const ctx = React24__namespace.default.useMemo(
-    () => ({ templateProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
-    [templateProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
+    () => ({ templateProvider, textDesignProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
+    [templateProvider, textDesignProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
   );
   return /* @__PURE__ */ jsxRuntime.jsx(Provider, { children: /* @__PURE__ */ jsxRuntime.jsxs(EditorContextProvider, { value: ctx, children: [
     /* @__PURE__ */ jsxRuntime.jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title, textDesignProvider }),
