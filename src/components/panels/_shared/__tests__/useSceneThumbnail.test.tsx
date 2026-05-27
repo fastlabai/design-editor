@@ -2,7 +2,7 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest'
 import { renderHook, waitFor, cleanup } from '@testing-library/react'
 import * as React from 'react'
-import { useTemplateThumbnail } from '../useTemplateThumbnail'
+import { useSceneThumbnail } from '../useSceneThumbnail'
 import type { DesignTemplate } from '../../../../providers/templates'
 
 afterEach(() => {
@@ -30,11 +30,11 @@ beforeEach(() => {
   }
 })
 
-describe('useTemplateThumbnail', () => {
+describe('useSceneThumbnail', () => {
   it('returns thumbnailUrl directly when present', () => {
     const t = mockTemplate({ thumbnailUrl: 'https://example.com/thumb.png' })
     const ref = React.createRef<HTMLDivElement>()
-    const { result } = renderHook(() => useTemplateThumbnail(t, ref))
+    const { result } = renderHook(() => useSceneThumbnail(t, ref))
     expect(result.current.src).toBe('https://example.com/thumb.png')
     expect(result.current.loading).toBe(false)
   })
@@ -48,7 +48,7 @@ describe('useTemplateThumbnail', () => {
       ({ editorObj }: { editorObj: any }) => {
         // simulate ref attached
         ;(ref as any).current = document.createElement('div')
-        return useTemplateThumbnail(t, ref, editorObj)
+        return useSceneThumbnail(t, ref, editorObj)
       },
       { initialProps: { editorObj: { renderer: { toDataURL } } } },
     )
@@ -68,14 +68,14 @@ describe('useTemplateThumbnail', () => {
     ;(ref1 as any).current = document.createElement('div')
 
     const r1 = renderHook(() =>
-      useTemplateThumbnail(t, ref1, { renderer: { toDataURL } } as any),
+      useSceneThumbnail(t, ref1, { renderer: { toDataURL } } as any),
     )
     await waitFor(() => expect(r1.result.current.src).toBeDefined())
 
     const ref2 = React.createRef<HTMLDivElement>()
     ;(ref2 as any).current = document.createElement('div')
     const r2 = renderHook(() =>
-      useTemplateThumbnail(t, ref2, { renderer: { toDataURL } } as any),
+      useSceneThumbnail(t, ref2, { renderer: { toDataURL } } as any),
     )
     expect(r2.result.current.src).toBe('data:image/png;base64,BBB')
     expect(toDataURL).toHaveBeenCalledTimes(1) // not called twice
