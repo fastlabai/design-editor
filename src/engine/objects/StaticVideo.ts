@@ -1,20 +1,24 @@
-// @ts-nocheck
-import { fabric } from "fabric"
+import { FabricImage as FabricImageClass, classRegistry, util } from "fabric"
 
-export class StaticVideoObject extends fabric.Image {
+export class StaticVideo extends FabricImageClass {
   static type = "StaticVideo"
-  initialize(video: HTMLVideoElement, options: any) {
+
+  get type() {
+    return "StaticVideo"
+  }
+  set type(_value: string) {
+    // fixed value — intentional no-op
+  }
+
+  constructor(video: HTMLVideoElement, options: any) {
     const defaultOpts = {
       objectCaching: false,
       cacheProperties: ["time"],
     }
-    options = options || {}
-
-    super.initialize(video, Object.assign({}, defaultOpts, options))
-    return this
+    super(video, Object.assign({}, defaultOpts, options || {}))
   }
 
-  _draw(video, ctx, w, h) {
+  _draw(video: any, ctx: any, w: any, h: any) {
     const d = {
       x: -this.width / 2,
       y: -this.height / 2,
@@ -23,23 +27,28 @@ export class StaticVideoObject extends fabric.Image {
     }
     ctx.drawImage(video, d.x, d.y, d.w, d.h)
   }
-  _render(ctx) {
-    this._draw(this.getElement(), ctx)
+
+  _render(ctx: CanvasRenderingContext2D) {
+    this._draw(this.getElement(), ctx, this.width, this.height)
   }
 
-  toObject(propertiesToInclude = []) {
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {})
+  // @ts-ignore
+  toObject(propertiesToInclude: string[] = []): any {
+    return {
+      ...super.toObject(propertiesToInclude as any),
+    }
   }
-  toJSON(propertiesToInclude = []) {
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {})
+
+  // @ts-ignore
+  toJSON(propertiesToInclude: string[] = []): any {
+    return {
+      ...super.toObject(propertiesToInclude as any),
+    }
   }
 }
-fabric.StaticVideo = fabric.util.createClass(StaticVideoObject, {
-  type: StaticVideoObject.type,
-})
+
+classRegistry.setClass(StaticVideo, StaticVideo.type)
 
 declare module "fabric" {
-  namespace fabric {
-    interface StaticVideo {}
-  }
+  export interface StaticVideo {}
 }

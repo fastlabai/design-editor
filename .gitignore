@@ -8,3 +8,4 @@ examples/*/dist/
 apps/docs/dist/
 apps/docs/.astro/
 .npmrc
+__debug_temp

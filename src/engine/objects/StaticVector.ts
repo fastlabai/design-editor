@@ -1,41 +1,36 @@
-import { fabric } from "fabric"
+import { Group, classRegistry, loadSVGFromURL } from "fabric"
+import type { GroupProps } from "fabric"
 import groupBy from "lodash/groupBy"
-class StaticVectorObject extends fabric.Group {
+
+export class StaticVector extends Group {
   static type = "StaticVector"
-  public src: string
-  public objectColors: Record<string, any[]> = {}
-  public colorMap = {}
-
-  public updateLayerColor(prev: string, next: string) {
-    const sameObjects = this.objectColors[prev]
-
-    if (sameObjects) {
-      sameObjects.forEach((c) => {
-        c.fill = next
-      })
-      this.canvas?.requestRenderAll()
-      // @ts-ignore
-      this.colorMap[prev] = next
-    }
+  
+  get type() {
+    return "StaticVector"
+  }
+  set type(_value: string) {
+    // fixed value — intentional no-op
   }
 
-  //@ts-ignore
-  initialize(objects, options, others) {
+  public src: string
+  public objectColors: Record<string, any[]> = {}
+  public colorMap: Record<string, string> = {}
+
+  constructor(objects: any[], options: any, others: any) {
     const existingColorMap = others.colorMap
     const objectColors = groupBy(objects, "fill")
+    
     // set colorMap
     if (existingColorMap) {
       Object.keys(existingColorMap).forEach((color) => {
         const colorObjects = objectColors[color]
         if (colorObjects) {
-          // @ts-ignore
-          colorObjects.forEach((c) => {
+          colorObjects.forEach((c: any) => {
             c.fill = existingColorMap[color]
           })
         }
       })
     }
-    this.objectColors = objectColors
 
     const colorMap: Record<string, string> = {}
 
@@ -47,48 +42,62 @@ class StaticVectorObject extends fabric.Group {
         colorMap[c] = existingColorMap[c]
       })
     }
+
+    // Fabric 6 groups don't have util.groupSVGElements in the same way,
+    // usually loadSVGFromURL returns { objects, options }. 
+    // We just pass objects to Group directly.
+    super(objects, { ...options, ...others, colorMap } as any)
+
+    this.objectColors = objectColors
     this.colorMap = colorMap
-
-    const object = fabric.util.groupSVGElements(objects, options)
-    //@ts-ignore
-    super.initialize([object], { ...others, colorMap })
-    this.set("src", others.src)
-
-    return this
+    this.src = others.src
   }
 
-  toObject(propertiesToInclude = []) {
-    // @ts-ignore
-    return super.toObject(propertiesToInclude, {
+  public updateLayerColor(prev: string, next: string) {
+    const sameObjects = this.objectColors[prev]
+
+    if (sameObjects) {
+      sameObjects.forEach((c) => {
+        c.fill = next
+      })
+      this.canvas?.requestRenderAll()
+      this.colorMap[prev] = next
+    }
+  }
+
+  // @ts-ignore
+  toObject(propertiesToInclude: string[] = []): any {
+    return {
+      ...super.toObject(propertiesToInclude as any),
       src: this.src,
-    })
-  }
-  toJSON(propertiesToInclude = []) {
-    // @ts-ignore
-    return super.toObject(propertiesToInclude, {
-      src: this.src,
-    })
+    }
   }
 
-  static fromObject(options: any, callback: Function) {
-    fabric.loadSVGFromURL(options.src, (objects, opts) => {
-      return callback && callback(new fabric.StaticVector(objects, opts, { ...options }))
+  // @ts-ignore
+  toJSON(propertiesToInclude: string[] = []): any {
+    return {
+      ...super.toObject(propertiesToInclude as any),
+      src: this.src,
+    }
+  }
+
+  static async fromObject(options: any): Promise<StaticVector> {
+    return new Promise((resolve, reject) => {
+      loadSVGFromURL(options.src)
+        .then(({ objects, options: svgOptions }) => {
+          resolve(new StaticVector(objects as any, svgOptions, options))
+        })
+        .catch(reject)
     })
   }
 }
 
-fabric.StaticVector = fabric.util.createClass(StaticVectorObject, {
-  type: StaticVectorObject.type,
-})
+classRegistry.setClass(StaticVector, StaticVector.type)
 
-fabric.StaticVector.fromObject = StaticVectorObject.fromObject
-
-export type SvgOptions = fabric.Group & { text: string }
+export type SvgOptions = Group & { text: string }
 
 declare module "fabric" {
-  namespace fabric {
-    interface StaticVector {}
-  }
+  export interface StaticVector {}
 }
 
-export default StaticVectorObject
+export default StaticVector

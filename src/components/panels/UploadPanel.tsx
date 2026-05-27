@@ -1,6 +1,6 @@
 'use client'
 import React, { useRef, useState } from 'react'
-import { CloudUploadOutlined, LoadingOutlined } from '@ant-design/icons'
+import { CloudUpload, Loader2 } from 'lucide-react'
 import { useToast } from '../../hooks/useToast'
 
 interface Props {
@@ -60,9 +60,9 @@ export function UploadPanel({ onUploadFile }: Props) {
         }}
       >
         {isUploading ? (
-          <LoadingOutlined style={{ fontSize: 32, color: 'var(--color-primary)' }} />
+          <Loader2 size={32} color="var(--color-primary)" className="animate-spin" />
         ) : (
-          <CloudUploadOutlined style={{ fontSize: 32, color: 'var(--color-primary)' }} />
+          <CloudUpload size={32} color="var(--color-primary)" />
         )}
         <div style={{ textAlign: 'center' }}>
           <div style={{ color: 'var(--color-text)', fontSize: 13, fontWeight: 600 }}>

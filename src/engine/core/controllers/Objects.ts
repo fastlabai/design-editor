@@ -1,4 +1,7 @@
-import { fabric } from "fabric"
+import { Object as FabricObject, Group, ActiveSelection, Gradient } from "fabric";
+import { StaticText } from "../../objects/StaticText";
+import { StaticImage } from "../../objects/StaticImage";
+import { BackgroundImage } from "../../objects/BackgroundImage";
 import { isArray, pick } from "lodash"
 import { generateId } from "../utils/id"
 import Base from "./Base"
@@ -20,9 +23,10 @@ class Objects extends Base {
     const objectImporter = new ObjectImporter(this.editor)
     const refItem = item as unknown as ILayer
 
-    const object: fabric.Object = await objectImporter.import(refItem, options)
+    const object: FabricObject = await objectImporter.import(refItem, options)
     if (this.config.clipToFrame) {
       const frame = this.editor.frame.frame
+      // @ts-ignore
       object.clipPath = frame
     }
 
@@ -34,6 +38,7 @@ class Objects extends Base {
 
     if (isBackgroundImage) {
       canvas.add(object)
+      // @ts-ignore
       object.moveTo(2)
       this.scale("fill", object.id)
       if (currentBackgrounImage) {
@@ -42,7 +47,7 @@ class Objects extends Base {
       }
     } else {
       canvas.add(object)
-      object.center()
+      this.canvas.centerObject(object as any)
     }
 
     this.state.setActiveObject(object)
@@ -63,6 +68,8 @@ class Objects extends Base {
    * @param id if provided, will update the update by id
    */
   public update = (options: Partial<ILayerOptions>, id?: string) => {
+    // Don't process updates while history is restoring (avoids stack corruption)
+    if (this.editor.history.isActive) return
     const frame = this.editor.frame.frame
     let refObject = this.canvas.getActiveObject()
     if (id) {
@@ -70,8 +77,16 @@ class Objects extends Base {
     }
     const canvas = this.canvas
     if (refObject) {
+      const isEditing = (refObject as any).isEditing
+      const hasSelection = isEditing && (refObject as any).selectionStart !== (refObject as any).selectionEnd
+
       for (const property in options) {
-        if (property === "angle" || property === "top" || property === "left") {
+        if (hasSelection && ["fontSize", "fontFamily", "fontWeight", "fontStyle", "fill", "underline", "linethrough"].includes(property)) {
+          // Per-character style for text selections
+          // @ts-ignore
+          refObject.setSelectionStyles({ [property]: options[property] })
+          canvas.requestRenderAll()
+        } else if (property === "angle" || property === "top" || property === "left") {
           if (property === "angle") {
             // @ts-ignore
             refObject.rotate(options["angle"])
@@ -95,8 +110,9 @@ class Objects extends Base {
             ...refObject.metadata,
             ...options[property],
           })
-        } else if (refObject.type === LayerType.ACTIVE_SELECTION && refObject._objects) {
-          refObject._objects.forEach((object) => {
+        } else if (refObject.type === LayerType.ACTIVE_SELECTION && (refObject as any)._objects) {
+          // @ts-ignore
+          (refObject as any)._objects.forEach((object) => {
             if (property === "metadata") {
               object.set("metadata", {
                 ...object.metadata,
@@ -110,7 +126,7 @@ class Objects extends Base {
           })
         } else {
           // @ts-ignore
-          refObject.set(property as keyof fabric.Object, options[property])
+          refObject.set(property as keyof FabricObject, options[property])
           canvas.requestRenderAll()
           refObject.setCoords()
         }
@@ -152,7 +168,7 @@ class Objects extends Base {
   public select = (id?: string) => {
     this.canvas.discardActiveObject()
     if (id) {
-      const [object] = this.findById(id) as fabric.Object[]
+      const [object] = this.findById(id) as FabricObject[]
       if (object) {
         this.canvas.disableEvents()
         this.canvas.setActiveObject(object)
@@ -185,9 +201,9 @@ class Objects extends Base {
         this.state.setActiveObject(filteredObjects[0])
         return
       }
-      const activeSelection = new fabric.ActiveSelection(filteredObjects, {
+      const activeSelection = new ActiveSelection(filteredObjects, {
         canvas: this.canvas,
-      }) as fabric.Object
+      }) as FabricObject
       this.canvas.setActiveObject(activeSelection)
       this.canvas.renderAll()
       this.state.setActiveObject(activeSelection)
@@ -201,7 +217,7 @@ class Objects extends Base {
   }
 
   public move(direction: Direction, value: number, id?: string) {
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
@@ -213,7 +229,7 @@ class Objects extends Base {
   }
 
   public position(position: Direction, value: number, id?: string) {
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
@@ -224,7 +240,7 @@ class Objects extends Base {
   }
 
   public resize(size: Size, value: number, id?: string) {
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
@@ -237,7 +253,7 @@ class Objects extends Base {
   }
 
   public scale(type: ScaleType, id?: string) {
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     const { width, height, top } = this.editor.frame.frame
     if (id) {
       refObject = this.findOneById(id)
@@ -260,7 +276,7 @@ class Objects extends Base {
           scaleX: scaleMax,
         })
       }
-      refObject.center()
+      this.canvas.centerObject(refObject as any)
       if (scaleY >= scaleX) {
         refObject.set("top", top)
       }
@@ -296,9 +312,9 @@ class Objects extends Base {
 
       // @ts-ignore — vendored upstream: activeObject may be null here per Fabric v5 types
       this.duplicate(activeObject, frame, (duplicates) => {
-        const selection = new fabric.ActiveSelection(duplicates, {
+        const selection = new ActiveSelection(duplicates, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.canvas.requestRenderAll()
       })
@@ -309,16 +325,17 @@ class Objects extends Base {
     const object = this.findOneById(id)
     const frame = this.editor.frame.frame
     this.deselect()
+      // @ts-ignore
     this.duplicate(object, frame, (duplicates) => {
       this.canvas.requestRenderAll()
       this.updateContextObjects()
     })
   }
 
-  private duplicate(object: fabric.Object, frame: fabric.Object, callback: (clones: fabric.Object[]) => void): void {
-    if (object instanceof fabric.Group && object.type !== LayerType.STATIC_VECTOR) {
-      const objects: fabric.Object[] = (object as fabric.Group).getObjects()
-      const duplicates: fabric.Object[] = []
+  private duplicate(object: FabricObject, frame: FabricObject, callback: (clones: FabricObject[]) => void): void {
+    if (object instanceof Group && object.type !== LayerType.STATIC_VECTOR) {
+      const objects: FabricObject[] = (object as Group).getObjects()
+      const duplicates: FabricObject[] = []
       for (let i = 0; i < objects.length; i++) {
         this.duplicate(objects[i], frame, (clones) => {
           duplicates.push(...clones)
@@ -329,7 +346,7 @@ class Objects extends Base {
       }
     } else {
       object.clone(
-        (clone: fabric.Object) => {
+        (clone: FabricObject) => {
           clone.clipPath = undefined
           clone.id = generateId()
           clone.set({
@@ -338,11 +355,13 @@ class Objects extends Base {
           })
           if (this.config.clipToFrame) {
             const frame = this.editor.frame.frame
+      // @ts-ignore
             clone.clipPath = frame
           }
           this.canvas.add(clone)
           callback([clone])
         },
+      // @ts-ignore
         ["keyValues", "src"]
       )
     }
@@ -353,10 +372,11 @@ class Objects extends Base {
     if (object) {
       const frame = this.editor.frame.frame
       this.canvas.discardActiveObject()
+      // @ts-ignore
       this.duplicate(object, frame, (duplicates) => {
-        const selection = new fabric.ActiveSelection(duplicates, {
+        const selection = new ActiveSelection(duplicates, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.canvas.requestRenderAll()
         this.updateContextObjects()
@@ -382,6 +402,7 @@ class Objects extends Base {
       this.canvas.remove(refObject)
     }
 
+      // @ts-ignore
     this.canvas.discardActiveObject().renderAll()
     this.editor.history.save()
     this.updateContextObjects()
@@ -422,7 +443,7 @@ class Objects extends Base {
 
         if (fill) {
           if (fill.type) {
-            activeObject.set({ fill: new fabric.Gradient(fill) })
+            activeObject.set({ fill: new Gradient(fill) })
           } else {
             activeObject.set({ fill })
           }
@@ -444,14 +465,14 @@ class Objects extends Base {
       refObject = this.findOneById(id)
     }
     if (refObject) {
-      this.canvas.bringForward(refObject)
+      this.canvas.bringObjectForward(refObject)
     }
   }
 
   public bringForwardById = (id: string) => {
     this.canvas.getObjects().forEach((o) => {
       if (o.id === id) {
-        this.canvas.bringForward(o)
+        this.canvas.bringObjectForward(o)
       }
     })
   }
@@ -465,7 +486,7 @@ class Objects extends Base {
       refObject = this.findOneById(id)
     }
     if (refObject) {
-      this.canvas.bringToFront(refObject)
+      this.canvas.bringObjectToFront(refObject)
     }
   }
 
@@ -485,7 +506,7 @@ class Objects extends Base {
     const canBeMoved = backgroundImage ? index > 3 : index > 2
 
     if (refObject && canBeMoved) {
-      this.canvas.sendBackwards(refObject)
+      this.canvas.sendObjectBackwards(refObject)
     }
   }
 
@@ -502,9 +523,9 @@ class Objects extends Base {
     // const indexx =
     if (refObject) {
       if (backgroundImage) {
-        refObject.moveTo(3)
+        this.canvas.moveObjectTo(refObject, 3)
       } else {
-        refObject.moveTo(2)
+        this.canvas.moveObjectTo(refObject, 2)
       }
     }
   }
@@ -522,7 +543,7 @@ class Objects extends Base {
 
     if (refObject) {
       if (refObject.type === LayerType.ACTIVE_SELECTION) {
-        const selectedObjects = refObject._objects as fabric.Object[]
+        const selectedObjects = (refObject as any)._objects as FabricObject[]
         const refTop = refObject.top
         this.canvas.discardActiveObject()
         selectedObjects.forEach((object) => {
@@ -531,9 +552,9 @@ class Objects extends Base {
             top: refTop,
           })
         })
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.state.setActiveObject(selection)
       } else {
@@ -551,14 +572,14 @@ class Objects extends Base {
    */
   public alignMiddle = (id?: string) => {
     const frame = this.editor.frame.frame
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
 
     if (refObject) {
       if (refObject.type === LayerType.ACTIVE_SELECTION) {
-        const selectedObjects = refObject._objects as fabric.Object[]
+        const selectedObjects = (refObject as any)._objects as FabricObject[]
         const refTop = refObject.top
         const refHeight = refObject.height
         this.canvas.discardActiveObject()
@@ -569,9 +590,9 @@ class Objects extends Base {
             top: refTop + refHeight / 2 - currentObjectHeight / 2,
           })
         })
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.state.setActiveObject(selection)
       } else {
@@ -591,14 +612,14 @@ class Objects extends Base {
    */
   public alignBottom = (id?: string) => {
     const frame = this.editor.frame.frame
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
 
     if (refObject) {
       if (refObject.type === LayerType.ACTIVE_SELECTION) {
-        const selectedObjects = refObject._objects as fabric.Object[]
+        const selectedObjects = (refObject as any)._objects as FabricObject[]
         const refTop = refObject.top
         const refHeight = refObject.height
         this.canvas.discardActiveObject()
@@ -609,9 +630,9 @@ class Objects extends Base {
             top: refTop + refHeight - currentObjectHeight,
           })
         })
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.state.setActiveObject(selection)
       } else {
@@ -638,7 +659,7 @@ class Objects extends Base {
 
     if (refObject) {
       if (refObject.type === LayerType.ACTIVE_SELECTION) {
-        const selectedObjects = refObject._objects as fabric.Object[]
+        const selectedObjects = (refObject as any)._objects as FabricObject[]
         const refLeft = refObject.left
         this.canvas.discardActiveObject()
         selectedObjects.forEach((object) => {
@@ -647,9 +668,9 @@ class Objects extends Base {
             left: refLeft,
           })
         })
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.state.setActiveObject(selection)
       } else {
@@ -668,17 +689,18 @@ class Objects extends Base {
    */
   public alignCenter = (id?: string) => {
     const frame = this.editor.frame.frame
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
 
     if (refObject) {
       if (refObject.type === LayerType.ACTIVE_SELECTION) {
-        const selectedObjects = refObject._objects
+        const selectedObjects = (refObject as any)._objects
         const refLeft = refObject.left
         const refWidth = refObject.width
         this.canvas.discardActiveObject()
+      // @ts-ignore
         selectedObjects.forEach((object) => {
           const currentObject = object
           const currentObjectWidth = currentObject.getScaledWidth()
@@ -686,9 +708,9 @@ class Objects extends Base {
             left: refLeft + refWidth / 2 - currentObjectWidth / 2,
           })
         })
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.state.setActiveObject(selection)
       } else {
@@ -708,13 +730,13 @@ class Objects extends Base {
    */
   public alignRight = (id?: string) => {
     const frame = this.editor.frame.frame
-    let refObject = this.canvas.getActiveObject() as Required<fabric.Object>
+    let refObject = this.canvas.getActiveObject() as Required<FabricObject>
     if (id) {
       refObject = this.findOneById(id)
     }
     if (refObject) {
       if (refObject.type === LayerType.ACTIVE_SELECTION) {
-        const selectedObjects = refObject._objects as fabric.Group[]
+        const selectedObjects = (refObject as any)._objects as Group[]
         const refLeft = refObject.left
         const refWidth = refObject.width
         this.canvas.discardActiveObject()
@@ -725,9 +747,9 @@ class Objects extends Base {
             left: refLeft + refWidth - currentObjectWidth,
           })
         })
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas,
-        }) as fabric.Object
+        }) as FabricObject
         this.canvas.setActiveObject(selection)
         this.state.setActiveObject(selection)
       } else {
@@ -741,18 +763,19 @@ class Objects extends Base {
     }
   }
 
-  public unsetBackgroundImage(): Promise<fabric.StaticImage | null> {
+  public unsetBackgroundImage(): Promise<StaticImage | null> {
     return new Promise(async (resolve) => {
       const objects = this.canvas.getObjects()
       const currentBackgroundImage = objects.find((o) => o.type === LayerType.BACKGROUND_IMAGE)
-      let nextImage: fabric.StaticImage
+      let nextImage: StaticImage
       if (currentBackgroundImage) {
+      // @ts-ignore
         const currentBackgroundImageJSON = currentBackgroundImage.toJSON(this.config.propertiesToInclude)
         // @ts-ignore — vendored: clipPath exists on Fabric JSON at runtime
         delete currentBackgroundImageJSON.clipPath
         // @ts-ignore — vendored: src exists on Fabric image JSON at runtime
         const nextImageElement = await loadImageFromURL(currentBackgroundImageJSON.src)
-        nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: generateId() })
+        nextImage = new StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: generateId() })
         // @ts-ignore
         // this.canvas.add(nextImage)
         this.canvas.remove(currentBackgroundImage)
@@ -764,7 +787,7 @@ class Objects extends Base {
   }
 
   public async setAsBackgroundImage(id?: string) {
-    let refObject = this.canvas.getActiveObject() as fabric.Object
+    let refObject = this.canvas.getActiveObject() as FabricObject
     if (id) {
       refObject = this.findOneById(id)
     }
@@ -776,20 +799,22 @@ class Objects extends Base {
         // @ts-ignore
         this.canvas.add(nextImage)
       }
+      // @ts-ignore
       const objectJSON = refObject.toJSON(this.config.propertiesToInclude)
       // @ts-ignore — vendored: clipPath exists on Fabric JSON at runtime
       delete objectJSON.clipPath
       // @ts-ignore — vendored: src exists on Fabric image JSON at runtime
       const image = await loadImageFromURL(objectJSON.src)
-      const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: generateId() })
+      const backgroundImage = new BackgroundImage(image, { ...objectJSON, id: generateId() })
       // @ts-ignore
       this.canvas.add(backgroundImage)
+      // @ts-ignore
       backgroundImage.clipPath = frame
       this.canvas.remove(refObject)
 
       this.canvas.requestRenderAll()
       this.scale("fill", backgroundImage.id)
-      backgroundImage.moveTo(2)
+      this.canvas.moveObjectTo(backgroundImage, 2)
       if (nextImage) {
         this.sendToBack(nextImage.id)
       }
@@ -802,7 +827,7 @@ class Objects extends Base {
    */
   public setShadow = (options: ShadowOptions) => {
     const activeObject = this.canvas.getActiveObject()
-    if (activeObject instanceof fabric.Group && activeObject.type !== LayerType.STATIC_VECTOR) {
+    if (activeObject instanceof Group && activeObject.type !== LayerType.STATIC_VECTOR) {
       // @ts-ignore
       activeObject._objects.forEach((object) => {
         setObjectShadow(object, options)
@@ -820,7 +845,7 @@ class Objects extends Base {
    */
   public setGradient = ({ angle, colors }: GradientOptions) => {
     const activeObject = this.canvas.getActiveObject()
-    if (activeObject instanceof fabric.Group) {
+    if (activeObject instanceof Group) {
       // @ts-ignore
       activeObject._objects.forEach((object) => {
         setObjectGradient(object, angle, colors)
@@ -837,7 +862,7 @@ class Objects extends Base {
    * Group selected objects
    */
   public group = () => {
-    const activeObject = this.canvas.getActiveObject() as fabric.ActiveSelection
+    const activeObject = this.canvas.getActiveObject() as ActiveSelection
     if (!activeObject) {
       return
     }
@@ -845,25 +870,24 @@ class Objects extends Base {
       return
     }
 
-    activeObject.toGroup()
-    this.canvas.requestRenderAll()
-    this.editor.history.save()
-
-    // @ts-ignore — vendored: getActiveObject() may return null per strict types
-    const groupedActiveObject = this.canvas.getActiveObject()
-    // @ts-ignore
-    groupedActiveObject.set({
+    // In Fabric v6, toGroup() was removed. We manually create a Group.
+    const objects = activeObject.removeAll();
+    const group = new Group(objects, {
       name: "group",
       id: generateId(),
-      // @ts-ignore
       subTargetCheck: true,
-    })
+    } as any);
+    this.canvas.add(group);
+    this.canvas.setActiveObject(group);
+
+    this.canvas.requestRenderAll()
+    this.editor.history.save()
     this.updateContextObjects()
   }
 
   public ungroup = () => {
     const frame = this.editor.frame.frame
-    const activeObject = this.canvas.getActiveObject() as fabric.ActiveSelection
+    const activeObject = this.canvas.getActiveObject() as ActiveSelection
     if (!activeObject) {
       return
     }
@@ -871,13 +895,18 @@ class Objects extends Base {
       return
     }
 
-    activeObject.clipPath = null
-    const activeSelection = activeObject.toActiveSelection()
-    // @ts-ignore
-    activeSelection._objects.forEach((object) => {
-      object.clipPath = frame
+    (activeObject as any).clipPath = undefined
+    
+    // In Fabric v6, toActiveSelection() was removed.
+    const objects = activeObject.removeAll();
+    this.canvas.remove(activeObject);
+    const activeSelection = new ActiveSelection(objects, { canvas: this.canvas as any });
+
+    activeSelection.getObjects().forEach((object) => {
+      // @ts-ignore
+      object.clipPath = frame as any
     })
-    this.state.setActiveObject(activeSelection)
+    this.canvas.setActiveObject(activeSelection)
     this.canvas.requestRenderAll()
     this.editor.history.save()
     this.updateContextObjects()
@@ -887,13 +916,14 @@ class Objects extends Base {
    * Lock object movement and disable controls
    */
   public lock = (id?: string) => {
-    let refObject = this.canvas.getActiveObject() as fabric.Object | fabric.ActiveSelection
+    let refObject = this.canvas.getActiveObject() as FabricObject | ActiveSelection
     if (id) {
       refObject = this.findOneById(id)
     }
     if (refObject) {
-      if (refObject._objects) {
-        refObject._objects.forEach((object) => {
+      if ((refObject as any)._objects) {
+      // @ts-ignore
+        (refObject as any)._objects.forEach((object) => {
           object.set({
             hasControls: false,
             lockMovementY: true,
@@ -926,13 +956,15 @@ class Objects extends Base {
    * Unlock active object
    */
   public unlock = (id?: string) => {
-    let refObject = this.canvas.getActiveObject() as fabric.Object | fabric.ActiveSelection
+    let refObject = this.canvas.getActiveObject() as FabricObject | ActiveSelection
     if (id) {
       refObject = this.findOneById(id)
     }
     if (refObject) {
+      // @ts-ignore
       if (refObject?._objects) {
-        refObject._objects.forEach((object) => {
+      // @ts-ignore
+        (refObject as any)._objects.forEach((object) => {
           object.set({
             hasControls: true,
             lockMovementY: false,
@@ -975,7 +1007,7 @@ class Objects extends Base {
     this.canvas.requestRenderAll()
   }
 
-  public findByIdInObjecs = (id: string, objects: fabric.Object[]): any => {
+  public findByIdInObjecs = (id: string, objects: FabricObject[]): any => {
     let item = null
 
     for (const object of objects) {
@@ -985,7 +1017,7 @@ class Objects extends Base {
       }
       if (object.type === "group") {
         // @ts-ignore
-        const itemInGroup = this.findByIdInObjecs(id, object._objects)
+        const itemInGroup = this.findByIdInObjecs(id, (object as any)._objects)
         if (itemInGroup) {
           item = itemInGroup
           break
@@ -1018,7 +1050,7 @@ class Objects extends Base {
 
   // Text exclusive hooks
   public toUppercase(id?: string) {
-    let refObject = this.canvas.getActiveObject() as fabric.StaticText
+    let refObject = this.canvas.getActiveObject() as StaticText
     if (id) {
       refObject = this.findOneById(id)
     }
@@ -1038,7 +1070,7 @@ class Objects extends Base {
 
   // Text exclusive hooks
   public toLowerCase(id?: string) {
-    let refObject = this.canvas.getActiveObject() as fabric.StaticText
+    let refObject = this.canvas.getActiveObject() as StaticText
     if (id) {
       refObject = this.findOneById(id)
     }

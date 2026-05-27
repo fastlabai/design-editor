@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed
+- Fixed an issue where the canvas would turn blank on Undo/Redo after the Fabric.js v6 migration. Replaced the `util.enlivenObjects` approach with `canvas.loadFromJSON` as the official Fabric v6 method, and fixed `Cannot set property type of [object Object] which has only a getter` crashes during object deserialization by supplying `set type` no-ops to all custom classes (`Frame`, `Background`, `BackgroundImage`, `StaticImage`, `StaticText`, `StaticPath`, `StaticVector`, `StaticVideo`, `StaticAudio`).
+- Fixed a `_drawClipPath` crash by stripping `clipPath` from history JSON snapshots, as `loadFromJSON` handles it internally and the editor re-applies it automatically on restore.
+- Fixed a React console warning (`Function components cannot be given refs`) in `PBtn` by using `React.forwardRef`.
+
 ## [1.0.0-beta.6] - 2026-05-23
 
 ### Added

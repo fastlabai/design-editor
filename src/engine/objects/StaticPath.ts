@@ -1,35 +1,40 @@
-import { fabric } from "fabric"
+import { Path, classRegistry } from "fabric"
+import type { PathProps } from "fabric"
 
-export class StaticPathObject extends fabric.Path {
+export type StaticPathOptions = PathProps & { path: string }
+
+export class StaticPath extends Path {
   static type = "StaticPath"
 
-  initialize(options: StaticPathOptions) {
-    const { path, ...pathOptions } = options
-    //@ts-ignore
-    super.initialize(path, pathOptions)
+  get type() {
+    return "StaticPath"
+  }
+  set type(_value: string) {
+    // fixed value — intentional no-op
+  }
 
-    return this
+  constructor(options: StaticPathOptions) {
+    const { path, ...pathOptions } = options
+    super(path, pathOptions as any)
   }
-  toObject(propertiesToInclude = []) {
-    return super.toObject(propertiesToInclude)
+
+  // @ts-ignore
+  toObject(propertiesToInclude: string[] = []) {
+    return super.toObject(propertiesToInclude as any)
   }
-  toJSON(propertiesToInclude = []) {
-    return super.toObject(propertiesToInclude)
+
+  // @ts-ignore
+  toJSON(propertiesToInclude: string[] = []) {
+    return super.toObject(propertiesToInclude as any)
   }
-  static fromObject(options: StaticPathOptions, callback: Function) {
-    return callback && callback(new fabric.StaticPath(options))
+
+  static async fromObject(options: StaticPathOptions) {
+    return new StaticPath(options)
   }
 }
 
-fabric.StaticPath = fabric.util.createClass(StaticPathObject, {
-  type: StaticPathObject.type,
-})
-fabric.StaticPath.fromObject = StaticPathObject.fromObject
-
-export type StaticPathOptions = fabric.IPathOptions & { path: string }
+classRegistry.setClass(StaticPath, StaticPath.type)
 
 declare module "fabric" {
-  namespace fabric {
-    interface StaticPath {}
-  }
+  export interface StaticPath {}
 }

@@ -7,7 +7,7 @@
 An open-source image design editor for React and Next.js, brought to you by [FastlabAI](https://fastlab.ai). Plug in your own
 media library, fonts, and storage backend via simple provider interfaces.
 
-![Design Editor screenshot](./screenshot.png)
+![Design Editor screenshot](https://res.cloudinary.com/ladla8602/image/upload/v1779862509/Design-Editor/design-editor-demo.gif)
 
 ## Features
 

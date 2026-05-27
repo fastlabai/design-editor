@@ -1,19 +1,19 @@
 'use client'
 import React, { useState } from 'react'
 import {
-  LayoutOutlined, AppstoreOutlined, SmileOutlined,
-  FontSizeOutlined, UploadOutlined, BlockOutlined,
-} from '@ant-design/icons'
+  LayoutTemplate, Component, Upload,
+  Type, Shapes, Smile
+} from 'lucide-react'
 
 export type PanelKey = 'templates' | 'elements' | 'upload' | 'text' | 'shapes' | 'stickers'
 
 const ICONS: { key: PanelKey; icon: React.ReactNode; label: string }[] = [
-  { key: 'templates', icon: <LayoutOutlined />,   label: 'Templates' },
-  { key: 'elements',  icon: <BlockOutlined />,    label: 'Elements'  },
-  { key: 'upload',    icon: <UploadOutlined />,   label: 'Upload'    },
-  { key: 'text',      icon: <FontSizeOutlined />, label: 'Text'      },
-  { key: 'shapes',    icon: <AppstoreOutlined />, label: 'Shapes'    },
-  { key: 'stickers',  icon: <SmileOutlined />,    label: 'Stickers'  },
+  { key: 'templates', icon: <LayoutTemplate size={20} />, label: 'Templates' },
+  { key: 'elements',  icon: <Component size={20} />,      label: 'Elements'  },
+  { key: 'upload',    icon: <Upload size={20} />,         label: 'Upload'    },
+  { key: 'text',      icon: <Type size={20} />,           label: 'Text'      },
+  { key: 'shapes',    icon: <Shapes size={20} />,         label: 'Shapes'    },
+  { key: 'stickers',  icon: <Smile size={20} />,          label: 'Stickers'  },
 ]
 
 interface Props {
@@ -74,7 +74,6 @@ function RailButton({ icon, label, active, onClick }: {
     >
       <span style={{
         fontSize: 17,
-        filter: active ? 'drop-shadow(0 0 6px var(--color-primary))' : 'none',
         transition: 'filter 0.2s',
       }}>
         {icon}
@@ -91,7 +90,6 @@ function RailButton({ icon, label, active, onClick }: {
           className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-[22px] h-[3px] rounded-b-sm md:top-1/2 md:left-auto md:right-[-1px] md:-translate-x-0 md:-translate-y-1/2 md:w-[3px] md:h-[22px] md:rounded-l-sm md:rounded-b-none"
           style={{
             background: 'var(--color-primary)',
-            boxShadow: '0 0 8px var(--color-primary)',
           }} 
         />
       )}

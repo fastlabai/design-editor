@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { fabric } from "fabric"
+import { Object as FabricObject, Canvas, util, ActiveSelection, Group, Image, Point, Gradient, Shadow, Control, controlsUtils, Textbox } from "fabric"
 import { ControllerOptions } from "../common/interfaces"
 import Base from "./Base"
 import { drawCircleIcon } from "../utils/drawer"
@@ -17,114 +17,118 @@ class Personalization extends Base {
     }
 
     //Disable context menu
-    //@ts-ignore
-    fabric.util.addListener(document.getElementsByClassName("upper-canvas")[0], "contextmenu", function (e) {
-      e.preventDefault()
-    })
+    const upperCanvas = document.getElementsByClassName("upper-canvas")[0];
+    if (upperCanvas) {
+      upperCanvas.addEventListener("contextmenu", function (e) {
+        e.preventDefault()
+      })
+    }
 
-    fabric.Object.prototype.transparentCorners = false
-    fabric.Object.prototype.cornerColor = "#20bf6b"
-    fabric.Object.prototype.cornerStyle = "circle"
-    fabric.Object.prototype.borderColor = "#3782F7"
-    fabric.Object.prototype.cornerSize = 12
-    fabric.Object.prototype.borderScaleFactor = 2.25
-    fabric.Object.prototype.borderOpacityWhenMoving = 1
-    fabric.Object.prototype.borderOpacity = 1
+    FabricObject.prototype.controls = FabricObject.prototype.controls || {};
 
-    fabric.Object.prototype.controls.tr = new fabric.Control({
+    FabricObject.prototype.transparentCorners = false
+    FabricObject.prototype.cornerColor = "#20bf6b"
+    FabricObject.prototype.cornerStyle = "circle"
+    FabricObject.prototype.borderColor = "#3782F7"
+    FabricObject.prototype.cornerSize = 12
+    FabricObject.prototype.borderScaleFactor = 2.25
+    FabricObject.prototype.borderOpacityWhenMoving = 1
+    FabricObject.prototype.borderOpacity = 1
+
+    FabricObject.prototype.controls.tr = new Control({
       x: 0.5,
       y: -0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.tl = new fabric.Control({
+    FabricObject.prototype.controls.tl = new Control({
       x: -0.5,
       y: -0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.bl = new fabric.Control({
+    FabricObject.prototype.controls.bl = new Control({
       x: -0.5,
       y: 0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.br = new fabric.Control({
+    FabricObject.prototype.controls.br = new Control({
       x: 0.5,
       y: 0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.ml = new fabric.Control({
+    FabricObject.prototype.controls.ml = new Control({
       x: -0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.scalingXOrSkewingY,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingXOrSkewingY,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.mt = new fabric.Control({
+    FabricObject.prototype.controls.mt = new Control({
       x: 0,
       y: -0.5,
-      actionHandler: fabric.controlsUtils.scalingYOrSkewingX,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingYOrSkewingX,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.mb = new fabric.Control({
+    FabricObject.prototype.controls.mb = new Control({
       x: 0,
       y: 0.5,
-      actionHandler: fabric.controlsUtils.scalingYOrSkewingX,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingYOrSkewingX,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.mr = new fabric.Control({
+    FabricObject.prototype.controls.mr = new Control({
       x: 0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.scalingXOrSkewingY,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingXOrSkewingY,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Object.prototype.controls.mtr = new fabric.Control({
+    FabricObject.prototype.controls.mtr = new Control({
       x: 0,
       y: 0.5,
       offsetY: 30,
-      actionHandler: fabric.controlsUtils.rotationWithSnapping,
-      cursorStyleHandler: fabric.controlsUtils.rotationStyleHandler,
+      actionHandler: controlsUtils.rotationWithSnapping,
+      cursorStyleHandler: controlsUtils.rotationStyleHandler,
       actionName: "rotate",
       render: drawCircleIcon,
       cornerSize: 28,
@@ -132,46 +136,47 @@ class Personalization extends Base {
       ...rotationControlPosition,
     })
 
-    // Texbox controls
-    fabric.Textbox.prototype.controls.tr = fabric.Object.prototype.controls.tr
-    fabric.Textbox.prototype.controls.tl = fabric.Object.prototype.controls.tl
-    fabric.Textbox.prototype.controls.bl = fabric.Object.prototype.controls.bl
-    fabric.Textbox.prototype.controls.br = fabric.Object.prototype.controls.br
+    // Textbox controls
+    Textbox.prototype.controls = Textbox.prototype.controls || {};
+    Textbox.prototype.controls.tr = FabricObject.prototype.controls.tr
+    Textbox.prototype.controls.tl = FabricObject.prototype.controls.tl
+    Textbox.prototype.controls.bl = FabricObject.prototype.controls.bl
+    Textbox.prototype.controls.br = FabricObject.prototype.controls.br
 
-    fabric.Textbox.prototype.controls.mt = new fabric.Control({
+    Textbox.prototype.controls.mt = new Control({
       render: () => true,
     })
 
-    fabric.Textbox.prototype.controls.mb = fabric.Textbox.prototype.controls.mt
+    Textbox.prototype.controls.mb = Textbox.prototype.controls.mt
 
-    fabric.Textbox.prototype.controls.mr = new fabric.Control({
+    Textbox.prototype.controls.mr = new Control({
       x: 0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.changeWidth,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
+      actionHandler: controlsUtils.changeWidth,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
       actionName: "resizing",
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Textbox.prototype.controls.ml = new fabric.Control({
+    Textbox.prototype.controls.ml = new Control({
       x: -0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.changeWidth,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
+      actionHandler: controlsUtils.changeWidth,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
       actionName: "resizing",
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
     })
 
-    fabric.Textbox.prototype.controls.mtr = new fabric.Control({
+    Textbox.prototype.controls.mtr = new Control({
       x: 0,
       y: 0.5,
       offsetY: 30,
-      actionHandler: fabric.controlsUtils.rotationWithSnapping,
-      cursorStyleHandler: fabric.controlsUtils.rotationStyleHandler,
+      actionHandler: controlsUtils.rotationWithSnapping,
+      cursorStyleHandler: controlsUtils.rotationStyleHandler,
       actionName: "rotate",
       render: drawCircleIcon,
       cornerSize: 28,

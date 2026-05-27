@@ -1,12 +1,11 @@
 'use client'
 import React, { CSSProperties, useState, useRef, useEffect, useCallback } from 'react'
-import { InputNumber, Modal, Switch } from 'antd'
-import { Tooltip, Select, Popover, Button } from './primitives'
+import { Tooltip, Select, Popover, Button, Dialog, DialogTrigger, DialogContent, DialogOverlay, Switch, DialogClose, DialogTitle, DialogDescription } from './primitives'
 import {
-  ArrowLeftOutlined, UndoOutlined, RedoOutlined,
-  ZoomInOutlined, ZoomOutOutlined, SaveOutlined,
-  AppstoreOutlined, SettingOutlined,
-} from '@ant-design/icons'
+  ArrowLeft, Undo, Redo,
+  ZoomIn, ZoomOut, Save,
+  LayoutGrid, Settings
+} from 'lucide-react'
 import { HDivider } from './primitives'
 import { AD_SIZES } from '../hooks/useCanvasSize'
 
@@ -35,6 +34,7 @@ interface Props {
   workspaceBg: string
   onWorkspaceBgChange: (color: string) => void
   title?: React.ReactNode
+  hasUnsavedChanges?: boolean
 }
 
 const TOOL_BTN: CSSProperties = {
@@ -51,14 +51,9 @@ const TOOL_BTN_ACTIVE: CSSProperties = {
   boxShadow: '0 0 0 1px var(--color-primary)',
 }
 
-export function Toolbar({
-  editor, zoomPct, size, customOpen, setCustomOpen,
-  customW, setCustomW, customH, setCustomH,
-  handleSizeChange, handleApplyCustom,
-  layerPanelOpen, onToggleLayers, exporting, onExport, onBack,
-  settings, onSettings, canvasBg, onBgChange, workspaceBg, onWorkspaceBgChange,
-  title,
-}: Props) {
+export function Toolbar(props: Props) {
+  const { editor, zoomPct, size, customOpen, setCustomOpen, customW, setCustomW, customH, setCustomH, handleSizeChange, handleApplyCustom, layerPanelOpen, onToggleLayers, exporting, onExport, onBack, settings, onSettings, canvasBg, onBgChange, workspaceBg, onWorkspaceBgChange, title, hasUnsavedChanges } = props;
+  console.log("DEBUG Toolbar dependencies:", { Tooltip, Select, Popover, Button, Dialog, DialogTrigger, DialogContent, DialogOverlay, Switch, ArrowLeft, Undo, Redo, ZoomIn, ZoomOut, Save, LayoutGrid, Settings, HDivider });
   const settingsContent = (
     <div style={{ width: 230, display: 'flex', flexDirection: 'column', gap: 14,
       background: 'var(--color-surface)', borderRadius: 12, padding: 16,
@@ -73,10 +68,8 @@ export function Toolbar({
         <div key={key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontSize: 13, color: 'var(--color-text)' }}>{label}</span>
           <Switch
-            size="small"
             checked={settings[key]}
-            onChange={v => onSettings({ [key]: v })}
-            style={{ background: settings[key] ? 'var(--color-primary)' : undefined }}
+            onCheckedChange={v => onSettings({ [key]: v })}
           />
         </div>
       ))}
@@ -106,6 +99,31 @@ export function Toolbar({
     </div>
   )
 
+  const exitButton = (
+    <button
+      onClick={!hasUnsavedChanges ? onBack : undefined}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 7,
+        background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 9, padding: '6px 13px', cursor: 'pointer',
+        color: 'var(--color-text-muted)', fontSize: 12, fontWeight: 600,
+        transition: 'all 0.15s',
+        outline: 'none',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text)';
+        (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 10%, transparent)';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text-muted)';
+        (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 5%, transparent)';
+      }}
+    >
+      <ArrowLeft size={14} /> <span className="hidden md:inline">Exit</span>
+    </button>
+  )
+
   return (
     <div 
       className="flex items-center shrink-0 h-[56px] px-[16px] gap-1 z-50 overflow-x-auto whitespace-nowrap scrollbar-hide"
@@ -117,34 +135,28 @@ export function Toolbar({
         WebkitBackdropFilter: 'blur(20px)',
       }}
     >
-      {/* Back */}
       {onBack && (
-        <button
-          onClick={() => Modal.confirm({
-            title: 'Leave without saving?',
-            content: 'Any unsaved changes will be lost.',
-            okText: 'Leave', cancelText: 'Stay', onOk: onBack,
-          })}
-          style={{
-            display: 'flex', alignItems: 'center', gap: 7,
-            background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 9, padding: '6px 13px', cursor: 'pointer',
-            color: 'var(--color-text-muted)', fontSize: 12, fontWeight: 600,
-            transition: 'all 0.15s',
-            outline: 'none',
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text)';
-            (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 10%, transparent)';
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text-muted)';
-            (e.currentTarget as HTMLButtonElement).style.background = 'color-mix(in srgb, var(--color-text) 5%, transparent)';
-          }}
-        >
-          <ArrowLeftOutlined style={{ fontSize: 11 }} /> <span className="hidden md:inline">Back</span>
-        </button>
+        hasUnsavedChanges ? (
+          <Dialog>
+            <DialogTrigger asChild>
+              {exitButton}
+            </DialogTrigger>
+            <DialogContent className="max-w-md p-6">
+              <DialogTitle className="text-lg font-semibold text-[var(--color-text)] mb-2">Leave without saving?</DialogTitle>
+              <DialogDescription className="text-[var(--color-text-muted)] mb-6">Any unsaved changes will be lost.</DialogDescription>
+              <div className="flex justify-end gap-3">
+                <DialogClose asChild>
+                  <Button variant="secondary" size="md">Stay</Button>
+                </DialogClose>
+                <DialogClose asChild>
+                  <Button variant="primary" size="md" onClick={onBack}>Exit</Button>
+                </DialogClose>
+              </div>
+            </DialogContent>
+          </Dialog>
+        ) : (
+          exitButton
+        )
       )}
 
       {/* Brand */}
@@ -167,12 +179,12 @@ export function Toolbar({
       {/* Undo / Redo */}
       <Tooltip title="Undo (Ctrl+Z)" placement="bottom">
         <button onClick={() => editor?.history.undo()} style={TOOL_BTN}>
-          <UndoOutlined />
+          <Undo size={16} />
         </button>
       </Tooltip>
       <Tooltip title="Redo (Ctrl+Y)" placement="bottom">
         <button onClick={() => editor?.history.redo()} style={TOOL_BTN}>
-          <RedoOutlined />
+          <Redo size={16} />
         </button>
       </Tooltip>
 
@@ -181,7 +193,7 @@ export function Toolbar({
       {/* Zoom */}
       <Tooltip title="Zoom out" placement="bottom">
         <button onClick={() => editor?.zoom.zoomOut()} style={TOOL_BTN}>
-          <ZoomOutOutlined />
+          <ZoomOut size={16} />
         </button>
       </Tooltip>
       <div style={{
@@ -194,7 +206,7 @@ export function Toolbar({
       </div>
       <Tooltip title="Zoom in" placement="bottom">
         <button onClick={() => editor?.zoom.zoomIn()} style={TOOL_BTN}>
-          <ZoomInOutlined />
+          <ZoomIn size={16} />
         </button>
       </Tooltip>
 
@@ -228,17 +240,27 @@ export function Toolbar({
               Custom Canvas Size
             </div>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <InputNumber
-                min={100} max={8000} value={customW}
-                onChange={(v) => setCustomW(v ?? 100)}
-                style={{ flex: 1 }} addonAfter="px" placeholder="Width"
-              />
+              <div className="flex-1 relative">
+                <input
+                  type="number"
+                  min={100} max={8000} value={customW}
+                  onChange={(e) => setCustomW(Number(e.target.value) || 100)}
+                  className="w-full bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] border border-transparent focus:border-[var(--color-primary)] outline-none rounded-md px-3 py-1.5 text-sm"
+                  placeholder="Width"
+                />
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] text-xs">px</span>
+              </div>
               <span style={{ color: 'var(--color-text-muted)', fontWeight: 600 }}>×</span>
-              <InputNumber
-                min={100} max={8000} value={customH}
-                onChange={(v) => setCustomH(v ?? 100)}
-                style={{ flex: 1 }} addonAfter="px" placeholder="Height"
-              />
+              <div className="flex-1 relative">
+                <input
+                  type="number"
+                  min={100} max={8000} value={customH}
+                  onChange={(e) => setCustomH(Number(e.target.value) || 100)}
+                  className="w-full bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] border border-transparent focus:border-[var(--color-primary)] outline-none rounded-md px-3 py-1.5 text-sm"
+                  placeholder="Height"
+                />
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] text-xs">px</span>
+              </div>
             </div>
             <Button variant="primary" size="sm" onClick={handleApplyCustom} style={{ width: '100%' }}>
               Apply
@@ -262,7 +284,7 @@ export function Toolbar({
         content={settingsContent}
         placement="bottom"
       >
-        <button style={TOOL_BTN}><SettingOutlined /></button>
+        <button style={TOOL_BTN}><Settings size={18} /></button>
       </Popover>
 
       {/* Layers toggle */}
@@ -271,7 +293,7 @@ export function Toolbar({
           onClick={onToggleLayers}
           style={layerPanelOpen ? TOOL_BTN_ACTIVE : TOOL_BTN}
         >
-          <AppstoreOutlined />
+          <LayoutGrid size={18} />
         </button>
       </Tooltip>
 
@@ -293,7 +315,7 @@ export function Toolbar({
           outline: 'none',
         }}
       >
-        <SaveOutlined style={{ fontSize: 13 }} />
+        <Save size={16} />
         <span className="hidden md:inline">{exporting ? 'Saving…' : 'Save to Library'}</span>
         <span className="md:hidden">{exporting ? '…' : 'Save'}</span>
       </button>

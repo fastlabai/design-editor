@@ -161,11 +161,11 @@
 import React, { useState } from 'react'
 import { Tooltip } from '../primitives'
 import {
-  SearchOutlined,
-  DownOutlined,
-  UpOutlined,
-  RightOutlined,
-} from '@ant-design/icons'
+  Search,
+  ChevronDown,
+  ChevronUp,
+  ChevronRight,
+} from 'lucide-react'
 
 export type ShapeCategoryType =
   | 'filled'
@@ -478,7 +478,7 @@ export function ShapesPanel({ onAddShape }: Props) {
       {/* SEARCH */}
       <div className="px-4 pt-4 pb-2">
         <div className="flex items-center bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] rounded-lg px-3 py-2 border border-[var(--color-border)] focus-within:border-[var(--color-primary)] transition-colors">
-          <SearchOutlined className="text-[var(--color-text-muted)] mr-2" />
+          <Search size={14} className="text-[var(--color-text-muted)] mr-2" />
           <input
             type="text"
             placeholder="Search shapes..."
@@ -555,9 +555,9 @@ function ShapeCategory({
               : `More (${shapes.length})`}
 
             {expanded ? (
-              <UpOutlined className="ml-1 text-[10px]" />
+              <ChevronUp size={10} className="ml-1" />
             ) : (
-              <DownOutlined className="ml-1 text-[10px]" />
+              <ChevronDown size={10} className="ml-1" />
             )}
           </button>
         )}
@@ -658,7 +658,7 @@ function ScrollRow({
             boxShadow: '-8px 0 14px 8px var(--color-surface, #fff)',
           }}
         >
-          <RightOutlined style={{ fontSize: 10, color: 'var(--color-text-muted)' }} />
+          <ChevronRight size={14} style={{ color: 'var(--color-text-muted)' }} />
         </button>
       )}
     </div>

@@ -166,91 +166,65 @@ interface IScene {
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface Frame {
-        }
+    interface Frame {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface StaticText {
-        }
+    interface StaticText {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface StaticImage {
-        }
+    interface StaticImage {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface StaticVector {
-        }
+    interface StaticVector {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface StaticPath {
-        }
+    interface StaticPath {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface Background {
-        }
+    interface Background {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface BackgroundImage {
-        }
-        interface IUtil {
-            isTouchEvent(event: Event): boolean;
-            getPointer(event: Event, a?: any): Point;
-        }
+    interface BackgroundImage {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface StaticVideo {
-        }
+    interface StaticVideo {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface StaticAudio {
-        }
+    interface StaticAudio {
     }
 }
 
 declare module "fabric" {
-    namespace fabric {
-        interface Canvas {
-            __fire: any;
-            enableEvents: () => void;
-            disableEvents: () => void;
-        }
-        interface Object {
-            id: string;
-            name: string;
-            locked: boolean;
-            duration?: {
-                start?: number;
-                stop?: number;
-            };
-            _objects?: fabric.Object[];
-            metadata?: Record<string, any>;
-            clipPath?: undefined | null | fabric.Object;
-        }
+    interface Canvas {
+        __fire: any;
+        enableEvents: () => void;
+        disableEvents: () => void;
+    }
+    interface Object {
+        id: string;
+        name: string;
+        locked: boolean;
+        duration?: {
+            start?: number;
+            stop?: number;
+        };
+        metadata?: Record<string, any>;
     }
 }
 
@@ -392,6 +366,9 @@ declare function createDefaultFontProvider(): FontProvider;
 type TemplatesPanelRenderProp = React.ReactNode | ((props: {
     onApplyTemplate: (t: DesignTemplate) => void;
 }) => React.ReactNode);
+type LibraryPanelRenderProp = React.ReactNode | ((props: {
+    onAddMedia: (url: string) => void;
+}) => React.ReactNode);
 /** Props for the top-level {@link DesignEditor} component. */
 interface DesignEditorProps {
     /** A serialized scene to load on mount, or any scene-shaped object with optional `canvasBg`/`workspaceBg`. */
@@ -416,6 +393,8 @@ interface DesignEditorProps {
     className?: string;
     /** Custom render override for the Templates panel — useful to inject host-app template UI. */
     templatesPanel?: TemplatesPanelRenderProp;
+    /** Custom render override for the Upload/Library panel — useful to inject host-app media library UI. */
+    libraryPanel?: LibraryPanelRenderProp;
     /** Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio". */
     title?: React.ReactNode;
 }
@@ -436,7 +415,7 @@ interface DesignEditorProps {
  * }
  * ```
  */
-declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templateProvider, textDesignProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, templatesPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
+declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templateProvider, textDesignProvider, fontProvider, backgroundRemovalProvider, persistenceProvider, className, templatesPanel, libraryPanel, title, }: DesignEditorProps): react_jsx_runtime.JSX.Element;
 
 /**
  * @fastlabai/design-editor

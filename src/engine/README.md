@@ -22,5 +22,4 @@ while preserving the original MIT license terms.
 
 ## Fabric.js version
 
-The upstream layerhub-io engine depends on **Fabric.js v5.x**. We vendor Fabric v5 here
-for parity. Migration to Fabric v6 is planned after functional parity is confirmed.
+The upstream layerhub-io engine was originally dependent on Fabric.js v5.x. We have fully migrated this vendored package to **Fabric.js v6**, taking advantage of the modern Promise-based APIs, ES6 classes, and improved TypeScript typings.

@@ -1,4 +1,5 @@
-import { fabric } from "fabric"
+import { Rect, Shadow, classRegistry } from "fabric"
+import type { RectProps, SerializedRectProps, ObjectEvents } from "fabric"
 
 const defaultShadow = {
   blur: 10,
@@ -6,17 +7,31 @@ const defaultShadow = {
   offsetX: 0,
   offsetY: 0,
 }
-// @ts-ignore
-export class BackgroundObject extends fabric.Rect {
+
+export interface BackgroundOptions extends RectProps {
+  id: string
+  name: string
+  description?: string
+}
+
+export class Background extends Rect {
   static type = "Background"
-  initialize(options: BackgroundOptions) {
+
+  get type() {
+    return "Background"
+  }
+  set type(_value: string) {
+    // fixed value — intentional no-op
+  }
+
+  constructor(options: BackgroundOptions) {
     const shadowOptions = options.shadow ? options.shadow : defaultShadow
-    const shadow = new fabric.Shadow({
+    const shadow = new Shadow({
       affectStroke: false,
-      // @ts-ignore
-      ...shadowOptions,
+      ...(shadowOptions as any),
     })
-    super.initialize({
+    
+    super({
       ...options,
       selectable: false,
       hasControls: false,
@@ -31,40 +46,31 @@ export class BackgroundObject extends fabric.Rect {
 
     this.on("mouseup", ({ target }) => {
       // @ts-ignore — vendored: canvas is non-null at runtime when object is on canvas
-      const activeSelection = this.canvas.getActiveObject()
+      const activeSelection = this.canvas?.getActiveObject()
       if (!activeSelection && target === this) {
         // @ts-ignore — vendored
-        this.canvas.fire("background:selected")
+        this.canvas?.fire("background:selected")
       }
     })
-    return this
   }
 
+  // @ts-ignore
   toObject(propertiesToInclude: string[] = []) {
-    return super.toObject(propertiesToInclude)
+    return super.toObject(propertiesToInclude as any)
   }
+
+  // @ts-ignore
   toJSON(propertiesToInclude: string[] = []) {
-    return super.toObject(propertiesToInclude)
+    return super.toObject(propertiesToInclude as any)
   }
 
-  static fromObject(options: BackgroundOptions, callback: Function) {
-    return callback && callback(new fabric.Background(options))
+  static async fromObject(options: BackgroundOptions) {
+    return new Background(options)
   }
 }
 
-fabric.Background = fabric.util.createClass(BackgroundObject, {
-  type: BackgroundObject.type,
-})
-fabric.Background.fromObject = BackgroundObject.fromObject
-
-export interface BackgroundOptions extends fabric.IRectOptions {
-  id: string
-  name: string
-  description?: string
-}
+classRegistry.setClass(Background, Background.type)
 
 declare module "fabric" {
-  namespace fabric {
-    interface Background {}
-  }
+  export interface Background {}
 }

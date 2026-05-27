@@ -1,5 +1,5 @@
 import { ILayer } from "../../types"
-import { fabric } from "fabric"
+import { Object as FabricObject, Gradient, Shadow } from "fabric"
 import { isNaN } from "lodash"
 import { ShadowOptions } from "../common/interfaces"
 
@@ -19,7 +19,7 @@ export function angleToPoint(angle: number, sx: number, sy: number) {
   return { y: sy, x: sx - (pp - c) }
 }
 
-const setObjectGradient = (object: fabric.Object, angle: number, colors: string[]) => {
+const setObjectGradient = (object: FabricObject, angle: number, colors: string[]) => {
   let odx = object.width! >> 1
   let ody = object.height! >> 1
   let startPoint = angleToPoint(angle, object.width!, object.height!)
@@ -30,7 +30,7 @@ const setObjectGradient = (object: fabric.Object, angle: number, colors: string[
 
   object.set(
     "fill",
-    new fabric.Gradient({
+    new Gradient({
       type: "linear",
       coords: {
         x1: startPoint.x - odx,
@@ -46,10 +46,10 @@ const setObjectGradient = (object: fabric.Object, angle: number, colors: string[
   )
 }
 
-export const setObjectShadow = (object: fabric.Object | any, options: ShadowOptions) => {
+export const setObjectShadow = (object: FabricObject | any, options: ShadowOptions) => {
   if (options.enabled) {
     object.set({
-      shadow: new fabric.Shadow(options),
+      shadow: new Shadow(options as any),
     })
   } else {
     object.set({
@@ -58,10 +58,10 @@ export const setObjectShadow = (object: fabric.Object | any, options: ShadowOpti
   }
 }
 
-export const updateObjectShadow = (object: fabric.Object | any, options: any) => {
+export const updateObjectShadow = (object: FabricObject | any, options: any) => {
   if (options) {
     object.set({
-      shadow: new fabric.Shadow(options),
+      shadow: new Shadow(options as any),
     })
   } else {
     object.set({
@@ -70,7 +70,7 @@ export const updateObjectShadow = (object: fabric.Object | any, options: any) =>
   }
 }
 
-export const updateObjectBounds = (element: fabric.Object | any, options: Required<ILayer>) => {
+export const updateObjectBounds = (element: FabricObject | any, options: Required<ILayer>) => {
   const { top, left, width, height } = element
   if (isNaN(top) || isNaN(left)) {
     element.set({

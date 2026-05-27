@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import Base from "./Base"
-import { fabric } from "fabric"
+import { Object as FabricObject, Canvas, util, ActiveSelection, Group, Image, Point, Gradient, Shadow } from "fabric"
 
 class Guidelines extends Base {
   public viewportTransform: number[] = []
@@ -124,7 +124,7 @@ class Guidelines extends Base {
                   : activeObjectTop - activeObjectHeight / 2 - aligningLineOffset,
             })
           }
-          activeObject.setPositionByOrigin(new fabric.Point(objectLeft, activeObjectTop), "center", "center")
+          activeObject.setPositionByOrigin(new Point(objectLeft, activeObjectTop), "center", "center")
         }
 
         // snap by the left edge
@@ -151,7 +151,7 @@ class Guidelines extends Base {
             })
           }
           activeObject.setPositionByOrigin(
-            new fabric.Point(objectLeft - objectWidth / 2 + activeObjectWidth / 2, activeObjectTop),
+            new Point(objectLeft - objectWidth / 2 + activeObjectWidth / 2, activeObjectTop),
             "center",
             "center"
           )
@@ -182,7 +182,7 @@ class Guidelines extends Base {
           }
 
           activeObject.setPositionByOrigin(
-            new fabric.Point(objectLeft + objectWidth / 2 - activeObjectWidth / 2, activeObjectTop),
+            new Point(objectLeft + objectWidth / 2 - activeObjectWidth / 2, activeObjectTop),
             "center",
             "center"
           )
@@ -212,7 +212,7 @@ class Guidelines extends Base {
             })
           }
 
-          activeObject.setPositionByOrigin(new fabric.Point(activeObjectLeft, objectTop), "center", "center")
+          activeObject.setPositionByOrigin(new Point(activeObjectLeft, objectTop), "center", "center")
         }
 
         // snap by the top edge
@@ -240,7 +240,7 @@ class Guidelines extends Base {
           }
 
           activeObject.setPositionByOrigin(
-            new fabric.Point(activeObjectLeft, objectTop - objectHeight / 2 + activeObjectHeight / 2),
+            new Point(activeObjectLeft, objectTop - objectHeight / 2 + activeObjectHeight / 2),
             "center",
             "center"
           )
@@ -271,7 +271,7 @@ class Guidelines extends Base {
           }
 
           activeObject.setPositionByOrigin(
-            new fabric.Point(activeObjectLeft, objectTop + objectHeight / 2 - activeObjectHeight / 2),
+            new Point(activeObjectLeft, objectTop + objectHeight / 2 - activeObjectHeight / 2),
             "center",
             "center"
           )

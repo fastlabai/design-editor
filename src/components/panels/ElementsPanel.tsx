@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { RightOutlined } from '@ant-design/icons'
+import { ChevronRight } from 'lucide-react'
 import { useSceneThumbnail } from './_shared/useSceneThumbnail'
 import { SHAPES } from './ShapesPanel'
 import { STICKERS } from './StickersPanel'
@@ -117,7 +117,7 @@ function Section({
             gap: 3,
           }}
         >
-          More ({displayCount}) <RightOutlined style={{ fontSize: 9 }} />
+          More ({displayCount}) <ChevronRight size={10} />
         </button>
       </div>
 

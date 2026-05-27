@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { fabric } from "fabric"
+import { Object as FabricObject, Canvas, util, ActiveSelection, Group, Image, Point, Gradient, Shadow } from "fabric"
 
 export function drawCircleIcon(ctx: CanvasRenderingContext2D, left, top, __styleOverride, fabricObject) {
   ctx.save()
   ctx.translate(left, top)
-  ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle))
+  ctx.rotate(util.degreesToRadians(fabricObject.angle))
   ctx.beginPath()
   ctx.arc(0, 0, 6, 0, 2 * Math.PI)
   ctx.shadowColor = "#333333"
@@ -17,7 +17,7 @@ export function drawCircleIcon(ctx: CanvasRenderingContext2D, left, top, __style
 export function drawVerticalLineIcon(ctx: CanvasRenderingContext2D, left, top, _styleOverride, fabricObject) {
   ctx.save()
   ctx.translate(left, top)
-  ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle))
+  ctx.rotate(util.degreesToRadians(fabricObject.angle))
   drawRectRounded(ctx, -2, -14, 4, 18, 2)
   ctx.lineWidth = 4
   ctx.strokeStyle = "#3782F7"
@@ -41,7 +41,7 @@ function drawRectRounded(ctx: CanvasRenderingContext2D, x, y, w, h, radius) {
 export function drawHorizontalLineIcon(ctx, left, top, _styleOverride, fabricObject) {
   ctx.save()
   ctx.translate(left, top)
-  ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle))
+  ctx.rotate(util.degreesToRadians(fabricObject.angle))
   drawRectRounded(ctx, -14, -2, 18, 4, 2)
   ctx.lineWidth = 4
   ctx.strokeStyle = "#3782F7"

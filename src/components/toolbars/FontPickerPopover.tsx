@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { DownOutlined, UploadOutlined } from '@ant-design/icons'
+import { ChevronDown, Upload } from 'lucide-react'
 import { Popover, Input } from '../primitives'
 import type { FontProvider, FontDescriptor } from '../../providers/fonts'
 
@@ -84,7 +84,7 @@ export function FontPickerPopover({ fontProvider, currentFamily, onChange }: Fon
       <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis' }}>
         {currentFamily ?? 'Default'}
       </span>
-      <DownOutlined style={{ fontSize: 9, flexShrink: 0 }} />
+      <ChevronDown size={12} style={{ flexShrink: 0 }} />
     </button>
   )
 
@@ -175,7 +175,7 @@ export function FontPickerPopover({ fontProvider, currentFamily, onChange }: Fon
             fontSize: 11, fontWeight: 600, outline: 'none',
           }}
         >
-          <UploadOutlined style={{ fontSize: 11 }} />
+          <Upload size={14} />
           Upload font
         </button>
         <input

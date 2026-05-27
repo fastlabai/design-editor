@@ -1,4 +1,14 @@
-import { fabric } from "fabric"
+
+import { StaticText } from "../../objects/StaticText";
+import { StaticImage } from "../../objects/StaticImage";
+import { BackgroundImage } from "../../objects/BackgroundImage";
+import { StaticPath } from "../../objects/StaticPath";
+import { StaticVideo } from "../../objects/StaticVideo";
+import { StaticAudio } from "../../objects/StaticAudio";
+import { StaticVector } from "../../objects/StaticVector";
+import { Background } from "../../objects/Background";
+import { loadSVGFromURL } from "fabric";
+import { Object as FabricObject, Canvas, Group, util } from "fabric"
 import { LayerType } from "../common/constants"
 import { loadImageFromURL } from "./image-loader"
 import { updateObjectShadow } from "./fabric"
@@ -14,7 +24,7 @@ import {
 } from "../../types"
 
 class ObjectImporter {
-  async import(item: any, params: any): Promise<fabric.Object> {
+  async import(item: any, params: any): Promise<FabricObject> {
     let object
     switch (item.type) {
       case LayerType.STATIC_TEXT:
@@ -42,10 +52,10 @@ class ObjectImporter {
         object = await this.group(item, params)
         break
     }
-    return object as fabric.Object
+    return object as FabricObject
   }
 
-  public staticText(item: ILayer): Promise<fabric.StaticText> {
+  public staticText(item: ILayer): Promise<StaticText> {
     return new Promise((resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
@@ -66,7 +76,7 @@ class ObjectImporter {
           metadata,
         }
         // @ts-ignore
-        const element = new fabric.StaticText(textOptions)
+        const element = new StaticText(textOptions)
 
         updateObjectShadow(element, item.shadow)
 
@@ -77,14 +87,14 @@ class ObjectImporter {
     })
   }
 
-  public staticImage(item: ILayer): Promise<fabric.StaticImage> {
+  public staticImage(item: ILayer): Promise<StaticImage> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
         const { src, cropX, cropY } = item as IStaticImage
 
         const image: any = await loadImageFromURL(src)
-        const element = new fabric.StaticImage(image, {
+        const element = new StaticImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0,
@@ -98,14 +108,14 @@ class ObjectImporter {
     })
   }
 
-  public backgroundImage(item: ILayer): Promise<fabric.BackgroundImage> {
+  public backgroundImage(item: ILayer): Promise<BackgroundImage> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
         const { src, cropX, cropY } = item as IBackgroundImage
 
         const image: any = await loadImageFromURL(src)
-        const element = new fabric.BackgroundImage(image, {
+        const element = new BackgroundImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0,
@@ -119,14 +129,14 @@ class ObjectImporter {
     })
   }
 
-  public staticVideo(item: ILayer): Promise<fabric.StaticImage> {
+  public staticVideo(item: ILayer): Promise<StaticImage> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
         const { preview: src, cropX, cropY } = item as IStaticImage
 
         const image: any = await loadImageFromURL(src as string)
-        const element = new fabric.StaticImage(image, {
+        const element = new StaticImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0,
@@ -140,13 +150,13 @@ class ObjectImporter {
     })
   }
 
-  public staticPath(item: ILayer): Promise<fabric.StaticPath> {
+  public staticPath(item: ILayer): Promise<StaticPath> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
         const { path, fill } = item as IStaticPath
 
-        const element = new fabric.StaticPath({
+        const element = new StaticPath({
           ...baseOptions,
           // @ts-ignore
           path,
@@ -162,17 +172,17 @@ class ObjectImporter {
     })
   }
 
-  public group(item: ILayer, params: any): Promise<fabric.Group> {
+  public group(item: ILayer, params: any): Promise<Group> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
-        let objects: fabric.Object[] = []
+        let objects: FabricObject[] = []
 
         for (const object of (item as IGroup).objects) {
           objects = objects.concat(await this.import(object, params))
         }
         // @ts-ignore
-        const element = new fabric.Group(objects, baseOptions)
+        const element = new Group(objects, baseOptions)
 
         updateObjectShadow(element, item.shadow)
 
@@ -183,13 +193,13 @@ class ObjectImporter {
     })
   }
 
-  public background(item: ILayer): Promise<fabric.Background> {
+  public background(item: ILayer): Promise<Background> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
         const { fill } = item as IBackground
         // @ts-ignore
-        const element = new fabric.Background({
+        const element = new Background({
           ...baseOptions,
           fill: fill,
           id: "background",
@@ -203,20 +213,21 @@ class ObjectImporter {
     })
   }
 
-  public staticVector(item: ILayer): Promise<fabric.StaticVector> {
+  public staticVector(item: ILayer): Promise<StaticVector> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item)
         const { src, colorMap = {} } = item as IStaticVector
 
-        fabric.loadSVGFromURL(src, (objects, opts) => {
+        loadSVGFromURL(src, (objects, opts) => {
           const { width, height } = baseOptions
           if (!width || !height) {
             baseOptions.width = opts.width
             baseOptions.height = opts.height
           }
 
-          const element = new fabric.StaticVector(objects, opts, {
+      // @ts-ignore
+          const element = new StaticVector(objects, opts, {
             ...baseOptions,
             src,
             colorMap,

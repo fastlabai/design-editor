@@ -1,9 +1,26 @@
-import { fabric } from "fabric"
-// @ts-ignore
-export class FrameObject extends fabric.Rect {
+import { Rect, classRegistry } from "fabric"
+import type { RectProps } from "fabric"
+
+export interface FrameOptions extends RectProps {
+  id: string
+  name: string
+  description?: string
+}
+
+export class Frame extends Rect {
   static type = "Frame"
-  initialize(options: FrameOptions) {
-    super.initialize({
+
+  get type() {
+    return "Frame"
+  }
+  // No-op setter — required so Fabric's _setOptions can write `type` during
+  // deserialization (loadFromJSON / enlivenObjects) without crashing.
+  set type(_value: string) {
+    // fixed value — intentional no-op
+  }
+
+  constructor(options: FrameOptions) {
+    super({
       ...options,
       selectable: false,
       hasControls: false,
@@ -12,35 +29,26 @@ export class FrameObject extends fabric.Rect {
       strokeWidth: 0,
       padding: 0,
       evented: false,
-    })
-    return this
+    } as any)
   }
 
+  // @ts-ignore
   toObject(propertiesToInclude: string[] = []) {
-    return super.toObject(propertiesToInclude)
+    return super.toObject(propertiesToInclude as any)
   }
+
+  // @ts-ignore
   toJSON(propertiesToInclude: string[] = []) {
-    return super.toObject(propertiesToInclude)
+    return super.toObject(propertiesToInclude as any)
   }
 
-  static fromObject(options: FrameOptions, callback: Function) {
-    return callback && callback(new fabric.Frame(options))
+  static async fromObject(options: FrameOptions) {
+    return new Frame(options)
   }
 }
 
-fabric.Frame = fabric.util.createClass(FrameObject, {
-  type: FrameObject.type,
-})
-fabric.Frame.fromObject = FrameObject.fromObject
-
-export interface FrameOptions extends fabric.IRectOptions {
-  id: string
-  name: string
-  description?: string
-}
+classRegistry.setClass(Frame, Frame.type)
 
 declare module "fabric" {
-  namespace fabric {
-    interface Frame {}
-  }
+  export interface Frame {}
 }

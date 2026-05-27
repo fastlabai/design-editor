@@ -1,13 +1,13 @@
 'use client'
 import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { App } from 'antd'
 import { Tooltip, Popover } from './primitives'
 import {
-  ScissorOutlined, CopyOutlined, DeleteOutlined,
-  VerticalAlignTopOutlined, VerticalAlignBottomOutlined,
-  SwapOutlined, BoldOutlined, ItalicOutlined,
-  AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined,
-} from '@ant-design/icons'
+  Scissors, Copy, Trash2,
+  BringToFront, SendToBack,
+  FlipHorizontal, FlipVertical, Bold, Italic,
+  AlignLeft, AlignCenter, AlignRight,
+  MoreHorizontal, Maximize2, Minimize2,
+} from 'lucide-react'
 import { PDivider, PBtn } from './primitives'
 import { FontPickerPopover } from './toolbars/FontPickerPopover'
 import { createDefaultFontProvider } from '../providers/defaults/fonts'
@@ -46,12 +46,81 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
   const [textTransform, setTextTransform] = useState<TextTransform>('none')
   const originalTextRef = useRef<string | undefined>(undefined)
 
+  // ── Text-editing / per-character selection state ─────────────────────────
+  // Tracks the styles of the currently selected characters so the toolbar
+  // reflects and applies changes to just the selection.
+  const [isEditingText, setIsEditingText] = useState(false)
+  const [selStyle, setSelStyle] = useState<Record<string, any>>({})
+
+  // Read selection styles from the active Fabric text object
+  const readSelectionStyles = useCallback(() => {
+    const obj = activeObj
+    if (!obj || !obj.isEditing) return
+    const selStart: number = obj.selectionStart ?? 0
+    const selEnd:   number = obj.selectionEnd   ?? 0
+    if (selEnd <= selStart) { setSelStyle({}); return }
+    // getSelectionStyles returns an array of per-char style objects; merge/pick first
+    const styles: Record<string, any>[] = obj.getSelectionStyles?.(selStart, selEnd) ?? []
+    if (!styles.length) { setSelStyle({}); return }
+    // Merge: if all chars agree on a value, show it; otherwise show the first
+    const merged: Record<string, any> = {}
+    const keys = new Set(styles.flatMap(s => Object.keys(s)))
+    keys.forEach(k => {
+      const values = styles.map(s => s[k]).filter(v => v !== undefined)
+      merged[k] = values[0] // use first char's value as representative
+    })
+    setSelStyle(merged)
+  }, [activeObj])
+
+  // Subscribe to Fabric text editing events on the active canvas
+  useEffect(() => {
+    if (!editor) return
+    const fabricCanvas = (editor as any).canvas?.canvas
+    if (!fabricCanvas) return
+
+    const onEditingEntered = () => {
+      setIsEditingText(true)
+      readSelectionStyles()
+    }
+    const onEditingExited = () => {
+      setIsEditingText(false)
+      setSelStyle({})
+    }
+    const onSelectionChanged = () => {
+      readSelectionStyles()
+    }
+
+    fabricCanvas.on('text:editing:entered', onEditingEntered)
+    fabricCanvas.on('text:editing:exited', onEditingExited)
+    fabricCanvas.on('text:selection:changed', onSelectionChanged)
+
+    return () => {
+      fabricCanvas.off('text:editing:entered', onEditingEntered)
+      fabricCanvas.off('text:editing:exited', onEditingExited)
+      fabricCanvas.off('text:selection:changed', onSelectionChanged)
+    }
+  }, [editor, readSelectionStyles])
+
+  // ── Image-specific state ─────────────────────────────────────────────────
+  const [borderRadius, setBorderRadius] = useState<number>(
+    () => (activeObj?.rx as number | undefined) ?? 0,
+  )
+  const [shadowEnabled, setShadowEnabled] = useState<boolean>(
+    () => !!(activeObj?.shadow),
+  )
+
   useEffect(() => {
     setFontFamily(activeObj?.fontFamily as string | undefined)
     setCharSpacing(((activeObj?.charSpacing as number | undefined) ?? 0) / 1000)
     setLineHeight((activeObj?.lineHeight as number | undefined) ?? 1.2)
     setTextTransform('none')
     originalTextRef.current = undefined
+    // Reset editing state when object changes
+    setIsEditingText(false)
+    setSelStyle({})
+    // Image state
+    setBorderRadius((activeObj?.rx as number | undefined) ?? 0)
+    setShadowEnabled(!!(activeObj?.shadow))
   }, [activeObj?.id])
 
   const handleFontChange = useCallback((family: string) => {
@@ -92,6 +161,28 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
     editor?.objects.update({ text: transformed })
   }, [editor, activeObj])
 
+  const handleToggleShadow = useCallback(() => {
+    const next = !shadowEnabled
+    setShadowEnabled(next)
+    if (next) {
+      editor?.objects.update({
+        shadow: {
+          color: 'rgba(0,0,0,0.35)',
+          blur: 12,
+          offsetX: 4,
+          offsetY: 4,
+        }
+      })
+    } else {
+      editor?.objects.update({ shadow: null })
+    }
+  }, [editor, shadowEnabled])
+
+  const handleBorderRadius = useCallback((val: number) => {
+    setBorderRadius(val)
+    editor?.objects.update({ rx: val, ry: val })
+  }, [editor])
+
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768)
@@ -128,19 +219,223 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
       ? { position: 'absolute', left: pos.x, top: pos.y, transform: 'none', bottom: 'auto' }
       : { position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)' }
 
+  // ── More popover for text (spacing, leading, case) ───────────────────────
+  const textMoreContent = (
+    <div style={{
+      display: 'flex', flexDirection: 'column', gap: 12,
+      padding: '14px 16px', minWidth: 220,
+      background: 'var(--color-surface)',
+      border: '1px solid var(--color-border)',
+      borderRadius: 12,
+      boxShadow: '0 8px 32px var(--shadow-color)',
+    }}>
+      <div style={{ fontWeight: 700, fontSize: 11, color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+        Typography
+      </div>
+      {/* Letter Spacing */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Letter Spacing</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text)', minWidth: 36, textAlign: 'right' }}>{charSpacing.toFixed(2)}</span>
+        </div>
+        <input
+          type="range" min={-0.5} max={2} step={0.01}
+          value={charSpacing}
+          style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer' }}
+          onChange={(e) => handleCharSpacingChange(Number(e.target.value))}
+        />
+      </div>
+      {/* Line Height */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Line Height</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text)', minWidth: 36, textAlign: 'right' }}>{lineHeight.toFixed(1)}</span>
+        </div>
+        <input
+          type="range" min={0.5} max={4} step={0.1}
+          value={lineHeight}
+          style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer' }}
+          onChange={(e) => handleLineHeightChange(Number(e.target.value))}
+        />
+      </div>
+      {/* Text Transform / Case */}
+      <div>
+        <span style={{ fontSize: 12, color: 'var(--color-text-muted)', display: 'block', marginBottom: 6 }}>Case</span>
+        <div style={{ display: 'flex', gap: 4 }}>
+          {([
+            { value: 'none',  label: 'Aa', title: 'Normal' },
+            { value: 'upper', label: 'AA', title: 'Uppercase' },
+            { value: 'lower', label: 'aa', title: 'Lowercase' },
+            { value: 'title', label: 'Tt', title: 'Title Case' },
+          ] as { value: TextTransform; label: string; title: string }[]).map(opt => (
+            <button
+              key={opt.value}
+              title={opt.title}
+              onClick={() => handleTextTransformChange(opt.value)}
+              style={{
+                flex: 1,
+                height: 30,
+                fontSize: 11,
+                fontWeight: 700,
+                cursor: 'pointer',
+                background: textTransform === opt.value
+                  ? 'color-mix(in srgb, var(--color-primary) 15%, transparent)'
+                  : 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+                border: textTransform === opt.value
+                  ? '1.5px solid var(--color-primary)'
+                  : '1px solid var(--color-border)',
+                color: textTransform === opt.value ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                borderRadius: 6,
+                outline: 'none',
+                transition: 'all 0.15s',
+              }}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      {/* Opacity (also available here for convenience) */}
+      <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Opacity</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text)', minWidth: 36, textAlign: 'right' }}>{opacity}%</span>
+          </div>
+          <input
+            type="range" min={0} max={100} value={opacity}
+            style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer' }}
+            onChange={(e) => {
+              const v = Number(e.target.value)
+              setOpacity(v)
+              editor?.objects.update({ opacity: v / 100 })
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+
+  // ── Image "more" popover ─────────────────────────────────────────────────
+  const imageMoreContent = (
+    <div style={{
+      display: 'flex', flexDirection: 'column', gap: 12,
+      padding: '14px 16px', minWidth: 220,
+      background: 'var(--color-surface)',
+      border: '1px solid var(--color-border)',
+      borderRadius: 12,
+      boxShadow: '0 8px 32px var(--shadow-color)',
+    }}>
+      <div style={{ fontWeight: 700, fontSize: 11, color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+        Image Settings
+      </div>
+      {/* Border radius */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Corner Radius</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text)', minWidth: 36, textAlign: 'right' }}>{borderRadius}px</span>
+        </div>
+        <input
+          type="range" min={0} max={200} step={1}
+          value={borderRadius}
+          style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer' }}
+          onChange={(e) => handleBorderRadius(Number(e.target.value))}
+        />
+      </div>
+      {/* Shadow toggle */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Drop Shadow</span>
+        <button
+          onClick={handleToggleShadow}
+          style={{
+            padding: '4px 12px', borderRadius: 6, cursor: 'pointer', fontSize: 11, fontWeight: 600,
+            background: shadowEnabled
+              ? 'color-mix(in srgb, var(--color-primary) 15%, transparent)'
+              : 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+            border: shadowEnabled ? '1.5px solid var(--color-primary)' : '1px solid var(--color-border)',
+            color: shadowEnabled ? 'var(--color-primary)' : 'var(--color-text-muted)',
+            outline: 'none',
+            transition: 'all 0.15s',
+          }}
+        >
+          {shadowEnabled ? 'On' : 'Off'}
+        </button>
+      </div>
+      {/* Fit / Fill */}
+      <div>
+        <span style={{ fontSize: 12, color: 'var(--color-text-muted)', display: 'block', marginBottom: 6 }}>Fit Mode</span>
+        <div style={{ display: 'flex', gap: 4 }}>
+          {[
+            { label: 'Fit', title: 'Fit image inside frame', icon: <Minimize2 size={12} /> },
+            { label: 'Fill', title: 'Fill frame with image', icon: <Maximize2 size={12} /> },
+          ].map(({ label, title, icon }) => (
+            <button
+              key={label}
+              title={title}
+              onClick={() => {
+                // Use scaleToFit or scaleToFill patterns
+                if (label === 'Fit') {
+                  editor?.objects.update({ objectFit: 'contain' })
+                } else {
+                  editor?.objects.update({ objectFit: 'cover' })
+                }
+              }}
+              style={{
+                flex: 1, height: 30, fontSize: 11, fontWeight: 600,
+                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
+                background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+                border: '1px solid var(--color-border)',
+                color: 'var(--color-text-muted)',
+                borderRadius: 6, outline: 'none', transition: 'all 0.15s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--color-primary)'
+                e.currentTarget.style.color = 'var(--color-primary)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--color-border)'
+                e.currentTarget.style.color = 'var(--color-text-muted)'
+              }}
+            >
+              {icon} {label}
+            </button>
+          ))}
+        </div>
+      </div>
+      {/* Opacity */}
+      <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>Opacity</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text)', minWidth: 36, textAlign: 'right' }}>{opacity}%</span>
+          </div>
+          <input
+            type="range" min={0} max={100} value={opacity}
+            style={{ width: '100%', accentColor: 'var(--color-primary)', cursor: 'pointer' }}
+            onChange={(e) => {
+              const v = Number(e.target.value)
+              setOpacity(v)
+              editor?.objects.update({ opacity: v / 100 })
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div 
       className="scrollbar-hide"
       style={{
         ...posStyle,
-        zIndex: 30, display: 'flex', alignItems: 'center', gap: 6, padding: '7px 12px',
+        zIndex: 30, display: 'flex', alignItems: 'center', gap: 4, padding: '6px 10px',
         background: 'color-mix(in srgb, var(--color-surface) 94%, transparent)', backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         border: '1px solid var(--color-border)',
         borderRadius: 14,
         boxShadow: '0 8px 32px var(--shadow-color)',
         whiteSpace: 'nowrap',
-        overflowX: 'auto',
+        overflowX: 'visible',
       }}
     >
       {/* Drag handle */}
@@ -160,182 +455,159 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
 
       <PDivider />
 
-      {/* Opacity — all types */}
-      <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Opacity</span>
-      <input
-        type="range" min={0} max={100} value={opacity}
-        style={{ width: 72, accentColor: 'var(--color-primary)', cursor: 'pointer' }}
-        onChange={(e) => {
-          const v = Number(e.target.value)
-          setOpacity(v)
-          editor?.objects.update({ opacity: v / 100 })
-        }}
-      />
-      <span style={{ fontSize: 11, color: 'var(--color-text)', minWidth: 30, textAlign: 'right' }}>
-        {opacity}%
-      </span>
-
-      {/* ── Image controls ─────────────────────────── */}
-      {isImage && (
+      {/* Opacity — compact inline (only visible for non-text/image since they have it in More) */}
+      {!isText && !isImage && (
         <>
-          <PDivider />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <div style={{ display: 'flex', gap: 6 }}>
-              <PBtn title="Flip horizontal" onClick={() => editor?.objects.update({ flipX: !(activeObj?.flipX) })}>
-                <SwapOutlined />
-              </PBtn>
-              <PBtn title="Flip vertical" onClick={() => editor?.objects.update({ flipY: !(activeObj?.flipY) })}>
-                <SwapOutlined style={{ transform: 'rotate(90deg)' }} />
-              </PBtn>
-              <PBtn
-                title="Remove image background (runs in-browser)"
-                onClick={onRemoveBg}
-                style={{
-                  fontSize: 11, fontWeight: 600, padding: '0 10px',
-                  background: removingBg ? 'color-mix(in srgb, var(--color-text) 5%, transparent)' : 'color-mix(in srgb, var(--color-primary) 12%, transparent)',
-                  border: `1px solid ${removingBg ? 'var(--color-border)' : 'var(--color-primary)'}`,
-                  color: removingBg ? 'var(--color-text-muted)' : 'var(--color-primary)',
-                }}
-              >
-                <ScissorOutlined style={{ fontSize: 12 }} />
-                {removingBg ? 'Removing…' : 'Remove BG'}
-              </PBtn>
-            </div>
-            
-            {/* Shape Image Specific Controls: Scaling/Cropping Simulation */}
-            {activeObj?.clipPath && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
-                <span style={{ fontSize: 10, color: 'var(--color-text-muted)', flexShrink: 0 }}>Img Scale</span>
-                <input
-                  type="range" min={0.1} max={3} step={0.1}
-                  defaultValue={activeObj?.scaleX || 1}
-                  style={{ width: 60, accentColor: 'var(--color-primary)', cursor: 'pointer' }}
-                  onChange={(e) => {
-                    const v = Number(e.target.value)
-                    // In a standard setup, scaling the object scales the clippath too. 
-                    // Layerhub/Fabric natively requires editing the inner image pattern for true "cropping inside clipPath",
-                    // but we can scale the object container as an approximation of resizing.
-                    editor?.objects.update({ scaleX: v, scaleY: v })
-                  }}
-                />
-                <span style={{ fontSize: 10, color: 'var(--color-text-muted)', flexShrink: 0 }}>Crop X/Y</span>
-                <input
-                  type="range" min={-100} max={100} step={1}
-                  defaultValue={0}
-                  style={{ width: 40, accentColor: 'var(--color-primary)', cursor: 'pointer' }}
-                  onChange={(e) => {
-                    // Simulating crop offset by adjusting image pan if supported, or just letting the user move it manually
-                    // Real cropping requires entering a crop mode in Fabric JS.
-                  }}
-                />
-              </div>
-            )}
-          </div>
+          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Opacity</span>
+          <input
+            type="range" min={0} max={100} value={opacity}
+            style={{ width: 72, accentColor: 'var(--color-primary)', cursor: 'pointer' }}
+            onChange={(e) => {
+              const v = Number(e.target.value)
+              setOpacity(v)
+              editor?.objects.update({ opacity: v / 100 })
+            }}
+          />
+          <span style={{ fontSize: 11, color: 'var(--color-text)', minWidth: 28, textAlign: 'right' }}>
+            {opacity}%
+          </span>
         </>
       )}
 
-      {/* ── Text controls ──────────────────────────── */}
+      {/* ── Image controls (compact primary row) ─────────────────────────── */}
+      {isImage && (
+        <>
+          <Tooltip title="Flip horizontal" placement="top">
+            <PBtn onClick={() => editor?.objects.update({ flipX: !(activeObj?.flipX) })}>
+              <FlipHorizontal size={14} />
+            </PBtn>
+          </Tooltip>
+          <Tooltip title="Flip vertical" placement="top">
+            <PBtn onClick={() => editor?.objects.update({ flipY: !(activeObj?.flipY) })}>
+              <FlipVertical size={14} />
+            </PBtn>
+          </Tooltip>
+          <PDivider />
+          <button
+            title="Remove image background"
+            onClick={onRemoveBg}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 5,
+              padding: '4px 10px', borderRadius: 7, cursor: removingBg ? 'wait' : 'pointer',
+              fontSize: 11, fontWeight: 600,
+              background: removingBg ? 'color-mix(in srgb, var(--color-text) 5%, transparent)' : 'color-mix(in srgb, var(--color-primary) 12%, transparent)',
+              border: `1px solid ${removingBg ? 'var(--color-border)' : 'var(--color-primary)'}`,
+              color: removingBg ? 'var(--color-text-muted)' : 'var(--color-primary)',
+              outline: 'none', transition: 'all 0.15s',
+            }}
+          >
+            <Scissors size={13} />
+            {removingBg ? 'Removing…' : 'Remove BG'}
+          </button>
+          <PDivider />
+          {/* Image More options */}
+          <Popover content={imageMoreContent} placement="top">
+            <button
+              title="More image options"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '4px 8px', borderRadius: 7, cursor: 'pointer',
+                fontSize: 11, fontWeight: 600,
+                background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+                border: '1px solid var(--color-border)',
+                color: 'var(--color-text-muted)',
+                outline: 'none', transition: 'all 0.15s',
+              }}
+            >
+              <MoreHorizontal size={14} />
+              <span style={{ fontSize: 10 }}>More</span>
+            </button>
+          </Popover>
+        </>
+      )}
+
+      {/* ── Text controls (compact primary row) ────────────────────────────── */}
       {isText && (
         <>
-          <PDivider />
-          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Font</span>
+          {/* Font — show selection style font if editing */}
           <FontPickerPopover
             fontProvider={DEFAULT_FONT_PROVIDER}
-            currentFamily={fontFamily}
+            currentFamily={isEditingText && selStyle.fontFamily ? selStyle.fontFamily : fontFamily}
             onChange={handleFontChange}
           />
           <PDivider />
-          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Size</span>
           <input
             key={activeObj?.id + '-fs'}
             type="number" min={6} max={500}
-            defaultValue={activeObj?.fontSize ?? 32}
+            value={isEditingText && selStyle.fontSize != null ? selStyle.fontSize : (activeObj?.fontSize ?? 32)}
+            title="Font size"
             style={{
-              width: 52, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
+              width: 46, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
               borderRadius: 6, color: 'var(--color-text)', fontSize: 12,
-              padding: '4px 6px', textAlign: 'center', outline: 'none',
+              padding: '4px 4px', textAlign: 'center', outline: 'none',
             }}
             onChange={(e) => editor?.objects.update({ fontSize: Number(e.target.value) })}
           />
-          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Color</span>
+          <PDivider />
+          {/* Text Color — reflects selection color when editing */}
           <PropertyColorPicker
-            color={typeof activeObj?.fill === 'string' ? activeObj.fill : '#000000'}
+            color={isEditingText && typeof selStyle.fill === 'string' ? selStyle.fill : (typeof activeObj?.fill === 'string' ? activeObj.fill : '#000000')}
             onChange={(c) => editor?.objects.update({ fill: c })}
             tooltip="Text color"
             activeObjId={activeObj?.id}
           />
           <PDivider />
-          <PBtn
-            title="Bold"
-            onClick={() => editor?.objects.update({ fontWeight: activeObj?.fontWeight === 'bold' ? 'normal' : 'bold' })}
-            active={activeObj?.fontWeight === 'bold'}
-          >
-            <BoldOutlined />
-          </PBtn>
-          <PBtn
-            title="Italic"
-            onClick={() => editor?.objects.update({ fontStyle: activeObj?.fontStyle === 'italic' ? 'normal' : 'italic' })}
-            active={activeObj?.fontStyle === 'italic'}
-          >
-            <ItalicOutlined />
-          </PBtn>
+          <Tooltip title="Bold" placement="top">
+            <PBtn
+              onClick={() => editor?.objects.update({ fontWeight: (isEditingText ? selStyle.fontWeight : activeObj?.fontWeight) === 'bold' ? 'normal' : 'bold' })}
+              active={(isEditingText ? selStyle.fontWeight : activeObj?.fontWeight) === 'bold'}
+            >
+              <Bold size={14} />
+            </PBtn>
+          </Tooltip>
+          <Tooltip title="Italic" placement="top">
+            <PBtn
+              onClick={() => editor?.objects.update({ fontStyle: activeObj?.fontStyle === 'italic' ? 'normal' : 'italic' })}
+              active={activeObj?.fontStyle === 'italic'}
+            >
+              <Italic size={14} />
+            </PBtn>
+          </Tooltip>
           <PDivider />
-          <PBtn title="Align left"   onClick={() => editor?.objects.update({ textAlign: 'left' })}   active={activeObj?.textAlign === 'left'}>
-            <AlignLeftOutlined />
-          </PBtn>
-          <PBtn title="Align center" onClick={() => editor?.objects.update({ textAlign: 'center' })} active={activeObj?.textAlign === 'center'}>
-            <AlignCenterOutlined />
-          </PBtn>
-          <PBtn title="Align right"  onClick={() => editor?.objects.update({ textAlign: 'right' })}  active={activeObj?.textAlign === 'right'}>
-            <AlignRightOutlined />
-          </PBtn>
+          <Tooltip title="Align left" placement="top">
+            <PBtn onClick={() => editor?.objects.update({ textAlign: 'left' })} active={activeObj?.textAlign === 'left'}>
+              <AlignLeft size={14} />
+            </PBtn>
+          </Tooltip>
+          <Tooltip title="Align center" placement="top">
+            <PBtn onClick={() => editor?.objects.update({ textAlign: 'center' })} active={activeObj?.textAlign === 'center'}>
+              <AlignCenter size={14} />
+            </PBtn>
+          </Tooltip>
+          <Tooltip title="Align right" placement="top">
+            <PBtn onClick={() => editor?.objects.update({ textAlign: 'right' })} active={activeObj?.textAlign === 'right'}>
+              <AlignRight size={14} />
+            </PBtn>
+          </Tooltip>
           <PDivider />
-          {/* Letter spacing */}
-          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Spacing</span>
-          <input
-            key={activeObj?.id + '-ls'}
-            type="number" min={-0.5} max={2} step={0.01}
-            value={charSpacing}
-            style={{
-              width: 52, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
-              borderRadius: 6, color: 'var(--color-text)', fontSize: 12,
-              padding: '4px 6px', textAlign: 'center', outline: 'none',
-            }}
-            onChange={(e) => handleCharSpacingChange(Number(e.target.value))}
-          />
-          {/* Line height */}
-          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Leading</span>
-          <input
-            key={activeObj?.id + '-lh'}
-            type="number" min={0.5} max={4} step={0.1}
-            value={lineHeight}
-            style={{
-              width: 52, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
-              borderRadius: 6, color: 'var(--color-text)', fontSize: 12,
-              padding: '4px 6px', textAlign: 'center', outline: 'none',
-            }}
-            onChange={(e) => handleLineHeightChange(Number(e.target.value))}
-          />
-          {/* Text transform */}
-          <span style={{ fontSize: 11, color: 'var(--color-text-muted)', flexShrink: 0 }}>Case</span>
-          <div style={{ display: 'flex', gap: 2 }}>
-            {([
-              { value: 'none',  label: 'Aa' },
-              { value: 'upper', label: 'AA' },
-              { value: 'lower', label: 'aa' },
-              { value: 'title', label: 'Tt' },
-            ] as { value: TextTransform; label: string }[]).map(opt => (
-              <PBtn
-                key={opt.value}
-                title={opt.value === 'none' ? 'No transform' : opt.value === 'upper' ? 'Uppercase' : opt.value === 'lower' ? 'Lowercase' : 'Title case'}
-                active={textTransform === opt.value}
-                onClick={() => handleTextTransformChange(opt.value)}
-                style={{ width: 26, height: 26, fontSize: 10, fontWeight: 700 }}
-              >
-                {opt.label}
-              </PBtn>
-            ))}
-          </div>
+          {/* More text options */}
+          <Popover content={textMoreContent} placement="top">
+            <button
+              title="More text options"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '4px 8px', borderRadius: 7, cursor: 'pointer',
+                fontSize: 11, fontWeight: 600,
+                background: 'color-mix(in srgb, var(--color-text) 5%, transparent)',
+                border: '1px solid var(--color-border)',
+                color: 'var(--color-text-muted)',
+                outline: 'none', transition: 'all 0.15s',
+              }}
+            >
+              <MoreHorizontal size={14} />
+              <span style={{ fontSize: 10 }}>More</span>
+            </button>
+          </Popover>
         </>
       )}
 
@@ -361,6 +633,7 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
             key={activeObj?.id + '-sw'}
             type="number" min={0} max={40}
             defaultValue={activeObj?.strokeWidth ?? 0}
+            title="Stroke width"
             style={{
               width: 44, background: 'var(--color-bg)', border: '1px solid var(--color-border)',
               borderRadius: 6, color: 'var(--color-text)', fontSize: 12,
@@ -373,24 +646,32 @@ export function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg 
 
       {/* ── Z-order + duplicate + delete — all types ── */}
       <PDivider />
-      <PBtn title="Bring forward" onClick={() => editor?.objects.bringForward()}>
-        <VerticalAlignTopOutlined />
-      </PBtn>
-      <PBtn title="Send backward" onClick={() => editor?.objects.sendBackwards()}>
-        <VerticalAlignBottomOutlined />
-      </PBtn>
+      <Tooltip title="Bring forward" placement="top">
+        <PBtn onClick={() => editor?.objects.bringForward()}>
+          <BringToFront size={16} />
+        </PBtn>
+      </Tooltip>
+      <Tooltip title="Send backward" placement="top">
+        <PBtn onClick={() => editor?.objects.sendBackwards()}>
+          <SendToBack size={16} />
+        </PBtn>
+      </Tooltip>
       <PDivider />
-      <PBtn title="Duplicate" onClick={() => editor?.objects.clone()}>
-        <CopyOutlined />
-      </PBtn>
-      <PBtn title="Delete (Del)" onClick={() => editor?.objects.remove()} danger>
-        <DeleteOutlined />
-      </PBtn>
+      <Tooltip title="Duplicate" placement="top">
+        <PBtn onClick={() => editor?.objects.clone()}>
+          <Copy size={16} />
+        </PBtn>
+      </Tooltip>
+      <Tooltip title="Delete (Del)" placement="top">
+        <PBtn onClick={() => editor?.objects.remove()} danger>
+          <Trash2 size={16} />
+        </PBtn>
+      </Tooltip>
     </div>
   )
 }
 
-// ─── Modern Property Color Picker ───────────────────────────────────────────────
+// ─── Modern Property Color Picker (fixed: no nested Radix Tooltip in trigger) ──
 const SWATCHES = [
   // Row 1 — Neutrals
   '#ffffff', '#f5f5f5', '#e0e0e0', '#9e9e9e', '#616161', '#212121', '#000000',
@@ -427,6 +708,7 @@ function PropertyColorPicker({
   activeObjId,
 }: PropertyColorPickerProps) {
   const [hex, setHex] = useState(color)
+  const [open, setOpen] = useState(false)
 
   // Sync hex when color prop or active object changes
   useEffect(() => {
@@ -464,7 +746,7 @@ function PropertyColorPicker({
           const pct = (e.clientX - rect.left) / rect.width
           const hue = Math.round(pct * 360)
           const hex6 = `#${[0,8,16].map(s => {
-            const c = Math.round(hslToRgb(hue / 360, 1, 0.5)[s / 8])
+            const c = Math.round(hslToRgb(hue / 360, 1, 0.5)[s / 8 as 0 | 1 | 2])
             return c.toString(16).padStart(2, '0')
           }).join('')}`
           onChange(hex6)
@@ -500,7 +782,7 @@ function PropertyColorPicker({
         ))}
       </div>
 
-      {/* Hex + picker field */}
+      {/* Hex + native color input */}
       <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
         <div style={{ position: 'relative', flexShrink: 0 }}>
           <div style={{
@@ -550,47 +832,55 @@ function PropertyColorPicker({
     </div>
   )
 
+  // KEY FIX: Popover wraps the button directly, NO nested Radix Tooltip inside trigger.
+  // The tooltip is now done with the native `title` attribute on the button,
+  // avoiding the Radix nested trigger/portal click-blocking issue.
   return (
     <Popover
       content={pickerContent}
       placement="top"
+      open={open}
+      onOpenChange={setOpen}
     >
-      <Tooltip title={tooltip} placement="top">
-        <button
-          style={{
-            height: 30,
-            width: 38,
-            padding: 3,
-            borderRadius: 8,
-            border: '1px solid var(--color-border)',
-            background: 'var(--color-bg)',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-            transition: 'all 0.15s ease',
-            outline: 'none',
-          }}
-          onMouseEnter={e => {
+      <button
+        title={tooltip}
+        style={{
+          height: 30,
+          width: 38,
+          padding: 3,
+          borderRadius: 8,
+          border: open ? '1.5px solid var(--color-primary)' : '1px solid var(--color-border)',
+          background: open ? 'color-mix(in srgb, var(--color-primary) 8%, var(--color-bg))' : 'var(--color-bg)',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+          transition: 'all 0.15s ease',
+          outline: 'none',
+        }}
+        onMouseEnter={e => {
+          if (!open) {
             e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-text) 30%, var(--color-border))'
             e.currentTarget.style.background = 'color-mix(in srgb, var(--color-text) 4%, var(--color-bg))'
-          }}
-          onMouseLeave={e => {
+          }
+        }}
+        onMouseLeave={e => {
+          if (!open) {
             e.currentTarget.style.borderColor = 'var(--color-border)'
             e.currentTarget.style.background = 'var(--color-bg)'
-          }}
-        >
-          <div style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: 5,
-            border: '1px solid rgba(0,0,0,0.12)',
-            background: color,
-            boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
-          }} />
-        </button>
-      </Tooltip>
+          }
+        }}
+      >
+        <div style={{
+          width: '100%',
+          height: '100%',
+          borderRadius: 5,
+          border: '1px solid rgba(0,0,0,0.12)',
+          background: color,
+          boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+        }} />
+      </button>
     </Popover>
   )
 }

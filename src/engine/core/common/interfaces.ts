@@ -1,4 +1,6 @@
-import fabric from "fabric/fabric-impl"
+// @ts-ignore
+import { Canvas as FabricCanvasClass, Point, ShadowProps } from "fabric"
+import type { TPointerEventInfo } from "fabric"
 import { Editor } from "../editor"
 import { EditorConfig } from "../../types"
 
@@ -6,23 +8,7 @@ export type Direction = "top" | "left"
 export type Size = "width" | "height"
 export type ScaleType = "fit" | "fill"
 
-export interface FabricWheelEvent {
-  e: WheelEvent
-  target?: Object | undefined
-  subTargets?: Object[] | undefined
-  button?: number | undefined
-  isClick?: boolean | undefined
-  pointer?: fabric.IPoint | undefined
-  absolutePointer?: fabric.IPoint | undefined
-  transform?:
-    | {
-        corner: string
-        original: Object
-        originX: string
-        originY: string
-        width: number
-      }
-    | undefined
+export interface FabricWheelEvent extends TPointerEventInfo {
 }
 
 export interface Dimension {
@@ -48,7 +34,7 @@ export interface FabricCanvasOption {
   wrapperEl: HTMLElement
 }
 
-export type FabricCanvas<T extends any = fabric.Canvas> = T & FabricCanvasOption
+export type FabricCanvas<T extends any = FabricCanvasClass> = T & FabricCanvasOption
 
 //  Template
 
@@ -72,7 +58,7 @@ export interface GradientOptions {
   colors: string[]
 }
 
-export interface ShadowOptions extends fabric.IShadowOptions {
+export interface ShadowOptions extends ShadowProps {
   enabled: boolean
 }
 

@@ -1,45 +1,7 @@
-// @ts-nocheck
-import { fabric } from "fabric"
+import { FabricImage as FabricImageClass, util, classRegistry } from "fabric"
+import type { ImageProps } from "fabric"
 
-export class StaticImageObject extends fabric.Image {
-  static type = "StaticImage"
-  public role: string = "regular"
-  //@ts-ignore
-  initialize(element, options) {
-    this.role = element.role
-    options.type = "StaticImage"
-    //@ts-ignore
-    super.initialize(element, options)
-    return this
-  }
-
-  static fromObject(options: any, callback: Function) {
-    fabric.util.loadImage(
-      options.src,
-      function (img) {
-        // @ts-ignore
-        return callback && callback(new fabric.StaticImage(img, options))
-      },
-      null,
-      // @ts-ignore
-      { crossOrigin: "anonymous" }
-    )
-  }
-
-  toObject(propertiesToInclude = []) {
-    return super.toObject(propertiesToInclude)
-  }
-  toJSON(propertiesToInclude = []) {
-    return super.toObject(propertiesToInclude)
-  }
-}
-
-fabric.StaticImage = fabric.util.createClass(StaticImageObject, {
-  type: StaticImageObject.type,
-})
-fabric.StaticImage.fromObject = StaticImageObject.fromObject
-
-export interface StaticImageOptions extends fabric.IImageOptions {
+export interface StaticImageOptions extends ImageProps {
   id: string
   name?: string
   description?: string
@@ -47,8 +9,48 @@ export interface StaticImageOptions extends fabric.IImageOptions {
   src: string
 }
 
-declare module "fabric" {
-  namespace fabric {
-    interface StaticImage {}
+export class StaticImage extends FabricImageClass {
+  static type = "StaticImage"
+  
+  get type() {
+    return "StaticImage"
   }
+  set type(_value: string) {
+    // fixed value — intentional no-op
+  }
+
+  public role: string = "regular"
+
+  constructor(element: HTMLImageElement, options: any) {
+    super(element, options)
+    if (options.role) {
+      this.role = options.role
+    }
+  }
+
+  static async fromObject(options: any): Promise<StaticImage> {
+    return new Promise((resolve, reject) => {
+      util.loadImage(options.src, { crossOrigin: "anonymous" })
+        .then((img) => {
+          resolve(new StaticImage(img, options))
+        })
+        .catch(reject)
+    })
+  }
+
+  // @ts-ignore
+  toObject(propertiesToInclude: string[] = []) {
+    return super.toObject(propertiesToInclude as any)
+  }
+
+  // @ts-ignore
+  toJSON(propertiesToInclude: string[] = []) {
+    return super.toObject(propertiesToInclude as any)
+  }
+}
+
+classRegistry.setClass(StaticImage, StaticImage.type)
+
+declare module "fabric" {
+  export interface StaticImage {}
 }

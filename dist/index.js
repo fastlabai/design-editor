@@ -1,15 +1,11 @@
-import * as React24 from 'react';
-import React24__default, { memo, useRef, useEffect, useContext, useState, useCallback, useMemo } from 'react';
-import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
-import { fabric } from 'fabric';
-import { Switch, Modal, InputNumber } from 'antd';
-import { clsx } from 'clsx';
-import '@radix-ui/react-slider';
-import * as RadixPopover from '@radix-ui/react-popover';
-import * as RadixTooltip from '@radix-ui/react-tooltip';
-import * as RadixSelect from '@radix-ui/react-select';
+'use client'
+import * as React45 from 'react';
+import React45__default, { forwardRef, createElement, memo, useRef, useEffect, useContext, useLayoutEffect, useState, useCallback, useMemo } from 'react';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import { classRegistry, Rect, Textbox, FabricImage, util, Group, loadSVGFromURL, Path, Shadow, Object as Object$1, Canvas as Canvas$1, Point, ActiveSelection, Gradient, Control, controlsUtils, StaticCanvas } from 'fabric';
+import * as ReactDOM4 from 'react-dom';
+import ReactDOM4__default from 'react-dom';
 import { Toaster, toast } from 'sonner';
-import { ArrowLeftOutlined, UndoOutlined, RedoOutlined, ZoomOutOutlined, ZoomInOutlined, SettingOutlined, AppstoreOutlined, SaveOutlined, SearchOutlined, LoadingOutlined, CloudUploadOutlined, SwapOutlined, ScissorOutlined, BoldOutlined, ItalicOutlined, AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined, VerticalAlignTopOutlined, VerticalAlignBottomOutlined, CopyOutlined, DeleteOutlined, FolderOutlined, CloseOutlined, LayoutOutlined, BlockOutlined, UploadOutlined, FontSizeOutlined, SmileOutlined, RightOutlined, UpOutlined, DownOutlined, EyeOutlined, EyeInvisibleOutlined, VideoCameraOutlined, PictureOutlined } from '@ant-design/icons';
 
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -37,17 +33,17 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js
 var require_freeGlobal = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_freeGlobal.js"(exports, module) {
     var freeGlobal = typeof global == "object" && global && global.Object === Object && global;
     module.exports = freeGlobal;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js
 var require_root = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_root.js"(exports, module) {
     var freeGlobal = require_freeGlobal();
     var freeSelf = typeof self == "object" && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function("return this")();
@@ -55,18 +51,18 @@ var require_root = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js
 var require_Symbol = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Symbol.js"(exports, module) {
     var root = require_root();
     var Symbol2 = root.Symbol;
     module.exports = Symbol2;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js
 var require_getRawTag = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getRawTag.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
@@ -93,9 +89,9 @@ var require_getRawTag = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js
 var require_objectToString = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_objectToString.js"(exports, module) {
     var objectProto = Object.prototype;
     var nativeObjectToString = objectProto.toString;
     function objectToString(value) {
@@ -105,9 +101,9 @@ var require_objectToString = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js
 var require_baseGetTag = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetTag.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var getRawTag = require_getRawTag();
     var objectToString = require_objectToString();
@@ -124,9 +120,9 @@ var require_baseGetTag = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js
 var require_isObject = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObject.js"(exports, module) {
     function isObject(value) {
       var type = typeof value;
       return value != null && (type == "object" || type == "function");
@@ -135,38 +131,38 @@ var require_isObject = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js
 var require_isFunction = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isFunction.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isObject = require_isObject();
     var asyncTag = "[object AsyncFunction]";
     var funcTag = "[object Function]";
     var genTag = "[object GeneratorFunction]";
     var proxyTag = "[object Proxy]";
-    function isFunction(value) {
+    function isFunction2(value) {
       if (!isObject(value)) {
         return false;
       }
       var tag = baseGetTag(value);
       return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
     }
-    module.exports = isFunction;
+    module.exports = isFunction2;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js
 var require_coreJsData = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_coreJsData.js"(exports, module) {
     var root = require_root();
     var coreJsData = root["__core-js_shared__"];
     module.exports = coreJsData;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js
 var require_isMasked = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isMasked.js"(exports, module) {
     var coreJsData = require_coreJsData();
     var maskSrcKey = (function() {
       var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
@@ -179,9 +175,9 @@ var require_isMasked = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js
 var require_toSource = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toSource.js"(exports, module) {
     var funcProto = Function.prototype;
     var funcToString = funcProto.toString;
     function toSource(func) {
@@ -201,10 +197,10 @@ var require_toSource = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js
 var require_baseIsNative = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js"(exports, module) {
-    var isFunction = require_isFunction();
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsNative.js"(exports, module) {
+    var isFunction2 = require_isFunction();
     var isMasked = require_isMasked();
     var isObject = require_isObject();
     var toSource = require_toSource();
@@ -221,16 +217,16 @@ var require_baseIsNative = __commonJS({
       if (!isObject(value) || isMasked(value)) {
         return false;
       }
-      var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+      var pattern = isFunction2(value) ? reIsNative : reIsHostCtor;
       return pattern.test(toSource(value));
     }
     module.exports = baseIsNative;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js
 var require_getValue = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getValue.js"(exports, module) {
     function getValue(object, key) {
       return object == null ? void 0 : object[key];
     }
@@ -238,9 +234,9 @@ var require_getValue = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js
 var require_getNative = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getNative.js"(exports, module) {
     var baseIsNative = require_baseIsNative();
     var getValue = require_getValue();
     function getNative(object, key) {
@@ -251,9 +247,9 @@ var require_getNative = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js
 var require_defineProperty = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_defineProperty.js"(exports, module) {
     var getNative = require_getNative();
     var defineProperty = (function() {
       try {
@@ -267,9 +263,9 @@ var require_defineProperty = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js
 var require_baseAssignValue = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAssignValue.js"(exports, module) {
     var defineProperty = require_defineProperty();
     function baseAssignValue(object, key, value) {
       if (key == "__proto__" && defineProperty) {
@@ -287,13 +283,13 @@ var require_baseAssignValue = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js
 var require_arrayAggregator = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayAggregator.js"(exports, module) {
     function arrayAggregator(array, setter, iteratee, accumulator) {
-      var index2 = -1, length = array == null ? 0 : array.length;
-      while (++index2 < length) {
-        var value = array[index2];
+      var index3 = -1, length = array == null ? 0 : array.length;
+      while (++index3 < length) {
+        var value = array[index3];
         setter(accumulator, value, iteratee(value), array);
       }
       return accumulator;
@@ -302,14 +298,14 @@ var require_arrayAggregator = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js
 var require_createBaseFor = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseFor.js"(exports, module) {
     function createBaseFor(fromRight) {
       return function(object, iteratee, keysFunc) {
-        var index2 = -1, iterable = Object(object), props = keysFunc(object), length = props.length;
+        var index3 = -1, iterable = Object(object), props = keysFunc(object), length = props.length;
         while (length--) {
-          var key = props[fromRight ? length : ++index2];
+          var key = props[fromRight ? length : ++index3];
           if (iteratee(iterable[key], key, iterable) === false) {
             break;
           }
@@ -321,22 +317,22 @@ var require_createBaseFor = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js
 var require_baseFor = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseFor.js"(exports, module) {
     var createBaseFor = require_createBaseFor();
     var baseFor = createBaseFor();
     module.exports = baseFor;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js
 var require_baseTimes = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTimes.js"(exports, module) {
     function baseTimes(n, iteratee) {
-      var index2 = -1, result = Array(n);
-      while (++index2 < n) {
-        result[index2] = iteratee(index2);
+      var index3 = -1, result = Array(n);
+      while (++index3 < n) {
+        result[index3] = iteratee(index3);
       }
       return result;
     }
@@ -344,9 +340,9 @@ var require_baseTimes = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js
 var require_isObjectLike = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isObjectLike.js"(exports, module) {
     function isObjectLike(value) {
       return value != null && typeof value == "object";
     }
@@ -354,9 +350,9 @@ var require_isObjectLike = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js
 var require_baseIsArguments = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsArguments.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isObjectLike = require_isObjectLike();
     var argsTag = "[object Arguments]";
@@ -367,9 +363,9 @@ var require_baseIsArguments = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js
 var require_isArguments = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArguments.js"(exports, module) {
     var baseIsArguments = require_baseIsArguments();
     var isObjectLike = require_isObjectLike();
     var objectProto = Object.prototype;
@@ -384,17 +380,17 @@ var require_isArguments = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js
 var require_isArray = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArray.js"(exports, module) {
     var isArray2 = Array.isArray;
     module.exports = isArray2;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js
 var require_stubFalse = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubFalse.js"(exports, module) {
     function stubFalse() {
       return false;
     }
@@ -402,9 +398,9 @@ var require_stubFalse = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js
 var require_isBuffer = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isBuffer.js"(exports, module) {
     var root = require_root();
     var stubFalse = require_stubFalse();
     var freeExports = typeof exports == "object" && exports && !exports.nodeType && exports;
@@ -417,9 +413,9 @@ var require_isBuffer = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js
 var require_isIndex = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isIndex.js"(exports, module) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     var reIsUint = /^(?:0|[1-9]\d*)$/;
     function isIndex(value, length) {
@@ -431,9 +427,9 @@ var require_isIndex = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js
 var require_isLength = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isLength.js"(exports, module) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     function isLength(value) {
       return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
@@ -442,9 +438,9 @@ var require_isLength = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js
 var require_baseIsTypedArray = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsTypedArray.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isLength = require_isLength();
     var isObjectLike = require_isObjectLike();
@@ -482,9 +478,9 @@ var require_baseIsTypedArray = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js
 var require_baseUnary = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseUnary.js"(exports, module) {
     function baseUnary(func) {
       return function(value) {
         return func(value);
@@ -494,9 +490,9 @@ var require_baseUnary = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js
 var require_nodeUtil = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nodeUtil.js"(exports, module) {
     var freeGlobal = require_freeGlobal();
     var freeExports = typeof exports == "object" && exports && !exports.nodeType && exports;
     var freeModule = freeExports && typeof module == "object" && module && !module.nodeType && module;
@@ -516,9 +512,9 @@ var require_nodeUtil = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js
 var require_isTypedArray = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isTypedArray.js"(exports, module) {
     var baseIsTypedArray = require_baseIsTypedArray();
     var baseUnary = require_baseUnary();
     var nodeUtil = require_nodeUtil();
@@ -528,9 +524,9 @@ var require_isTypedArray = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js
 var require_arrayLikeKeys = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayLikeKeys.js"(exports, module) {
     var baseTimes = require_baseTimes();
     var isArguments = require_isArguments();
     var isArray2 = require_isArray();
@@ -556,9 +552,9 @@ var require_arrayLikeKeys = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js
 var require_isPrototype = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isPrototype.js"(exports, module) {
     var objectProto = Object.prototype;
     function isPrototype(value) {
       var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
@@ -568,9 +564,9 @@ var require_isPrototype = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js
 var require_overArg = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_overArg.js"(exports, module) {
     function overArg(func, transform) {
       return function(arg) {
         return func(transform(arg));
@@ -580,18 +576,18 @@ var require_overArg = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js
 var require_nativeKeys = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeKeys.js"(exports, module) {
     var overArg = require_overArg();
     var nativeKeys = overArg(Object.keys, Object);
     module.exports = nativeKeys;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js
 var require_baseKeys = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseKeys.js"(exports, module) {
     var isPrototype = require_isPrototype();
     var nativeKeys = require_nativeKeys();
     var objectProto = Object.prototype;
@@ -612,21 +608,21 @@ var require_baseKeys = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js
 var require_isArrayLike = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js"(exports, module) {
-    var isFunction = require_isFunction();
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isArrayLike.js"(exports, module) {
+    var isFunction2 = require_isFunction();
     var isLength = require_isLength();
     function isArrayLike(value) {
-      return value != null && isLength(value.length) && !isFunction(value);
+      return value != null && isLength(value.length) && !isFunction2(value);
     }
     module.exports = isArrayLike;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js
 var require_keys = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/keys.js"(exports, module) {
     var arrayLikeKeys = require_arrayLikeKeys();
     var baseKeys = require_baseKeys();
     var isArrayLike = require_isArrayLike();
@@ -637,9 +633,9 @@ var require_keys = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js
 var require_baseForOwn = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseForOwn.js"(exports, module) {
     var baseFor = require_baseFor();
     var keys = require_keys();
     function baseForOwn(object, iteratee) {
@@ -649,9 +645,9 @@ var require_baseForOwn = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js
 var require_createBaseEach = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createBaseEach.js"(exports, module) {
     var isArrayLike = require_isArrayLike();
     function createBaseEach(eachFunc, fromRight) {
       return function(collection, iteratee) {
@@ -661,9 +657,9 @@ var require_createBaseEach = __commonJS({
         if (!isArrayLike(collection)) {
           return eachFunc(collection, iteratee);
         }
-        var length = collection.length, index2 = fromRight ? length : -1, iterable = Object(collection);
-        while (fromRight ? index2-- : ++index2 < length) {
-          if (iteratee(iterable[index2], index2, iterable) === false) {
+        var length = collection.length, index3 = fromRight ? length : -1, iterable = Object(collection);
+        while (fromRight ? index3-- : ++index3 < length) {
+          if (iteratee(iterable[index3], index3, iterable) === false) {
             break;
           }
         }
@@ -674,9 +670,9 @@ var require_createBaseEach = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js
 var require_baseEach = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseEach.js"(exports, module) {
     var baseForOwn = require_baseForOwn();
     var createBaseEach = require_createBaseEach();
     var baseEach = createBaseEach(baseForOwn);
@@ -684,9 +680,9 @@ var require_baseEach = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js
 var require_baseAggregator = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseAggregator.js"(exports, module) {
     var baseEach = require_baseEach();
     function baseAggregator(collection, setter, iteratee, accumulator) {
       baseEach(collection, function(value, key, collection2) {
@@ -698,9 +694,9 @@ var require_baseAggregator = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js
 var require_listCacheClear = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheClear.js"(exports, module) {
     function listCacheClear() {
       this.__data__ = [];
       this.size = 0;
@@ -709,9 +705,9 @@ var require_listCacheClear = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js
 var require_eq = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/eq.js"(exports, module) {
     function eq(value, other) {
       return value === other || value !== value && other !== other;
     }
@@ -719,9 +715,9 @@ var require_eq = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js
 var require_assocIndexOf = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_assocIndexOf.js"(exports, module) {
     var eq = require_eq();
     function assocIndexOf(array, key) {
       var length = array.length;
@@ -736,22 +732,22 @@ var require_assocIndexOf = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js
 var require_listCacheDelete = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheDelete.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     var arrayProto = Array.prototype;
     var splice = arrayProto.splice;
     function listCacheDelete(key) {
-      var data = this.__data__, index2 = assocIndexOf(data, key);
-      if (index2 < 0) {
+      var data = this.__data__, index3 = assocIndexOf(data, key);
+      if (index3 < 0) {
         return false;
       }
       var lastIndex = data.length - 1;
-      if (index2 == lastIndex) {
+      if (index3 == lastIndex) {
         data.pop();
       } else {
-        splice.call(data, index2, 1);
+        splice.call(data, index3, 1);
       }
       --this.size;
       return true;
@@ -760,21 +756,21 @@ var require_listCacheDelete = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js
 var require_listCacheGet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheGet.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheGet(key) {
-      var data = this.__data__, index2 = assocIndexOf(data, key);
-      return index2 < 0 ? void 0 : data[index2][1];
+      var data = this.__data__, index3 = assocIndexOf(data, key);
+      return index3 < 0 ? void 0 : data[index3][1];
     }
     module.exports = listCacheGet;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js
 var require_listCacheHas = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheHas.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheHas(key) {
       return assocIndexOf(this.__data__, key) > -1;
@@ -783,17 +779,17 @@ var require_listCacheHas = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js
 var require_listCacheSet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_listCacheSet.js"(exports, module) {
     var assocIndexOf = require_assocIndexOf();
     function listCacheSet(key, value) {
-      var data = this.__data__, index2 = assocIndexOf(data, key);
-      if (index2 < 0) {
+      var data = this.__data__, index3 = assocIndexOf(data, key);
+      if (index3 < 0) {
         ++this.size;
         data.push([key, value]);
       } else {
-        data[index2][1] = value;
+        data[index3][1] = value;
       }
       return this;
     }
@@ -801,19 +797,19 @@ var require_listCacheSet = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js
 var require_ListCache = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_ListCache.js"(exports, module) {
     var listCacheClear = require_listCacheClear();
     var listCacheDelete = require_listCacheDelete();
     var listCacheGet = require_listCacheGet();
     var listCacheHas = require_listCacheHas();
     var listCacheSet = require_listCacheSet();
     function ListCache(entries) {
-      var index2 = -1, length = entries == null ? 0 : entries.length;
+      var index3 = -1, length = entries == null ? 0 : entries.length;
       this.clear();
-      while (++index2 < length) {
-        var entry = entries[index2];
+      while (++index3 < length) {
+        var entry = entries[index3];
         this.set(entry[0], entry[1]);
       }
     }
@@ -826,9 +822,9 @@ var require_ListCache = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js
 var require_stackClear = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackClear.js"(exports, module) {
     var ListCache = require_ListCache();
     function stackClear() {
       this.__data__ = new ListCache();
@@ -838,9 +834,9 @@ var require_stackClear = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js
 var require_stackDelete = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackDelete.js"(exports, module) {
     function stackDelete(key) {
       var data = this.__data__, result = data["delete"](key);
       this.size = data.size;
@@ -850,9 +846,9 @@ var require_stackDelete = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js
 var require_stackGet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackGet.js"(exports, module) {
     function stackGet(key) {
       return this.__data__.get(key);
     }
@@ -860,9 +856,9 @@ var require_stackGet = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js
 var require_stackHas = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackHas.js"(exports, module) {
     function stackHas(key) {
       return this.__data__.has(key);
     }
@@ -870,9 +866,9 @@ var require_stackHas = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js
 var require_Map = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Map.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var Map2 = getNative(root, "Map");
@@ -880,18 +876,18 @@ var require_Map = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js
 var require_nativeCreate = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_nativeCreate.js"(exports, module) {
     var getNative = require_getNative();
     var nativeCreate = getNative(Object, "create");
     module.exports = nativeCreate;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js
 var require_hashClear = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashClear.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     function hashClear() {
       this.__data__ = nativeCreate ? nativeCreate(null) : {};
@@ -901,9 +897,9 @@ var require_hashClear = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js
 var require_hashDelete = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashDelete.js"(exports, module) {
     function hashDelete(key) {
       var result = this.has(key) && delete this.__data__[key];
       this.size -= result ? 1 : 0;
@@ -913,9 +909,9 @@ var require_hashDelete = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js
 var require_hashGet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashGet.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     var objectProto = Object.prototype;
@@ -932,9 +928,9 @@ var require_hashGet = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js
 var require_hashHas = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashHas.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
@@ -946,9 +942,9 @@ var require_hashHas = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js
 var require_hashSet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hashSet.js"(exports, module) {
     var nativeCreate = require_nativeCreate();
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     function hashSet(key, value) {
@@ -961,19 +957,19 @@ var require_hashSet = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js
 var require_Hash = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Hash.js"(exports, module) {
     var hashClear = require_hashClear();
     var hashDelete = require_hashDelete();
     var hashGet = require_hashGet();
     var hashHas = require_hashHas();
     var hashSet = require_hashSet();
     function Hash(entries) {
-      var index2 = -1, length = entries == null ? 0 : entries.length;
+      var index3 = -1, length = entries == null ? 0 : entries.length;
       this.clear();
-      while (++index2 < length) {
-        var entry = entries[index2];
+      while (++index3 < length) {
+        var entry = entries[index3];
         this.set(entry[0], entry[1]);
       }
     }
@@ -986,9 +982,9 @@ var require_Hash = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js
 var require_mapCacheClear = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheClear.js"(exports, module) {
     var Hash = require_Hash();
     var ListCache = require_ListCache();
     var Map2 = require_Map();
@@ -1004,9 +1000,9 @@ var require_mapCacheClear = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js
 var require_isKeyable = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKeyable.js"(exports, module) {
     function isKeyable(value) {
       var type = typeof value;
       return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
@@ -1015,9 +1011,9 @@ var require_isKeyable = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js
 var require_getMapData = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMapData.js"(exports, module) {
     var isKeyable = require_isKeyable();
     function getMapData(map, key) {
       var data = map.__data__;
@@ -1027,9 +1023,9 @@ var require_getMapData = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js
 var require_mapCacheDelete = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheDelete.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheDelete(key) {
       var result = getMapData(this, key)["delete"](key);
@@ -1040,9 +1036,9 @@ var require_mapCacheDelete = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js
 var require_mapCacheGet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheGet.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheGet(key) {
       return getMapData(this, key).get(key);
@@ -1051,9 +1047,9 @@ var require_mapCacheGet = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js
 var require_mapCacheHas = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheHas.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheHas(key) {
       return getMapData(this, key).has(key);
@@ -1062,33 +1058,33 @@ var require_mapCacheHas = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js
 var require_mapCacheSet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapCacheSet.js"(exports, module) {
     var getMapData = require_getMapData();
     function mapCacheSet(key, value) {
-      var data = getMapData(this, key), size = data.size;
+      var data = getMapData(this, key), size4 = data.size;
       data.set(key, value);
-      this.size += data.size == size ? 0 : 1;
+      this.size += data.size == size4 ? 0 : 1;
       return this;
     }
     module.exports = mapCacheSet;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js
 var require_MapCache = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_MapCache.js"(exports, module) {
     var mapCacheClear = require_mapCacheClear();
     var mapCacheDelete = require_mapCacheDelete();
     var mapCacheGet = require_mapCacheGet();
     var mapCacheHas = require_mapCacheHas();
     var mapCacheSet = require_mapCacheSet();
     function MapCache(entries) {
-      var index2 = -1, length = entries == null ? 0 : entries.length;
+      var index3 = -1, length = entries == null ? 0 : entries.length;
       this.clear();
-      while (++index2 < length) {
-        var entry = entries[index2];
+      while (++index3 < length) {
+        var entry = entries[index3];
         this.set(entry[0], entry[1]);
       }
     }
@@ -1101,9 +1097,9 @@ var require_MapCache = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js
 var require_stackSet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stackSet.js"(exports, module) {
     var ListCache = require_ListCache();
     var Map2 = require_Map();
     var MapCache = require_MapCache();
@@ -1127,9 +1123,9 @@ var require_stackSet = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js
 var require_Stack = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Stack.js"(exports, module) {
     var ListCache = require_ListCache();
     var stackClear = require_stackClear();
     var stackDelete = require_stackDelete();
@@ -1149,9 +1145,9 @@ var require_Stack = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js
 var require_setCacheAdd = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheAdd.js"(exports, module) {
     var HASH_UNDEFINED = "__lodash_hash_undefined__";
     function setCacheAdd(value) {
       this.__data__.set(value, HASH_UNDEFINED);
@@ -1161,9 +1157,9 @@ var require_setCacheAdd = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js
 var require_setCacheHas = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setCacheHas.js"(exports, module) {
     function setCacheHas(value) {
       return this.__data__.has(value);
     }
@@ -1171,17 +1167,17 @@ var require_setCacheHas = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js
 var require_SetCache = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_SetCache.js"(exports, module) {
     var MapCache = require_MapCache();
     var setCacheAdd = require_setCacheAdd();
     var setCacheHas = require_setCacheHas();
     function SetCache(values) {
-      var index2 = -1, length = values == null ? 0 : values.length;
+      var index3 = -1, length = values == null ? 0 : values.length;
       this.__data__ = new MapCache();
-      while (++index2 < length) {
-        this.add(values[index2]);
+      while (++index3 < length) {
+        this.add(values[index3]);
       }
     }
     SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
@@ -1190,13 +1186,13 @@ var require_SetCache = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js
 var require_arraySome = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arraySome.js"(exports, module) {
     function arraySome(array, predicate) {
-      var index2 = -1, length = array == null ? 0 : array.length;
-      while (++index2 < length) {
-        if (predicate(array[index2], index2, array)) {
+      var index3 = -1, length = array == null ? 0 : array.length;
+      while (++index3 < length) {
+        if (predicate(array[index3], index3, array)) {
           return true;
         }
       }
@@ -1206,9 +1202,9 @@ var require_arraySome = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js
 var require_cacheHas = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_cacheHas.js"(exports, module) {
     function cacheHas(cache2, key) {
       return cache2.has(key);
     }
@@ -1216,9 +1212,9 @@ var require_cacheHas = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js
 var require_equalArrays = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalArrays.js"(exports, module) {
     var SetCache = require_SetCache();
     var arraySome = require_arraySome();
     var cacheHas = require_cacheHas();
@@ -1234,13 +1230,13 @@ var require_equalArrays = __commonJS({
       if (arrStacked && othStacked) {
         return arrStacked == other && othStacked == array;
       }
-      var index2 = -1, result = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : void 0;
+      var index3 = -1, result = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : void 0;
       stack.set(array, other);
       stack.set(other, array);
-      while (++index2 < arrLength) {
-        var arrValue = array[index2], othValue = other[index2];
+      while (++index3 < arrLength) {
+        var arrValue = array[index3], othValue = other[index3];
         if (customizer) {
-          var compared = isPartial ? customizer(othValue, arrValue, index2, other, array, stack) : customizer(arrValue, othValue, index2, array, other, stack);
+          var compared = isPartial ? customizer(othValue, arrValue, index3, other, array, stack) : customizer(arrValue, othValue, index3, array, other, stack);
         }
         if (compared !== void 0) {
           if (compared) {
@@ -1271,22 +1267,22 @@ var require_equalArrays = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js
 var require_Uint8Array = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Uint8Array.js"(exports, module) {
     var root = require_root();
     var Uint8Array2 = root.Uint8Array;
     module.exports = Uint8Array2;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js
 var require_mapToArray = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_mapToArray.js"(exports, module) {
     function mapToArray(map) {
-      var index2 = -1, result = Array(map.size);
+      var index3 = -1, result = Array(map.size);
       map.forEach(function(value, key) {
-        result[++index2] = [key, value];
+        result[++index3] = [key, value];
       });
       return result;
     }
@@ -1294,13 +1290,13 @@ var require_mapToArray = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js
 var require_setToArray = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_setToArray.js"(exports, module) {
     function setToArray(set) {
-      var index2 = -1, result = Array(set.size);
+      var index3 = -1, result = Array(set.size);
       set.forEach(function(value) {
-        result[++index2] = value;
+        result[++index3] = value;
       });
       return result;
     }
@@ -1308,9 +1304,9 @@ var require_setToArray = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js
 var require_equalByTag = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalByTag.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var Uint8Array2 = require_Uint8Array();
     var eq = require_eq();
@@ -1382,13 +1378,13 @@ var require_equalByTag = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js
 var require_arrayPush = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayPush.js"(exports, module) {
     function arrayPush(array, values) {
-      var index2 = -1, length = values.length, offset = array.length;
-      while (++index2 < length) {
-        array[offset + index2] = values[index2];
+      var index3 = -1, length = values.length, offset4 = array.length;
+      while (++index3 < length) {
+        array[offset4 + index3] = values[index3];
       }
       return array;
     }
@@ -1396,9 +1392,9 @@ var require_arrayPush = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js
 var require_baseGetAllKeys = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGetAllKeys.js"(exports, module) {
     var arrayPush = require_arrayPush();
     var isArray2 = require_isArray();
     function baseGetAllKeys(object, keysFunc, symbolsFunc) {
@@ -1409,14 +1405,14 @@ var require_baseGetAllKeys = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js
 var require_arrayFilter = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayFilter.js"(exports, module) {
     function arrayFilter(array, predicate) {
-      var index2 = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
-      while (++index2 < length) {
-        var value = array[index2];
-        if (predicate(value, index2, array)) {
+      var index3 = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
+      while (++index3 < length) {
+        var value = array[index3];
+        if (predicate(value, index3, array)) {
           result[resIndex++] = value;
         }
       }
@@ -1426,9 +1422,9 @@ var require_arrayFilter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js
 var require_stubArray = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/stubArray.js"(exports, module) {
     function stubArray() {
       return [];
     }
@@ -1436,9 +1432,9 @@ var require_stubArray = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js
 var require_getSymbols = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getSymbols.js"(exports, module) {
     var arrayFilter = require_arrayFilter();
     var stubArray = require_stubArray();
     var objectProto = Object.prototype;
@@ -1457,9 +1453,9 @@ var require_getSymbols = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js
 var require_getAllKeys = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getAllKeys.js"(exports, module) {
     var baseGetAllKeys = require_baseGetAllKeys();
     var getSymbols = require_getSymbols();
     var keys = require_keys();
@@ -1470,9 +1466,9 @@ var require_getAllKeys = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js
 var require_equalObjects = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_equalObjects.js"(exports, module) {
     var getAllKeys = require_getAllKeys();
     var COMPARE_PARTIAL_FLAG = 1;
     var objectProto = Object.prototype;
@@ -1482,9 +1478,9 @@ var require_equalObjects = __commonJS({
       if (objLength != othLength && !isPartial) {
         return false;
       }
-      var index2 = objLength;
-      while (index2--) {
-        var key = objProps[index2];
+      var index3 = objLength;
+      while (index3--) {
+        var key = objProps[index3];
         if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
           return false;
         }
@@ -1498,8 +1494,8 @@ var require_equalObjects = __commonJS({
       stack.set(object, other);
       stack.set(other, object);
       var skipCtor = isPartial;
-      while (++index2 < objLength) {
-        key = objProps[index2];
+      while (++index3 < objLength) {
+        key = objProps[index3];
         var objValue = object[key], othValue = other[key];
         if (customizer) {
           var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
@@ -1524,9 +1520,9 @@ var require_equalObjects = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js
 var require_DataView = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_DataView.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var DataView = getNative(root, "DataView");
@@ -1534,9 +1530,9 @@ var require_DataView = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js
 var require_Promise = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Promise.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var Promise2 = getNative(root, "Promise");
@@ -1544,9 +1540,9 @@ var require_Promise = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js
 var require_Set = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_Set.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var Set2 = getNative(root, "Set");
@@ -1554,9 +1550,9 @@ var require_Set = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js
 var require_WeakMap = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_WeakMap.js"(exports, module) {
     var getNative = require_getNative();
     var root = require_root();
     var WeakMap2 = getNative(root, "WeakMap");
@@ -1564,9 +1560,9 @@ var require_WeakMap = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js
 var require_getTag = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getTag.js"(exports, module) {
     var DataView = require_DataView();
     var Map2 = require_Map();
     var Promise2 = require_Promise();
@@ -1610,9 +1606,9 @@ var require_getTag = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js
 var require_baseIsEqualDeep = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqualDeep.js"(exports, module) {
     var Stack = require_Stack();
     var equalArrays = require_equalArrays();
     var equalByTag = require_equalByTag();
@@ -1661,9 +1657,9 @@ var require_baseIsEqualDeep = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js
 var require_baseIsEqual = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsEqual.js"(exports, module) {
     var baseIsEqualDeep = require_baseIsEqualDeep();
     var isObjectLike = require_isObjectLike();
     function baseIsEqual(value, other, bitmask, customizer, stack) {
@@ -1679,27 +1675,27 @@ var require_baseIsEqual = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js
 var require_baseIsMatch = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIsMatch.js"(exports, module) {
     var Stack = require_Stack();
     var baseIsEqual = require_baseIsEqual();
     var COMPARE_PARTIAL_FLAG = 1;
     var COMPARE_UNORDERED_FLAG = 2;
     function baseIsMatch(object, source, matchData, customizer) {
-      var index2 = matchData.length, length = index2, noCustomizer = !customizer;
+      var index3 = matchData.length, length = index3, noCustomizer = !customizer;
       if (object == null) {
         return !length;
       }
       object = Object(object);
-      while (index2--) {
-        var data = matchData[index2];
+      while (index3--) {
+        var data = matchData[index3];
         if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
           return false;
         }
       }
-      while (++index2 < length) {
-        data = matchData[index2];
+      while (++index3 < length) {
+        data = matchData[index3];
         var key = data[0], objValue = object[key], srcValue = data[1];
         if (noCustomizer && data[2]) {
           if (objValue === void 0 && !(key in object)) {
@@ -1721,9 +1717,9 @@ var require_baseIsMatch = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js
 var require_isStrictComparable = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isStrictComparable.js"(exports, module) {
     var isObject = require_isObject();
     function isStrictComparable(value) {
       return value === value && !isObject(value);
@@ -1732,9 +1728,9 @@ var require_isStrictComparable = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js
 var require_getMatchData = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_getMatchData.js"(exports, module) {
     var isStrictComparable = require_isStrictComparable();
     var keys = require_keys();
     function getMatchData(object) {
@@ -1749,9 +1745,9 @@ var require_getMatchData = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js
 var require_matchesStrictComparable = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_matchesStrictComparable.js"(exports, module) {
     function matchesStrictComparable(key, srcValue) {
       return function(object) {
         if (object == null) {
@@ -1764,9 +1760,9 @@ var require_matchesStrictComparable = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js
 var require_baseMatches = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatches.js"(exports, module) {
     var baseIsMatch = require_baseIsMatch();
     var getMatchData = require_getMatchData();
     var matchesStrictComparable = require_matchesStrictComparable();
@@ -1783,9 +1779,9 @@ var require_baseMatches = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js
 var require_isSymbol = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/isSymbol.js"(exports, module) {
     var baseGetTag = require_baseGetTag();
     var isObjectLike = require_isObjectLike();
     var symbolTag = "[object Symbol]";
@@ -1796,9 +1792,9 @@ var require_isSymbol = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js
 var require_isKey = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_isKey.js"(exports, module) {
     var isArray2 = require_isArray();
     var isSymbol = require_isSymbol();
     var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
@@ -1817,9 +1813,9 @@ var require_isKey = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js
 var require_memoize = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/memoize.js"(exports, module) {
     var MapCache = require_MapCache();
     var FUNC_ERROR_TEXT = "Expected a function";
     function memoize(func, resolver) {
@@ -1843,9 +1839,9 @@ var require_memoize = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js
 var require_memoizeCapped = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_memoizeCapped.js"(exports, module) {
     var memoize = require_memoize();
     var MAX_MEMOIZE_SIZE = 500;
     function memoizeCapped(func) {
@@ -1862,9 +1858,9 @@ var require_memoizeCapped = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js
 var require_stringToPath = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_stringToPath.js"(exports, module) {
     var memoizeCapped = require_memoizeCapped();
     var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
     var reEscapeChar = /\\(\\)?/g;
@@ -1882,13 +1878,13 @@ var require_stringToPath = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js
 var require_arrayMap = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_arrayMap.js"(exports, module) {
     function arrayMap(array, iteratee) {
-      var index2 = -1, length = array == null ? 0 : array.length, result = Array(length);
-      while (++index2 < length) {
-        result[index2] = iteratee(array[index2], index2, array);
+      var index3 = -1, length = array == null ? 0 : array.length, result = Array(length);
+      while (++index3 < length) {
+        result[index3] = iteratee(array[index3], index3, array);
       }
       return result;
     }
@@ -1896,9 +1892,9 @@ var require_arrayMap = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js
 var require_baseToString = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseToString.js"(exports, module) {
     var Symbol2 = require_Symbol();
     var arrayMap = require_arrayMap();
     var isArray2 = require_isArray();
@@ -1922,9 +1918,9 @@ var require_baseToString = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js
 var require_toString = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toString.js"(exports, module) {
     var baseToString = require_baseToString();
     function toString(value) {
       return value == null ? "" : baseToString(value);
@@ -1933,9 +1929,9 @@ var require_toString = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js
 var require_castPath = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_castPath.js"(exports, module) {
     var isArray2 = require_isArray();
     var isKey = require_isKey();
     var stringToPath = require_stringToPath();
@@ -1950,9 +1946,9 @@ var require_castPath = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js
 var require_toKey = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_toKey.js"(exports, module) {
     var isSymbol = require_isSymbol();
     function toKey(value) {
       if (typeof value == "string" || isSymbol(value)) {
@@ -1965,26 +1961,26 @@ var require_toKey = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js
 var require_baseGet = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseGet.js"(exports, module) {
     var castPath = require_castPath();
     var toKey = require_toKey();
     function baseGet(object, path2) {
       path2 = castPath(path2, object);
-      var index2 = 0, length = path2.length;
-      while (object != null && index2 < length) {
-        object = object[toKey(path2[index2++])];
+      var index3 = 0, length = path2.length;
+      while (object != null && index3 < length) {
+        object = object[toKey(path2[index3++])];
       }
-      return index2 && index2 == length ? object : void 0;
+      return index3 && index3 == length ? object : void 0;
     }
     module.exports = baseGet;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js
 var require_get = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/get.js"(exports, module) {
     var baseGet = require_baseGet();
     function get(object, path2, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path2);
@@ -1994,9 +1990,9 @@ var require_get = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js
 var require_baseHasIn = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseHasIn.js"(exports, module) {
     function baseHasIn(object, key) {
       return object != null && key in Object(object);
     }
@@ -2004,9 +2000,9 @@ var require_baseHasIn = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js
 var require_hasPath = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_hasPath.js"(exports, module) {
     var castPath = require_castPath();
     var isArguments = require_isArguments();
     var isArray2 = require_isArray();
@@ -2015,15 +2011,15 @@ var require_hasPath = __commonJS({
     var toKey = require_toKey();
     function hasPath(object, path2, hasFunc) {
       path2 = castPath(path2, object);
-      var index2 = -1, length = path2.length, result = false;
-      while (++index2 < length) {
-        var key = toKey(path2[index2]);
+      var index3 = -1, length = path2.length, result = false;
+      while (++index3 < length) {
+        var key = toKey(path2[index3]);
         if (!(result = object != null && hasFunc(object, key))) {
           break;
         }
         object = object[key];
       }
-      if (result || ++index2 != length) {
+      if (result || ++index3 != length) {
         return result;
       }
       length = object == null ? 0 : object.length;
@@ -2033,9 +2029,9 @@ var require_hasPath = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js
 var require_hasIn = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/hasIn.js"(exports, module) {
     var baseHasIn = require_baseHasIn();
     var hasPath = require_hasPath();
     function hasIn(object, path2) {
@@ -2045,9 +2041,9 @@ var require_hasIn = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js
 var require_baseMatchesProperty = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseMatchesProperty.js"(exports, module) {
     var baseIsEqual = require_baseIsEqual();
     var get = require_get();
     var hasIn = require_hasIn();
@@ -2070,9 +2066,9 @@ var require_baseMatchesProperty = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js
 var require_identity = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/identity.js"(exports, module) {
     function identity(value) {
       return value;
     }
@@ -2080,9 +2076,9 @@ var require_identity = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js
 var require_baseProperty = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseProperty.js"(exports, module) {
     function baseProperty(key) {
       return function(object) {
         return object == null ? void 0 : object[key];
@@ -2092,9 +2088,9 @@ var require_baseProperty = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js
 var require_basePropertyDeep = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_basePropertyDeep.js"(exports, module) {
     var baseGet = require_baseGet();
     function basePropertyDeep(path2) {
       return function(object) {
@@ -2105,9 +2101,9 @@ var require_basePropertyDeep = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js
 var require_property = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/property.js"(exports, module) {
     var baseProperty = require_baseProperty();
     var basePropertyDeep = require_basePropertyDeep();
     var isKey = require_isKey();
@@ -2119,9 +2115,9 @@ var require_property = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js
 var require_baseIteratee = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseIteratee.js"(exports, module) {
     var baseMatches = require_baseMatches();
     var baseMatchesProperty = require_baseMatchesProperty();
     var identity = require_identity();
@@ -2143,9 +2139,9 @@ var require_baseIteratee = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js
 var require_createAggregator = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_createAggregator.js"(exports, module) {
     var arrayAggregator = require_arrayAggregator();
     var baseAggregator = require_baseAggregator();
     var baseIteratee = require_baseIteratee();
@@ -2160,9 +2156,9 @@ var require_createAggregator = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js
 var require_groupBy = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/groupBy.js"(exports, module) {
     var baseAssignValue = require_baseAssignValue();
     var createAggregator = require_createAggregator();
     var objectProto = Object.prototype;
@@ -2178,9 +2174,9 @@ var require_groupBy = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js
 var require_lodash = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/lodash.js"(exports, module) {
     (function() {
       var undefined2;
       var VERSION2 = "4.18.1";
@@ -2537,17 +2533,17 @@ var require_lodash = __commonJS({
         return func.apply(thisArg, args);
       }
       function arrayAggregator(array, setter, iteratee, accumulator) {
-        var index2 = -1, length = array == null ? 0 : array.length;
-        while (++index2 < length) {
-          var value = array[index2];
+        var index3 = -1, length = array == null ? 0 : array.length;
+        while (++index3 < length) {
+          var value = array[index3];
           setter(accumulator, value, iteratee(value), array);
         }
         return accumulator;
       }
       function arrayEach(array, iteratee) {
-        var index2 = -1, length = array == null ? 0 : array.length;
-        while (++index2 < length) {
-          if (iteratee(array[index2], index2, array) === false) {
+        var index3 = -1, length = array == null ? 0 : array.length;
+        while (++index3 < length) {
+          if (iteratee(array[index3], index3, array) === false) {
             break;
           }
         }
@@ -2563,19 +2559,19 @@ var require_lodash = __commonJS({
         return array;
       }
       function arrayEvery(array, predicate) {
-        var index2 = -1, length = array == null ? 0 : array.length;
-        while (++index2 < length) {
-          if (!predicate(array[index2], index2, array)) {
+        var index3 = -1, length = array == null ? 0 : array.length;
+        while (++index3 < length) {
+          if (!predicate(array[index3], index3, array)) {
             return false;
           }
         }
         return true;
       }
       function arrayFilter(array, predicate) {
-        var index2 = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
-        while (++index2 < length) {
-          var value = array[index2];
-          if (predicate(value, index2, array)) {
+        var index3 = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
+        while (++index3 < length) {
+          var value = array[index3];
+          if (predicate(value, index3, array)) {
             result[resIndex++] = value;
           }
         }
@@ -2586,35 +2582,35 @@ var require_lodash = __commonJS({
         return !!length && baseIndexOf(array, value, 0) > -1;
       }
       function arrayIncludesWith(array, value, comparator) {
-        var index2 = -1, length = array == null ? 0 : array.length;
-        while (++index2 < length) {
-          if (comparator(value, array[index2])) {
+        var index3 = -1, length = array == null ? 0 : array.length;
+        while (++index3 < length) {
+          if (comparator(value, array[index3])) {
             return true;
           }
         }
         return false;
       }
       function arrayMap(array, iteratee) {
-        var index2 = -1, length = array == null ? 0 : array.length, result = Array(length);
-        while (++index2 < length) {
-          result[index2] = iteratee(array[index2], index2, array);
+        var index3 = -1, length = array == null ? 0 : array.length, result = Array(length);
+        while (++index3 < length) {
+          result[index3] = iteratee(array[index3], index3, array);
         }
         return result;
       }
       function arrayPush(array, values) {
-        var index2 = -1, length = values.length, offset = array.length;
-        while (++index2 < length) {
-          array[offset + index2] = values[index2];
+        var index3 = -1, length = values.length, offset4 = array.length;
+        while (++index3 < length) {
+          array[offset4 + index3] = values[index3];
         }
         return array;
       }
       function arrayReduce(array, iteratee, accumulator, initAccum) {
-        var index2 = -1, length = array == null ? 0 : array.length;
+        var index3 = -1, length = array == null ? 0 : array.length;
         if (initAccum && length) {
-          accumulator = array[++index2];
+          accumulator = array[++index3];
         }
-        while (++index2 < length) {
-          accumulator = iteratee(accumulator, array[index2], index2, array);
+        while (++index3 < length) {
+          accumulator = iteratee(accumulator, array[index3], index3, array);
         }
         return accumulator;
       }
@@ -2629,9 +2625,9 @@ var require_lodash = __commonJS({
         return accumulator;
       }
       function arraySome(array, predicate) {
-        var index2 = -1, length = array == null ? 0 : array.length;
-        while (++index2 < length) {
-          if (predicate(array[index2], index2, array)) {
+        var index3 = -1, length = array == null ? 0 : array.length;
+        while (++index3 < length) {
+          if (predicate(array[index3], index3, array)) {
             return true;
           }
         }
@@ -2655,10 +2651,10 @@ var require_lodash = __commonJS({
         return result;
       }
       function baseFindIndex(array, predicate, fromIndex, fromRight) {
-        var length = array.length, index2 = fromIndex + (fromRight ? 1 : -1);
-        while (fromRight ? index2-- : ++index2 < length) {
-          if (predicate(array[index2], index2, array)) {
-            return index2;
+        var length = array.length, index3 = fromIndex + (fromRight ? 1 : -1);
+        while (fromRight ? index3-- : ++index3 < length) {
+          if (predicate(array[index3], index3, array)) {
+            return index3;
           }
         }
         return -1;
@@ -2667,10 +2663,10 @@ var require_lodash = __commonJS({
         return value === value ? strictIndexOf(array, value, fromIndex) : baseFindIndex(array, baseIsNaN, fromIndex);
       }
       function baseIndexOfWith(array, value, fromIndex, comparator) {
-        var index2 = fromIndex - 1, length = array.length;
-        while (++index2 < length) {
-          if (comparator(array[index2], value)) {
-            return index2;
+        var index3 = fromIndex - 1, length = array.length;
+        while (++index3 < length) {
+          if (comparator(array[index3], value)) {
+            return index3;
           }
         }
         return -1;
@@ -2693,8 +2689,8 @@ var require_lodash = __commonJS({
         };
       }
       function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
-        eachFunc(collection, function(value, index2, collection2) {
-          accumulator = initAccum ? (initAccum = false, value) : iteratee(accumulator, value, index2, collection2);
+        eachFunc(collection, function(value, index3, collection2) {
+          accumulator = initAccum ? (initAccum = false, value) : iteratee(accumulator, value, index3, collection2);
         });
         return accumulator;
       }
@@ -2707,9 +2703,9 @@ var require_lodash = __commonJS({
         return array;
       }
       function baseSum(array, iteratee) {
-        var result, index2 = -1, length = array.length;
-        while (++index2 < length) {
-          var current = iteratee(array[index2]);
+        var result, index3 = -1, length = array.length;
+        while (++index3 < length) {
+          var current = iteratee(array[index3]);
           if (current !== undefined2) {
             result = result === undefined2 ? current : result + current;
           }
@@ -2717,9 +2713,9 @@ var require_lodash = __commonJS({
         return result;
       }
       function baseTimes(n, iteratee) {
-        var index2 = -1, result = Array(n);
-        while (++index2 < n) {
-          result[index2] = iteratee(index2);
+        var index3 = -1, result = Array(n);
+        while (++index3 < n) {
+          result[index3] = iteratee(index3);
         }
         return result;
       }
@@ -2745,16 +2741,16 @@ var require_lodash = __commonJS({
         return cache2.has(key);
       }
       function charsStartIndex(strSymbols, chrSymbols) {
-        var index2 = -1, length = strSymbols.length;
-        while (++index2 < length && baseIndexOf(chrSymbols, strSymbols[index2], 0) > -1) {
+        var index3 = -1, length = strSymbols.length;
+        while (++index3 < length && baseIndexOf(chrSymbols, strSymbols[index3], 0) > -1) {
         }
-        return index2;
+        return index3;
       }
       function charsEndIndex(strSymbols, chrSymbols) {
-        var index2 = strSymbols.length;
-        while (index2-- && baseIndexOf(chrSymbols, strSymbols[index2], 0) > -1) {
+        var index3 = strSymbols.length;
+        while (index3-- && baseIndexOf(chrSymbols, strSymbols[index3], 0) > -1) {
         }
-        return index2;
+        return index3;
       }
       function countHolders(array, placeholder) {
         var length = array.length, result = 0;
@@ -2787,9 +2783,9 @@ var require_lodash = __commonJS({
         return result;
       }
       function mapToArray(map) {
-        var index2 = -1, result = Array(map.size);
+        var index3 = -1, result = Array(map.size);
         map.forEach(function(value, key) {
-          result[++index2] = [key, value];
+          result[++index3] = [key, value];
         });
         return result;
       }
@@ -2799,47 +2795,47 @@ var require_lodash = __commonJS({
         };
       }
       function replaceHolders(array, placeholder) {
-        var index2 = -1, length = array.length, resIndex = 0, result = [];
-        while (++index2 < length) {
-          var value = array[index2];
+        var index3 = -1, length = array.length, resIndex = 0, result = [];
+        while (++index3 < length) {
+          var value = array[index3];
           if (value === placeholder || value === PLACEHOLDER) {
-            array[index2] = PLACEHOLDER;
-            result[resIndex++] = index2;
+            array[index3] = PLACEHOLDER;
+            result[resIndex++] = index3;
           }
         }
         return result;
       }
       function setToArray(set) {
-        var index2 = -1, result = Array(set.size);
+        var index3 = -1, result = Array(set.size);
         set.forEach(function(value) {
-          result[++index2] = value;
+          result[++index3] = value;
         });
         return result;
       }
       function setToPairs(set) {
-        var index2 = -1, result = Array(set.size);
+        var index3 = -1, result = Array(set.size);
         set.forEach(function(value) {
-          result[++index2] = [value, value];
+          result[++index3] = [value, value];
         });
         return result;
       }
       function strictIndexOf(array, value, fromIndex) {
-        var index2 = fromIndex - 1, length = array.length;
-        while (++index2 < length) {
-          if (array[index2] === value) {
-            return index2;
+        var index3 = fromIndex - 1, length = array.length;
+        while (++index3 < length) {
+          if (array[index3] === value) {
+            return index3;
           }
         }
         return -1;
       }
       function strictLastIndexOf(array, value, fromIndex) {
-        var index2 = fromIndex + 1;
-        while (index2--) {
-          if (array[index2] === value) {
-            return index2;
+        var index3 = fromIndex + 1;
+        while (index3--) {
+          if (array[index3] === value) {
+            return index3;
           }
         }
-        return index2;
+        return index3;
       }
       function stringSize(string) {
         return hasUnicode(string) ? unicodeSize(string) : asciiSize(string);
@@ -2848,10 +2844,10 @@ var require_lodash = __commonJS({
         return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
       }
       function trimmedEndIndex(string) {
-        var index2 = string.length;
-        while (index2-- && reWhitespace.test(string.charAt(index2))) {
+        var index3 = string.length;
+        while (index3-- && reWhitespace.test(string.charAt(index3))) {
         }
-        return index2;
+        return index3;
       }
       var unescapeHtmlChar = basePropertyOf(htmlUnescapes);
       function unicodeSize(string) {
@@ -2874,7 +2870,7 @@ var require_lodash = __commonJS({
         var coreJsData = context["__core-js_shared__"];
         var funcToString = funcProto.toString;
         var hasOwnProperty = objectProto.hasOwnProperty;
-        var idCounter = 0;
+        var idCounter2 = 0;
         var maskSrcKey = (function() {
           var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
           return uid ? "Symbol(src)_1." + uid : "";
@@ -3017,15 +3013,15 @@ var require_lodash = __commonJS({
           return result2;
         }
         function lazyValue() {
-          var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray2(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start = view.start, end = view.end, length = end - start, index2 = isRight ? end : start - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
+          var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray2(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start = view.start, end = view.end, length = end - start, index3 = isRight ? end : start - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
           if (!isArr || !isRight && arrLength == length && takeCount == length) {
             return baseWrapperValue(array, this.__actions__);
           }
           var result2 = [];
           outer:
             while (length-- && resIndex < takeCount) {
-              index2 += dir;
-              var iterIndex = -1, value = array[index2];
+              index3 += dir;
+              var iterIndex = -1, value = array[index3];
               while (++iterIndex < iterLength) {
                 var data = iteratees[iterIndex], iteratee2 = data.iteratee, type = data.type, computed = iteratee2(value);
                 if (type == LAZY_MAP_FLAG) {
@@ -3045,10 +3041,10 @@ var require_lodash = __commonJS({
         LazyWrapper.prototype = baseCreate(baseLodash.prototype);
         LazyWrapper.prototype.constructor = LazyWrapper;
         function Hash(entries) {
-          var index2 = -1, length = entries == null ? 0 : entries.length;
+          var index3 = -1, length = entries == null ? 0 : entries.length;
           this.clear();
-          while (++index2 < length) {
-            var entry = entries[index2];
+          while (++index3 < length) {
+            var entry = entries[index3];
             this.set(entry[0], entry[1]);
           }
         }
@@ -3085,10 +3081,10 @@ var require_lodash = __commonJS({
         Hash.prototype.has = hashHas;
         Hash.prototype.set = hashSet;
         function ListCache(entries) {
-          var index2 = -1, length = entries == null ? 0 : entries.length;
+          var index3 = -1, length = entries == null ? 0 : entries.length;
           this.clear();
-          while (++index2 < length) {
-            var entry = entries[index2];
+          while (++index3 < length) {
+            var entry = entries[index3];
             this.set(entry[0], entry[1]);
           }
         }
@@ -3097,33 +3093,33 @@ var require_lodash = __commonJS({
           this.size = 0;
         }
         function listCacheDelete(key) {
-          var data = this.__data__, index2 = assocIndexOf(data, key);
-          if (index2 < 0) {
+          var data = this.__data__, index3 = assocIndexOf(data, key);
+          if (index3 < 0) {
             return false;
           }
           var lastIndex = data.length - 1;
-          if (index2 == lastIndex) {
+          if (index3 == lastIndex) {
             data.pop();
           } else {
-            splice.call(data, index2, 1);
+            splice.call(data, index3, 1);
           }
           --this.size;
           return true;
         }
         function listCacheGet(key) {
-          var data = this.__data__, index2 = assocIndexOf(data, key);
-          return index2 < 0 ? undefined2 : data[index2][1];
+          var data = this.__data__, index3 = assocIndexOf(data, key);
+          return index3 < 0 ? undefined2 : data[index3][1];
         }
         function listCacheHas(key) {
           return assocIndexOf(this.__data__, key) > -1;
         }
         function listCacheSet(key, value) {
-          var data = this.__data__, index2 = assocIndexOf(data, key);
-          if (index2 < 0) {
+          var data = this.__data__, index3 = assocIndexOf(data, key);
+          if (index3 < 0) {
             ++this.size;
             data.push([key, value]);
           } else {
-            data[index2][1] = value;
+            data[index3][1] = value;
           }
           return this;
         }
@@ -3133,10 +3129,10 @@ var require_lodash = __commonJS({
         ListCache.prototype.has = listCacheHas;
         ListCache.prototype.set = listCacheSet;
         function MapCache(entries) {
-          var index2 = -1, length = entries == null ? 0 : entries.length;
+          var index3 = -1, length = entries == null ? 0 : entries.length;
           this.clear();
-          while (++index2 < length) {
-            var entry = entries[index2];
+          while (++index3 < length) {
+            var entry = entries[index3];
             this.set(entry[0], entry[1]);
           }
         }
@@ -3160,9 +3156,9 @@ var require_lodash = __commonJS({
           return getMapData(this, key).has(key);
         }
         function mapCacheSet(key, value) {
-          var data = getMapData(this, key), size2 = data.size;
+          var data = getMapData(this, key), size5 = data.size;
           data.set(key, value);
-          this.size += data.size == size2 ? 0 : 1;
+          this.size += data.size == size5 ? 0 : 1;
           return this;
         }
         MapCache.prototype.clear = mapCacheClear;
@@ -3171,10 +3167,10 @@ var require_lodash = __commonJS({
         MapCache.prototype.has = mapCacheHas;
         MapCache.prototype.set = mapCacheSet;
         function SetCache(values2) {
-          var index2 = -1, length = values2 == null ? 0 : values2.length;
+          var index3 = -1, length = values2 == null ? 0 : values2.length;
           this.__data__ = new MapCache();
-          while (++index2 < length) {
-            this.add(values2[index2]);
+          while (++index3 < length) {
+            this.add(values2[index3]);
           }
         }
         function setCacheAdd(value) {
@@ -3293,9 +3289,9 @@ var require_lodash = __commonJS({
           }
         }
         function baseAt(object, paths) {
-          var index2 = -1, length = paths.length, result2 = Array2(length), skip = object == null;
-          while (++index2 < length) {
-            result2[index2] = skip ? undefined2 : get(object, paths[index2]);
+          var index3 = -1, length = paths.length, result2 = Array2(length), skip = object == null;
+          while (++index3 < length) {
+            result2[index3] = skip ? undefined2 : get(object, paths[index3]);
           }
           return result2;
         }
@@ -3399,7 +3395,7 @@ var require_lodash = __commonJS({
           }, wait);
         }
         function baseDifference(array, values2, iteratee2, comparator) {
-          var index2 = -1, includes2 = arrayIncludes, isCommon = true, length = array.length, result2 = [], valuesLength = values2.length;
+          var index3 = -1, includes2 = arrayIncludes, isCommon = true, length = array.length, result2 = [], valuesLength = values2.length;
           if (!length) {
             return result2;
           }
@@ -3415,8 +3411,8 @@ var require_lodash = __commonJS({
             values2 = new SetCache(values2);
           }
           outer:
-            while (++index2 < length) {
-              var value = array[index2], computed = iteratee2 == null ? value : iteratee2(value);
+            while (++index3 < length) {
+              var value = array[index3], computed = iteratee2 == null ? value : iteratee2(value);
               value = comparator || value !== 0 ? value : 0;
               if (isCommon && computed === computed) {
                 var valuesIndex = valuesLength;
@@ -3436,16 +3432,16 @@ var require_lodash = __commonJS({
         var baseEachRight = createBaseEach(baseForOwnRight, true);
         function baseEvery(collection, predicate) {
           var result2 = true;
-          baseEach(collection, function(value, index2, collection2) {
-            result2 = !!predicate(value, index2, collection2);
+          baseEach(collection, function(value, index3, collection2) {
+            result2 = !!predicate(value, index3, collection2);
             return result2;
           });
           return result2;
         }
         function baseExtremum(array, iteratee2, comparator) {
-          var index2 = -1, length = array.length;
-          while (++index2 < length) {
-            var value = array[index2], current = iteratee2(value);
+          var index3 = -1, length = array.length;
+          while (++index3 < length) {
+            var value = array[index3], current = iteratee2(value);
             if (current != null && (computed === undefined2 ? current === current && !isSymbol(current) : comparator(current, computed))) {
               var computed = current, result2 = value;
             }
@@ -3470,19 +3466,19 @@ var require_lodash = __commonJS({
         }
         function baseFilter(collection, predicate) {
           var result2 = [];
-          baseEach(collection, function(value, index2, collection2) {
-            if (predicate(value, index2, collection2)) {
+          baseEach(collection, function(value, index3, collection2) {
+            if (predicate(value, index3, collection2)) {
               result2.push(value);
             }
           });
           return result2;
         }
         function baseFlatten(array, depth, predicate, isStrict, result2) {
-          var index2 = -1, length = array.length;
+          var index3 = -1, length = array.length;
           predicate || (predicate = isFlattenable);
           result2 || (result2 = []);
-          while (++index2 < length) {
-            var value = array[index2];
+          while (++index3 < length) {
+            var value = array[index3];
             if (depth > 0 && predicate(value)) {
               if (depth > 1) {
                 baseFlatten(value, depth - 1, predicate, isStrict, result2);
@@ -3505,16 +3501,16 @@ var require_lodash = __commonJS({
         }
         function baseFunctions(object, props) {
           return arrayFilter(props, function(key) {
-            return isFunction(object[key]);
+            return isFunction2(object[key]);
           });
         }
         function baseGet(object, path2) {
           path2 = castPath(path2, object);
-          var index2 = 0, length = path2.length;
-          while (object != null && index2 < length) {
-            object = object[toKey(path2[index2++])];
+          var index3 = 0, length = path2.length;
+          while (object != null && index3 < length) {
+            object = object[toKey(path2[index3++])];
           }
-          return index2 && index2 == length ? object : undefined2;
+          return index3 && index3 == length ? object : undefined2;
         }
         function baseGetAllKeys(object, keysFunc, symbolsFunc) {
           var result2 = keysFunc(object);
@@ -3549,10 +3545,10 @@ var require_lodash = __commonJS({
             caches[othIndex] = !comparator && (iteratee2 || length >= 120 && array.length >= 120) ? new SetCache(othIndex && array) : undefined2;
           }
           array = arrays[0];
-          var index2 = -1, seen = caches[0];
+          var index3 = -1, seen = caches[0];
           outer:
-            while (++index2 < length && result2.length < maxLength) {
-              var value = array[index2], computed = iteratee2 ? iteratee2(value) : value;
+            while (++index3 < length && result2.length < maxLength) {
+              var value = array[index3], computed = iteratee2 ? iteratee2(value) : value;
               value = comparator || value !== 0 ? value : 0;
               if (!(seen ? cacheHas(seen, computed) : includes2(result2, computed, comparator))) {
                 othIndex = othLength;
@@ -3634,19 +3630,19 @@ var require_lodash = __commonJS({
           return isObjectLike(value) && getTag(value) == mapTag;
         }
         function baseIsMatch(object, source, matchData, customizer) {
-          var index2 = matchData.length, length = index2, noCustomizer = !customizer;
+          var index3 = matchData.length, length = index3, noCustomizer = !customizer;
           if (object == null) {
             return !length;
           }
           object = Object2(object);
-          while (index2--) {
-            var data = matchData[index2];
+          while (index3--) {
+            var data = matchData[index3];
             if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
               return false;
             }
           }
-          while (++index2 < length) {
-            data = matchData[index2];
+          while (++index3 < length) {
+            data = matchData[index3];
             var key = data[0], objValue = object[key], srcValue = data[1];
             if (noCustomizer && data[2]) {
               if (objValue === undefined2 && !(key in object)) {
@@ -3668,7 +3664,7 @@ var require_lodash = __commonJS({
           if (!isObject(value) || isMasked(value)) {
             return false;
           }
-          var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+          var pattern = isFunction2(value) ? reIsNative : reIsHostCtor;
           return pattern.test(toSource(value));
         }
         function baseIsRegExp(value) {
@@ -3720,9 +3716,9 @@ var require_lodash = __commonJS({
           return value < other;
         }
         function baseMap(collection, iteratee2) {
-          var index2 = -1, result2 = isArrayLike(collection) ? Array2(collection.length) : [];
+          var index3 = -1, result2 = isArrayLike(collection) ? Array2(collection.length) : [];
           baseEach(collection, function(value, key, collection2) {
-            result2[++index2] = iteratee2(value, key, collection2);
+            result2[++index3] = iteratee2(value, key, collection2);
           });
           return result2;
         }
@@ -3790,7 +3786,7 @@ var require_lodash = __commonJS({
               newValue = objValue;
               if (isArguments(objValue)) {
                 newValue = toPlainObject(objValue);
-              } else if (!isObject(objValue) || isFunction(objValue)) {
+              } else if (!isObject(objValue) || isFunction2(objValue)) {
                 newValue = initCloneObject(srcValue);
               }
             } else {
@@ -3825,13 +3821,13 @@ var require_lodash = __commonJS({
           } else {
             iteratees = [identity];
           }
-          var index2 = -1;
+          var index3 = -1;
           iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
           var result2 = baseMap(collection, function(value, key, collection2) {
             var criteria = arrayMap(iteratees, function(iteratee2) {
               return iteratee2(value);
             });
-            return { "criteria": criteria, "index": ++index2, "value": value };
+            return { "criteria": criteria, "index": ++index3, "value": value };
           });
           return baseSortBy(result2, function(object, other) {
             return compareMultiple(object, other, orders);
@@ -3843,9 +3839,9 @@ var require_lodash = __commonJS({
           });
         }
         function basePickBy(object, paths, predicate) {
-          var index2 = -1, length = paths.length, result2 = {};
-          while (++index2 < length) {
-            var path2 = paths[index2], value = baseGet(object, path2);
+          var index3 = -1, length = paths.length, result2 = {};
+          while (++index3 < length) {
+            var path2 = paths[index3], value = baseGet(object, path2);
             if (predicate(value, path2)) {
               baseSet(result2, castPath(path2, object), value);
             }
@@ -3858,15 +3854,15 @@ var require_lodash = __commonJS({
           };
         }
         function basePullAll(array, values2, iteratee2, comparator) {
-          var indexOf2 = comparator ? baseIndexOfWith : baseIndexOf, index2 = -1, length = values2.length, seen = array;
+          var indexOf2 = comparator ? baseIndexOfWith : baseIndexOf, index3 = -1, length = values2.length, seen = array;
           if (array === values2) {
             values2 = copyArray(values2);
           }
           if (iteratee2) {
             seen = arrayMap(array, baseUnary(iteratee2));
           }
-          while (++index2 < length) {
-            var fromIndex = 0, value = values2[index2], computed = iteratee2 ? iteratee2(value) : value;
+          while (++index3 < length) {
+            var fromIndex = 0, value = values2[index3], computed = iteratee2 ? iteratee2(value) : value;
             while ((fromIndex = indexOf2(seen, computed, fromIndex, comparator)) > -1) {
               if (seen !== array) {
                 splice.call(seen, fromIndex, 1);
@@ -3879,13 +3875,13 @@ var require_lodash = __commonJS({
         function basePullAt(array, indexes) {
           var length = array ? indexes.length : 0, lastIndex = length - 1;
           while (length--) {
-            var index2 = indexes[length];
-            if (length == lastIndex || index2 !== previous) {
-              var previous = index2;
-              if (isIndex(index2)) {
-                splice.call(array, index2, 1);
+            var index3 = indexes[length];
+            if (length == lastIndex || index3 !== previous) {
+              var previous = index3;
+              if (isIndex(index3)) {
+                splice.call(array, index3, 1);
               } else {
-                baseUnset(array, index2);
+                baseUnset(array, index3);
               }
             }
           }
@@ -3895,9 +3891,9 @@ var require_lodash = __commonJS({
           return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
         }
         function baseRange(start, end, step, fromRight) {
-          var index2 = -1, length = nativeMax(nativeCeil((end - start) / (step || 1)), 0), result2 = Array2(length);
+          var index3 = -1, length = nativeMax(nativeCeil((end - start) / (step || 1)), 0), result2 = Array2(length);
           while (length--) {
-            result2[fromRight ? length : ++index2] = start;
+            result2[fromRight ? length : ++index3] = start;
             start += step;
           }
           return result2;
@@ -3933,17 +3929,17 @@ var require_lodash = __commonJS({
             return object;
           }
           path2 = castPath(path2, object);
-          var index2 = -1, length = path2.length, lastIndex = length - 1, nested = object;
-          while (nested != null && ++index2 < length) {
-            var key = toKey(path2[index2]), newValue = value;
+          var index3 = -1, length = path2.length, lastIndex = length - 1, nested = object;
+          while (nested != null && ++index3 < length) {
+            var key = toKey(path2[index3]), newValue = value;
             if (key === "__proto__" || key === "constructor" || key === "prototype") {
               return object;
             }
-            if (index2 != lastIndex) {
+            if (index3 != lastIndex) {
               var objValue = nested[key];
               newValue = customizer ? customizer(objValue, key, nested) : undefined2;
               if (newValue === undefined2) {
-                newValue = isObject(objValue) ? objValue : isIndex(path2[index2 + 1]) ? [] : {};
+                newValue = isObject(objValue) ? objValue : isIndex(path2[index3 + 1]) ? [] : {};
               }
             }
             assignValue(nested, key, newValue);
@@ -3967,7 +3963,7 @@ var require_lodash = __commonJS({
           return shuffleSelf(values(collection));
         }
         function baseSlice(array, start, end) {
-          var index2 = -1, length = array.length;
+          var index3 = -1, length = array.length;
           if (start < 0) {
             start = -start > length ? 0 : length + start;
           }
@@ -3978,15 +3974,15 @@ var require_lodash = __commonJS({
           length = start > end ? 0 : end - start >>> 0;
           start >>>= 0;
           var result2 = Array2(length);
-          while (++index2 < length) {
-            result2[index2] = array[index2 + start];
+          while (++index3 < length) {
+            result2[index3] = array[index3 + start];
           }
           return result2;
         }
         function baseSome(collection, predicate) {
           var result2;
-          baseEach(collection, function(value, index2, collection2) {
-            result2 = predicate(value, index2, collection2);
+          baseEach(collection, function(value, index3, collection2) {
+            result2 = predicate(value, index3, collection2);
             return !result2;
           });
           return !!result2;
@@ -4037,10 +4033,10 @@ var require_lodash = __commonJS({
           return nativeMin(high, MAX_ARRAY_INDEX);
         }
         function baseSortedUniq(array, iteratee2) {
-          var index2 = -1, length = array.length, resIndex = 0, result2 = [];
-          while (++index2 < length) {
-            var value = array[index2], computed = iteratee2 ? iteratee2(value) : value;
-            if (!index2 || !eq(computed, seen)) {
+          var index3 = -1, length = array.length, resIndex = 0, result2 = [];
+          while (++index3 < length) {
+            var value = array[index3], computed = iteratee2 ? iteratee2(value) : value;
+            if (!index3 || !eq(computed, seen)) {
               var seen = computed;
               result2[resIndex++] = value === 0 ? 0 : value;
             }
@@ -4070,7 +4066,7 @@ var require_lodash = __commonJS({
           return result2 == "0" && 1 / value == -INFINITY ? "-0" : result2;
         }
         function baseUniq(array, iteratee2, comparator) {
-          var index2 = -1, includes2 = arrayIncludes, length = array.length, isCommon = true, result2 = [], seen = result2;
+          var index3 = -1, includes2 = arrayIncludes, length = array.length, isCommon = true, result2 = [], seen = result2;
           if (comparator) {
             isCommon = false;
             includes2 = arrayIncludesWith;
@@ -4086,8 +4082,8 @@ var require_lodash = __commonJS({
             seen = iteratee2 ? [] : result2;
           }
           outer:
-            while (++index2 < length) {
-              var value = array[index2], computed = iteratee2 ? iteratee2(value) : value;
+            while (++index3 < length) {
+              var value = array[index3], computed = iteratee2 ? iteratee2(value) : value;
               value = comparator || value !== 0 ? value : 0;
               if (isCommon && computed === computed) {
                 var seenIndex = seen.length;
@@ -4111,16 +4107,16 @@ var require_lodash = __commonJS({
         }
         function baseUnset(object, path2) {
           path2 = castPath(path2, object);
-          var index2 = -1, length = path2.length;
+          var index3 = -1, length = path2.length;
           if (!length) {
             return true;
           }
-          while (++index2 < length) {
-            var key = toKey(path2[index2]);
+          while (++index3 < length) {
+            var key = toKey(path2[index3]);
             if (key === "__proto__" && !hasOwnProperty.call(object, "__proto__")) {
               return false;
             }
-            if ((key === "constructor" || key === "prototype") && index2 < length - 1) {
+            if ((key === "constructor" || key === "prototype") && index3 < length - 1) {
               return false;
             }
           }
@@ -4131,10 +4127,10 @@ var require_lodash = __commonJS({
           return baseSet(object, path2, updater(baseGet(object, path2)), customizer);
         }
         function baseWhile(array, predicate, isDrop, fromRight) {
-          var length = array.length, index2 = fromRight ? length : -1;
-          while ((fromRight ? index2-- : ++index2 < length) && predicate(array[index2], index2, array)) {
+          var length = array.length, index3 = fromRight ? length : -1;
+          while ((fromRight ? index3-- : ++index3 < length) && predicate(array[index3], index3, array)) {
           }
-          return isDrop ? baseSlice(array, fromRight ? 0 : index2, fromRight ? index2 + 1 : length) : baseSlice(array, fromRight ? index2 + 1 : 0, fromRight ? length : index2);
+          return isDrop ? baseSlice(array, fromRight ? 0 : index3, fromRight ? index3 + 1 : length) : baseSlice(array, fromRight ? index3 + 1 : 0, fromRight ? length : index3);
         }
         function baseWrapperValue(value, actions) {
           var result2 = value;
@@ -4150,22 +4146,22 @@ var require_lodash = __commonJS({
           if (length < 2) {
             return length ? baseUniq(arrays[0]) : [];
           }
-          var index2 = -1, result2 = Array2(length);
-          while (++index2 < length) {
-            var array = arrays[index2], othIndex = -1;
+          var index3 = -1, result2 = Array2(length);
+          while (++index3 < length) {
+            var array = arrays[index3], othIndex = -1;
             while (++othIndex < length) {
-              if (othIndex != index2) {
-                result2[index2] = baseDifference(result2[index2] || array, arrays[othIndex], iteratee2, comparator);
+              if (othIndex != index3) {
+                result2[index3] = baseDifference(result2[index3] || array, arrays[othIndex], iteratee2, comparator);
               }
             }
           }
           return baseUniq(baseFlatten(result2, 1), iteratee2, comparator);
         }
         function baseZipObject(props, values2, assignFunc) {
-          var index2 = -1, length = props.length, valsLength = values2.length, result2 = {};
-          while (++index2 < length) {
-            var value = index2 < valsLength ? values2[index2] : undefined2;
-            assignFunc(result2, props[index2], value);
+          var index3 = -1, length = props.length, valsLength = values2.length, result2 = {};
+          while (++index3 < length) {
+            var value = index3 < valsLength ? values2[index3] : undefined2;
+            assignFunc(result2, props[index3], value);
           }
           return result2;
         }
@@ -4233,14 +4229,14 @@ var require_lodash = __commonJS({
           return 0;
         }
         function compareMultiple(object, other, orders) {
-          var index2 = -1, objCriteria = object.criteria, othCriteria = other.criteria, length = objCriteria.length, ordersLength = orders.length;
-          while (++index2 < length) {
-            var result2 = compareAscending(objCriteria[index2], othCriteria[index2]);
+          var index3 = -1, objCriteria = object.criteria, othCriteria = other.criteria, length = objCriteria.length, ordersLength = orders.length;
+          while (++index3 < length) {
+            var result2 = compareAscending(objCriteria[index3], othCriteria[index3]);
             if (result2) {
-              if (index2 >= ordersLength) {
+              if (index3 >= ordersLength) {
                 return result2;
               }
-              var order = orders[index2];
+              var order = orders[index3];
               return result2 * (order == "desc" ? -1 : 1);
             }
           }
@@ -4266,31 +4262,31 @@ var require_lodash = __commonJS({
           while (++argsIndex < rangeLength) {
             result2[argsIndex] = args[argsIndex];
           }
-          var offset = argsIndex;
+          var offset4 = argsIndex;
           while (++rightIndex < rightLength) {
-            result2[offset + rightIndex] = partials[rightIndex];
+            result2[offset4 + rightIndex] = partials[rightIndex];
           }
           while (++holdersIndex < holdersLength) {
             if (isUncurried || argsIndex < argsLength) {
-              result2[offset + holders[holdersIndex]] = args[argsIndex++];
+              result2[offset4 + holders[holdersIndex]] = args[argsIndex++];
             }
           }
           return result2;
         }
         function copyArray(source, array) {
-          var index2 = -1, length = source.length;
+          var index3 = -1, length = source.length;
           array || (array = Array2(length));
-          while (++index2 < length) {
-            array[index2] = source[index2];
+          while (++index3 < length) {
+            array[index3] = source[index3];
           }
           return array;
         }
         function copyObject(source, props, object, customizer) {
           var isNew = !object;
           object || (object = {});
-          var index2 = -1, length = props.length;
-          while (++index2 < length) {
-            var key = props[index2];
+          var index3 = -1, length = props.length;
+          while (++index3 < length) {
+            var key = props[index3];
             var newValue = customizer ? customizer(object[key], source[key], key, object, source) : undefined2;
             if (newValue === undefined2) {
               newValue = source[key];
@@ -4317,17 +4313,17 @@ var require_lodash = __commonJS({
         }
         function createAssigner(assigner) {
           return baseRest(function(object, sources) {
-            var index2 = -1, length = sources.length, customizer = length > 1 ? sources[length - 1] : undefined2, guard = length > 2 ? sources[2] : undefined2;
+            var index3 = -1, length = sources.length, customizer = length > 1 ? sources[length - 1] : undefined2, guard = length > 2 ? sources[2] : undefined2;
             customizer = assigner.length > 3 && typeof customizer == "function" ? (length--, customizer) : undefined2;
             if (guard && isIterateeCall(sources[0], sources[1], guard)) {
               customizer = length < 3 ? undefined2 : customizer;
               length = 1;
             }
             object = Object2(object);
-            while (++index2 < length) {
-              var source = sources[index2];
+            while (++index3 < length) {
+              var source = sources[index3];
               if (source) {
-                assigner(object, source, index2, customizer);
+                assigner(object, source, index3, customizer);
               }
             }
             return object;
@@ -4341,9 +4337,9 @@ var require_lodash = __commonJS({
             if (!isArrayLike(collection)) {
               return eachFunc(collection, iteratee2);
             }
-            var length = collection.length, index2 = fromRight ? length : -1, iterable = Object2(collection);
-            while (fromRight ? index2-- : ++index2 < length) {
-              if (iteratee2(iterable[index2], index2, iterable) === false) {
+            var length = collection.length, index3 = fromRight ? length : -1, iterable = Object2(collection);
+            while (fromRight ? index3-- : ++index3 < length) {
+              if (iteratee2(iterable[index3], index3, iterable) === false) {
                 break;
               }
             }
@@ -4352,9 +4348,9 @@ var require_lodash = __commonJS({
         }
         function createBaseFor(fromRight) {
           return function(object, iteratee2, keysFunc) {
-            var index2 = -1, iterable = Object2(object), props = keysFunc(object), length = props.length;
+            var index3 = -1, iterable = Object2(object), props = keysFunc(object), length = props.length;
             while (length--) {
-              var key = props[fromRight ? length : ++index2];
+              var key = props[fromRight ? length : ++index3];
               if (iteratee2(iterable[key], key, iterable) === false) {
                 break;
               }
@@ -4412,9 +4408,9 @@ var require_lodash = __commonJS({
         function createCurry(func, bitmask, arity) {
           var Ctor = createCtor(func);
           function wrapper() {
-            var length = arguments.length, args = Array2(length), index2 = length, placeholder = getHolder(wrapper);
-            while (index2--) {
-              args[index2] = arguments[index2];
+            var length = arguments.length, args = Array2(length), index3 = length, placeholder = getHolder(wrapper);
+            while (index3--) {
+              args[index3] = arguments[index3];
             }
             var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
             length -= holders.length;
@@ -4447,18 +4443,18 @@ var require_lodash = __commonJS({
                 return iteratee2(iterable[key], key, iterable);
               };
             }
-            var index2 = findIndexFunc(collection, predicate, fromIndex);
-            return index2 > -1 ? iterable[iteratee2 ? collection[index2] : index2] : undefined2;
+            var index3 = findIndexFunc(collection, predicate, fromIndex);
+            return index3 > -1 ? iterable[iteratee2 ? collection[index3] : index3] : undefined2;
           };
         }
         function createFlow(fromRight) {
           return flatRest(function(funcs) {
-            var length = funcs.length, index2 = length, prereq = LodashWrapper.prototype.thru;
+            var length = funcs.length, index3 = length, prereq = LodashWrapper.prototype.thru;
             if (fromRight) {
               funcs.reverse();
             }
-            while (index2--) {
-              var func = funcs[index2];
+            while (index3--) {
+              var func = funcs[index3];
               if (typeof func != "function") {
                 throw new TypeError2(FUNC_ERROR_TEXT);
               }
@@ -4466,9 +4462,9 @@ var require_lodash = __commonJS({
                 var wrapper = new LodashWrapper([], true);
               }
             }
-            index2 = wrapper ? index2 : length;
-            while (++index2 < length) {
-              func = funcs[index2];
+            index3 = wrapper ? index3 : length;
+            while (++index3 < length) {
+              func = funcs[index3];
               var funcName = getFuncName(func), data = funcName == "wrapper" ? getData(func) : undefined2;
               if (data && isLaziable(data[0]) && data[1] == (WRAP_ARY_FLAG | WRAP_CURRY_FLAG | WRAP_PARTIAL_FLAG | WRAP_REARG_FLAG) && !data[4].length && data[9] == 1) {
                 wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
@@ -4481,9 +4477,9 @@ var require_lodash = __commonJS({
               if (wrapper && args.length == 1 && isArray2(value)) {
                 return wrapper.plant(value).value();
               }
-              var index3 = 0, result2 = length ? funcs[index3].apply(this, args) : value;
-              while (++index3 < length) {
-                result2 = funcs[index3].call(this, result2);
+              var index4 = 0, result2 = length ? funcs[index4].apply(this, args) : value;
+              while (++index4 < length) {
+                result2 = funcs[index4].call(this, result2);
               }
               return result2;
             };
@@ -4492,9 +4488,9 @@ var require_lodash = __commonJS({
         function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary2, arity) {
           var isAry = bitmask & WRAP_ARY_FLAG, isBind = bitmask & WRAP_BIND_FLAG, isBindKey = bitmask & WRAP_BIND_KEY_FLAG, isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG), isFlip = bitmask & WRAP_FLIP_FLAG, Ctor = isBindKey ? undefined2 : createCtor(func);
           function wrapper() {
-            var length = arguments.length, args = Array2(length), index2 = length;
-            while (index2--) {
-              args[index2] = arguments[index2];
+            var length = arguments.length, args = Array2(length), index3 = length;
+            while (index3--) {
+              args[index3] = arguments[index3];
             }
             if (isCurried) {
               var placeholder = getHolder(wrapper), holdersCount = countHolders(args, placeholder);
@@ -4666,7 +4662,7 @@ var require_lodash = __commonJS({
             return func(number);
           };
         }
-        var createSet = !(Set2 && 1 / setToArray(new Set2([, -0]))[1] == INFINITY) ? noop : function(values2) {
+        var createSet = !(Set2 && 1 / setToArray(new Set2([, -0]))[1] == INFINITY) ? noop3 : function(values2) {
           return new Set2(values2);
         };
         function createToPairs(keysFunc) {
@@ -4762,13 +4758,13 @@ var require_lodash = __commonJS({
           if (arrStacked && othStacked) {
             return arrStacked == other && othStacked == array;
           }
-          var index2 = -1, result2 = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : undefined2;
+          var index3 = -1, result2 = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache() : undefined2;
           stack.set(array, other);
           stack.set(other, array);
-          while (++index2 < arrLength) {
-            var arrValue = array[index2], othValue = other[index2];
+          while (++index3 < arrLength) {
+            var arrValue = array[index3], othValue = other[index3];
             if (customizer) {
-              var compared = isPartial ? customizer(othValue, arrValue, index2, other, array, stack) : customizer(arrValue, othValue, index2, array, other, stack);
+              var compared = isPartial ? customizer(othValue, arrValue, index3, other, array, stack) : customizer(arrValue, othValue, index3, array, other, stack);
             }
             if (compared !== undefined2) {
               if (compared) {
@@ -4846,9 +4842,9 @@ var require_lodash = __commonJS({
           if (objLength != othLength && !isPartial) {
             return false;
           }
-          var index2 = objLength;
-          while (index2--) {
-            var key = objProps[index2];
+          var index3 = objLength;
+          while (index3--) {
+            var key = objProps[index3];
             if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
               return false;
             }
@@ -4862,8 +4858,8 @@ var require_lodash = __commonJS({
           stack.set(object, other);
           stack.set(other, object);
           var skipCtor = isPartial;
-          while (++index2 < objLength) {
-            key = objProps[index2];
+          while (++index3 < objLength) {
+            key = objProps[index3];
             var objValue = object[key], othValue = other[key];
             if (customizer) {
               var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
@@ -4893,7 +4889,7 @@ var require_lodash = __commonJS({
         function getAllKeysIn(object) {
           return baseGetAllKeys(object, keysIn, getSymbolsIn);
         }
-        var getData = !metaMap ? noop : function(func) {
+        var getData = !metaMap ? noop3 : function(func) {
           return metaMap.get(func);
         };
         function getFuncName(func) {
@@ -4987,21 +4983,21 @@ var require_lodash = __commonJS({
           };
         }
         function getView(start, end, transforms) {
-          var index2 = -1, length = transforms.length;
-          while (++index2 < length) {
-            var data = transforms[index2], size2 = data.size;
+          var index3 = -1, length = transforms.length;
+          while (++index3 < length) {
+            var data = transforms[index3], size5 = data.size;
             switch (data.type) {
               case "drop":
-                start += size2;
+                start += size5;
                 break;
               case "dropRight":
-                end -= size2;
+                end -= size5;
                 break;
               case "take":
-                end = nativeMin(end, start + size2);
+                end = nativeMin(end, start + size5);
                 break;
               case "takeRight":
-                start = nativeMax(start, end - size2);
+                start = nativeMax(start, end - size5);
                 break;
             }
           }
@@ -5013,15 +5009,15 @@ var require_lodash = __commonJS({
         }
         function hasPath(object, path2, hasFunc) {
           path2 = castPath(path2, object);
-          var index2 = -1, length = path2.length, result2 = false;
-          while (++index2 < length) {
-            var key = toKey(path2[index2]);
+          var index3 = -1, length = path2.length, result2 = false;
+          while (++index3 < length) {
+            var key = toKey(path2[index3]);
             if (!(result2 = object != null && hasFunc(object, key))) {
               break;
             }
             object = object[key];
           }
-          if (result2 || ++index2 != length) {
+          if (result2 || ++index3 != length) {
             return result2;
           }
           length = object == null ? 0 : object.length;
@@ -5089,13 +5085,13 @@ var require_lodash = __commonJS({
           length = length == null ? MAX_SAFE_INTEGER : length;
           return !!length && (type == "number" || type != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
         }
-        function isIterateeCall(value, index2, object) {
+        function isIterateeCall(value, index3, object) {
           if (!isObject(object)) {
             return false;
           }
-          var type = typeof index2;
-          if (type == "number" ? isArrayLike(object) && isIndex(index2, object.length) : type == "string" && index2 in object) {
-            return eq(object[index2], value);
+          var type = typeof index3;
+          if (type == "number" ? isArrayLike(object) && isIndex(index3, object.length) : type == "string" && index3 in object) {
+            return eq(object[index3], value);
           }
           return false;
         }
@@ -5127,7 +5123,7 @@ var require_lodash = __commonJS({
         function isMasked(func) {
           return !!maskSrcKey && maskSrcKey in func;
         }
-        var isMaskable = coreJsData ? isFunction : stubFalse;
+        var isMaskable = coreJsData ? isFunction2 : stubFalse;
         function isPrototype(value) {
           var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
           return value === proto;
@@ -5204,14 +5200,14 @@ var require_lodash = __commonJS({
         function overRest(func, start, transform2) {
           start = nativeMax(start === undefined2 ? func.length - 1 : start, 0);
           return function() {
-            var args = arguments, index2 = -1, length = nativeMax(args.length - start, 0), array = Array2(length);
-            while (++index2 < length) {
-              array[index2] = args[start + index2];
+            var args = arguments, index3 = -1, length = nativeMax(args.length - start, 0), array = Array2(length);
+            while (++index3 < length) {
+              array[index3] = args[start + index3];
             }
-            index2 = -1;
+            index3 = -1;
             var otherArgs = Array2(start + 1);
-            while (++index2 < start) {
-              otherArgs[index2] = args[index2];
+            while (++index3 < start) {
+              otherArgs[index3] = args[index3];
             }
             otherArgs[start] = transform2(array);
             return apply(func, this, otherArgs);
@@ -5223,8 +5219,8 @@ var require_lodash = __commonJS({
         function reorder(array, indexes) {
           var arrLength = array.length, length = nativeMin(indexes.length, arrLength), oldArray = copyArray(array);
           while (length--) {
-            var index2 = indexes[length];
-            array[length] = isIndex(index2, arrLength) ? oldArray[index2] : undefined2;
+            var index3 = indexes[length];
+            array[length] = isIndex(index3, arrLength) ? oldArray[index3] : undefined2;
           }
           return array;
         }
@@ -5247,29 +5243,29 @@ var require_lodash = __commonJS({
           return setToString(wrapper, insertWrapDetails(source, updateWrapDetails(getWrapDetails(source), bitmask)));
         }
         function shortOut(func) {
-          var count = 0, lastCalled = 0;
+          var count3 = 0, lastCalled = 0;
           return function() {
             var stamp = nativeNow(), remaining = HOT_SPAN - (stamp - lastCalled);
             lastCalled = stamp;
             if (remaining > 0) {
-              if (++count >= HOT_COUNT) {
+              if (++count3 >= HOT_COUNT) {
                 return arguments[0];
               }
             } else {
-              count = 0;
+              count3 = 0;
             }
             return func.apply(undefined2, arguments);
           };
         }
-        function shuffleSelf(array, size2) {
-          var index2 = -1, length = array.length, lastIndex = length - 1;
-          size2 = size2 === undefined2 ? length : size2;
-          while (++index2 < size2) {
-            var rand = baseRandom(index2, lastIndex), value = array[rand];
-            array[rand] = array[index2];
-            array[index2] = value;
+        function shuffleSelf(array, size5) {
+          var index3 = -1, length = array.length, lastIndex = length - 1;
+          size5 = size5 === undefined2 ? length : size5;
+          while (++index3 < size5) {
+            var rand = baseRandom(index3, lastIndex), value = array[rand];
+            array[rand] = array[index3];
+            array[index3] = value;
           }
-          array.length = size2;
+          array.length = size5;
           return array;
         }
         var stringToPath = memoizeCapped(function(string) {
@@ -5321,26 +5317,26 @@ var require_lodash = __commonJS({
           result2.__values__ = wrapper.__values__;
           return result2;
         }
-        function chunk(array, size2, guard) {
-          if (guard ? isIterateeCall(array, size2, guard) : size2 === undefined2) {
-            size2 = 1;
+        function chunk(array, size5, guard) {
+          if (guard ? isIterateeCall(array, size5, guard) : size5 === undefined2) {
+            size5 = 1;
           } else {
-            size2 = nativeMax(toInteger(size2), 0);
+            size5 = nativeMax(toInteger(size5), 0);
           }
           var length = array == null ? 0 : array.length;
-          if (!length || size2 < 1) {
+          if (!length || size5 < 1) {
             return [];
           }
-          var index2 = 0, resIndex = 0, result2 = Array2(nativeCeil(length / size2));
-          while (index2 < length) {
-            result2[resIndex++] = baseSlice(array, index2, index2 += size2);
+          var index3 = 0, resIndex = 0, result2 = Array2(nativeCeil(length / size5));
+          while (index3 < length) {
+            result2[resIndex++] = baseSlice(array, index3, index3 += size5);
           }
           return result2;
         }
         function compact(array) {
-          var index2 = -1, length = array == null ? 0 : array.length, resIndex = 0, result2 = [];
-          while (++index2 < length) {
-            var value = array[index2];
+          var index3 = -1, length = array == null ? 0 : array.length, resIndex = 0, result2 = [];
+          while (++index3 < length) {
+            var value = array[index3];
             if (value) {
               result2[resIndex++] = value;
             }
@@ -5352,9 +5348,9 @@ var require_lodash = __commonJS({
           if (!length) {
             return [];
           }
-          var args = Array2(length - 1), array = arguments[0], index2 = length;
-          while (index2--) {
-            args[index2 - 1] = arguments[index2];
+          var args = Array2(length - 1), array = arguments[0], index3 = length;
+          while (index3--) {
+            args[index3 - 1] = arguments[index3];
           }
           return arrayPush(isArray2(array) ? copyArray(array) : [array], baseFlatten(args, 1));
         }
@@ -5414,23 +5410,23 @@ var require_lodash = __commonJS({
           if (!length) {
             return -1;
           }
-          var index2 = fromIndex == null ? 0 : toInteger(fromIndex);
-          if (index2 < 0) {
-            index2 = nativeMax(length + index2, 0);
+          var index3 = fromIndex == null ? 0 : toInteger(fromIndex);
+          if (index3 < 0) {
+            index3 = nativeMax(length + index3, 0);
           }
-          return baseFindIndex(array, getIteratee(predicate, 3), index2);
+          return baseFindIndex(array, getIteratee(predicate, 3), index3);
         }
         function findLastIndex(array, predicate, fromIndex) {
           var length = array == null ? 0 : array.length;
           if (!length) {
             return -1;
           }
-          var index2 = length - 1;
+          var index3 = length - 1;
           if (fromIndex !== undefined2) {
-            index2 = toInteger(fromIndex);
-            index2 = fromIndex < 0 ? nativeMax(length + index2, 0) : nativeMin(index2, length - 1);
+            index3 = toInteger(fromIndex);
+            index3 = fromIndex < 0 ? nativeMax(length + index3, 0) : nativeMin(index3, length - 1);
           }
-          return baseFindIndex(array, getIteratee(predicate, 3), index2, true);
+          return baseFindIndex(array, getIteratee(predicate, 3), index3, true);
         }
         function flatten(array) {
           var length = array == null ? 0 : array.length;
@@ -5449,9 +5445,9 @@ var require_lodash = __commonJS({
           return baseFlatten(array, depth);
         }
         function fromPairs(pairs) {
-          var index2 = -1, length = pairs == null ? 0 : pairs.length, result2 = {};
-          while (++index2 < length) {
-            var pair = pairs[index2];
+          var index3 = -1, length = pairs == null ? 0 : pairs.length, result2 = {};
+          while (++index3 < length) {
+            var pair = pairs[index3];
             baseAssignValue(result2, pair[0], pair[1]);
           }
           return result2;
@@ -5464,11 +5460,11 @@ var require_lodash = __commonJS({
           if (!length) {
             return -1;
           }
-          var index2 = fromIndex == null ? 0 : toInteger(fromIndex);
-          if (index2 < 0) {
-            index2 = nativeMax(length + index2, 0);
+          var index3 = fromIndex == null ? 0 : toInteger(fromIndex);
+          if (index3 < 0) {
+            index3 = nativeMax(length + index3, 0);
           }
-          return baseIndexOf(array, value, index2);
+          return baseIndexOf(array, value, index3);
         }
         function initial(array) {
           var length = array == null ? 0 : array.length;
@@ -5507,12 +5503,12 @@ var require_lodash = __commonJS({
           if (!length) {
             return -1;
           }
-          var index2 = length;
+          var index3 = length;
           if (fromIndex !== undefined2) {
-            index2 = toInteger(fromIndex);
-            index2 = index2 < 0 ? nativeMax(length + index2, 0) : nativeMin(index2, length - 1);
+            index3 = toInteger(fromIndex);
+            index3 = index3 < 0 ? nativeMax(length + index3, 0) : nativeMin(index3, length - 1);
           }
-          return value === value ? strictLastIndexOf(array, value, index2) : baseFindIndex(array, baseIsNaN, index2, true);
+          return value === value ? strictLastIndexOf(array, value, index3) : baseFindIndex(array, baseIsNaN, index3, true);
         }
         function nth(array, n) {
           return array && array.length ? baseNth(array, toInteger(n)) : undefined2;
@@ -5529,8 +5525,8 @@ var require_lodash = __commonJS({
         }
         var pullAt = flatRest(function(array, indexes) {
           var length = array == null ? 0 : array.length, result2 = baseAt(array, indexes);
-          basePullAt(array, arrayMap(indexes, function(index2) {
-            return isIndex(index2, length) ? +index2 : index2;
+          basePullAt(array, arrayMap(indexes, function(index3) {
+            return isIndex(index3, length) ? +index3 : index3;
           }).sort(compareAscending));
           return result2;
         });
@@ -5539,13 +5535,13 @@ var require_lodash = __commonJS({
           if (!(array && array.length)) {
             return result2;
           }
-          var index2 = -1, indexes = [], length = array.length;
+          var index3 = -1, indexes = [], length = array.length;
           predicate = getIteratee(predicate, 3);
-          while (++index2 < length) {
-            var value = array[index2];
-            if (predicate(value, index2, array)) {
+          while (++index3 < length) {
+            var value = array[index3];
+            if (predicate(value, index3, array)) {
               result2.push(value);
-              indexes.push(index2);
+              indexes.push(index3);
             }
           }
           basePullAt(array, indexes);
@@ -5577,9 +5573,9 @@ var require_lodash = __commonJS({
         function sortedIndexOf(array, value) {
           var length = array == null ? 0 : array.length;
           if (length) {
-            var index2 = baseSortedIndex(array, value);
-            if (index2 < length && eq(array[index2], value)) {
-              return index2;
+            var index3 = baseSortedIndex(array, value);
+            if (index3 < length && eq(array[index3], value)) {
+              return index3;
             }
           }
           return -1;
@@ -5593,9 +5589,9 @@ var require_lodash = __commonJS({
         function sortedLastIndexOf(array, value) {
           var length = array == null ? 0 : array.length;
           if (length) {
-            var index2 = baseSortedIndex(array, value, true) - 1;
-            if (eq(array[index2], value)) {
-              return index2;
+            var index3 = baseSortedIndex(array, value, true) - 1;
+            if (eq(array[index3], value)) {
+              return index3;
             }
           }
           return -1;
@@ -5668,8 +5664,8 @@ var require_lodash = __commonJS({
               return true;
             }
           });
-          return baseTimes(length, function(index2) {
-            return arrayMap(array, baseProperty(index2));
+          return baseTimes(length, function(index3) {
+            return arrayMap(array, baseProperty(index3));
           });
         }
         function unzipWith(array, iteratee2) {
@@ -5854,9 +5850,9 @@ var require_lodash = __commonJS({
           return isString(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
         }
         var invokeMap = baseRest(function(collection, path2, args) {
-          var index2 = -1, isFunc = typeof path2 == "function", result2 = isArrayLike(collection) ? Array2(collection.length) : [];
+          var index3 = -1, isFunc = typeof path2 == "function", result2 = isArrayLike(collection) ? Array2(collection.length) : [];
           baseEach(collection, function(value) {
-            result2[++index2] = isFunc ? apply(path2, value, args) : baseInvoke(value, path2, args);
+            result2[++index3] = isFunc ? apply(path2, value, args) : baseInvoke(value, path2, args);
           });
           return result2;
         });
@@ -5914,7 +5910,7 @@ var require_lodash = __commonJS({
           var func = isArray2(collection) ? arrayShuffle : baseShuffle;
           return func(collection);
         }
-        function size(collection) {
+        function size4(collection) {
           if (collection == null) {
             return 0;
           }
@@ -6096,7 +6092,7 @@ var require_lodash = __commonJS({
         var delay = baseRest(function(func, wait, args) {
           return baseDelay(func, toNumber(wait) || 0, args);
         });
-        function flip(func) {
+        function flip4(func) {
           return createWrap(func, WRAP_FLIP_FLAG);
         }
         function memoize(func, resolver) {
@@ -6142,9 +6138,9 @@ var require_lodash = __commonJS({
           transforms = transforms.length == 1 && isArray2(transforms[0]) ? arrayMap(transforms[0], baseUnary(getIteratee())) : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
           var funcsLength = transforms.length;
           return baseRest(function(args) {
-            var index2 = -1, length = nativeMin(args.length, funcsLength);
-            while (++index2 < length) {
-              args[index2] = transforms[index2].call(this, args[index2]);
+            var index3 = -1, length = nativeMin(args.length, funcsLength);
+            while (++index3 < length) {
+              args[index3] = transforms[index3].call(this, args[index3]);
             }
             return apply(func, this, args);
           });
@@ -6240,7 +6236,7 @@ var require_lodash = __commonJS({
         var isArray2 = Array2.isArray;
         var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
         function isArrayLike(value) {
-          return value != null && isLength(value.length) && !isFunction(value);
+          return value != null && isLength(value.length) && !isFunction2(value);
         }
         function isArrayLikeObject(value) {
           return isObjectLike(value) && isArrayLike(value);
@@ -6250,7 +6246,7 @@ var require_lodash = __commonJS({
         }
         var isBuffer = nativeIsBuffer || stubFalse;
         var isDate = nodeIsDate ? baseUnary(nodeIsDate) : baseIsDate;
-        function isElement(value) {
+        function isElement2(value) {
           return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value);
         }
         function isEmpty(value) {
@@ -6289,10 +6285,10 @@ var require_lodash = __commonJS({
           var tag = baseGetTag(value);
           return tag == errorTag || tag == domExcTag || typeof value.message == "string" && typeof value.name == "string" && !isPlainObject(value);
         }
-        function isFinite(value) {
+        function isFinite2(value) {
           return typeof value == "number" && nativeIsFinite(value);
         }
-        function isFunction(value) {
+        function isFunction2(value) {
           if (!isObject(value)) {
             return false;
           }
@@ -6459,14 +6455,14 @@ var require_lodash = __commonJS({
         }
         var defaults = baseRest(function(object, sources) {
           object = Object2(object);
-          var index2 = -1;
+          var index3 = -1;
           var length = sources.length;
           var guard = length > 2 ? sources[2] : undefined2;
           if (guard && isIterateeCall(sources[0], sources[1], guard)) {
             length = 1;
           }
-          while (++index2 < length) {
-            var source = sources[index2];
+          while (++index3 < length) {
+            var source = sources[index3];
             var props = keysIn(source);
             var propsIndex = -1;
             var propsLength = props.length;
@@ -6604,18 +6600,18 @@ var require_lodash = __commonJS({
         }
         function result(object, path2, defaultValue) {
           path2 = castPath(path2, object);
-          var index2 = -1, length = path2.length;
+          var index3 = -1, length = path2.length;
           if (!length) {
             length = 1;
             object = undefined2;
           }
-          while (++index2 < length) {
-            var value = object == null ? undefined2 : object[toKey(path2[index2])];
+          while (++index3 < length) {
+            var value = object == null ? undefined2 : object[toKey(path2[index3])];
             if (value === undefined2) {
-              index2 = length;
+              index3 = length;
               value = defaultValue;
             }
-            object = isFunction(value) ? value.call(object) : value;
+            object = isFunction2(value) ? value.call(object) : value;
           }
           return object;
         }
@@ -6636,13 +6632,13 @@ var require_lodash = __commonJS({
             if (isArrLike) {
               accumulator = isArr ? new Ctor() : [];
             } else if (isObject(object)) {
-              accumulator = isFunction(Ctor) ? baseCreate(getPrototype(object)) : {};
+              accumulator = isFunction2(Ctor) ? baseCreate(getPrototype(object)) : {};
             } else {
               accumulator = {};
             }
           }
-          (isArrLike ? arrayEach : baseForOwn)(object, function(value, index2, object2) {
-            return iteratee2(accumulator, value, index2, object2);
+          (isArrLike ? arrayEach : baseForOwn)(object, function(value, index3, object2) {
+            return iteratee2(accumulator, value, index3, object2);
           });
           return accumulator;
         }
@@ -6662,7 +6658,7 @@ var require_lodash = __commonJS({
         function valuesIn(object) {
           return object == null ? [] : baseValues(object, keysIn(object));
         }
-        function clamp(number, lower, upper) {
+        function clamp3(number, lower, upper) {
           if (upper === undefined2) {
             upper = lower;
             lower = undefined2;
@@ -6724,9 +6720,9 @@ var require_lodash = __commonJS({
           }
           return baseRandom(lower, upper);
         }
-        var camelCase = createCompounder(function(result2, word, index2) {
+        var camelCase = createCompounder(function(result2, word, index3) {
           word = word.toLowerCase();
-          return result2 + (index2 ? capitalize(word) : word);
+          return result2 + (index3 ? capitalize(word) : word);
         });
         function capitalize(string) {
           return upperFirst(toString(string).toLowerCase());
@@ -6752,11 +6748,11 @@ var require_lodash = __commonJS({
           string = toString(string);
           return string && reHasRegExpChar.test(string) ? string.replace(reRegExpChar, "\\$&") : string;
         }
-        var kebabCase = createCompounder(function(result2, word, index2) {
-          return result2 + (index2 ? "-" : "") + word.toLowerCase();
+        var kebabCase = createCompounder(function(result2, word, index3) {
+          return result2 + (index3 ? "-" : "") + word.toLowerCase();
         });
-        var lowerCase = createCompounder(function(result2, word, index2) {
-          return result2 + (index2 ? " " : "") + word.toLowerCase();
+        var lowerCase = createCompounder(function(result2, word, index3) {
+          return result2 + (index3 ? " " : "") + word.toLowerCase();
         });
         var lowerFirst = createCaseFirst("toLowerCase");
         function pad(string, length, chars) {
@@ -6801,8 +6797,8 @@ var require_lodash = __commonJS({
           var args = arguments, string = toString(args[0]);
           return args.length < 3 ? string : string.replace(args[1], args[2]);
         }
-        var snakeCase = createCompounder(function(result2, word, index2) {
-          return result2 + (index2 ? "_" : "") + word.toLowerCase();
+        var snakeCase = createCompounder(function(result2, word, index3) {
+          return result2 + (index3 ? "_" : "") + word.toLowerCase();
         });
         function split(string, separator, limit) {
           if (limit && typeof limit != "number" && isIterateeCall(string, separator, limit)) {
@@ -6821,8 +6817,8 @@ var require_lodash = __commonJS({
           }
           return string.split(separator, limit);
         }
-        var startCase = createCompounder(function(result2, word, index2) {
-          return result2 + (index2 ? " " : "") + upperFirst(word);
+        var startCase = createCompounder(function(result2, word, index3) {
+          return result2 + (index3 ? " " : "") + upperFirst(word);
         });
         function startsWith(string, target, position) {
           string = toString(string);
@@ -6843,15 +6839,15 @@ var require_lodash = __commonJS({
               throw new Error2(INVALID_TEMPL_IMPORTS_ERROR_TEXT);
             }
           });
-          var isEscaping, isEvaluating, index2 = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+          var isEscaping, isEvaluating, index3 = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
           var reDelimiters = RegExp2(
             (options.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + "|" + (options.evaluate || reNoMatch).source + "|$",
             "g"
           );
           var sourceURL = "//# sourceURL=" + (hasOwnProperty.call(options, "sourceURL") ? (options.sourceURL + "").replace(/\s/g, " ") : "lodash.templateSources[" + ++templateCounter + "]") + "\n";
-          string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+          string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset4) {
             interpolateValue || (interpolateValue = esTemplateValue);
-            source += string.slice(index2, offset).replace(reUnescapedString, escapeStringChar);
+            source += string.slice(index3, offset4).replace(reUnescapedString, escapeStringChar);
             if (escapeValue) {
               isEscaping = true;
               source += "' +\n__e(" + escapeValue + ") +\n'";
@@ -6863,7 +6859,7 @@ var require_lodash = __commonJS({
             if (interpolateValue) {
               source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
             }
-            index2 = offset + match.length;
+            index3 = offset4 + match.length;
             return match;
           });
           source += "';\n";
@@ -6963,9 +6959,9 @@ var require_lodash = __commonJS({
               result2 = result2.slice(0, newEnd === undefined2 ? end : newEnd);
             }
           } else if (string.indexOf(baseToString(separator), end) != end) {
-            var index2 = result2.lastIndexOf(separator);
-            if (index2 > -1) {
-              result2 = result2.slice(0, index2);
+            var index3 = result2.lastIndexOf(separator);
+            if (index3 > -1) {
+              result2 = result2.slice(0, index3);
             }
           }
           return result2 + omission;
@@ -6974,8 +6970,8 @@ var require_lodash = __commonJS({
           string = toString(string);
           return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
         }
-        var upperCase = createCompounder(function(result2, word, index2) {
-          return result2 + (index2 ? " " : "") + word.toUpperCase();
+        var upperCase = createCompounder(function(result2, word, index3) {
+          return result2 + (index3 ? " " : "") + word.toUpperCase();
         });
         var upperFirst = createCaseFirst("toUpperCase");
         function words(string, pattern, guard) {
@@ -7009,9 +7005,9 @@ var require_lodash = __commonJS({
             return [toIteratee(pair[0]), pair[1]];
           });
           return baseRest(function(args) {
-            var index2 = -1;
-            while (++index2 < length) {
-              var pair = pairs[index2];
+            var index3 = -1;
+            while (++index3 < length) {
+              var pair = pairs[index3];
               if (apply(pair[0], this, args)) {
                 return apply(pair[1], this, args);
               }
@@ -7061,7 +7057,7 @@ var require_lodash = __commonJS({
             object = this;
             methodNames = baseFunctions(source, keys(source));
           }
-          var chain2 = !(isObject(options) && "chain" in options) || !!options.chain, isFunc = isFunction(object);
+          var chain2 = !(isObject(options) && "chain" in options) || !!options.chain, isFunc = isFunction2(object);
           arrayEach(methodNames, function(methodName) {
             var func = source[methodName];
             object[methodName] = func;
@@ -7086,7 +7082,7 @@ var require_lodash = __commonJS({
           }
           return this;
         }
-        function noop() {
+        function noop3() {
         }
         function nthArg(n) {
           n = toInteger(n);
@@ -7127,12 +7123,12 @@ var require_lodash = __commonJS({
           if (n < 1 || n > MAX_SAFE_INTEGER) {
             return [];
           }
-          var index2 = MAX_ARRAY_LENGTH, length = nativeMin(n, MAX_ARRAY_LENGTH);
+          var index3 = MAX_ARRAY_LENGTH, length = nativeMin(n, MAX_ARRAY_LENGTH);
           iteratee2 = getIteratee(iteratee2);
           n -= MAX_ARRAY_LENGTH;
           var result2 = baseTimes(length, iteratee2);
-          while (++index2 < n) {
-            iteratee2(index2);
+          while (++index3 < n) {
+            iteratee2(index3);
           }
           return result2;
         }
@@ -7143,7 +7139,7 @@ var require_lodash = __commonJS({
           return isSymbol(value) ? [value] : copyArray(stringToPath(toString(value)));
         }
         function uniqueId(prefix) {
-          var id = ++idCounter;
+          var id = ++idCounter2;
           return toString(prefix) + id;
         }
         var add = createMathOperation(function(augend, addend) {
@@ -7153,8 +7149,8 @@ var require_lodash = __commonJS({
         var divide = createMathOperation(function(dividend, divisor) {
           return dividend / divisor;
         }, 1);
-        var floor = createRound("floor");
-        function max(array) {
+        var floor2 = createRound("floor");
+        function max2(array) {
           return array && array.length ? baseExtremum(array, identity, baseGt) : undefined2;
         }
         function maxBy(array, iteratee2) {
@@ -7166,7 +7162,7 @@ var require_lodash = __commonJS({
         function meanBy(array, iteratee2) {
           return baseMean(array, getIteratee(iteratee2, 2));
         }
-        function min(array) {
+        function min2(array) {
           return array && array.length ? baseExtremum(array, identity, baseLt) : undefined2;
         }
         function minBy(array, iteratee2) {
@@ -7175,7 +7171,7 @@ var require_lodash = __commonJS({
         var multiply = createMathOperation(function(multiplier, multiplicand) {
           return multiplier * multiplicand;
         }, 1);
-        var round = createRound("round");
+        var round2 = createRound("round");
         var subtract = createMathOperation(function(minuend, subtrahend) {
           return minuend - subtrahend;
         }, 0);
@@ -7228,7 +7224,7 @@ var require_lodash = __commonJS({
         lodash.flatten = flatten;
         lodash.flattenDeep = flattenDeep;
         lodash.flattenDepth = flattenDepth;
-        lodash.flip = flip;
+        lodash.flip = flip4;
         lodash.flow = flow;
         lodash.flowRight = flowRight;
         lodash.fromPairs = fromPairs;
@@ -7344,7 +7340,7 @@ var require_lodash = __commonJS({
         lodash.camelCase = camelCase;
         lodash.capitalize = capitalize;
         lodash.ceil = ceil;
-        lodash.clamp = clamp;
+        lodash.clamp = clamp3;
         lodash.clone = clone;
         lodash.cloneDeep = cloneDeep;
         lodash.cloneDeepWith = cloneDeepWith;
@@ -7364,7 +7360,7 @@ var require_lodash = __commonJS({
         lodash.findLast = findLast;
         lodash.findLastIndex = findLastIndex;
         lodash.findLastKey = findLastKey;
-        lodash.floor = floor;
+        lodash.floor = floor2;
         lodash.forEach = forEach;
         lodash.forEachRight = forEachRight;
         lodash.forIn = forIn;
@@ -7390,13 +7386,13 @@ var require_lodash = __commonJS({
         lodash.isBoolean = isBoolean;
         lodash.isBuffer = isBuffer;
         lodash.isDate = isDate;
-        lodash.isElement = isElement;
+        lodash.isElement = isElement2;
         lodash.isEmpty = isEmpty;
         lodash.isEqual = isEqual;
         lodash.isEqualWith = isEqualWith;
         lodash.isError = isError;
-        lodash.isFinite = isFinite;
-        lodash.isFunction = isFunction;
+        lodash.isFinite = isFinite2;
+        lodash.isFunction = isFunction2;
         lodash.isInteger = isInteger;
         lodash.isLength = isLength;
         lodash.isMap = isMap;
@@ -7427,11 +7423,11 @@ var require_lodash = __commonJS({
         lodash.lowerFirst = lowerFirst;
         lodash.lt = lt;
         lodash.lte = lte;
-        lodash.max = max;
+        lodash.max = max2;
         lodash.maxBy = maxBy;
         lodash.mean = mean;
         lodash.meanBy = meanBy;
-        lodash.min = min;
+        lodash.min = min2;
         lodash.minBy = minBy;
         lodash.stubArray = stubArray;
         lodash.stubFalse = stubFalse;
@@ -7441,7 +7437,7 @@ var require_lodash = __commonJS({
         lodash.multiply = multiply;
         lodash.nth = nth;
         lodash.noConflict = noConflict;
-        lodash.noop = noop;
+        lodash.noop = noop3;
         lodash.now = now;
         lodash.pad = pad;
         lodash.padEnd = padEnd;
@@ -7453,10 +7449,10 @@ var require_lodash = __commonJS({
         lodash.repeat = repeat;
         lodash.replace = replace;
         lodash.result = result;
-        lodash.round = round;
+        lodash.round = round2;
         lodash.runInContext = runInContext2;
         lodash.sample = sample;
-        lodash.size = size;
+        lodash.size = size4;
         lodash.snakeCase = snakeCase;
         lodash.some = some;
         lodash.sortedIndex = sortedIndex;
@@ -7504,10 +7500,10 @@ var require_lodash = __commonJS({
         arrayEach(["bind", "bindKey", "curry", "curryRight", "partial", "partialRight"], function(methodName) {
           lodash[methodName].placeholder = lodash;
         });
-        arrayEach(["drop", "take"], function(methodName, index2) {
+        arrayEach(["drop", "take"], function(methodName, index3) {
           LazyWrapper.prototype[methodName] = function(n) {
             n = n === undefined2 ? 1 : nativeMax(toInteger(n), 0);
-            var result2 = this.__filtered__ && !index2 ? new LazyWrapper(this) : this.clone();
+            var result2 = this.__filtered__ && !index3 ? new LazyWrapper(this) : this.clone();
             if (result2.__filtered__) {
               result2.__takeCount__ = nativeMin(n, result2.__takeCount__);
             } else {
@@ -7522,8 +7518,8 @@ var require_lodash = __commonJS({
             return this.reverse()[methodName](n).reverse();
           };
         });
-        arrayEach(["filter", "map", "takeWhile"], function(methodName, index2) {
-          var type = index2 + 1, isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+        arrayEach(["filter", "map", "takeWhile"], function(methodName, index3) {
+          var type = index3 + 1, isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
           LazyWrapper.prototype[methodName] = function(iteratee2) {
             var result2 = this.clone();
             result2.__iteratees__.push({
@@ -7534,14 +7530,14 @@ var require_lodash = __commonJS({
             return result2;
           };
         });
-        arrayEach(["head", "last"], function(methodName, index2) {
-          var takeName = "take" + (index2 ? "Right" : "");
+        arrayEach(["head", "last"], function(methodName, index3) {
+          var takeName = "take" + (index3 ? "Right" : "");
           LazyWrapper.prototype[methodName] = function() {
             return this[takeName](1).value()[0];
           };
         });
-        arrayEach(["initial", "tail"], function(methodName, index2) {
-          var dropName = "drop" + (index2 ? "" : "Right");
+        arrayEach(["initial", "tail"], function(methodName, index3) {
+          var dropName = "drop" + (index3 ? "" : "Right");
           LazyWrapper.prototype[methodName] = function() {
             return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
           };
@@ -7676,9 +7672,9 @@ var require_lodash = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js
 var require_now = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/now.js"(exports, module) {
     var root = require_root();
     var now = function() {
       return root.Date.now();
@@ -7687,23 +7683,23 @@ var require_now = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js
 var require_trimmedEndIndex = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_trimmedEndIndex.js"(exports, module) {
     var reWhitespace = /\s/;
     function trimmedEndIndex(string) {
-      var index2 = string.length;
-      while (index2-- && reWhitespace.test(string.charAt(index2))) {
+      var index3 = string.length;
+      while (index3-- && reWhitespace.test(string.charAt(index3))) {
       }
-      return index2;
+      return index3;
     }
     module.exports = trimmedEndIndex;
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js
 var require_baseTrim = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/_baseTrim.js"(exports, module) {
     var trimmedEndIndex = require_trimmedEndIndex();
     var reTrimStart = /^\s+/;
     function baseTrim(string) {
@@ -7713,9 +7709,9 @@ var require_baseTrim = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js
 var require_toNumber = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/toNumber.js"(exports, module) {
     var baseTrim = require_baseTrim();
     var isObject = require_isObject();
     var isSymbol = require_isSymbol();
@@ -7746,9 +7742,9 @@ var require_toNumber = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js
 var require_debounce = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/debounce.js"(exports, module) {
     var isObject = require_isObject();
     var now = require_now();
     var toNumber = require_toNumber();
@@ -7840,9 +7836,9 @@ var require_debounce = __commonJS({
   }
 });
 
-// node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js
+// ../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js
 var require_throttle = __commonJS({
-  "node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js"(exports, module) {
+  "../../node_modules/.pnpm/lodash@4.18.1/node_modules/lodash/throttle.js"(exports, module) {
     var debounce = require_debounce();
     var isObject = require_isObject();
     var FUNC_ERROR_TEXT = "Expected a function";
@@ -7920,7 +7916,7 @@ var templates_data_default = {
   categories: [
     {
       id: "signage",
-      name: "Industry Signage",
+      name: "Digital Signage",
       order: 1
     },
     {
@@ -7956,34 +7952,2078 @@ var templates_data_default = {
   ],
   templates: [
     {
-      id: "ar-001",
-      name: "Christmas Offers",
-      categoryId: "ads-retail",
-      tags: [
-        "christmas",
-        "natal",
-        "holiday",
-        "retail",
-        "flyer"
-      ],
-      canvasBg: "#B91C1C",
+      id: "sg-001",
+      name: "Espresso Lab",
+      categoryId: "signage",
+      tags: ["coffee", "cafe", "espresso", "restaurant", "menu"],
+      canvasBg: "#1A0F0A",
       workspaceBg: "#f5f5f5",
       scene: {
-        id: "tpl-ar-001",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
+        id: "tpl-sg-001",
+        frame: { width: 1080, height: 1920 },
         layers: [
           {
-            id: "ar-001-bg-top",
+            id: "sg-001-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 720,
+            width: 1080,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-001-overlay",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: 540,
+            top: 660,
+            width: 540,
+            height: 800,
+            scaleX: 1.1,
+            scaleY: 0.7,
+            angle: -8,
+            opacity: 0.6,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-001-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 200,
+            width: 920,
+            height: 50,
+            fill: "#C9986C",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "EST. 2018  \xB7  SINGLE ORIGIN  \xB7  SLOW BREWED"
+          },
+          {
+            id: "sg-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 280,
+            width: 960,
+            height: 460,
+            fill: "#F5E6D3",
+            fontFamily: "Playfair Display",
+            fontSize: 240,
+            lineHeight: 0.95,
+            textAlign: "left",
+            text: "Espresso\nLab."
+          },
+          {
+            id: "sg-001-body",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 740,
+            width: 920,
+            height: 100,
+            fill: "#D9C3A6",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.4,
+            textAlign: "left",
+            text: "Hand-pulled shots, locally roasted beans,\nand a quiet corner waiting for you."
+          },
+          {
+            id: "sg-001-price-label",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1660,
+            width: 480,
+            height: 50,
+            fill: "#C9986C",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "THE DAILY DOUBLE"
+          },
+          {
+            id: "sg-001-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1720,
+            width: 480,
+            height: 140,
+            fill: "#F5E6D3",
+            fontFamily: "Playfair Display",
+            fontSize: 130,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "$4.50"
+          },
+          {
+            id: "sg-001-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 560,
+            top: 1770,
+            width: 440,
+            height: 60,
+            fill: "#F5E6D3",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "Order at the bar  \u2192"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-002",
+      name: "Pizza Tonight",
+      categoryId: "signage",
+      tags: ["pizza", "food", "restaurant", "menu", "italian"],
+      canvasBg: "#0E1F18",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-002",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-002-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: -240,
+            top: 480,
+            width: 1560,
+            height: 1560,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-002-bg-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1200,
+            width: 1080,
+            height: 360,
+            fill: "#0F2A1F",
+            fontFamily: "Anton",
+            fontSize: 320,
+            lineHeight: 0.9,
+            textAlign: "center",
+            text: "TONIGHT"
+          },
+          {
+            id: "sg-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 160,
+            width: 920,
+            height: 50,
+            fill: "#F97316",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "WOOD-FIRED  \xB7  HAND-TOSSED  \xB7  NAPOLI"
+          },
+          {
+            id: "sg-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 240,
+            width: 1080,
+            height: 460,
+            fill: "#FEF3C7",
+            fontFamily: "Anton",
+            fontSize: 320,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "PIZZA\nNIGHT"
+          },
+          {
+            id: "sg-002-deal",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1620,
+            width: 920,
+            height: 80,
+            fill: "#F97316",
+            fontFamily: "Lato",
+            fontSize: 56,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "TWO LARGE PIES"
+          },
+          {
+            id: "sg-002-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1700,
+            width: 920,
+            height: 160,
+            fill: "#FEF3C7",
+            fontFamily: "Anton",
+            fontSize: 160,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$24.99"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-003",
+      name: "Sushi Omakase",
+      categoryId: "signage",
+      tags: ["sushi", "japanese", "food", "restaurant", "fine dining"],
+      canvasBg: "#0A0A0A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-003",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-003-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: -60,
+            top: 760,
+            width: 1200,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-003-line",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 240,
+            width: 80,
+            height: 8,
+            fill: "#DC2626",
+            fontFamily: "Lato",
+            fontSize: 8,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "____"
+          },
+          {
+            id: "sg-003-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 280,
+            width: 920,
+            height: 50,
+            fill: "#DC2626",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "CHEF'S COUNTER  \xB7  RESERVATIONS ONLY"
+          },
+          {
+            id: "sg-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 360,
+            width: 960,
+            height: 280,
+            fill: "#FAFAFA",
+            fontFamily: "Playfair Display",
+            fontSize: 200,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "Omakase."
+          },
+          {
+            id: "sg-003-jp",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 600,
+            width: 960,
+            height: 80,
+            fill: "#6B7280",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "\u304A\u307E\u304B\u305B  \xB7  Chef decides"
+          },
+          {
+            id: "sg-003-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1640,
+            width: 960,
+            height: 200,
+            fill: "#FAFAFA",
+            fontFamily: "Playfair Display",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "right",
+            text: "$185"
+          },
+          {
+            id: "sg-003-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1820,
+            width: 960,
+            height: 60,
+            fill: "#9CA3AF",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "8 courses  \xB7  per person"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-004",
+      name: "Double Smash Burger",
+      categoryId: "signage",
+      tags: ["burger", "food", "restaurant", "fast food", "menu"],
+      canvasBg: "#FACC15",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-004",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-004-bg-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: -160,
+            top: 360,
+            width: 1400,
+            height: 800,
+            fill: "#FBBF24",
+            fontFamily: "Anton",
+            fontSize: 720,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "$8"
+          },
+          {
+            id: "sg-004-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: -160,
+            top: 360,
+            width: 1400,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-004-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 760,
+            top: 80,
+            width: 561,
+            height: 800,
+            scaleX: 0.5,
+            scaleY: 0.4,
+            angle: 18,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-004-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 160,
+            width: 700,
+            height: 50,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "\u2605 TODAY ONLY \u2605"
+          },
+          {
+            id: "sg-004-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 220,
+            width: 960,
+            height: 380,
+            fill: "#7F1D1D",
+            fontFamily: "Anton",
+            fontSize: 280,
+            lineHeight: 0.85,
+            textAlign: "left",
+            text: "DOUBLE\nSMASH"
+          },
+          {
+            id: "sg-004-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1700,
+            width: 960,
+            height: 60,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Two patties  \xB7  Cheese  \xB7  Crinkle fries"
+          },
+          {
+            id: "sg-004-time",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1780,
+            width: 960,
+            height: 80,
+            fill: "#7F1D1D",
+            fontFamily: "Anton",
+            fontSize: 56,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "MON \u2014 FRI  \xB7  11 AM TO 3 PM"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-005",
+      name: "Bakery Morning",
+      categoryId: "signage",
+      tags: ["bakery", "food", "pastry", "restaurant", "menu", "croissant"],
+      canvasBg: "#F5E6D3",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-005",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-005-floral",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_02.svg",
+            left: -100,
+            top: -80,
+            width: 420,
+            height: 420,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -8,
+            opacity: 0.45,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-005-floral2",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg",
-            left: -40,
+            left: 740,
+            top: 1600,
+            width: 420,
+            height: 420,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 170,
+            opacity: 0.45,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-005-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: 120,
+            top: 760,
+            width: 840,
+            height: 840,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-005-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 200,
+            width: 920,
+            height: 50,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "BAKED FRESH AT 6 AM  \xB7  EVERY MORNING"
+          },
+          {
+            id: "sg-005-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 280,
+            width: 960,
+            height: 480,
+            fill: "#7C2D12",
+            fontFamily: "Playfair Display",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Boulangerie\n& Caf\xE9"
+          },
+          {
+            id: "sg-005-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1680,
+            width: 920,
+            height: 60,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.3,
+            textAlign: "center",
+            text: "Croissants \xB7 Brioches \xB7 Sourdough \xB7 Pain au Chocolat"
+          },
+          {
+            id: "sg-005-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1780,
+            width: 920,
+            height: 60,
+            fill: "#92400E",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "224 Maple Avenue  \xB7  Open daily 6 AM \u2013 6 PM"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-006",
+      name: "Tropic Bowl",
+      categoryId: "signage",
+      tags: ["smoothie", "food", "juice bar", "healthy", "restaurant"],
+      canvasBg: "#EC4899",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-006",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-006-rainbow",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png",
+            left: -80,
             top: -40,
-            width: 400,
+            width: 801,
+            height: 565,
+            scaleX: 0.7,
+            scaleY: 0.7,
+            angle: -12,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-006-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: 60,
+            top: 740,
+            width: 960,
+            height: 960,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 4,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-006-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 240,
+            width: 920,
+            height: 50,
+            fill: "#FEF08A",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "FRESH  \xB7  COLD-PRESSED  \xB7  DAILY"
+          },
+          {
+            id: "sg-006-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 320,
+            width: 1080,
             height: 400,
+            fill: "#FFFFFF",
+            fontFamily: "Lobster",
+            fontSize: 280,
+            lineHeight: 0.9,
+            textAlign: "center",
+            text: "Tropic\nBowl"
+          },
+          {
+            id: "sg-006-price-label",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1740,
+            width: 920,
+            height: 50,
+            fill: "#FEF08A",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "ACAI \xB7 MANGO \xB7 PASSIONFRUIT \xB7 COCONUT"
+          },
+          {
+            id: "sg-006-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1800,
+            width: 920,
+            height: 80,
+            fill: "#FFFFFF",
+            fontFamily: "Anton",
+            fontSize: 64,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$9.50  \xB7  TODAY"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-007",
+      name: "Prime Cut Steakhouse",
+      categoryId: "signage",
+      tags: ["steakhouse", "food", "restaurant", "fine dining", "meat"],
+      canvasBg: "#0A0A0A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-007",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-007-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.75,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-007-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1080,
+            width: 920,
+            height: 50,
+            fill: "#D4AF37",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "DRY-AGED  \xB7  GRASS-FED  \xB7  PRIME"
+          },
+          {
+            id: "sg-007-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1160,
+            width: 1080,
+            height: 400,
+            fill: "#F5E6D3",
+            fontFamily: "Playfair Display",
+            fontSize: 220,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "PRIME CUT"
+          },
+          {
+            id: "sg-007-bar",
+            name: "StaticText",
+            type: "StaticText",
+            left: 460,
+            top: 1580,
+            width: 160,
+            height: 8,
+            fill: "#D4AF37",
+            fontFamily: "Lato",
+            fontSize: 8,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "____________"
+          },
+          {
+            id: "sg-007-body",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1640,
+            width: 920,
+            height: 100,
+            fill: "#D9C3A6",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.4,
+            textAlign: "center",
+            text: "A steakhouse experience\nworth the white linen."
+          },
+          {
+            id: "sg-007-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1800,
+            width: 920,
+            height: 60,
+            fill: "#D4AF37",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "RESERVATIONS  \xB7  555.0192"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-008",
+      name: "Gelato Summer",
+      categoryId: "signage",
+      tags: ["ice cream", "gelato", "dessert", "food", "summer"],
+      canvasBg: "#FBCFE8",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-008",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-008-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: -60,
+            top: 740,
+            width: 1200,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-008-doodle",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg",
+            left: 80,
+            top: 60,
+            width: 220,
+            height: 220,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -10,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-008-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 320,
+            width: 920,
+            height: 50,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "32 FLAVORS  \xB7  MADE IN-HOUSE"
+          },
+          {
+            id: "sg-008-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 400,
+            width: 1080,
+            height: 320,
+            fill: "#831843",
+            fontFamily: "Pacifico",
+            fontSize: 240,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "gelato!"
+          },
+          {
+            id: "sg-008-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1700,
+            width: 920,
+            height: 80,
+            fill: "#831843",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "TWO SCOOPS  \xB7  $5.50"
+          },
+          {
+            id: "sg-008-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1790,
+            width: 920,
+            height: 60,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 30,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Open until midnight  \xB7  every day"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-009",
+      name: "Craft Tap Room",
+      categoryId: "signage",
+      tags: ["beer", "brewery", "bar", "drinks", "restaurant"],
+      canvasBg: "#1C1410",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-009",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-009-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 380,
+            top: 0,
+            width: 800,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-009-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 200,
+            width: 360,
+            height: 50,
+            fill: "#F59E0B",
+            fontFamily: "Lato",
+            fontSize: 30,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "12 ON TAP"
+          },
+          {
+            id: "sg-009-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 280,
+            width: 360,
+            height: 600,
+            fill: "#F5E6D3",
+            fontFamily: "Bebas Neue",
+            fontSize: 200,
+            lineHeight: 0.85,
+            textAlign: "left",
+            text: "CRAFT\nTAP\nROOM"
+          },
+          {
+            id: "sg-009-body",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1480,
+            width: 960,
+            height: 100,
+            fill: "#D9C3A6",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.4,
+            textAlign: "left",
+            text: "Locally brewed.\nAlways pouring."
+          },
+          {
+            id: "sg-009-pricerow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1660,
+            width: 960,
+            height: 80,
+            fill: "#F59E0B",
+            fontFamily: "Bebas Neue",
+            fontSize: 64,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "HAPPY HOUR  \xB7  4 \u2014 7 PM"
+          },
+          {
+            id: "sg-009-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1740,
+            width: 960,
+            height: 140,
+            fill: "#F5E6D3",
+            fontFamily: "Bebas Neue",
+            fontSize: 120,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "PINTS $5"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-010",
+      name: "Taco Tuesday",
+      categoryId: "signage",
+      tags: ["taco", "mexican", "food", "restaurant", "menu"],
+      canvasBg: "#F97316",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-010",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-010-bg-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: -200,
+            top: 200,
+            width: 1480,
+            height: 800,
+            fill: "#EA580C",
+            fontFamily: "Anton",
+            fontSize: 720,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "TACO"
+          },
+          {
+            id: "sg-010-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: -60,
+            top: 540,
+            width: 1200,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-010-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 160,
+            width: 920,
+            height: 60,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "EVERY TUESDAY \xB7 ALL DAY"
+          },
+          {
+            id: "sg-010-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1740,
+            width: 1080,
+            height: 160,
+            fill: "#0F766E",
+            fontFamily: "Anton",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$2 EACH"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-011",
+      name: "SS26 Fashion Drop",
+      categoryId: "signage",
+      tags: ["fashion", "boutique", "apparel", "retail", "store", "drop"],
+      canvasBg: "#0A0A0A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-011",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-011-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-011-vol",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 80,
+            width: 200,
+            height: 50,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "VOL. 26"
+          },
+          {
+            id: "sg-011-brand",
+            name: "StaticText",
+            type: "StaticText",
+            left: 820,
+            top: 80,
+            width: 200,
+            height: 50,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "ATELIER"
+          },
+          {
+            id: "sg-011-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1380,
+            width: 920,
+            height: 50,
+            fill: "#9CA3AF",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "SPRING SUMMER 2026  \xB7  DELIVERY ONE"
+          },
+          {
+            id: "sg-011-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1440,
+            width: 960,
+            height: 320,
+            fill: "#FAFAFA",
+            fontFamily: "Playfair Display",
+            fontSize: 220,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "New\nArrivals."
+          },
+          {
+            id: "sg-011-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1830,
+            width: 960,
+            height: 50,
+            fill: "#9CA3AF",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "SHOP IN-STORE  \xB7  IN STORES NOW  \u2192"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-012",
+      name: "Sneaker Heat",
+      categoryId: "signage",
+      tags: ["shoes", "sneakers", "fashion", "drop", "streetwear", "retail"],
+      canvasBg: "#000000",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-012",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-012-bg-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: -120,
+            top: 280,
+            width: 1320,
+            height: 800,
+            fill: "#FACC15",
+            fontFamily: "Anton",
+            fontSize: 760,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "HEAT"
+          },
+          {
+            id: "sg-012-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: -160,
+            top: 460,
+            width: 1400,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -14,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-012-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 140,
+            width: 920,
+            height: 50,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "DROP 02  \xB7  FRIDAY 9 AM  \xB7  LIMITED"
+          },
+          {
+            id: "sg-012-footrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1700,
+            width: 920,
+            height: 80,
+            fill: "#FACC15",
+            fontFamily: "Anton",
+            fontSize: 72,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "AIR / MAX / 26"
+          },
+          {
+            id: "sg-012-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1800,
+            width: 920,
+            height: 80,
+            fill: "#FAFAFA",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "$189  \xB7  In-store only"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-013",
+      name: "Maison Watch",
+      categoryId: "signage",
+      tags: ["watch", "luxury", "boutique", "fashion", "jewelry"],
+      canvasBg: "#0F0A05",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-013",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-013-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: -60,
+            top: 220,
+            width: 1200,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-013-mono",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 100,
+            width: 920,
+            height: 60,
+            fill: "#D4AF37",
+            fontFamily: "Playfair Display",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "M  /  MAISON"
+          },
+          {
+            id: "sg-013-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1660,
+            width: 920,
+            height: 50,
+            fill: "#D4AF37",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "SWISS MADE  \xB7  AUTOMATIC  \xB7  SAPPHIRE CRYSTAL"
+          },
+          {
+            id: "sg-013-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1720,
+            width: 1080,
+            height: 180,
+            fill: "#F5E6D3",
+            fontFamily: "Playfair Display",
+            fontSize: 120,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "Heritage 1925"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-014",
+      name: "Diamond Forever",
+      categoryId: "signage",
+      tags: ["jewelry", "diamond", "luxury", "boutique", "fashion"],
+      canvasBg: "#020617",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-014",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-014-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1515562141207-7a8efd38cd33?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.85,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-014-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1140,
+            width: 920,
+            height: 60,
+            fill: "#FDE68A",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "THE NEW BRIDAL COLLECTION  \xB7  2026"
+          },
+          {
+            id: "sg-014-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1240,
+            width: 1080,
+            height: 380,
+            fill: "#FDE68A",
+            fontFamily: "Playfair Display",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Forever\nBrilliant."
+          },
+          {
+            id: "sg-014-divider",
+            name: "StaticText",
+            type: "StaticText",
+            left: 460,
+            top: 1660,
+            width: 160,
+            height: 8,
+            fill: "#D4AF37",
+            fontFamily: "Lato",
+            fontSize: 8,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "____________"
+          },
+          {
+            id: "sg-014-body",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1700,
+            width: 920,
+            height: 80,
+            fill: "#F5E6D3",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.4,
+            textAlign: "center",
+            text: "Hand-set by master jewelers,\nfor moments that never end."
+          },
+          {
+            id: "sg-014-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1830,
+            width: 920,
+            height: 50,
+            fill: "#FDE68A",
+            fontFamily: "Lato",
+            fontSize: 26,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "BOOK A PRIVATE VIEWING  \u2192"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-015",
+      name: "Beauty Glow",
+      categoryId: "signage",
+      tags: ["beauty", "skincare", "salon", "spa", "wellness"],
+      canvasBg: "#FDF2F8",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-015",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-015-floral",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
+            left: -200,
+            top: -200,
+            width: 1480,
+            height: 1480,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -20,
+            opacity: 0.12,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-015-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: 220,
+            top: 720,
+            width: 800,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-015-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 220,
+            width: 920,
+            height: 50,
+            fill: "#BE185D",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FACIALS  \xB7  PEELS  \xB7  AESTHETICS"
+          },
+          {
+            id: "sg-015-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 300,
+            width: 960,
+            height: 400,
+            fill: "#831843",
+            fontFamily: "Playfair Display",
+            fontSize: 220,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "Glow,\ngently."
+          },
+          {
+            id: "sg-015-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1640,
+            width: 460,
+            height: 60,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FIRST FACIAL"
+          },
+          {
+            id: "sg-015-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1700,
+            width: 460,
+            height: 160,
+            fill: "#831843",
+            fontFamily: "Playfair Display",
+            fontSize: 130,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "30% OFF"
+          },
+          {
+            id: "sg-015-book",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1820,
+            width: 920,
+            height: 50,
+            fill: "#BE185D",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "BOOK ONLINE  \xB7  glow.example  \u2192"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-016",
+      name: "Serenity Spa",
+      categoryId: "signage",
+      tags: ["spa", "wellness", "salon", "relax", "yoga"],
+      canvasBg: "#064E3B",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-016",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-016-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 720,
+            width: 1080,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-016-floral",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg",
+            left: 760,
+            top: 100,
+            width: 320,
+            height: 320,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 12,
+            opacity: 0.7,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-016-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 220,
+            width: 920,
+            height: 50,
+            fill: "#A7F3D0",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "MASSAGE  \xB7  FACIAL  \xB7  STEAM  \xB7  STILL"
+          },
+          {
+            id: "sg-016-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 300,
+            width: 960,
+            height: 400,
+            fill: "#ECFDF5",
+            fontFamily: "Playfair Display",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "left",
+            text: "Find\nyour quiet."
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-017",
+      name: "Tech Phone Launch",
+      categoryId: "signage",
+      tags: ["tech", "electronics", "phone", "launch", "product"],
+      canvasBg: "#0F172A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-017",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-017-glow",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: -100,
+            top: 380,
+            width: 1280,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.45,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-017-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 60,
+            top: 580,
+            width: 960,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-017-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 200,
+            width: 920,
+            height: 60,
+            fill: "#38BDF8",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "INTRODUCING  \xB7  THE NEW PHONE"
+          },
+          {
+            id: "sg-017-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 280,
+            width: 1080,
+            height: 280,
+            fill: "#F1F5F9",
+            fontFamily: "Playfair Display",
+            fontSize: 220,
+            lineHeight: 0.92,
+            textAlign: "center",
+            text: "Pro 26."
+          },
+          {
+            id: "sg-017-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1680,
+            width: 920,
+            height: 100,
+            fill: "#38BDF8",
+            fontFamily: "Lato",
+            fontSize: 64,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "FROM $999"
+          },
+          {
+            id: "sg-017-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1790,
+            width: 920,
+            height: 60,
+            fill: "#94A3B8",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Available in-store  \xB7  September 14"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-018",
+      name: "Gym No Excuses",
+      categoryId: "signage",
+      tags: ["gym", "fitness", "workout", "sports", "promo"],
+      canvasBg: "#0A0A0A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-018",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-018-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1080&h=1920&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1920,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.55,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-018-bg-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: -180,
+            top: 540,
+            width: 1440,
+            height: 800,
+            fill: "#DC2626",
+            fontFamily: "Anton",
+            fontSize: 720,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "GO."
+          },
+          {
+            id: "sg-018-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 180,
+            width: 920,
+            height: 50,
+            fill: "#DC2626",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "NO EXCUSES  \xB7  JUST RESULTS"
+          },
+          {
+            id: "sg-018-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 260,
+            width: 960,
+            height: 260,
+            fill: "#FAFAFA",
+            fontFamily: "Anton",
+            fontSize: 200,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "GET\nAFTER IT."
+          },
+          {
+            id: "sg-018-price-label",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1640,
+            width: 920,
+            height: 60,
+            fill: "#DC2626",
+            fontFamily: "Anton",
+            fontSize: 56,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "JOIN TODAY"
+          },
+          {
+            id: "sg-018-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1710,
+            width: 920,
+            height: 200,
+            fill: "#FAFAFA",
+            fontFamily: "Anton",
+            fontSize: 160,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$29 / MO"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-019",
+      name: "Real Estate Open House",
+      categoryId: "signage",
+      tags: ["real estate", "house", "property", "open house", "listing"],
+      canvasBg: "#F5F5F4",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-019",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-019-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1080&h=1200&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-019-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1280,
+            width: 920,
+            height: 50,
+            fill: "#78716C",
+            fontFamily: "Lato",
+            fontSize: 30,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "OPEN HOUSE  \xB7  THIS SATURDAY"
+          },
+          {
+            id: "sg-019-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1340,
+            width: 960,
+            height: 380,
+            fill: "#1C1917",
+            fontFamily: "Playfair Display",
+            fontSize: 180,
+            lineHeight: 0.95,
+            textAlign: "left",
+            text: "224 Elm\nStreet."
+          },
+          {
+            id: "sg-019-divider",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1740,
+            width: 200,
+            height: 8,
+            fill: "#1C1917",
+            fontFamily: "Lato",
+            fontSize: 8,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "________________"
+          },
+          {
+            id: "sg-019-meta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1780,
+            width: 460,
+            height: 60,
+            fill: "#44403C",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "4 BD  \xB7  3 BA  \xB7  2,800 SQ FT"
+          },
+          {
+            id: "sg-019-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 540,
+            top: 1760,
+            width: 460,
+            height: 100,
+            fill: "#1C1917",
+            fontFamily: "Playfair Display",
+            fontSize: 72,
+            lineHeight: 1,
+            textAlign: "right",
+            text: "$1,495,000"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-020",
+      name: "EV Electric Drive",
+      categoryId: "signage",
+      tags: ["automotive", "car", "ev", "electric", "vehicle"],
+      canvasBg: "#0A0F1C",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-020",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-020-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: -100,
+            top: 1040,
+            width: 1280,
+            height: 800,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-020-glow",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: -120,
+            top: 1140,
+            width: 1320,
+            height: 800,
             scaleX: 1,
             scaleY: 1,
             angle: 0,
@@ -7993,146 +10033,1523 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "ar-001-bg-bot",
+            id: "sg-020-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 220,
+            width: 920,
+            height: 50,
+            fill: "#34D399",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "ALL-ELECTRIC  \xB7  450 MI RANGE"
+          },
+          {
+            id: "sg-020-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 300,
+            width: 960,
+            height: 480,
+            fill: "#F1F5F9",
+            fontFamily: "Bebas Neue",
+            fontSize: 280,
+            lineHeight: 0.88,
+            textAlign: "left",
+            text: "DRIVE\nELECTRIC"
+          },
+          {
+            id: "sg-020-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 800,
+            width: 960,
+            height: 80,
+            fill: "#34D399",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FROM $42,990  \xB7  0% APR FOR 60 MO"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-021",
+      name: "Dental Bright Smile",
+      categoryId: "signage",
+      tags: ["dentist", "dental", "healthcare", "clinic", "medical"],
+      canvasBg: "#E0F2FE",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-021",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-021-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg",
-            left: 720,
-            top: 1560,
-            width: 400,
-            height: 400,
+            src: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1080&h=1200&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1200,
             scaleX: 1,
             scaleY: 1,
-            angle: 180,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-021-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1280,
+            width: 920,
+            height: 50,
+            fill: "#0369A1",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "NEW PATIENT  \xB7  SPECIAL OFFER"
+          },
+          {
+            id: "sg-021-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1360,
+            width: 1080,
+            height: 400,
+            fill: "#0C4A6E",
+            fontFamily: "Playfair Display",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Brighter\nSmiles."
+          },
+          {
+            id: "sg-021-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1740,
+            width: 920,
+            height: 80,
+            fill: "#0369A1",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "EXAM + CLEANING  \xB7  $79"
+          },
+          {
+            id: "sg-021-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1830,
+            width: 920,
+            height: 50,
+            fill: "#0C4A6E",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "BOOK ONLINE OR CALL 555-0119"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-022",
+      name: "Pharmacy Care",
+      categoryId: "signage",
+      tags: ["pharmacy", "healthcare", "clinic", "health", "medical"],
+      canvasBg: "#065F46",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-022",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-022-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1080&h=1100&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1100,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-022-heart",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg",
+            left: 80,
+            top: 1160,
+            width: 220,
+            height: 220,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-022-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 320,
+            top: 1220,
+            width: 700,
+            height: 50,
+            fill: "#A7F3D0",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "COMMUNITY HEALTH  \xB7  MAY"
+          },
+          {
+            id: "sg-022-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1440,
+            width: 960,
+            height: 260,
+            fill: "#ECFDF5",
+            fontFamily: "Playfair Display",
+            fontSize: 150,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Free Health\nScreening"
+          },
+          {
+            id: "sg-022-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1730,
+            width: 920,
+            height: 60,
+            fill: "#A7F3D0",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Walk-ins welcome  \xB7  9 AM \u2013 5 PM"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-023",
+      name: "Bookstore Quiet Reads",
+      categoryId: "signage",
+      tags: ["bookstore", "books", "library", "retail", "reading"],
+      canvasBg: "#F5E6D3",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-023",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-023-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1080&h=1200&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 700,
+            width: 1080,
+            height: 1220,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-023-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 220,
+            width: 920,
+            height: 50,
+            fill: "#7C2D12",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "INDIE BOOKSELLER  \xB7  EST. 1998"
+          },
+          {
+            id: "sg-023-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 300,
+            width: 960,
+            height: 380,
+            fill: "#451A03",
+            fontFamily: "Abril Fatface",
+            fontSize: 200,
+            lineHeight: 0.95,
+            textAlign: "left",
+            text: "Slow\nMornings,\nBooks."
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-024",
+      name: "Florist Petal Studio",
+      categoryId: "signage",
+      tags: ["florist", "flowers", "boutique", "retail", "wedding"],
+      canvasBg: "#FBCFE8",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-024",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-024-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1200&h=1400&fit=crop&q=85&auto=format",
+            left: 80,
+            top: 580,
+            width: 920,
+            height: 1200,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-024-floral",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_09.svg",
+            left: -60,
+            top: 1480,
+            width: 380,
+            height: 380,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.85,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-024-floral2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_06.svg",
+            left: 800,
+            top: 60,
+            width: 320,
+            height: 320,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 25,
+            opacity: 0.85,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-024-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 220,
+            width: 920,
+            height: 50,
+            fill: "#9D174D",
+            fontFamily: "Lato",
+            fontSize: 34,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "FRESH-CUT DAILY  \xB7  LOCAL GROWERS"
+          },
+          {
+            id: "sg-024-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 300,
+            width: 1080,
+            height: 280,
+            fill: "#831843",
+            fontFamily: "Dancing Script",
+            fontSize: 240,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Petal Studio"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "sg-025",
+      name: "Hotel Stay Boutique",
+      categoryId: "signage",
+      tags: ["hotel", "hospitality", "travel", "destination", "tourism"],
+      canvasBg: "#1E293B",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-sg-025",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "sg-025-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1080&h=1300&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1080,
+            height: 1300,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.9,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "sg-025-mono",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 80,
+            width: 920,
+            height: 60,
+            fill: "#FDE68A",
+            fontFamily: "Playfair Display",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "T H E   B O U T I Q U E"
+          },
+          {
+            id: "sg-025-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1380,
+            width: 920,
+            height: 50,
+            fill: "#FDE68A",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "SUITE OF THE MONTH  \xB7  CITY VIEW"
+          },
+          {
+            id: "sg-025-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 60,
+            top: 1440,
+            width: 960,
+            height: 280,
+            fill: "#F1F5F9",
+            fontFamily: "Playfair Display",
+            fontSize: 180,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Stay\nawhile."
+          },
+          {
+            id: "sg-025-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1740,
+            width: 920,
+            height: 80,
+            fill: "#FDE68A",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "FROM $189 / NIGHT"
+          },
+          {
+            id: "sg-025-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1830,
+            width: 920,
+            height: 50,
+            fill: "#CBD5E1",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Reserve at the front desk or boutique.hotel"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-001",
+      name: "Phone X Launch",
+      categoryId: "tv-ads",
+      tags: ["tech", "phone", "launch", "gadget", "tv", "horizontal"],
+      canvasBg: "#0F172A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-001",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-001-glow",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
+            left: 800,
+            top: -200,
+            width: 1200,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.45,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-001-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: 1100,
+            top: -100,
+            width: 1e3,
+            height: 1280,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-001-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 200,
+            width: 900,
+            height: 60,
+            fill: "#38BDF8",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "INTRODUCING  \xB7  THE NEW PRO"
+          },
+          {
+            id: "tv-001-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 280,
+            width: 1100,
+            height: 460,
+            fill: "#F8FAFC",
+            fontFamily: "Playfair Display",
+            fontSize: 280,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "Pro 26.\nReimagined."
+          },
+          {
+            id: "tv-001-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 820,
+            width: 900,
+            height: 100,
+            fill: "#38BDF8",
+            fontFamily: "Lato",
+            fontSize: 64,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "FROM $999"
+          },
+          {
+            id: "tv-001-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 940,
+            width: 900,
+            height: 50,
+            fill: "#94A3B8",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "Available now at all major retailers"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-002",
+      name: "King Burger Combo",
+      categoryId: "tv-ads",
+      tags: ["food", "burger", "combo", "fast food", "tv"],
+      canvasBg: "#B91C1C",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-002",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-002-bg-text",
+            name: "StaticText",
+            type: "StaticText",
+            left: -200,
+            top: 100,
+            width: 2320,
+            height: 800,
+            fill: "#991B1B",
+            fontFamily: "Anton",
+            fontSize: 720,
+            lineHeight: 0.85,
+            textAlign: "center",
+            text: "KING"
+          },
+          {
+            id: "tv-002-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: -200,
+            top: -160,
+            width: 1300,
+            height: 1300,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -8,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-002-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 1620,
+            top: 60,
+            width: 561,
+            height: 800,
+            scaleX: 0.5,
+            scaleY: 0.4,
+            angle: 20,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1e3,
+            top: 240,
+            width: 800,
+            height: 60,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 52,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "THE ULTIMATE COMBO"
+          },
+          {
+            id: "tv-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 800,
+            top: 320,
+            width: 1e3,
+            height: 400,
+            fill: "#FFFFFF",
+            fontFamily: "Anton",
+            fontSize: 280,
+            lineHeight: 0.9,
+            textAlign: "right",
+            text: "DOUBLE\nSTACK"
+          },
+          {
+            id: "tv-002-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1e3,
+            top: 860,
+            width: 800,
+            height: 120,
+            fill: "#FACC15",
+            fontFamily: "Anton",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "right",
+            text: "$12.99"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-003",
+      name: "Tropical Escape",
+      categoryId: "tv-ads",
+      tags: ["travel", "vacation", "resort", "hotel", "tv", "beach"],
+      canvasBg: "#0EA5E9",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-003",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-003-bg",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.7,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-003-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 200,
+            width: 1720,
+            height: 60,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "BOOK BY MAY 31  \xB7  TRAVEL ALL SUMMER"
+          },
+          {
+            id: "tv-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 280,
+            width: 1200,
+            height: 480,
+            fill: "#FFFFFF",
+            fontFamily: "Playfair Display",
+            fontSize: 300,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "Escape.\nReset."
+          },
+          {
+            id: "tv-003-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 820,
+            width: 1200,
+            height: 100,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 64,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "FROM $499 PP  \xB7  3 NIGHTS  \xB7  ALL-INCLUSIVE"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-004",
+      name: "All-Terrain SUV",
+      categoryId: "tv-ads",
+      tags: ["auto", "car", "suv", "vehicle", "automotive"],
+      canvasBg: "#1C1917",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-004",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-004-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.7,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-004-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 180,
+            width: 1720,
+            height: 60,
+            fill: "#FBBF24",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "THE ALL-NEW 2026 SUV"
+          },
+          {
+            id: "tv-004-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 260,
+            width: 1720,
+            height: 480,
+            fill: "#FFFFFF",
+            fontFamily: "Bebas Neue",
+            fontSize: 320,
+            lineHeight: 0.88,
+            textAlign: "left",
+            text: "EVERY ROAD\nYOURS."
+          },
+          {
+            id: "tv-004-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 880,
+            width: 1720,
+            height: 80,
+            fill: "#FBBF24",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FROM $39,990  \xB7  0% APR FOR 60 MONTHS"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-005",
+      name: "Streaming Premiere",
+      categoryId: "tv-ads",
+      tags: ["movie", "series", "streaming", "entertainment", "premiere"],
+      canvasBg: "#09090B",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-005",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-005-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.45,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-005-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 280,
+            width: 1720,
+            height: 60,
+            fill: "#EF4444",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "A NEW ORIGINAL SERIES  \xB7  STREAMING NOW"
+          },
+          {
+            id: "tv-005-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 360,
+            width: 1920,
+            height: 360,
+            fill: "#FAFAFA",
+            fontFamily: "Anton",
+            fontSize: 320,
+            lineHeight: 0.92,
+            textAlign: "center",
+            text: "THE LAST CITY"
+          },
+          {
+            id: "tv-005-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 800,
+            width: 1720,
+            height: 60,
+            fill: "#9CA3AF",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "All episodes available on stream.example"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-006",
+      name: "Morning Brew Cafe",
+      categoryId: "tv-ads",
+      tags: ["coffee", "cafe", "drink", "morning", "restaurant"],
+      canvasBg: "#1A0F0A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-006",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-006-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: 1e3,
+            top: -200,
+            width: 1300,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -4,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-006-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 240,
+            width: 900,
+            height: 60,
+            fill: "#C9986C",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "SLOW-BREWED  \xB7  SINGLE ORIGIN"
+          },
+          {
+            id: "tv-006-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 320,
+            width: 1100,
+            height: 460,
+            fill: "#F5E6D3",
+            fontFamily: "Playfair Display",
+            fontSize: 240,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "Morning,\nMade slow."
+          },
+          {
+            id: "tv-006-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 860,
+            width: 900,
+            height: 100,
+            fill: "#C9986C",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "$4.50 / CUP  \xB7  EVERY DAY 6 AM"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-007",
+      name: "Gaming Drop",
+      categoryId: "tv-ads",
+      tags: ["gaming", "console", "tech", "entertainment"],
+      canvasBg: "#4C1D95",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-007",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-007-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.5,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-007-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 220,
+            width: 1720,
+            height: 60,
+            fill: "#2DD4BF",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "NEXT-GEN  \xB7  AVAILABLE NOW"
+          },
+          {
+            id: "tv-007-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 300,
+            width: 1720,
+            height: 480,
+            fill: "#FAFAFA",
+            fontFamily: "Anton",
+            fontSize: 320,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "PLAY ON."
+          },
+          {
+            id: "tv-007-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 880,
+            width: 1720,
+            height: 80,
+            fill: "#2DD4BF",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "FROM $499  \xB7  IN STORES NATIONWIDE"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-008",
+      name: "Winter Wear",
+      categoryId: "tv-ads",
+      tags: ["apparel", "fashion", "winter", "clothes", "retail"],
+      canvasBg: "#E0F2FE",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-008",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-008-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&h=1400&fit=crop&q=85&auto=format",
+            left: 900,
+            top: -200,
+            width: 1400,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 6,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-008-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 240,
+            width: 900,
+            height: 60,
+            fill: "#0369A1",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "WINTER COLLECTION  \xB7  DELIVERY 01"
+          },
+          {
+            id: "tv-008-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 320,
+            width: 1e3,
+            height: 460,
+            fill: "#0C4A6E",
+            fontFamily: "Playfair Display",
+            fontSize: 240,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "Cold\nweather,\nwarm."
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-009",
+      name: "Dream Home",
+      categoryId: "tv-ads",
+      tags: ["real estate", "home", "property", "luxury"],
+      canvasBg: "#FFFFFF",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-009",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-009-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-009-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 760,
+            width: 800,
+            height: 50,
+            fill: "#57534E",
+            fontFamily: "Lato",
+            fontSize: 30,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "OAK HILL ESTATE  \xB7  PRIVATE OFFERING"
+          },
+          {
+            id: "tv-009-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 820,
+            width: 1e3,
+            height: 200,
+            fill: "#1C1917",
+            fontFamily: "Playfair Display",
+            fontSize: 140,
+            lineHeight: 1,
+            textAlign: "left",
+            text: "$2,495,000"
+          },
+          {
+            id: "tv-009-meta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1100,
+            top: 880,
+            width: 720,
+            height: 60,
+            fill: "#1C1917",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "5 BD  \xB7  4 BA  \xB7  4,200 SQ FT"
+          },
+          {
+            id: "tv-009-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 1100,
+            top: 940,
+            width: 720,
+            height: 50,
+            fill: "#57534E",
+            fontFamily: "Lato",
+            fontSize: 28,
+            lineHeight: 1.2,
+            textAlign: "right",
+            text: "SCHEDULE A PRIVATE TOUR  \u2192"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-010",
+      name: "Weekend Supermarket Deal",
+      categoryId: "tv-ads",
+      tags: ["supermarket", "groceries", "deal", "food", "sale"],
+      canvasBg: "#FACC15",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-010",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-010-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.3,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-010-thunder",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
+            left: 80,
+            top: 80,
+            width: 561,
+            height: 800,
+            scaleX: 0.5,
+            scaleY: 0.4,
+            angle: -18,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "tv-010-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 220,
+            width: 1720,
+            height: 60,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 48,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2605 FRIDAY \xB7 SATURDAY \xB7 SUNDAY \u2605"
+          },
+          {
+            id: "tv-010-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 320,
+            width: 1920,
+            height: 460,
+            fill: "#B91C1C",
+            fontFamily: "Anton",
+            fontSize: 360,
+            lineHeight: 0.9,
+            textAlign: "center",
+            text: "BIG WEEKEND\nSAVINGS"
+          },
+          {
+            id: "tv-010-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 880,
+            width: 1720,
+            height: 60,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Up to 50% off across produce, pantry & frozen"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-011",
+      name: "Bank Cashback",
+      categoryId: "tv-ads",
+      tags: ["bank", "credit card", "finance", "cashback"],
+      canvasBg: "#1E3A8A",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-011",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-011-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
             opacity: 0.35,
             originX: "left",
             originY: "top",
             metadata: {}
           },
           {
-            id: "ar-001-sticker",
+            id: "tv-011-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 240,
+            width: 1720,
+            height: 60,
+            fill: "#93C5FD",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "THE NEW EVERYDAY CARD"
+          },
+          {
+            id: "tv-011-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 320,
+            width: 1920,
+            height: 460,
+            fill: "#DBEAFE",
+            fontFamily: "Bebas Neue",
+            fontSize: 360,
+            lineHeight: 0.9,
+            textAlign: "center",
+            text: "5% CASHBACK\nEVERYWHERE."
+          },
+          {
+            id: "tv-011-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 900,
+            width: 1720,
+            height: 60,
+            fill: "#BFDBFE",
+            fontFamily: "Lato",
+            fontSize: 32,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "Apply in 2 minutes  \xB7  No annual fee  \xB7  bank.example"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "tv-012",
+      name: "Modern Furniture",
+      categoryId: "tv-ads",
+      tags: ["furniture", "home", "interior", "design"],
+      canvasBg: "#F5E6D3",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-tv-012",
+        frame: { width: 1920, height: 1080 },
+        layers: [
+          {
+            id: "tv-012-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png",
-            left: 60,
-            top: 140,
-            width: 800,
-            height: 800,
-            scaleX: 0.275,
-            scaleY: 0.275,
-            angle: -15,
+            src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&h=1080&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1920,
+            height: 1080,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
             opacity: 1,
             originX: "left",
             originY: "top",
             metadata: {}
           },
           {
-            id: "ar-001-title",
+            id: "tv-012-eyebrow",
             name: "StaticText",
             type: "StaticText",
-            left: 80,
-            top: 380,
-            width: 920,
-            height: 220,
-            fill: "#FEF3C7",
-            fontFamily: "Lato",
-            fontSize: 130,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "OFERTAS DE NATAL"
-          },
-          {
-            id: "ar-001-date",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 620,
-            width: 920,
+            left: 100,
+            top: 180,
+            width: 800,
             height: 50,
-            fill: "#FECACA",
+            fill: "#92400E",
             fontFamily: "Lato",
-            fontSize: 32,
+            fontSize: 34,
             lineHeight: 1.2,
-            textAlign: "center",
-            text: "Valid 12/20 \u2014 12/26"
+            textAlign: "left",
+            text: "DESIGN STORE  \xB7  EST. 2012"
           },
           {
-            id: "ar-001-polaroid",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 240,
-            top: 740,
-            width: 657,
-            height: 800,
-            scaleX: 0.91324200913242,
-            scaleY: 0.9,
-            angle: -3,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product photo"
-            }
-          },
-          {
-            id: "ar-001-pricelabel",
+            id: "tv-012-title",
             name: "StaticText",
             type: "StaticText",
-            left: 80,
-            top: 1540,
-            width: 920,
+            left: 100,
+            top: 240,
+            width: 900,
+            height: 460,
+            fill: "#451A03",
+            fontFamily: "Playfair Display",
+            fontSize: 240,
+            lineHeight: 0.92,
+            textAlign: "left",
+            text: "Live\nmodern."
+          },
+          {
+            id: "tv-012-cta",
+            name: "StaticText",
+            type: "StaticText",
+            left: 100,
+            top: 880,
+            width: 800,
             height: 60,
-            fill: "#FEF3C7",
+            fill: "#92400E",
             fontFamily: "Lato",
-            fontSize: 42,
+            fontSize: 36,
             lineHeight: 1.2,
-            textAlign: "center",
-            text: "FROM"
-          },
-          {
-            id: "ar-001-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1610,
-            width: 920,
-            height: 200,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "$13.89"
+            textAlign: "left",
+            text: "Open daily  \xB7  220 Atelier Lane"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
-      id: "ar-002",
-      name: "Black Friday",
+      id: "ar-001",
+      name: "Black Friday Mega",
       categoryId: "ads-retail",
-      tags: [
-        "black friday",
-        "sale",
-        "discount",
-        "retail"
-      ],
+      tags: ["black friday", "sale", "discount", "retail"],
       canvasBg: "#0A0A0A",
       workspaceBg: "#f5f5f5",
       scene: {
-        id: "tpl-ar-002",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
+        id: "tpl-ar-001",
+        frame: { width: 1080, height: 1920 },
         layers: [
           {
-            id: "ar-002-thunder1",
+            id: "ar-001-thunder1",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
@@ -8140,25 +11557,25 @@ var templates_data_default = {
             top: 80,
             width: 561,
             height: 800,
-            scaleX: 0.5704099821746881,
-            scaleY: 0.4,
-            angle: -20,
+            scaleX: 0.6,
+            scaleY: 0.5,
+            angle: -22,
             opacity: 1,
             originX: "left",
             originY: "top",
             metadata: {}
           },
           {
-            id: "ar-002-thunder2",
+            id: "ar-001-thunder2",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
-            left: 800,
-            top: 1480,
+            left: 760,
+            top: 1380,
             width: 561,
             height: 800,
-            scaleX: 0.5704099821746881,
-            scaleY: 0.4,
+            scaleX: 0.6,
+            scaleY: 0.5,
             angle: 25,
             opacity: 1,
             originX: "left",
@@ -8166,11 +11583,11 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "ar-002-eyebrow",
+            id: "ar-001-eyebrow",
             name: "StaticText",
             type: "StaticText",
             left: 80,
-            top: 480,
+            top: 460,
             width: 920,
             height: 60,
             fill: "#FACC15",
@@ -8181,82 +11598,285 @@ var templates_data_default = {
             text: "\u2605 ONE DAY ONLY \u2605"
           },
           {
-            id: "ar-002-title",
+            id: "ar-001-title",
             name: "StaticText",
             type: "StaticText",
-            left: 40,
-            top: 580,
-            width: 1e3,
-            height: 320,
+            left: 0,
+            top: 560,
+            width: 1080,
+            height: 380,
             fill: "#FACC15",
-            fontFamily: "Lato",
-            fontSize: 220,
-            lineHeight: 0.95,
+            fontFamily: "Anton",
+            fontSize: 280,
+            lineHeight: 0.92,
             textAlign: "center",
             text: "BLACK\nFRIDAY"
           },
           {
-            id: "ar-002-discount",
+            id: "ar-001-discount",
             name: "StaticText",
             type: "StaticText",
-            left: 80,
-            top: 960,
-            width: 920,
-            height: 280,
+            left: 0,
+            top: 1e3,
+            width: 1080,
+            height: 360,
             fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 280,
+            fontFamily: "Anton",
+            fontSize: 360,
             lineHeight: 1,
             textAlign: "center",
             text: "70% OFF"
           },
           {
-            id: "ar-002-polaroid",
+            id: "ar-001-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1740,
+            width: 920,
+            height: 80,
+            fill: "#FACC15",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "STOREWIDE  \xB7  NOV 28"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ar-002",
+      name: "BOGO Flash",
+      categoryId: "ads-retail",
+      tags: ["bogo", "sale", "discount", "retail", "flyer"],
+      canvasBg: "#FACC15",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-ar-002",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "ar-002-megaphone",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 290,
-            top: 1300,
-            width: 657,
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png",
+            left: 60,
+            top: 200,
+            width: 800,
             height: 800,
-            scaleX: 0.76103500761035,
-            scaleY: 0.75,
-            angle: 2,
+            scaleX: 0.55,
+            scaleY: 0.55,
+            angle: -18,
             opacity: 1,
             originX: "left",
             originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product photo"
-            }
+            metadata: {}
+          },
+          {
+            id: "ar-002-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 720,
+            width: 920,
+            height: 60,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 44,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "WEEKEND ONLY  \xB7  ENDS SUNDAY"
+          },
+          {
+            id: "ar-002-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 820,
+            width: 1080,
+            height: 400,
+            fill: "#7F1D1D",
+            fontFamily: "Anton",
+            fontSize: 320,
+            lineHeight: 0.9,
+            textAlign: "center",
+            text: "BUY 1\nGET 1"
+          },
+          {
+            id: "ar-002-discount",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1280,
+            width: 1080,
+            height: 220,
+            fill: "#FFFFFF",
+            fontFamily: "Anton",
+            fontSize: 200,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "FREE"
+          },
+          {
+            id: "ar-002-foot",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1740,
+            width: 920,
+            height: 100,
+            fill: "#7F1D1D",
+            fontFamily: "Lato",
+            fontSize: 36,
+            lineHeight: 1.3,
+            textAlign: "center",
+            text: "On selected items in-store.\nVisit your nearest location."
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "ar-003",
-      name: "Mother's Day",
+      name: "Holiday Christmas",
       categoryId: "ads-retail",
-      tags: [
-        "mother's day",
-        "dia das maes",
-        "mom",
-        "flowers"
-      ],
-      canvasBg: "#FCE7F3",
+      tags: ["christmas", "holiday", "retail", "sale", "flyer"],
+      canvasBg: "#7F1D1D",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ar-003",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
+        frame: { width: 1080, height: 1920 },
         layers: [
           {
-            id: "ar-003-floral-1",
+            id: "ar-003-floral",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg",
+            left: -60,
+            top: -60,
+            width: 420,
+            height: 420,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.4,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-003-floral2",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_05.svg",
+            left: 720,
+            top: 1560,
+            width: 420,
+            height: 420,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 180,
+            opacity: 0.4,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-003-photo",
+            name: "StaticImage",
+            type: "StaticImage",
+            src: "https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=1200&h=1200&fit=crop&q=85&auto=format",
+            left: 140,
+            top: 760,
+            width: 800,
+            height: 800,
+            scaleX: 1,
+            scaleY: 1,
+            angle: -3,
+            opacity: 1,
+            originX: "left",
+            originY: "top",
+            metadata: {}
+          },
+          {
+            id: "ar-003-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 220,
+            width: 920,
+            height: 50,
+            fill: "#FCA5A5",
+            fontFamily: "Lato",
+            fontSize: 38,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "\u2605 THE HOLIDAY EDIT \u2605"
+          },
+          {
+            id: "ar-003-title",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 300,
+            width: 1080,
+            height: 380,
+            fill: "#FEF3C7",
+            fontFamily: "Playfair Display",
+            fontSize: 220,
+            lineHeight: 0.95,
+            textAlign: "center",
+            text: "Christmas\nOffers."
+          },
+          {
+            id: "ar-003-price-label",
+            name: "StaticText",
+            type: "StaticText",
+            left: 80,
+            top: 1620,
+            width: 920,
+            height: 60,
+            fill: "#FCA5A5",
+            fontFamily: "Lato",
+            fontSize: 40,
+            lineHeight: 1.2,
+            textAlign: "center",
+            text: "GIFTS FROM"
+          },
+          {
+            id: "ar-003-price",
+            name: "StaticText",
+            type: "StaticText",
+            left: 0,
+            top: 1690,
+            width: 1080,
+            height: 200,
+            fill: "#FFFFFF",
+            fontFamily: "Playfair Display",
+            fontSize: 180,
+            lineHeight: 1,
+            textAlign: "center",
+            text: "$13.89"
+          }
+        ],
+        metadata: { animated: false }
+      }
+    },
+    {
+      id: "ar-004",
+      name: "Mother's Day",
+      categoryId: "ads-retail",
+      tags: ["mother's day", "holiday", "flowers", "gift"],
+      canvasBg: "#FCE7F3",
+      workspaceBg: "#f5f5f5",
+      scene: {
+        id: "tpl-ar-004",
+        frame: { width: 1080, height: 1920 },
+        layers: [
+          {
+            id: "ar-004-floral-1",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg",
@@ -8273,7 +11893,7 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "ar-003-floral-2",
+            id: "ar-004-floral-2",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
@@ -8290,7 +11910,7 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "ar-003-heart",
+            id: "ar-004-heart",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg",
@@ -8307,7 +11927,7 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "ar-003-eyebrow",
+            id: "ar-004-eyebrow",
             name: "StaticText",
             type: "StaticText",
             left: 80,
@@ -8322,233 +11942,61 @@ var templates_data_default = {
             text: "WITH LOVE"
           },
           {
-            id: "ar-003-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 720,
-            width: 920,
-            height: 260,
-            fill: "#9D174D",
-            fontFamily: "Lato",
-            fontSize: 130,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "DIA DAS M\xC3ES"
-          },
-          {
-            id: "ar-003-polaroid",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 240,
-            top: 1020,
-            width: 657,
-            height: 800,
-            scaleX: 0.91324200913242,
-            scaleY: 0.9,
-            angle: -4,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Gift photo"
-            }
-          },
-          {
-            id: "ar-003-cta",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1800,
-            width: 920,
-            height: 60,
-            fill: "#9F1239",
-            fontFamily: "Lato",
-            fontSize: 38,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "Shop the collection \u2192"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "ar-004",
-      name: "Weekend Special",
-      categoryId: "ads-retail",
-      tags: [
-        "weekend",
-        "sale",
-        "multi-product",
-        "flyer"
-      ],
-      canvasBg: "#FACC15",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-ar-004",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "ar-004-rainbow",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png",
-            left: 720,
-            top: 60,
-            width: 801,
-            height: 565,
-            scaleX: 0.3995006242197253,
-            scaleY: 0.5663716814159292,
-            angle: 10,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
             id: "ar-004-title",
             name: "StaticText",
             type: "StaticText",
-            left: 60,
-            top: 200,
-            width: 1e3,
-            height: 320,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 0.92,
-            textAlign: "left",
-            text: "WEEKEND\nSPECIAL"
-          },
-          {
-            id: "ar-004-date",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 540,
-            width: 1e3,
-            height: 50,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 34,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "FRI \xB7 SAT \xB7 SUN"
-          },
-          {
-            id: "ar-004-polaroid-1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 80,
-            top: 660,
-            width: 657,
-            height: 800,
-            scaleX: 0.669710806697108,
-            scaleY: 0.675,
-            angle: -5,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product A"
-            }
-          },
-          {
-            id: "ar-004-polaroid-2",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 560,
+            left: 0,
             top: 720,
-            width: 657,
-            height: 800,
-            scaleX: 0.669710806697108,
-            scaleY: 0.675,
-            angle: 6,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product B"
-            }
-          },
-          {
-            id: "ar-004-pricebar",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1380,
-            width: 1e3,
-            height: 280,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 1,
+            width: 1080,
+            height: 380,
+            fill: "#9D174D",
+            fontFamily: "Dancing Script",
+            fontSize: 220,
+            lineHeight: 0.95,
             textAlign: "center",
-            text: "UP TO 40%"
+            text: "Happy\nMother's Day"
           },
           {
-            id: "ar-004-footer",
+            id: "ar-004-cta",
             name: "StaticText",
             type: "StaticText",
-            left: 60,
+            left: 80,
             top: 1740,
-            width: 1e3,
-            height: 50,
-            fill: "#7C2D12",
+            width: 920,
+            height: 80,
+            fill: "#9F1239",
             fontFamily: "Lato",
-            fontSize: 32,
+            fontSize: 42,
             lineHeight: 1.2,
             textAlign: "center",
-            text: "Selected items only"
+            text: "Shop the gift collection  \u2192"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "sm-001",
       name: "Mega Sale Promo",
       categoryId: "social-media",
-      tags: [
-        "sale",
-        "promo",
-        "instagram",
-        "square"
-      ],
+      tags: ["sale", "promo", "instagram", "square"],
       canvasBg: "#DC2626",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sm-001",
-        frame: {
-          width: 1080,
-          height: 1080
-        },
+        frame: { width: 1080, height: 1080 },
         layers: [
           {
             id: "sm-001-megaphone",
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_megaphone.png",
-            left: 740,
+            left: 700,
             top: 60,
             width: 800,
             height: 800,
-            scaleX: 0.35,
-            scaleY: 0.35,
+            scaleX: 0.42,
+            scaleY: 0.42,
             angle: 18,
             opacity: 1,
             originX: "left",
@@ -8556,97 +12004,65 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "sm-001-polaroid",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
+            id: "sm-001-eyebrow",
+            name: "StaticText",
+            type: "StaticText",
             left: 60,
-            top: 100,
-            width: 657,
-            height: 800,
-            scaleX: 0.730593607305936,
-            scaleY: 0.725,
-            angle: -5,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product photo"
-            }
+            top: 200,
+            width: 600,
+            height: 60,
+            fill: "#FEF3C7",
+            fontFamily: "Lato",
+            fontSize: 42,
+            lineHeight: 1.2,
+            textAlign: "left",
+            text: "ENDS SUNDAY"
           },
           {
             id: "sm-001-title",
             name: "StaticText",
             type: "StaticText",
             left: 60,
-            top: 740,
-            width: 960,
-            height: 200,
+            top: 280,
+            width: 1e3,
+            height: 380,
             fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "MEGA SALE"
+            fontFamily: "Anton",
+            fontSize: 280,
+            lineHeight: 0.88,
+            textAlign: "left",
+            text: "MEGA\nSALE."
           },
           {
             id: "sm-001-sub",
             name: "StaticText",
             type: "StaticText",
             left: 60,
-            top: 940,
+            top: 840,
             width: 960,
-            height: 60,
+            height: 80,
             fill: "#FECACA",
             fontFamily: "Lato",
-            fontSize: 42,
+            fontSize: 56,
             lineHeight: 1.2,
-            textAlign: "center",
-            text: "50% OFF \xB7 ENDS SUNDAY"
+            textAlign: "left",
+            text: "50% OFF EVERYTHING"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "sm-002",
       name: "New Drop",
       categoryId: "social-media",
-      tags: [
-        "new",
-        "drop",
-        "launch",
-        "minimal"
-      ],
+      tags: ["new", "drop", "launch", "minimal"],
       canvasBg: "#FEF3C7",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sm-002",
-        frame: {
-          width: 1080,
-          height: 1080
-        },
+        frame: { width: 1080, height: 1080 },
         layers: [
-          {
-            id: "sm-002-floral",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_02.svg",
-            left: -40,
-            top: 700,
-            width: 380,
-            height: 380,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.9,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
           {
             id: "sm-002-polaroid",
             name: "StaticImage",
@@ -8656,16 +12072,13 @@ var templates_data_default = {
             top: 90,
             width: 657,
             height: 800,
-            scaleX: 0.882800608828006,
-            scaleY: 0.875,
+            scaleX: 0.88,
+            scaleY: 0.88,
             angle: 6,
             opacity: 1,
             originX: "left",
             originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product photo"
-            }
+            metadata: { placeholder: true, label: "Product photo" }
           },
           {
             id: "sm-002-tape",
@@ -8676,7 +12089,7 @@ var templates_data_default = {
             top: 70,
             width: 786,
             height: 800,
-            scaleX: 0.3053435114503817,
+            scaleX: 0.3,
             scaleY: 0.1,
             angle: -8,
             opacity: 1,
@@ -8689,7 +12102,7 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 60,
-            top: 200,
+            top: 220,
             width: 380,
             height: 50,
             fill: "#92400E",
@@ -8697,20 +12110,20 @@ var templates_data_default = {
             fontSize: 34,
             lineHeight: 1.2,
             textAlign: "left",
-            text: "JUST LAUNCHED"
+            text: "JUST DROPPED"
           },
           {
             id: "sm-002-title",
             name: "StaticText",
             type: "StaticText",
             left: 60,
-            top: 280,
-            width: 380,
+            top: 300,
+            width: 400,
             height: 260,
             fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 120,
-            lineHeight: 1,
+            fontFamily: "Anton",
+            fontSize: 140,
+            lineHeight: 0.9,
             textAlign: "left",
             text: "NEW\nDROP"
           },
@@ -8730,28 +12143,19 @@ var templates_data_default = {
             text: "Available\nthis Friday."
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "sm-003",
       name: "Quote Card",
       categoryId: "social-media",
-      tags: [
-        "quote",
-        "minimal",
-        "dark"
-      ],
+      tags: ["quote", "minimal", "dark"],
       canvasBg: "#0F172A",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-sm-003",
-        frame: {
-          width: 1080,
-          height: 1080
-        },
+        frame: { width: 1080, height: 1080 },
         layers: [
           {
             id: "sm-003-light",
@@ -8762,10 +12166,10 @@ var templates_data_default = {
             top: 80,
             width: 540,
             height: 800,
-            scaleX: 0.37037037037037035,
-            scaleY: 0.25,
+            scaleX: 0.4,
+            scaleY: 0.3,
             angle: 0,
-            opacity: 1,
+            opacity: 0.7,
             originX: "left",
             originY: "top",
             metadata: {}
@@ -8775,12 +12179,12 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 100,
-            top: 360,
+            top: 340,
             width: 880,
-            height: 320,
+            height: 360,
             fill: "#F8FAFC",
-            fontFamily: "Lato",
-            fontSize: 72,
+            fontFamily: "Playfair Display",
+            fontSize: 84,
             lineHeight: 1.3,
             textAlign: "center",
             text: "\u201CDesign like\nnobody is watching.\u201D"
@@ -8790,7 +12194,7 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 100,
-            top: 760,
+            top: 780,
             width: 880,
             height: 50,
             fill: "#94A3B8",
@@ -8801,28 +12205,19 @@ var templates_data_default = {
             text: "\u2014 ANON"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "ps-001",
       name: "Grand Opening",
       categoryId: "posters",
-      tags: [
-        "opening",
-        "announcement",
-        "elegant"
-      ],
+      tags: ["opening", "announcement", "elegant"],
       canvasBg: "#FFFBEB",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ps-001",
-        frame: {
-          width: 1240,
-          height: 1754
-        },
+        frame: { width: 1240, height: 1754 },
         layers: [
           {
             id: "ps-001-floral-tl",
@@ -8831,8 +12226,8 @@ var templates_data_default = {
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_01.svg",
             left: -40,
             top: -40,
-            width: 360,
-            height: 360,
+            width: 380,
+            height: 380,
             scaleX: 1,
             scaleY: 1,
             angle: 0,
@@ -8846,10 +12241,10 @@ var templates_data_default = {
             name: "StaticImage",
             type: "StaticImage",
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_04.svg",
-            left: 880,
+            left: 860,
             top: 1400,
-            width: 380,
-            height: 380,
+            width: 400,
+            height: 400,
             scaleX: 1,
             scaleY: 1,
             angle: 180,
@@ -8868,7 +12263,7 @@ var templates_data_default = {
             height: 60,
             fill: "#92400E",
             fontFamily: "Lato",
-            fontSize: 38,
+            fontSize: 40,
             lineHeight: 1.2,
             textAlign: "center",
             text: "\u2605 EST. 2026 \u2605"
@@ -8880,86 +12275,74 @@ var templates_data_default = {
             left: 60,
             top: 480,
             width: 1120,
-            height: 360,
+            height: 460,
             fill: "#0F172A",
-            fontFamily: "Lato",
-            fontSize: 160,
-            lineHeight: 1,
+            fontFamily: "Playfair Display",
+            fontSize: 200,
+            lineHeight: 0.95,
             textAlign: "center",
-            text: "GRAND\nOPENING"
+            text: "Grand\nOpening."
           },
           {
-            id: "ps-001-polaroid",
+            id: "ps-001-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 320,
-            top: 880,
-            width: 657,
-            height: 800,
-            scaleX: 0.91324200913242,
-            scaleY: 0.9,
+            src: "https://images.unsplash.com/photo-1481833761820-0509d3217039?w=1200&h=900&fit=crop&q=85&auto=format",
+            left: 220,
+            top: 980,
+            width: 800,
+            height: 600,
+            scaleX: 1,
+            scaleY: 1,
             angle: 0,
             opacity: 1,
             originX: "left",
             originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Storefront photo"
-            }
+            metadata: {}
           },
           {
             id: "ps-001-cta",
             name: "StaticText",
             type: "StaticText",
             left: 100,
-            top: 1640,
+            top: 1620,
             width: 1040,
-            height: 60,
+            height: 80,
             fill: "#92400E",
             fontFamily: "Lato",
-            fontSize: 36,
+            fontSize: 42,
             lineHeight: 1.2,
             textAlign: "center",
-            text: "Saturday, March 15 \xB7 10AM"
+            text: "Saturday, March 15  \xB7  10 AM"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "ps-002",
-      name: "Sale Poster",
+      name: "Concert Poster",
       categoryId: "posters",
-      tags: [
-        "sale",
-        "promo",
-        "dramatic"
-      ],
-      canvasBg: "#FEE2E2",
+      tags: ["music", "concert", "event", "nightlife"],
+      canvasBg: "#4C1D95",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ps-002",
-        frame: {
-          width: 1240,
-          height: 1754
-        },
+        frame: { width: 1240, height: 1754 },
         layers: [
           {
-            id: "ps-002-thunder",
+            id: "ps-002-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
-            left: 880,
-            top: 80,
-            width: 561,
-            height: 800,
-            scaleX: 0.5704099821746881,
-            scaleY: 0.4,
-            angle: 15,
-            opacity: 1,
+            src: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1240&h=1400&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 1240,
+            height: 1400,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.55,
             originX: "left",
             originY: "top",
             metadata: {}
@@ -8969,89 +12352,60 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 100,
-            top: 320,
+            top: 240,
             width: 1040,
             height: 60,
-            fill: "#991B1B",
+            fill: "#22D3EE",
             fontFamily: "Lato",
             fontSize: 42,
             lineHeight: 1.2,
             textAlign: "center",
-            text: "LIMITED TIME"
+            text: "ONE NIGHT ONLY  \xB7  FRIDAY 9 PM"
           },
           {
             id: "ps-002-title",
             name: "StaticText",
             type: "StaticText",
-            left: 60,
-            top: 440,
-            width: 1120,
-            height: 380,
-            fill: "#7F1D1D",
-            fontFamily: "Lato",
-            fontSize: 280,
-            lineHeight: 0.95,
+            left: 0,
+            top: 360,
+            width: 1240,
+            height: 760,
+            fill: "#FAFAFA",
+            fontFamily: "Anton",
+            fontSize: 360,
+            lineHeight: 0.88,
             textAlign: "center",
-            text: "MEGA\nSALE"
+            text: "LIVE\nMUSIC\nNIGHT"
           },
           {
-            id: "ps-002-polaroid",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 320,
-            top: 880,
-            width: 657,
-            height: 800,
-            scaleX: 0.91324200913242,
-            scaleY: 0.825,
-            angle: -3,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Product photo"
-            }
-          },
-          {
-            id: "ps-002-price",
+            id: "ps-002-foot",
             name: "StaticText",
             type: "StaticText",
             left: 100,
-            top: 1580,
+            top: 1560,
             width: 1040,
-            height: 120,
-            fill: "#7F1D1D",
+            height: 80,
+            fill: "#FAFAFA",
             fontFamily: "Lato",
-            fontSize: 120,
-            lineHeight: 1,
+            fontSize: 44,
+            lineHeight: 1.2,
             textAlign: "center",
-            text: "FROM $9.99"
+            text: "THE ATELIER  \xB7  220 MAPLE AVE"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "ps-003",
       name: "Minimal Promo",
       categoryId: "posters",
-      tags: [
-        "minimal",
-        "modern",
-        "clean"
-      ],
+      tags: ["minimal", "modern", "clean"],
       canvasBg: "#F5F5F4",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-ps-003",
-        frame: {
-          width: 1240,
-          height: 1754
-        },
+        frame: { width: 1240, height: 1754 },
         layers: [
           {
             id: "ps-003-doodle",
@@ -9083,7 +12437,7 @@ var templates_data_default = {
             fontSize: 34,
             lineHeight: 1.2,
             textAlign: "left",
-            text: "VOL. 01 \xB7 2026"
+            text: "VOL. 01  \xB7  2026"
           },
           {
             id: "ps-003-title",
@@ -9092,40 +12446,37 @@ var templates_data_default = {
             left: 100,
             top: 340,
             width: 1040,
-            height: 360,
+            height: 480,
             fill: "#1C1917",
-            fontFamily: "Lato",
-            fontSize: 200,
+            fontFamily: "Abril Fatface",
+            fontSize: 220,
             lineHeight: 0.92,
             textAlign: "left",
             text: "less\nis\nmore."
           },
           {
-            id: "ps-003-polaroid",
+            id: "ps-003-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 380,
-            top: 900,
-            width: 657,
-            height: 800,
-            scaleX: 0.821917808219178,
-            scaleY: 0.8,
+            src: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1200&h=800&fit=crop&q=85&auto=format",
+            left: 200,
+            top: 980,
+            width: 840,
+            height: 600,
+            scaleX: 1,
+            scaleY: 1,
             angle: 0,
             opacity: 1,
             originX: "left",
             originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Hero image"
-            }
+            metadata: {}
           },
           {
             id: "ps-003-foot",
             name: "StaticText",
             type: "StaticText",
             left: 100,
-            top: 1600,
+            top: 1620,
             width: 1040,
             height: 80,
             fill: "#44403C",
@@ -9133,31 +12484,22 @@ var templates_data_default = {
             fontSize: 36,
             lineHeight: 1.3,
             textAlign: "left",
-            text: "A design quarterly\nstudio.example"
+            text: "A design quarterly  \xB7  studio.example"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "bn-001",
       name: "Summer Collection",
       categoryId: "banners",
-      tags: [
-        "summer",
-        "banner",
-        "wide"
-      ],
+      tags: ["summer", "banner", "wide", "fashion"],
       canvasBg: "#0EA5E9",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-bn-001",
-        frame: {
-          width: 1500,
-          height: 500
-        },
+        frame: { width: 1500, height: 500 },
         layers: [
           {
             id: "bn-001-doodle",
@@ -9177,78 +12519,66 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "bn-001-polaroid",
+            id: "bn-001-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 60,
-            top: 30,
-            width: 657,
-            height: 800,
-            scaleX: 0.578386605783866,
-            scaleY: 0.55,
-            angle: -7,
-            opacity: 1,
+            src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&h=500&fit=crop&q=85&auto=format",
+            left: 0,
+            top: 0,
+            width: 700,
+            height: 500,
+            scaleX: 1,
+            scaleY: 1,
+            angle: 0,
+            opacity: 0.9,
             originX: "left",
             originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Hero image"
-            }
+            metadata: {}
           },
           {
             id: "bn-001-title",
             name: "StaticText",
             type: "StaticText",
-            left: 500,
+            left: 740,
             top: 140,
-            width: 880,
-            height: 140,
+            width: 700,
+            height: 160,
             fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 110,
+            fontFamily: "Anton",
+            fontSize: 130,
             lineHeight: 1,
             textAlign: "left",
-            text: "SUMMER COLLECTION"
+            text: "SUMMER\nCOLLECTION"
           },
           {
             id: "bn-001-sub",
             name: "StaticText",
             type: "StaticText",
-            left: 500,
-            top: 300,
-            width: 880,
+            left: 740,
+            top: 350,
+            width: 700,
             height: 60,
             fill: "#E0F2FE",
             fontFamily: "Lato",
-            fontSize: 38,
+            fontSize: 36,
             lineHeight: 1.2,
             textAlign: "left",
-            text: "Fresh styles, breezy fits \u2014 shop now \u203A"
+            text: "Fresh styles, breezy fits \u2014 shop now  \u203A"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "bn-002",
       name: "BOGO Banner",
       categoryId: "banners",
-      tags: [
-        "bogo",
-        "discount",
-        "banner"
-      ],
+      tags: ["bogo", "discount", "banner", "sale"],
       canvasBg: "#FACC15",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-bn-002",
-        frame: {
-          width: 1500,
-          height: 500
-        },
+        frame: { width: 1500, height: 500 },
         layers: [
           {
             id: "bn-002-megaphone",
@@ -9259,8 +12589,8 @@ var templates_data_default = {
             top: 80,
             width: 800,
             height: 800,
-            scaleX: 0.4,
-            scaleY: 0.4,
+            scaleX: 0.45,
+            scaleY: 0.45,
             angle: -15,
             opacity: 1,
             originX: "left",
@@ -9274,11 +12604,11 @@ var templates_data_default = {
             left: 420,
             top: 80,
             width: 1020,
-            height: 200,
+            height: 240,
             fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 170,
-            lineHeight: 1,
+            fontFamily: "Anton",
+            fontSize: 180,
+            lineHeight: 0.95,
             textAlign: "left",
             text: "BUY 1 GET 1"
           },
@@ -9287,12 +12617,12 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 420,
-            top: 300,
+            top: 320,
             width: 1020,
             height: 60,
             fill: "#7C2D12",
             fontFamily: "Lato",
-            fontSize: 42,
+            fontSize: 44,
             lineHeight: 1.2,
             textAlign: "left",
             text: "ON ALL SELECTED ITEMS"
@@ -9302,7 +12632,7 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 420,
-            top: 380,
+            top: 400,
             width: 1020,
             height: 50,
             fill: "#7C2D12",
@@ -9313,28 +12643,19 @@ var templates_data_default = {
             text: "Ends Sunday at midnight."
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "cd-001",
       name: "Birthday Card",
       categoryId: "cards",
-      tags: [
-        "birthday",
-        "celebration",
-        "card"
-      ],
+      tags: ["birthday", "celebration", "card"],
       canvasBg: "#FCE7F3",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-cd-001",
-        frame: {
-          width: 1200,
-          height: 1200
-        },
+        frame: { width: 1200, height: 1200 },
         layers: [
           {
             id: "cd-001-floral-1",
@@ -9343,8 +12664,8 @@ var templates_data_default = {
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_06.svg",
             left: -40,
             top: -40,
-            width: 360,
-            height: 360,
+            width: 380,
+            height: 380,
             scaleX: 1,
             scaleY: 1,
             angle: 0,
@@ -9360,8 +12681,8 @@ var templates_data_default = {
             src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_08.svg",
             left: 880,
             top: 860,
-            width: 360,
-            height: 360,
+            width: 380,
+            height: 380,
             scaleX: 1,
             scaleY: 1,
             angle: 180,
@@ -9371,46 +12692,43 @@ var templates_data_default = {
             metadata: {}
           },
           {
-            id: "cd-001-polaroid",
+            id: "cd-001-photo",
             name: "StaticImage",
             type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 340,
-            top: 220,
-            width: 657,
-            height: 800,
-            scaleX: 0.791476407914764,
-            scaleY: 0.65,
+            src: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&h=700&fit=crop&q=85&auto=format",
+            left: 240,
+            top: 240,
+            width: 720,
+            height: 560,
+            scaleX: 1,
+            scaleY: 1,
             angle: -4,
             opacity: 1,
             originX: "left",
             originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Photo"
-            }
+            metadata: {}
           },
           {
             id: "cd-001-title",
             name: "StaticText",
             type: "StaticText",
-            left: 80,
-            top: 800,
-            width: 1040,
+            left: 0,
+            top: 850,
+            width: 1200,
             height: 200,
             fill: "#9D174D",
-            fontFamily: "Lato",
-            fontSize: 130,
+            fontFamily: "Dancing Script",
+            fontSize: 160,
             lineHeight: 1,
             textAlign: "center",
-            text: "HAPPY BIRTHDAY"
+            text: "Happy Birthday"
           },
           {
             id: "cd-001-sub",
             name: "StaticText",
             type: "StaticText",
             left: 80,
-            top: 1020,
+            top: 1060,
             width: 1040,
             height: 60,
             fill: "#BE185D",
@@ -9421,28 +12739,19 @@ var templates_data_default = {
             text: "Wishing you a sweet year ahead \u{1F382}"
           }
         ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     },
     {
       id: "cd-002",
       name: "Save the Date",
       categoryId: "cards",
-      tags: [
-        "wedding",
-        "invite",
-        "save the date"
-      ],
+      tags: ["wedding", "invite", "save the date"],
       canvasBg: "#FFE4E6",
       workspaceBg: "#f5f5f5",
       scene: {
         id: "tpl-cd-002",
-        frame: {
-          width: 1200,
-          height: 1200
-        },
+        frame: { width: 1200, height: 1200 },
         layers: [
           {
             id: "cd-002-floral-1",
@@ -9497,13 +12806,13 @@ var templates_data_default = {
             id: "cd-002-title",
             name: "StaticText",
             type: "StaticText",
-            left: 80,
+            left: 0,
             top: 400,
-            width: 1040,
-            height: 200,
+            width: 1200,
+            height: 240,
             fill: "#881337",
-            fontFamily: "Lato",
-            fontSize: 140,
+            fontFamily: "Dancing Script",
+            fontSize: 180,
             lineHeight: 1,
             textAlign: "center",
             text: "Save the Date"
@@ -9513,2587 +12822,33 @@ var templates_data_default = {
             name: "StaticText",
             type: "StaticText",
             left: 80,
-            top: 700,
+            top: 720,
             width: 1040,
             height: 80,
             fill: "#9F1239",
-            fontFamily: "Lato",
-            fontSize: 56,
+            fontFamily: "Playfair Display",
+            fontSize: 64,
             lineHeight: 1.2,
             textAlign: "center",
-            text: "ALEX & SAM"
+            text: "Alex & Sam"
           },
           {
             id: "cd-002-date",
             name: "StaticText",
             type: "StaticText",
             left: 80,
-            top: 820,
+            top: 840,
             width: 1040,
             height: 60,
             fill: "#9F1239",
             fontFamily: "Lato",
-            fontSize: 40,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "SEPTEMBER \xB7 14 \xB7 2026"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-001",
-      name: "Cafe Daily Brew",
-      categoryId: "signage",
-      tags: [
-        "cafe",
-        "coffee",
-        "food",
-        "restaurant",
-        "menu"
-      ],
-      canvasBg: "#FEF3C7",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-001",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-001-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=1200&fit=crop&q=80&auto=format",
-            left: -60,
-            top: 440,
-            width: 1200,
-            height: 1200,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -12,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-001-tape",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
-            left: 400,
-            top: 360,
-            width: 786,
-            height: 800,
-            scaleX: 0.3816793893129771,
-            scaleY: 0.125,
-            angle: -18,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-001-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 140,
-            width: 920,
-            height: 60,
-            fill: "#92400E",
-            fontFamily: "Lato",
-            fontSize: 42,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "\u2605 FRESHLY BREWED \u2605"
-          },
-          {
-            id: "sg-001-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: -80,
-            top: 180,
-            width: 1240,
-            height: 300,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "DAILY BREW"
-          },
-          {
-            id: "sg-001-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 660,
-            top: 1580,
-            width: 360,
-            height: 220,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 1,
-            textAlign: "right",
-            text: "$4.5"
-          },
-          {
-            id: "sg-001-sub",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1780,
-            width: 920,
-            height: 60,
-            fill: "#92400E",
-            fontFamily: "Lato",
-            fontSize: 36,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "Mon \u2014 Fri \xB7 7AM \u2013 11AM"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-002",
-      name: "Burger Special",
-      categoryId: "signage",
-      tags: [
-        "burger",
-        "food",
-        "restaurant",
-        "fast food",
-        "menu"
-      ],
-      canvasBg: "#B91C1C",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-002",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-002-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 0,
-            top: 120,
-            width: 1080,
-            height: 400,
-            fill: "#FEF3C7",
-            fontFamily: "Lato",
-            fontSize: 200,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "DOUBLE\nSTACK"
-          },
-          {
-            id: "sg-002-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=1400&h=1400&fit=crop&q=80&auto=format",
-            left: -200,
-            top: 500,
-            width: 1480,
-            height: 1480,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -15,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-002-thunder",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
-            left: 60,
-            top: 540,
-            width: 561,
-            height: 800,
-            scaleX: 0.5704099821746881,
-            scaleY: 0.4,
-            angle: 15,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-002-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1700,
-            width: 920,
-            height: 60,
-            fill: "#FACC15",
-            fontFamily: "Lato",
-            fontSize: 48,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "TODAY'S SPECIAL"
-          },
-          {
-            id: "sg-002-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1760,
-            width: 920,
-            height: 140,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 120,
-            lineHeight: 1,
-            textAlign: "left",
-            text: "$7.99"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-003",
-      name: "Fashion New Arrivals",
-      categoryId: "signage",
-      tags: [
-        "fashion",
-        "boutique",
-        "apparel",
-        "retail",
-        "store"
-      ],
-      canvasBg: "#0A0A0A",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-003",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-003-photo1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format",
-            left: -120,
-            top: -80,
-            width: 800,
-            height: 1e3,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -6,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-003-photo2",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1080&h=1200&fit=crop&q=80&auto=format",
-            left: 400,
-            top: 460,
-            width: 800,
-            height: 1e3,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 8,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-003-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1400,
-            width: 920,
-            height: 60,
-            fill: "#9CA3AF",
-            fontFamily: "Lato",
-            fontSize: 48,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "SS / 26"
-          },
-          {
-            id: "sg-003-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1480,
-            width: 960,
-            height: 280,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 170,
-            lineHeight: 0.92,
-            textAlign: "left",
-            text: "NEW\nARRIVALS"
-          },
-          {
-            id: "sg-003-cta",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1780,
-            width: 960,
-            height: 60,
-            fill: "#D4D4D8",
-            fontFamily: "Lato",
             fontSize: 38,
             lineHeight: 1.2,
-            textAlign: "right",
-            text: "SHOP IN-STORE NOW"
+            textAlign: "center",
+            text: "SEPTEMBER  \xB7  14  \xB7  2026"
           }
         ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-004",
-      name: "Spa Wellness",
-      categoryId: "signage",
-      tags: [
-        "spa",
-        "beauty",
-        "wellness",
-        "salon",
-        "skincare"
-      ],
-      canvasBg: "#FCE7F3",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-004",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-004-floral-bg",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
-            left: -300,
-            top: -300,
-            width: 1600,
-            height: 1600,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -20,
-            opacity: 0.15,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-004-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 280,
-            top: 600,
-            width: 840,
-            height: 1280,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 4,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-004-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 180,
-            width: 920,
-            height: 60,
-            fill: "#BE185D",
-            fontFamily: "Lato",
-            fontSize: 42,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "WELLNESS \xB7 CARE \xB7 BLOOM"
-          },
-          {
-            id: "sg-004-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 260,
-            width: 960,
-            height: 280,
-            fill: "#9D174D",
-            fontFamily: "Lato",
-            fontSize: 200,
-            lineHeight: 0.95,
-            textAlign: "left",
-            text: "RELAX\n& GLOW"
-          },
-          {
-            id: "sg-004-floral2",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_03.svg",
-            left: 60,
-            top: 700,
-            width: 320,
-            height: 320,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 45,
-            opacity: 0.9,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-004-cta",
-            name: "StaticText",
-            type: "StaticText",
-            left: -20,
-            top: 1600,
-            width: 460,
-            height: 160,
-            fill: "#9F1239",
-            fontFamily: "Lato",
-            fontSize: 60,
-            lineHeight: 1.3,
-            textAlign: "center",
-            text: "Book your\nsession"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-005",
-      name: "Gym Membership",
-      categoryId: "signage",
-      tags: [
-        "gym",
-        "fitness",
-        "membership",
-        "workout",
-        "sports"
-      ],
-      canvasBg: "#FACC15",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-005",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-005-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-005-thunder",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
-            left: 820,
-            top: 1120,
-            width: 561,
-            height: 800,
-            scaleX: 0.42780748663101603,
-            scaleY: 0.3,
-            angle: 18,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-005-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1200,
-            width: 920,
-            height: 60,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 42,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "NEW YEAR \xB7 NEW YOU"
-          },
-          {
-            id: "sg-005-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1300,
-            width: 960,
-            height: 280,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 0.92,
-            textAlign: "center",
-            text: "GET FIT\nNOW"
-          },
-          {
-            id: "sg-005-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1640,
-            width: 960,
-            height: 180,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 140,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "$29 / MONTH"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-006",
-      name: "Real Estate Open House",
-      categoryId: "signage",
-      tags: [
-        "real estate",
-        "house",
-        "property",
-        "open house",
-        "listing"
-      ],
-      canvasBg: "#0F172A",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-006",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-006-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-006-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1200,
-            width: 920,
-            height: 60,
-            fill: "#FBBF24",
-            fontFamily: "Lato",
-            fontSize: 42,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "\u2605 THIS SATURDAY \u2605"
-          },
-          {
-            id: "sg-006-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1300,
-            width: 960,
-            height: 280,
-            fill: "#FAFAFA",
-            fontFamily: "Lato",
-            fontSize: 160,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "OPEN\nHOUSE"
-          },
-          {
-            id: "sg-006-address",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1660,
-            width: 960,
-            height: 60,
-            fill: "#FAFAFA",
-            fontFamily: "Lato",
-            fontSize: 44,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "224 ELM STREET"
-          },
-          {
-            id: "sg-006-time",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1740,
-            width: 960,
-            height: 60,
-            fill: "#94A3B8",
-            fontFamily: "Lato",
-            fontSize: 36,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "10 AM \u2014 2 PM \xB7 Sat May 24"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-007",
-      name: "Auto Showcase",
-      categoryId: "signage",
-      tags: [
-        "automotive",
-        "car",
-        "dealership",
-        "vehicle",
-        "financing"
-      ],
-      canvasBg: "#18181B",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-007",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-007-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-007-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1200,
-            width: 920,
-            height: 60,
-            fill: "#FBBF24",
-            fontFamily: "Lato",
-            fontSize: 40,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "PERFORMANCE \xB7 2026 EDITION"
-          },
-          {
-            id: "sg-007-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1300,
-            width: 960,
-            height: 280,
-            fill: "#FAFAFA",
-            fontFamily: "Lato",
-            fontSize: 170,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "DRIVE\nTODAY"
-          },
-          {
-            id: "sg-007-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1640,
-            width: 960,
-            height: 80,
-            fill: "#FBBF24",
-            fontFamily: "Lato",
-            fontSize: 64,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "0% APR \xB7 60 MO"
-          },
-          {
-            id: "sg-007-foot",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1760,
-            width: 960,
-            height: 60,
-            fill: "#A1A1AA",
-            fontFamily: "Lato",
-            fontSize: 32,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "Subject to approved credit"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-008",
-      name: "Travel Escape",
-      categoryId: "signage",
-      tags: [
-        "travel",
-        "vacation",
-        "beach",
-        "destination",
-        "tourism",
-        "hotel"
-      ],
-      canvasBg: "#0EA5E9",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-008",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-008-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-008-saturn",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/doodle/doodle_saturn.svg",
-            left: 820,
-            top: 1140,
-            width: 220,
-            height: 220,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -12,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-008-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1200,
-            width: 920,
-            height: 60,
-            fill: "#FEF3C7",
-            fontFamily: "Lato",
-            fontSize: 40,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "BOOK BY MAY 31"
-          },
-          {
-            id: "sg-008-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1300,
-            width: 960,
-            height: 280,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 200,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "ESCAPE"
-          },
-          {
-            id: "sg-008-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1620,
-            width: 960,
-            height: 140,
-            fill: "#FEF3C7",
-            fontFamily: "Lato",
-            fontSize: 110,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "FROM $499"
-          },
-          {
-            id: "sg-008-sub",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1780,
-            width: 960,
-            height: 60,
-            fill: "#E0F2FE",
-            fontFamily: "Lato",
-            fontSize: 34,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "3 nights \xB7 all-inclusive \xB7 per person"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-009",
-      name: "Pharmacy Health Check",
-      categoryId: "signage",
-      tags: [
-        "pharmacy",
-        "healthcare",
-        "clinic",
-        "health",
-        "medical"
-      ],
-      canvasBg: "#065F46",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-009",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-009-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-009-heart",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/hand/hand_heart.svg",
-            left: 60,
-            top: 1140,
-            width: 200,
-            height: 200,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -10,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-009-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1200,
-            width: 920,
-            height: 60,
-            fill: "#A7F3D0",
-            fontFamily: "Lato",
-            fontSize: 40,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "COMMUNITY HEALTH \xB7 MAY"
-          },
-          {
-            id: "sg-009-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1300,
-            width: 960,
-            height: 280,
-            fill: "#FAFAFA",
-            fontFamily: "Lato",
-            fontSize: 150,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "FREE\nHEALTH CHECK"
-          },
-          {
-            id: "sg-009-foot",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1660,
-            width: 960,
-            height: 60,
-            fill: "#A7F3D0",
-            fontFamily: "Lato",
-            fontSize: 44,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "Walk-ins welcome"
-          },
-          {
-            id: "sg-009-time",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1740,
-            width: 960,
-            height: 60,
-            fill: "#D1FAE5",
-            fontFamily: "Lato",
-            fontSize: 34,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "Sat May 24 \xB7 9 AM \u2013 5 PM"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-010",
-      name: "Tech Launch",
-      categoryId: "signage",
-      tags: [
-        "tech",
-        "electronics",
-        "gadget",
-        "launch",
-        "product"
-      ],
-      canvasBg: "#020617",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-010",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-010-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1080&h=1100&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-010-light",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
-            left: 800,
-            top: 1140,
-            width: 540,
-            height: 800,
-            scaleX: 0.4444444444444444,
-            scaleY: 0.3,
-            angle: 12,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-010-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1200,
-            width: 920,
-            height: 60,
-            fill: "#A78BFA",
-            fontFamily: "Lato",
-            fontSize: 42,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "AVAILABLE NOW"
-          },
-          {
-            id: "sg-010-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1300,
-            width: 960,
-            height: 360,
-            fill: "#FAFAFA",
-            fontFamily: "Lato",
-            fontSize: 170,
-            lineHeight: 0.92,
-            textAlign: "center",
-            text: "NEXT-GEN\nIS HERE"
-          },
-          {
-            id: "sg-010-cta",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1740,
-            width: 960,
-            height: 80,
-            fill: "#C4B5FD",
-            fontFamily: "Lato",
-            fontSize: 44,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "Visit us in-store \u2192"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-001",
-      name: "Smart Watch Promo",
-      categoryId: "tv-ads",
-      tags: [
-        "tech",
-        "watch",
-        "gadget",
-        "tv",
-        "horizontal"
-      ],
-      canvasBg: "#0F172A",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-001",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "tv-001-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=1920&h=1080&fit=crop&q=80&auto=format",
-            left: 600,
-            top: -200,
-            width: 1400,
-            height: 1400,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -10,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-001-light",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_light.png",
-            left: 600,
-            top: 100,
-            width: 540,
-            height: 800,
-            scaleX: 0.7407407407407407,
-            scaleY: 0.5,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-001-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 160,
-            width: 800,
-            height: 60,
-            fill: "#38BDF8",
-            fontFamily: "Lato",
-            fontSize: 48,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "INTRODUCING SERIES X"
-          },
-          {
-            id: "tv-001-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 240,
-            width: 1e3,
-            height: 400,
-            fill: "#F8FAFC",
-            fontFamily: "Lato",
-            fontSize: 260,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "TIME\nREDESIGNED"
-          },
-          {
-            id: "tv-001-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 780,
-            width: 800,
-            height: 120,
-            fill: "#38BDF8",
-            fontFamily: "Lato",
-            fontSize: 120,
-            lineHeight: 1,
-            textAlign: "left",
-            text: "FROM $299"
-          },
-          {
-            id: "tv-001-cta",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 920,
-            width: 800,
-            height: 60,
-            fill: "#94A3B8",
-            fontFamily: "Lato",
-            fontSize: 36,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "Available now at all major retailers"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-002",
-      name: "King Size Combo",
-      categoryId: "tv-ads",
-      tags: [
-        "food",
-        "burger",
-        "combo",
-        "fast food",
-        "tv"
-      ],
-      canvasBg: "#B91C1C",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-002",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "tv-002-bg",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/florals/florals_07.svg",
-            left: -200,
-            top: -400,
-            width: 2e3,
-            height: 2e3,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -15,
-            opacity: 0.1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-002-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=1920&h=1080&fit=crop&q=80&auto=format",
-            left: -200,
-            top: 0,
-            width: 1100,
-            height: 1100,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-002-thunder",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_thunder.png",
-            left: 740,
-            top: 120,
-            width: 561,
-            height: 800,
-            scaleX: 0.7130124777183601,
-            scaleY: 0.5,
-            angle: 25,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-002-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 1e3,
-            top: 240,
-            width: 800,
-            height: 60,
-            fill: "#FACC15",
-            fontFamily: "Lato",
-            fontSize: 52,
-            lineHeight: 1.2,
-            textAlign: "right",
-            text: "THE ULTIMATE MEAL"
-          },
-          {
-            id: "tv-002-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 800,
-            top: 320,
-            width: 1e3,
-            height: 400,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 280,
-            lineHeight: 0.9,
-            textAlign: "right",
-            text: "KING\nSIZE"
-          },
-          {
-            id: "tv-002-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 1e3,
-            top: 860,
-            width: 800,
-            height: 120,
-            fill: "#FACC15",
-            fontFamily: "Lato",
-            fontSize: 140,
-            lineHeight: 1,
-            textAlign: "right",
-            text: "$12.99"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-003",
-      name: "Summer Getaway",
-      categoryId: "tv-ads",
-      tags: [
-        "travel",
-        "vacation",
-        "resort",
-        "hotel",
-        "tv"
-      ],
-      canvasBg: "#0EA5E9",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-003",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "tv-003-bg",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1920&h=1080&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.4,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-003-polaroid",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/polaroid_frame.png",
-            left: 660,
-            top: 100,
-            width: 657,
-            height: 800,
-            scaleX: 1.06544901065449,
-            scaleY: 1.05,
-            angle: 4,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {
-              placeholder: true,
-              label: "Destination Photo"
-            }
-          },
-          {
-            id: "tv-003-tape",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
-            left: 900,
-            top: 40,
-            width: 786,
-            height: 800,
-            scaleX: 0.3816793893129771,
-            scaleY: 0.125,
-            angle: -12,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "tv-003-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 280,
-            width: 800,
-            height: 400,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "SUMMER\nVIBES"
-          },
-          {
-            id: "tv-003-price",
-            name: "StaticText",
-            type: "StaticText",
-            left: 1360,
-            top: 600,
-            width: 460,
-            height: 280,
-            fill: "#FEF3C7",
-            fontFamily: "Lato",
-            fontSize: 140,
-            lineHeight: 0.9,
-            textAlign: "right",
-            text: "BOOK\nNOW"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-011",
-      name: "Sneaker Drop",
-      categoryId: "signage",
-      tags: [
-        "shoes",
-        "sneakers",
-        "fashion",
-        "drop",
-        "retail"
-      ],
-      canvasBg: "#000000",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-011",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-011-title-bg",
-            name: "StaticText",
-            type: "StaticText",
-            left: -200,
-            top: 400,
-            width: 1480,
-            height: 600,
-            fill: "#1F2937",
-            fontFamily: "Lato",
-            fontSize: 380,
-            lineHeight: 0.85,
-            textAlign: "center",
-            text: "DROP\n01"
-          },
-          {
-            id: "sg-011-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1552346154-21d32810baa3?w=1200&h=1200&fit=crop&q=80&auto=format",
-            left: -100,
-            top: 300,
-            width: 1280,
-            height: 1280,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -18,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-011-rainbow",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/3Dstickers/3d_stickers_rainbow.png",
-            left: 80,
-            top: 120,
-            width: 801,
-            height: 565,
-            scaleX: 0.449438202247191,
-            scaleY: 0.6371681415929203,
-            angle: -15,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-011-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1480,
-            width: 920,
-            height: 60,
-            fill: "#D1D5DB",
-            fontFamily: "Lato",
-            fontSize: 48,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "EXCLUSIVE RELEASE"
-          },
-          {
-            id: "sg-011-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1580,
-            width: 960,
-            height: 200,
-            fill: "#F9FAFB",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "AIR MAX"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-012",
-      name: "Fitness Promo",
-      categoryId: "signage",
-      tags: [
-        "gym",
-        "fitness",
-        "workout",
-        "promo"
-      ],
-      canvasBg: "#DC2626",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-012",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "sg-012-photo",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1080&h=1920&fit=crop&q=80&auto=format",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1920,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.5,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-012-tape",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://cdn.jsdelivr.net/gh/fastlabai/design-editor/assets/stickers/craft/tape03.png",
-            left: -80,
-            top: 1400,
-            width: 786,
-            height: 800,
-            scaleX: 0.5089058524173028,
-            scaleY: 0.125,
-            angle: -5,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "sg-012-eyebrow",
-            name: "StaticText",
-            type: "StaticText",
-            left: 80,
-            top: 1420,
-            width: 920,
-            height: 60,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 44,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "JOIN THE MOVEMENT"
-          },
-          {
-            id: "sg-012-title",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1500,
-            width: 960,
-            height: 300,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "NO\nEXCUSES"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-013",
-      name: "Luxury Jewelry",
-      categoryId: "signage",
-      tags: [
-        "luxury",
-        "jewelry",
-        "boutique",
-        "fashion"
-      ],
-      canvasBg: "#020617",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-013",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1515562141207-7a8efd38cd33?w=1080&h=1920&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1920,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.6,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 200,
-            width: 960,
-            height: 300,
-            fill: "#FDE047",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "ELEGANCE"
-          },
-          {
-            id: "l3",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1600,
-            width: 960,
-            height: 60,
-            fill: "#FEF08A",
-            fontFamily: "Lato",
-            fontSize: 40,
-            lineHeight: 1.2,
-            textAlign: "center",
-            text: "THE NEW COLLECTION"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-014",
-      name: "Concert Event",
-      categoryId: "signage",
-      tags: [
-        "music",
-        "concert",
-        "event",
-        "nightlife"
-      ],
-      canvasBg: "#4C1D95",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-014",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1200&h=1200&fit=crop&q=80",
-            left: -100,
-            top: -100,
-            width: 1280,
-            height: 1280,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 15,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1100,
-            width: 960,
-            height: 400,
-            fill: "#22D3EE",
-            fontFamily: "Lato",
-            fontSize: 260,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "LIVE\nMUSIC"
-          },
-          {
-            id: "l3",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1640,
-            width: 960,
-            height: 80,
-            fill: "#F8FAFC",
-            fontFamily: "Lato",
-            fontSize: 60,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "FRIDAY 9PM"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "sg-015",
-      name: "Organic Market",
-      categoryId: "signage",
-      tags: [
-        "organic",
-        "food",
-        "market",
-        "grocery"
-      ],
-      canvasBg: "#14532D",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-sg-015",
-        frame: {
-          width: 1080,
-          height: 1920
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=1080&h=1920&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1080,
-            height: 1920,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.8,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 60,
-            top: 1500,
-            width: 960,
-            height: 200,
-            fill: "#BBF7D0",
-            fontFamily: "Lato",
-            fontSize: 160,
-            lineHeight: 0.95,
-            textAlign: "center",
-            text: "FARM\nFRESH"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-004",
-      name: "Auto SUV",
-      categoryId: "tv-ads",
-      tags: [
-        "auto",
-        "car",
-        "suv",
-        "vehicle"
-      ],
-      canvasBg: "#1C1917",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-004",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.7,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 100,
-            width: 1720,
-            height: 260,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 1,
-            textAlign: "left",
-            text: "CONQUER EVERY ROAD"
-          },
-          {
-            id: "l3",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 880,
-            width: 1720,
-            height: 60,
-            fill: "#D6D3D1",
-            fontFamily: "Lato",
-            fontSize: 40,
-            lineHeight: 1.2,
-            textAlign: "left",
-            text: "THE ALL NEW 2026 SUV"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-005",
-      name: "Streaming Series",
-      categoryId: "tv-ads",
-      tags: [
-        "movie",
-        "series",
-        "streaming",
-        "entertainment"
-      ],
-      canvasBg: "#09090B",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-005",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.5,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 0,
-            top: 400,
-            width: 1920,
-            height: 280,
-            fill: "#EF4444",
-            fontFamily: "Lato",
-            fontSize: 280,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "PREMIERES NOW"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-006",
-      name: "Iced Coffee",
-      categoryId: "tv-ads",
-      tags: [
-        "coffee",
-        "cafe",
-        "drink",
-        "morning"
-      ],
-      canvasBg: "#FCA5A5",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-006",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&h=1200&fit=crop&q=80",
-            left: -100,
-            top: -100,
-            width: 1200,
-            height: 1200,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -5,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 1100,
-            top: 300,
-            width: 700,
-            height: 400,
-            fill: "#7F1D1D",
-            fontFamily: "Lato",
-            fontSize: 200,
-            lineHeight: 0.9,
-            textAlign: "right",
-            text: "MORNING\nFUEL"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-007",
-      name: "Gaming Console",
-      categoryId: "tv-ads",
-      tags: [
-        "gaming",
-        "console",
-        "tech",
-        "entertainment"
-      ],
-      canvasBg: "#4C1D95",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-007",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.6,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 400,
-            width: 1e3,
-            height: 300,
-            fill: "#2DD4BF",
-            fontFamily: "Lato",
-            fontSize: 280,
-            lineHeight: 1,
-            textAlign: "left",
-            text: "PLAY HARD"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-008",
-      name: "Winter Apparel",
-      categoryId: "tv-ads",
-      tags: [
-        "apparel",
-        "fashion",
-        "winter",
-        "clothes"
-      ],
-      canvasBg: "#E0F2FE",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-008",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&h=1200&fit=crop&q=80",
-            left: 700,
-            top: -100,
-            width: 1400,
-            height: 1400,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 8,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 300,
-            width: 800,
-            height: 400,
-            fill: "#0369A1",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "WINTER\nIS HERE"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-009",
-      name: "Luxury Home",
-      categoryId: "tv-ads",
-      tags: [
-        "real estate",
-        "home",
-        "property",
-        "luxury"
-      ],
-      canvasBg: "#FFFFFF",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-009",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 800,
-            width: 800,
-            height: 160,
-            fill: "#1F2937",
-            fontFamily: "Lato",
-            fontSize: 140,
-            lineHeight: 1,
-            textAlign: "left",
-            text: "$2,400,000"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-010",
-      name: "Supermarket Deal",
-      categoryId: "tv-ads",
-      tags: [
-        "supermarket",
-        "groceries",
-        "deal",
-        "food"
-      ],
-      canvasBg: "#FACC15",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-010",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.3,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 200,
-            width: 1720,
-            height: 400,
-            fill: "#B91C1C",
-            fontFamily: "Lato",
-            fontSize: 320,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "BIG WEEKEND SALE"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-011",
-      name: "Laptop Tech",
-      categoryId: "tv-ads",
-      tags: [
-        "laptop",
-        "tech",
-        "computer",
-        "sale"
-      ],
-      canvasBg: "#F3F4F6",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-011",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200&h=1200&fit=crop&q=80",
-            left: -200,
-            top: 0,
-            width: 1200,
-            height: 1200,
-            scaleX: 1,
-            scaleY: 1,
-            angle: -10,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 1e3,
-            top: 400,
-            width: 800,
-            height: 300,
-            fill: "#111827",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 0.9,
-            textAlign: "right",
-            text: "WORK\nANYWHERE"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-012",
-      name: "Fragrance",
-      categoryId: "tv-ads",
-      tags: [
-        "perfume",
-        "fragrance",
-        "beauty"
-      ],
-      canvasBg: "#FDF2F8",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-012",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.7,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 400,
-            width: 1720,
-            height: 200,
-            fill: "#831843",
-            fontFamily: "Lato",
-            fontSize: 180,
-            lineHeight: 1,
-            textAlign: "center",
-            text: "EAU DE PARFUM"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-013",
-      name: "Credit Card",
-      categoryId: "tv-ads",
-      tags: [
-        "bank",
-        "credit card",
-        "finance"
-      ],
-      canvasBg: "#1E3A8A",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-013",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 0.4,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 300,
-            width: 1720,
-            height: 400,
-            fill: "#DBEAFE",
-            fontFamily: "Lato",
-            fontSize: 260,
-            lineHeight: 0.9,
-            textAlign: "center",
-            text: "5% CASHBACK\nEVERYWHERE"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-014",
-      name: "Album Release",
-      categoryId: "tv-ads",
-      tags: [
-        "music",
-        "album",
-        "release",
-        "artist"
-      ],
-      canvasBg: "#000000",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-014",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=1200&fit=crop&q=80",
-            left: 800,
-            top: -100,
-            width: 1300,
-            height: 1300,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 10,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 400,
-            width: 800,
-            height: 300,
-            fill: "#FFFFFF",
-            fontFamily: "Lato",
-            fontSize: 240,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "NEW\nALBUM"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
-      }
-    },
-    {
-      id: "tv-015",
-      name: "Furniture Store",
-      categoryId: "tv-ads",
-      tags: [
-        "furniture",
-        "home",
-        "interior"
-      ],
-      canvasBg: "#FEF3C7",
-      workspaceBg: "#f5f5f5",
-      scene: {
-        id: "tpl-tv-015",
-        frame: {
-          width: 1920,
-          height: 1080
-        },
-        layers: [
-          {
-            id: "l1",
-            name: "StaticImage",
-            type: "StaticImage",
-            src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&h=1080&fit=crop&q=80",
-            left: 0,
-            top: 0,
-            width: 1920,
-            height: 1080,
-            scaleX: 1,
-            scaleY: 1,
-            angle: 0,
-            opacity: 1,
-            originX: "left",
-            originY: "top",
-            metadata: {}
-          },
-          {
-            id: "l2",
-            name: "StaticText",
-            type: "StaticText",
-            left: 100,
-            top: 100,
-            width: 800,
-            height: 300,
-            fill: "#7C2D12",
-            fontFamily: "Lato",
-            fontSize: 200,
-            lineHeight: 0.9,
-            textAlign: "left",
-            text: "MODERN\nLIVING"
-          }
-        ],
-        metadata: {
-          animated: false
-        }
+        metadata: { animated: false }
       }
     }
   ]
@@ -12951,7 +13706,7 @@ function createDefaultFontProvider() {
     }
   };
 }
-var Context = React24.createContext({
+var Context = React45.createContext({
   zoomRatio: 1,
   activeObject: null,
   contextMenuRequest: null,
@@ -12972,12 +13727,12 @@ var Context = React24.createContext({
   }
 });
 var Provider = ({ children }) => {
-  const [zoomRatio, setZoomRatio] = React24.useState(1);
-  const [activeObject, setActiveObject] = React24.useState(null);
-  const [frame, setFrame] = React24.useState(null);
-  const [editor, setEditor] = React24.useState(null);
-  const [contextMenuRequest, setContextMenuRequest] = React24.useState(null);
-  const [objects, setObjects] = React24.useState([]);
+  const [zoomRatio, setZoomRatio] = React45.useState(1);
+  const [activeObject, setActiveObject] = React45.useState(null);
+  const [frame, setFrame] = React45.useState(null);
+  const [editor, setEditor] = React45.useState(null);
+  const [contextMenuRequest, setContextMenuRequest] = React45.useState(null);
+  const [objects, setObjects] = React45.useState([]);
   return /* @__PURE__ */ jsx(
     Context.Provider,
     {
@@ -13000,25 +13755,32 @@ var Provider = ({ children }) => {
   );
 };
 function useZoomRatio() {
-  const { zoomRatio } = React24__default.useContext(Context);
+  const { zoomRatio } = React45__default.useContext(Context);
   return zoomRatio;
 }
 function useEditor() {
-  const { editor } = React24__default.useContext(Context);
+  const { editor } = React45__default.useContext(Context);
   return editor;
 }
 function useObjects() {
-  const { objects } = React24__default.useContext(Context);
+  const { objects } = React45__default.useContext(Context);
   return objects;
 }
 function useActiveObject() {
-  const { activeObject } = React24__default.useContext(Context);
+  const { activeObject } = React45__default.useContext(Context);
   return activeObject;
 }
-var FrameObject = class extends fabric.Rect {
+var Frame = class _Frame extends Rect {
   static type = "Frame";
-  initialize(options) {
-    super.initialize({
+  get type() {
+    return "Frame";
+  }
+  // No-op setter — required so Fabric's _setOptions can write `type` during
+  // deserialization (loadFromJSON / enlivenObjects) without crashing.
+  set type(_value) {
+  }
+  constructor(options) {
+    super({
       ...options,
       selectable: false,
       hasControls: false,
@@ -13028,106 +13790,99 @@ var FrameObject = class extends fabric.Rect {
       padding: 0,
       evented: false
     });
-    return this;
   }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
-  static fromObject(options, callback) {
-    return callback && callback(new fabric.Frame(options));
+  static async fromObject(options) {
+    return new _Frame(options);
   }
 };
-fabric.Frame = fabric.util.createClass(FrameObject, {
-  type: FrameObject.type
-});
-fabric.Frame.fromObject = FrameObject.fromObject;
-var StaticTextObject = class extends fabric.Textbox {
+classRegistry.setClass(Frame, Frame.type);
+var StaticText = class _StaticText extends Textbox {
   static type = "StaticText";
+  get type() {
+    return "StaticText";
+  }
+  set type(_value) {
+  }
   fontURL;
-  initialize(options) {
+  constructor(options) {
     const { text, ...textOptions } = options;
-    super.initialize(text, { ...textOptions });
-    return this;
+    super(text, { ...textOptions });
+    if (options.fontURL) {
+      this.fontURL = options.fontURL;
+    }
   }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {
+    return {
+      ...super.toObject(propertiesToInclude),
       fontURL: this.fontURL
-      // keys: this.keys,
-      // originalText: originalText,
-      // metadata: this.metadata,
-    });
+    };
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {
+    return {
+      ...super.toObject(propertiesToInclude),
       fontURL: this.fontURL
-      // keys: this.keys,
-      // originalText: originalText,
-      // metadata: this.metadata,
-    });
+    };
   }
-  static fromObject(options, callback) {
-    return callback && callback(new fabric.StaticText(options));
+  static async fromObject(options) {
+    return new _StaticText(options);
   }
 };
-fabric.StaticText = fabric.util.createClass(StaticTextObject, {
-  type: StaticTextObject.type
-});
-fabric.StaticText.fromObject = StaticTextObject.fromObject;
-var StaticImageObject = class extends fabric.Image {
+classRegistry.setClass(StaticText, StaticText.type);
+var StaticImage = class _StaticImage extends FabricImage {
   static type = "StaticImage";
+  get type() {
+    return "StaticImage";
+  }
+  set type(_value) {
+  }
   role = "regular";
-  //@ts-ignore
-  initialize(element, options) {
-    this.role = element.role;
-    options.type = "StaticImage";
-    super.initialize(element, options);
-    return this;
+  constructor(element, options) {
+    super(element, options);
+    if (options.role) {
+      this.role = options.role;
+    }
   }
-  static fromObject(options, callback) {
-    fabric.util.loadImage(
-      options.src,
-      function(img) {
-        return callback && callback(new fabric.StaticImage(img, options));
-      },
-      null,
-      // @ts-ignore
-      { crossOrigin: "anonymous" }
-    );
+  static async fromObject(options) {
+    return new Promise((resolve, reject) => {
+      util.loadImage(options.src, { crossOrigin: "anonymous" }).then((img) => {
+        resolve(new _StaticImage(img, options));
+      }).catch(reject);
+    });
   }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
 };
-fabric.StaticImage = fabric.util.createClass(StaticImageObject, {
-  type: StaticImageObject.type
-});
-fabric.StaticImage.fromObject = StaticImageObject.fromObject;
+classRegistry.setClass(StaticImage, StaticImage.type);
 
 // src/engine/objects/StaticVector.ts
 var import_groupBy = __toESM(require_groupBy());
-var StaticVectorObject = class extends fabric.Group {
+var StaticVector = class _StaticVector extends Group {
   static type = "StaticVector";
+  get type() {
+    return "StaticVector";
+  }
+  set type(_value) {
+  }
   src;
   objectColors = {};
   colorMap = {};
-  updateLayerColor(prev, next) {
-    const sameObjects = this.objectColors[prev];
-    if (sameObjects) {
-      sameObjects.forEach((c) => {
-        c.fill = next;
-      });
-      this.canvas?.requestRenderAll();
-      this.colorMap[prev] = next;
-    }
-  }
-  //@ts-ignore
-  initialize(objects, options, others) {
+  constructor(objects, options, others) {
     const existingColorMap = others.colorMap;
     const objectColors = (0, import_groupBy.default)(objects, "fill");
     if (existingColorMap) {
@@ -13140,7 +13895,6 @@ var StaticVectorObject = class extends fabric.Group {
         }
       });
     }
-    this.objectColors = objectColors;
     const colorMap = {};
     Object.keys(objectColors).forEach((c) => {
       colorMap[c] = c;
@@ -13150,69 +13904,88 @@ var StaticVectorObject = class extends fabric.Group {
         colorMap[c] = existingColorMap[c];
       });
     }
+    super(objects, { ...options, ...others, colorMap });
+    this.objectColors = objectColors;
     this.colorMap = colorMap;
-    const object = fabric.util.groupSVGElements(objects, options);
-    super.initialize([object], { ...others, colorMap });
-    this.set("src", others.src);
-    return this;
+    this.src = others.src;
   }
+  updateLayerColor(prev, next) {
+    const sameObjects = this.objectColors[prev];
+    if (sameObjects) {
+      sameObjects.forEach((c) => {
+        c.fill = next;
+      });
+      this.canvas?.requestRenderAll();
+      this.colorMap[prev] = next;
+    }
+  }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
-    return super.toObject(propertiesToInclude, {
+    return {
+      ...super.toObject(propertiesToInclude),
       src: this.src
-    });
+    };
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
-    return super.toObject(propertiesToInclude, {
+    return {
+      ...super.toObject(propertiesToInclude),
       src: this.src
-    });
+    };
   }
-  static fromObject(options, callback) {
-    fabric.loadSVGFromURL(options.src, (objects, opts) => {
-      return callback && callback(new fabric.StaticVector(objects, opts, { ...options }));
+  static async fromObject(options) {
+    return new Promise((resolve, reject) => {
+      loadSVGFromURL(options.src).then(({ objects, options: svgOptions }) => {
+        resolve(new _StaticVector(objects, svgOptions, options));
+      }).catch(reject);
     });
   }
 };
-fabric.StaticVector = fabric.util.createClass(StaticVectorObject, {
-  type: StaticVectorObject.type
-});
-fabric.StaticVector.fromObject = StaticVectorObject.fromObject;
-var StaticPathObject = class extends fabric.Path {
+classRegistry.setClass(StaticVector, StaticVector.type);
+var StaticPath = class _StaticPath extends Path {
   static type = "StaticPath";
-  initialize(options) {
-    const { path: path2, ...pathOptions } = options;
-    super.initialize(path2, pathOptions);
-    return this;
+  get type() {
+    return "StaticPath";
   }
+  set type(_value) {
+  }
+  constructor(options) {
+    const { path: path2, ...pathOptions } = options;
+    super(path2, pathOptions);
+  }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
-  static fromObject(options, callback) {
-    return callback && callback(new fabric.StaticPath(options));
+  static async fromObject(options) {
+    return new _StaticPath(options);
   }
 };
-fabric.StaticPath = fabric.util.createClass(StaticPathObject, {
-  type: StaticPathObject.type
-});
-fabric.StaticPath.fromObject = StaticPathObject.fromObject;
+classRegistry.setClass(StaticPath, StaticPath.type);
 var defaultShadow = {
   blur: 10,
   color: "#C7C7C7",
   offsetX: 0,
   offsetY: 0
 };
-var BackgroundObject = class extends fabric.Rect {
+var Background = class _Background extends Rect {
   static type = "Background";
-  initialize(options) {
+  get type() {
+    return "Background";
+  }
+  set type(_value) {
+  }
+  constructor(options) {
     const shadowOptions = options.shadow ? options.shadow : defaultShadow;
-    const shadow = new fabric.Shadow({
+    const shadow = new Shadow({
       affectStroke: false,
-      // @ts-ignore
       ...shadowOptions
     });
-    super.initialize({
+    super({
       ...options,
       selectable: false,
       hasControls: false,
@@ -13225,33 +13998,34 @@ var BackgroundObject = class extends fabric.Rect {
       shadow
     });
     this.on("mouseup", ({ target }) => {
-      const activeSelection = this.canvas.getActiveObject();
+      const activeSelection = this.canvas?.getActiveObject();
       if (!activeSelection && target === this) {
-        this.canvas.fire("background:selected");
+        this.canvas?.fire("background:selected");
       }
     });
-    return this;
   }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
-  static fromObject(options, callback) {
-    return callback && callback(new fabric.Background(options));
+  static async fromObject(options) {
+    return new _Background(options);
   }
 };
-fabric.Background = fabric.util.createClass(BackgroundObject, {
-  type: BackgroundObject.type
-});
-fabric.Background.fromObject = BackgroundObject.fromObject;
-var BackgroundImageObject = class extends fabric.Image {
+classRegistry.setClass(Background, Background.type);
+var BackgroundImage = class _BackgroundImage extends FabricImage {
   static type = "BackgroundImage";
-  //@ts-ignore
-  initialize(element, options) {
-    options.type = "BackgroundImage";
-    super.initialize(element, {
+  get type() {
+    return "BackgroundImage";
+  }
+  set type(_value) {
+  }
+  constructor(element, options) {
+    super(element, {
       ...options,
       hasControls: false,
       lockMovementY: true,
@@ -13261,9 +14035,9 @@ var BackgroundImageObject = class extends fabric.Image {
       hasBorders: false
     });
     this.on("mouseup", ({ target }) => {
-      const activeSelection = this.canvas.getActiveObject();
+      const activeSelection = this.canvas?.getActiveObject();
       if (!activeSelection && target === this) {
-        this.canvas.fire("background:selected");
+        this.canvas?.fire("background:selected");
       }
     });
     this.on("mousedblclick", () => {
@@ -13273,43 +14047,40 @@ var BackgroundImageObject = class extends fabric.Image {
         lockMovementX: false,
         hasBorders: true
       });
-      this.canvas.setActiveObject(this);
-      this.canvas.requestRenderAll();
+      this.canvas?.setActiveObject(this);
+      this.canvas?.requestRenderAll();
     });
-    return this;
   }
-  static fromObject(options, callback) {
-    fabric.util.loadImage(
-      options.src,
-      function(img) {
-        return callback && callback(new fabric.BackgroundImage(img, options));
-      },
-      null,
-      // @ts-ignore
-      { crossOrigin: "anonymous" }
-    );
+  static async fromObject(options) {
+    return new Promise((resolve, reject) => {
+      util.loadImage(options.src, { crossOrigin: "anonymous" }).then((img) => {
+        resolve(new _BackgroundImage(img, options));
+      }).catch(reject);
+    });
   }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
     return super.toObject(propertiesToInclude);
   }
 };
-fabric.BackgroundImage = fabric.util.createClass(BackgroundImageObject, {
-  type: BackgroundImageObject.type
-});
-fabric.BackgroundImage.fromObject = BackgroundImageObject.fromObject;
-var StaticVideoObject = class extends fabric.Image {
+classRegistry.setClass(BackgroundImage, BackgroundImage.type);
+var StaticVideo = class extends FabricImage {
   static type = "StaticVideo";
-  initialize(video, options) {
+  get type() {
+    return "StaticVideo";
+  }
+  set type(_value) {
+  }
+  constructor(video, options) {
     const defaultOpts = {
       objectCaching: false,
       cacheProperties: ["time"]
     };
-    options = options || {};
-    super.initialize(video, Object.assign({}, defaultOpts, options));
-    return this;
+    super(video, Object.assign({}, defaultOpts, options || {}));
   }
   _draw(video, ctx, w, h) {
     const d = {
@@ -13321,22 +14092,31 @@ var StaticVideoObject = class extends fabric.Image {
     ctx.drawImage(video, d.x, d.y, d.w, d.h);
   }
   _render(ctx) {
-    this._draw(this.getElement(), ctx);
+    this._draw(this.getElement(), ctx, this.width, this.height);
   }
+  // @ts-ignore
   toObject(propertiesToInclude = []) {
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {});
+    return {
+      ...super.toObject(propertiesToInclude)
+    };
   }
+  // @ts-ignore
   toJSON(propertiesToInclude = []) {
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {});
+    return {
+      ...super.toObject(propertiesToInclude)
+    };
   }
 };
-fabric.StaticVideo = fabric.util.createClass(StaticVideoObject, {
-  type: StaticVideoObject.type
-});
-var StaticAudioObject = class extends fabric.Object {
+classRegistry.setClass(StaticVideo, StaticVideo.type);
+var StaticAudio = class _StaticAudio extends Object$1 {
   static type = "StaticAudio";
-  initialize(options) {
-    super.initialize({
+  get type() {
+    return "StaticAudio";
+  }
+  set type(_value) {
+  }
+  constructor(options) {
+    super({
       width: 0,
       height: 0,
       selectable: false,
@@ -13344,16 +14124,13 @@ var StaticAudioObject = class extends fabric.Object {
       visible: false,
       ...options
     });
-    return this;
   }
-  static fromObject(options, callback) {
-    return callback && callback(new fabric.StaticAudio(options));
+  // @ts-ignore
+  static async fromObject(options) {
+    return new _StaticAudio(options);
   }
 };
-fabric.StaticAudio = fabric.util.createClass(StaticAudioObject, {
-  type: StaticAudioObject.type
-});
-fabric.StaticAudio.fromObject = StaticAudioObject.fromObject;
+classRegistry.setClass(StaticAudio, StaticAudio.type);
 
 // src/engine/core/common/constants.ts
 var PROPERTIES_TO_INCLUDE = [
@@ -13457,7 +14234,7 @@ var Canvas = class {
     this.initialize();
   }
   initialize = () => {
-    const canvas = new fabric.Canvas(this.canvasId, {
+    const canvas = new Canvas$1(this.canvasId, {
       backgroundColor: this.config.background,
       preserveObjectStacking: true,
       fireRightClick: true,
@@ -13466,29 +14243,20 @@ var Canvas = class {
     });
     this.canvas = canvas;
     this.canvas.disableEvents = function() {
-      if (this.__fire === void 0) {
-        this.__fire = this.fire;
-        this.fire = function() {
-        };
-      }
     };
     this.canvas.enableEvents = function() {
-      if (this.__fire !== void 0) {
-        this.fire = this.__fire;
-        this.__fire = void 0;
-      }
     };
   };
   destroy = () => {
   };
   resize({ width, height }) {
-    this.canvas.setWidth(width).setHeight(height);
+    this.canvas.setDimensions({ width, height });
     this.canvas.renderAll();
     const diffWidth = width / 2 - this.options.width / 2;
     const diffHeight = height / 2 - this.options.height / 2;
     this.options.width = width;
     this.options.height = height;
-    const deltaPoint = new fabric.Point(diffWidth, diffHeight);
+    const deltaPoint = new Point(diffWidth, diffHeight);
     this.canvas.relativePan(deltaPoint);
   }
   getBoundingClientRect() {
@@ -13506,10 +14274,9 @@ var Canvas = class {
     return this.canvas.backgroundColor;
   }
   setBackgroundColor(color) {
-    this.canvas.setBackgroundColor(color, () => {
-      this.canvas.requestRenderAll();
-      this.editor.emit("canvas:updated");
-    });
+    this.canvas.backgroundColor = color;
+    this.canvas.requestRenderAll();
+    this.editor.emit("canvas:updated");
   }
 };
 var canvas_default = Canvas;
@@ -13563,7 +14330,7 @@ var setObjectGradient = (object, angle, colors) => {
   };
   object.set(
     "fill",
-    new fabric.Gradient({
+    new Gradient({
       type: "linear",
       coords: {
         x1: startPoint.x - odx,
@@ -13581,7 +14348,7 @@ var setObjectGradient = (object, angle, colors) => {
 var setObjectShadow = (object, options) => {
   if (options.enabled) {
     object.set({
-      shadow: new fabric.Shadow(options)
+      shadow: new Shadow(options)
     });
   } else {
     object.set({
@@ -13592,7 +14359,7 @@ var setObjectShadow = (object, options) => {
 var updateObjectShadow = (object, options) => {
   if (options) {
     object.set({
-      shadow: new fabric.Shadow(options)
+      shadow: new Shadow(options)
     });
   } else {
     object.set({
@@ -13627,24 +14394,23 @@ var Base = class {
 var Base_default = Base;
 
 // src/engine/core/controllers/Frame.ts
-var Frame = class extends Base_default {
+var Frame2 = class extends Base_default {
   constructor(props) {
     super(props);
     this.initialize();
   }
   initialize() {
-    const frame = new fabric.Frame({
+    const frame = new Frame({
       ...defaultFrameOptions,
       absolutePositioned: this.config.clipToFrame
     });
-    const background = new fabric.Background({
+    const background = new Background({
       ...defaultBackgroundOptions,
       shadow: this.config.shadow
     });
     this.canvas.add(frame, background);
-    this.canvas.getCenter();
-    frame.center();
-    background.center();
+    this.canvas.centerObject(frame);
+    this.canvas.centerObject(background);
     this.state.setFrame({
       height: defaultFrameOptions.width,
       width: defaultFrameOptions.height
@@ -13672,10 +14438,10 @@ var Frame = class extends Base_default {
     const frame = this.frame;
     const background = this.background;
     frame.set({ width, height });
-    frame.center();
+    this.canvas.centerObject(frame);
     if (background) {
       background.set({ width, height });
-      background.center();
+      this.canvas.centerObject(background);
     }
     this.editor.zoom.zoomToFit();
   }
@@ -13688,8 +14454,7 @@ var Frame = class extends Base_default {
   setBackgroundColor = (color) => {
     let background = this.background;
     if (!background) {
-      background = new fabric.Background({
-        type: "Background" /* BACKGROUND */,
+      background = new Background({
         name: "Initial Frame",
         fill: color,
         id: "background",
@@ -13708,10 +14473,10 @@ var Frame = class extends Base_default {
         originY: this.frame.originY,
         shadow: this.config.shadow
       });
-      this.canvas.insertAt(background, 1, false);
+      this.canvas.insertAt(1, background);
     } else {
       background.set({ fill: color });
-      background.dirty = true;
+      background.set("dirty", true);
     }
     this.canvas.requestRenderAll();
     this.editor.history.save();
@@ -13719,8 +14484,7 @@ var Frame = class extends Base_default {
   setBackgroundGradient = ({ angle, colors }) => {
     let background = this.background;
     if (!background) {
-      background = new fabric.Background({
-        type: "Background" /* BACKGROUND */,
+      background = new Background({
         name: "Initial Frame",
         fill: "#ffffff",
         id: "background",
@@ -13739,10 +14503,10 @@ var Frame = class extends Base_default {
         originY: this.frame.originY,
         shadow: this.config.shadow
       });
-      this.canvas.insertAt(background, 1, false);
+      this.canvas.insertAt(1, background);
     }
     fabric_default(background, angle, colors);
-    background.dirty = true;
+    background.set("dirty", true);
     this.canvas.requestRenderAll();
     this.editor.history.save();
   };
@@ -13752,8 +14516,8 @@ var Frame = class extends Base_default {
   }
   get fitRatio() {
     const options = this.frame;
-    const canvasWidth = this.canvas.getWidth() - this.config.frameMargin;
-    const canvasHeight = this.canvas.getHeight() - this.config.frameMargin;
+    const canvasWidth = this.canvas.width - this.config.frameMargin;
+    const canvasHeight = this.canvas.height - this.config.frameMargin;
     let scaleX = canvasWidth / options.width;
     let scaleY = canvasHeight / options.height;
     if (options.height >= options.width) {
@@ -13769,38 +14533,38 @@ var Frame = class extends Base_default {
     return scaleX;
   }
 };
-var Frame_default = Frame;
+var Frame_default = Frame2;
 var Zoom = class extends Base_default {
   zoomIn() {
     let zoomRatio = this.canvas.getZoom();
     zoomRatio += 0.05;
-    const center = this.canvas.getCenter();
-    this.zoomToPoint(new fabric.Point(center.left, center.top), zoomRatio);
+    const center = this.canvas.getCenterPoint();
+    this.zoomToPoint(new Point(center.x, center.y), zoomRatio);
     this.state.setZoomRatio(zoomRatio);
   }
   zoomOut() {
     let zoomRatio = this.canvas.getZoom();
     zoomRatio -= 0.05;
-    const center = this.canvas.getCenter();
-    this.zoomToPoint(new fabric.Point(center.left, center.top), zoomRatio);
+    const center = this.canvas.getCenterPoint();
+    this.zoomToPoint(new Point(center.x, center.y), zoomRatio);
     this.state.setZoomRatio(zoomRatio);
   }
   zoomToOne() {
-    const center = this.canvas.getCenter();
+    const center = this.canvas.getCenterPoint();
     this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    this.zoomToPoint(new fabric.Point(center.left, center.top), 1);
+    this.zoomToPoint(new Point(center.x, center.y), 1);
     this.state.setZoomRatio(1);
   }
   zoomToFit() {
     const zoomFitRatio = this.editor.frame.fitRatio;
-    const center = this.canvas.getCenter();
+    const center = this.canvas.getCenterPoint();
     this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    this.zoomToPoint(new fabric.Point(center.left, center.top), zoomFitRatio);
+    this.zoomToPoint(new Point(center.x, center.y), zoomFitRatio);
     this.state.setZoomRatio(zoomFitRatio);
   }
   zoomToRatio(zoomRatio) {
-    const center = this.canvas.getCenter();
-    this.zoomToPoint(new fabric.Point(center.left, center.top), zoomRatio);
+    const center = this.canvas.getCenterPoint();
+    this.zoomToPoint(new Point(center.x, center.y), zoomRatio);
     this.state.setZoomRatio(zoomRatio);
   }
   zoomToPoint(point, zoom) {
@@ -13823,103 +14587,89 @@ var import_throttle = __toESM(require_throttle());
 var History = class extends Base_default {
   redos = [];
   undos = [];
-  current = [];
+  /** Stringified JSON of the current canvas state */
+  current = "";
+  /** True while a restore is in progress — gates saves */
   isActive = false;
+  // ── capture a deep-copy snapshot of the canvas ────────────────────────
+  captureState = () => {
+    const json = this.canvas.toJSON(
+      this.config.propertiesToInclude
+    );
+    if (json.objects) {
+      json.objects = json.objects.map(this.stripClipPath);
+    }
+    return JSON.stringify(json);
+  };
+  /** Recursively remove clipPath from an object and its children (groups) */
+  stripClipPath = (obj) => {
+    const { clipPath, ...rest } = obj;
+    if (rest.objects && Array.isArray(rest.objects)) {
+      rest.objects = rest.objects.map(this.stripClipPath);
+    }
+    return rest;
+  };
   initialize = () => {
-    const canvasJSON = this.canvas.toJSON(this.config.propertiesToInclude);
-    canvasJSON.objects.forEach((object) => {
-      if (object.clipPath) {
-        fabric.util.enlivenObjects(
-          [object.clipPath],
-          function(arg1) {
-            object.clipPath = arg1[0];
-          },
-          ""
-        );
-      }
-    });
-    this.current = canvasJSON.objects;
+    this.current = this.captureState();
   };
   getStatus = () => {
     return {
       hasUndo: this.undos.length >= 1,
-      hasRedo: this.undos.length > 0,
-      undos: this.undos,
-      redos: this.redos,
-      state: this.current
+      hasRedo: this.redos.length > 0
     };
   };
+  // ── save current state to the undo stack ───────────────────────────────
   save = () => {
+    if (this.isActive) return;
     try {
-      if (this.current) {
-        const json = this.current;
-        this.undos.push({
-          type: "UPDATE",
-          json
-        });
-        const canvasJSON = this.canvas.toJSON(this.config.propertiesToInclude);
-        canvasJSON.objects.forEach((object) => {
-          if (object.clipPath) {
-            fabric.util.enlivenObjects(
-              [object.clipPath],
-              function(arg1) {
-                object.clipPath = arg1[0];
-              },
-              ""
-            );
-          }
-        });
-        this.current = canvasJSON.objects;
-      }
+      this.undos.push(this.current);
+      this.current = this.captureState();
+      this.redos = [];
     } catch (err) {
-      console.log(err);
+      console.error("[History.save]", err);
     }
     this.emitStatus();
   };
+  // ── undo ──────────────────────────────────────────────────────────────
   undo = (0, import_throttle.default)(() => {
-    if (this.undos.length >= 1) {
-      const undo = this.undos.pop();
-      if (!undo) {
-        return;
-      }
-      this.redos.push({
-        type: "redo",
-        json: this.current
-      });
-      this.restore(undo);
-    }
+    if (this.isActive || this.undos.length < 1) return;
+    const prev = this.undos.pop();
+    this.redos.push(this.current);
+    this.current = prev;
+    this.restoreState(prev);
   }, 100);
+  // ── redo ──────────────────────────────────────────────────────────────
   redo = (0, import_throttle.default)(() => {
-    const redo = this.redos.pop();
-    if (!redo) {
-      return;
-    }
-    this.undos.push({
-      type: "undo",
-      json: this.current
-    });
-    this.restore(redo);
+    if (this.isActive || this.redos.length < 1) return;
+    const next = this.redos.pop();
+    this.undos.push(this.current);
+    this.current = next;
+    this.restoreState(next);
   }, 100);
-  restore = (transaction) => {
-    if (!this.isActive) {
-      this.editor.objects.clear();
-      const objects = transaction.json;
-      this.current = objects;
-      this.isActive = true;
-      fabric.util.enlivenObjects(
-        objects,
-        (enlivenObjects) => {
-          enlivenObjects.forEach((enlivenObject) => {
-            if (enlivenObject.type !== "Frame" /* FRAME */) {
-              this.canvas.add(enlivenObject);
+  // ── restore — the heart of undo / redo ────────────────────────────────
+  restoreState = (stateStr) => {
+    this.isActive = true;
+    const json = JSON.parse(stateStr);
+    this.canvas.loadFromJSON(json).then(() => {
+      if (this.config.clipToFrame) {
+        const frame = this.editor.frame.frame;
+        if (frame) {
+          this.canvas.getObjects().forEach((obj) => {
+            if (obj.type !== "Frame" /* FRAME */ && obj.type !== "Background" /* BACKGROUND */) {
+              obj.clipPath = frame;
             }
           });
-          this.emitStatus();
-        },
-        ""
-      );
+        }
+      }
+      this.canvas.requestRenderAll();
+      this.editor.objects.updateContextObjects();
+      this.editor.state.setActiveObject(null);
+      this.emitStatus();
+    }).catch((err) => {
+      console.error("[History.restoreState]", err);
+    }).finally(() => {
       this.isActive = false;
-    }
+    });
   };
   reset = () => {
     this.redos = [];
@@ -13941,8 +14691,6 @@ var History = class extends Base_default {
   }
 };
 var History_default = History;
-
-// src/engine/core/controllers/Objects.ts
 var import_lodash2 = __toESM(require_lodash());
 
 // src/engine/core/utils/id.ts
@@ -13953,12 +14701,16 @@ function generateId() {
   return "id-" + Math.random().toString(36).substring(2, 15);
 }
 function loadImageFromURL(src) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const image = new Image();
     image.src = src;
     image.crossOrigin = "Anonymous";
     image.onload = () => {
       resolve(image);
+    };
+    image.onerror = (err) => {
+      console.error("[loadImageFromURL] Error loading image:", src, err);
+      reject(new Error("Failed to load image: " + src));
     };
   });
 }
@@ -14047,7 +14799,7 @@ var ObjectImporter = class {
           metadata,
           fontURL
         };
-        const element = new fabric.StaticText(textOptions);
+        const element = new StaticText(textOptions);
         updateObjectBounds(element, options);
         updateObjectShadow(element, item.shadow);
         resolve(element);
@@ -14067,7 +14819,7 @@ var ObjectImporter = class {
           baseOptions.width = image.width;
           baseOptions.height = image.height;
         }
-        const element = new fabric.StaticImage(image, {
+        const element = new StaticImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0
@@ -14091,7 +14843,7 @@ var ObjectImporter = class {
           baseOptions.width = image.width;
           baseOptions.height = image.height;
         }
-        const element = new fabric.BackgroundImage(image, {
+        const element = new BackgroundImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0
@@ -14115,7 +14867,7 @@ var ObjectImporter = class {
           baseOptions.width = videoElement.videoWidth;
           baseOptions.height = videoElement.videoHeight;
         }
-        const element = new fabric.StaticVideo(videoElement, {
+        const element = new StaticVideo(videoElement, {
           ...baseOptions,
           src,
           duration: videoElement.duration,
@@ -14134,7 +14886,7 @@ var ObjectImporter = class {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup);
         const { src } = item;
-        const element = new fabric.StaticAudio({
+        const element = new StaticAudio({
           ...baseOptions,
           src
         });
@@ -14149,7 +14901,7 @@ var ObjectImporter = class {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup);
         const { path: path2, fill } = item;
-        const element = new fabric.StaticPath({
+        const element = new StaticPath({
           ...baseOptions,
           // @ts-ignore
           path: path2,
@@ -14171,7 +14923,7 @@ var ObjectImporter = class {
         for (const object of item.objects) {
           objects = objects.concat(await this.import(object, options, true));
         }
-        const element = new fabric.Group(objects, { ...baseOptions, subTargetCheck: true });
+        const element = new Group(objects, { ...baseOptions, subTargetCheck: true });
         updateObjectBounds(element, options);
         updateObjectShadow(element, item.shadow);
         resolve(element);
@@ -14185,7 +14937,7 @@ var ObjectImporter = class {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup);
         const { fill } = item;
-        const element = new fabric.Background({
+        const element = new Background({
           ...baseOptions,
           fill,
           // @ts-ignore
@@ -14202,7 +14954,7 @@ var ObjectImporter = class {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup);
         const { src, colorMap = {} } = item;
-        fabric.loadSVGFromURL(src, (objects, opts) => {
+        loadSVGFromURL(src).then(({ objects, options: opts }) => {
           const { width, height } = baseOptions;
           if (!width || !height) {
             baseOptions.width = opts.width;
@@ -14210,7 +14962,7 @@ var ObjectImporter = class {
             baseOptions.top = options.top;
             baseOptions.left = options.left;
           }
-          const element = new fabric.StaticVector(objects, opts, {
+          const element = new StaticVector(objects, opts, {
             ...baseOptions,
             src,
             colorMap
@@ -14218,7 +14970,7 @@ var ObjectImporter = class {
           updateObjectBounds(element, options);
           updateObjectShadow(element, item.shadow);
           resolve(element);
-        });
+        }).catch(reject);
       } catch (err) {
         reject(err);
       }
@@ -14313,7 +15065,7 @@ var Objects = class extends Base_default {
       }
     } else {
       canvas.add(object);
-      object.center();
+      this.canvas.centerObject(object);
     }
     this.state.setActiveObject(object);
     canvas.setActiveObject(object);
@@ -14331,6 +15083,7 @@ var Objects = class extends Base_default {
    * @param id if provided, will update the update by id
    */
   update = (options, id) => {
+    if (this.editor.history.isActive) return;
     const frame = this.editor.frame.frame;
     let refObject = this.canvas.getActiveObject();
     if (id) {
@@ -14338,8 +15091,13 @@ var Objects = class extends Base_default {
     }
     const canvas = this.canvas;
     if (refObject) {
+      const isEditing = refObject.isEditing;
+      const hasSelection = isEditing && refObject.selectionStart !== refObject.selectionEnd;
       for (const property in options) {
-        if (property === "angle" || property === "top" || property === "left") {
+        if (hasSelection && ["fontSize", "fontFamily", "fontWeight", "fontStyle", "fill", "underline", "linethrough"].includes(property)) {
+          refObject.setSelectionStyles({ [property]: options[property] });
+          canvas.requestRenderAll();
+        } else if (property === "angle" || property === "top" || property === "left") {
           if (property === "angle") {
             refObject.rotate(options["angle"]);
             canvas.requestRenderAll();
@@ -14443,7 +15201,7 @@ var Objects = class extends Base_default {
         this.state.setActiveObject(filteredObjects[0]);
         return;
       }
-      const activeSelection = new fabric.ActiveSelection(filteredObjects, {
+      const activeSelection = new ActiveSelection(filteredObjects, {
         canvas: this.canvas
       });
       this.canvas.setActiveObject(activeSelection);
@@ -14477,15 +15235,15 @@ var Objects = class extends Base_default {
       this.editor.history.save();
     }
   }
-  resize(size, value, id) {
+  resize(size4, value, id) {
     let refObject = this.canvas.getActiveObject();
     if (id) {
       refObject = this.findOneById(id);
     }
-    if (size === "width") {
+    if (size4 === "width") {
       refObject.set("scaleX", value / refObject.width);
     }
-    if (size === "height") {
+    if (size4 === "height") {
       refObject.set("scaleY", value / refObject.height);
     }
   }
@@ -14512,7 +15270,7 @@ var Objects = class extends Base_default {
           scaleX: scaleMax
         });
       }
-      refObject.center();
+      this.canvas.centerObject(refObject);
       if (scaleY >= scaleX) {
         refObject.set("top", top);
       }
@@ -14541,7 +15299,7 @@ var Objects = class extends Base_default {
       const frame = this.editor.frame.frame;
       this.canvas.discardActiveObject();
       this.duplicate(activeObject, frame, (duplicates) => {
-        const selection = new fabric.ActiveSelection(duplicates, {
+        const selection = new ActiveSelection(duplicates, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14559,7 +15317,7 @@ var Objects = class extends Base_default {
     });
   };
   duplicate(object, frame, callback) {
-    if (object instanceof fabric.Group && object.type !== "StaticVector" /* STATIC_VECTOR */) {
+    if (object instanceof Group && object.type !== "StaticVector" /* STATIC_VECTOR */) {
       const objects = object.getObjects();
       const duplicates = [];
       for (let i = 0; i < objects.length; i++) {
@@ -14586,6 +15344,7 @@ var Objects = class extends Base_default {
           this.canvas.add(clone);
           callback([clone]);
         },
+        // @ts-ignore
         ["keyValues", "src"]
       );
     }
@@ -14596,7 +15355,7 @@ var Objects = class extends Base_default {
       const frame = this.editor.frame.frame;
       this.canvas.discardActiveObject();
       this.duplicate(object, frame, (duplicates) => {
-        const selection = new fabric.ActiveSelection(duplicates, {
+        const selection = new ActiveSelection(duplicates, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14653,7 +15412,7 @@ var Objects = class extends Base_default {
         activeObject.set(basicProps);
         if (fill) {
           if (fill.type) {
-            activeObject.set({ fill: new fabric.Gradient(fill) });
+            activeObject.set({ fill: new Gradient(fill) });
           } else {
             activeObject.set({ fill });
           }
@@ -14674,13 +15433,13 @@ var Objects = class extends Base_default {
       refObject = this.findOneById(id);
     }
     if (refObject) {
-      this.canvas.bringForward(refObject);
+      this.canvas.bringObjectForward(refObject);
     }
   };
   bringForwardById = (id) => {
     this.canvas.getObjects().forEach((o) => {
       if (o.id === id) {
-        this.canvas.bringForward(o);
+        this.canvas.bringObjectForward(o);
       }
     });
   };
@@ -14693,7 +15452,7 @@ var Objects = class extends Base_default {
       refObject = this.findOneById(id);
     }
     if (refObject) {
-      this.canvas.bringToFront(refObject);
+      this.canvas.bringObjectToFront(refObject);
     }
   };
   /**
@@ -14705,11 +15464,11 @@ var Objects = class extends Base_default {
     if (id) {
       refObject = this.findOneById(id);
     }
-    const index2 = objects.findIndex((o) => o === refObject);
+    const index3 = objects.findIndex((o) => o === refObject);
     const backgroundImage = objects.find((o) => o.type === "BackgroundImage" /* BACKGROUND_IMAGE */);
-    const canBeMoved = backgroundImage ? index2 > 3 : index2 > 2;
+    const canBeMoved = backgroundImage ? index3 > 3 : index3 > 2;
     if (refObject && canBeMoved) {
-      this.canvas.sendBackwards(refObject);
+      this.canvas.sendObjectBackwards(refObject);
     }
   };
   /**
@@ -14724,9 +15483,9 @@ var Objects = class extends Base_default {
     }
     if (refObject) {
       if (backgroundImage) {
-        refObject.moveTo(3);
+        this.canvas.moveObjectTo(refObject, 3);
       } else {
-        refObject.moveTo(2);
+        this.canvas.moveObjectTo(refObject, 2);
       }
     }
   };
@@ -14751,7 +15510,7 @@ var Objects = class extends Base_default {
             top: refTop
           });
         });
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14788,7 +15547,7 @@ var Objects = class extends Base_default {
             top: refTop + refHeight / 2 - currentObjectHeight / 2
           });
         });
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14826,7 +15585,7 @@ var Objects = class extends Base_default {
             top: refTop + refHeight - currentObjectHeight
           });
         });
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14862,7 +15621,7 @@ var Objects = class extends Base_default {
             left: refLeft
           });
         });
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14899,7 +15658,7 @@ var Objects = class extends Base_default {
             left: refLeft + refWidth / 2 - currentObjectWidth / 2
           });
         });
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14937,7 +15696,7 @@ var Objects = class extends Base_default {
             left: refLeft + refWidth - currentObjectWidth
           });
         });
-        const selection = new fabric.ActiveSelection(selectedObjects, {
+        const selection = new ActiveSelection(selectedObjects, {
           canvas: this.canvas
         });
         this.canvas.setActiveObject(selection);
@@ -14961,7 +15720,7 @@ var Objects = class extends Base_default {
         const currentBackgroundImageJSON = currentBackgroundImage.toJSON(this.config.propertiesToInclude);
         delete currentBackgroundImageJSON.clipPath;
         const nextImageElement = await loadImageFromURL(currentBackgroundImageJSON.src);
-        nextImage = new fabric.StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: generateId() });
+        nextImage = new StaticImage(nextImageElement, { ...currentBackgroundImageJSON, id: generateId() });
         this.canvas.remove(currentBackgroundImage);
         resolve(nextImage);
       } else {
@@ -14983,13 +15742,13 @@ var Objects = class extends Base_default {
       const objectJSON = refObject.toJSON(this.config.propertiesToInclude);
       delete objectJSON.clipPath;
       const image = await loadImageFromURL(objectJSON.src);
-      const backgroundImage = new fabric.BackgroundImage(image, { ...objectJSON, id: generateId() });
+      const backgroundImage = new BackgroundImage(image, { ...objectJSON, id: generateId() });
       this.canvas.add(backgroundImage);
       backgroundImage.clipPath = frame;
       this.canvas.remove(refObject);
       this.canvas.requestRenderAll();
       this.scale("fill", backgroundImage.id);
-      backgroundImage.moveTo(2);
+      this.canvas.moveObjectTo(backgroundImage, 2);
       if (nextImage) {
         this.sendToBack(nextImage.id);
       }
@@ -15001,7 +15760,7 @@ var Objects = class extends Base_default {
    */
   setShadow = (options) => {
     const activeObject = this.canvas.getActiveObject();
-    if (activeObject instanceof fabric.Group && activeObject.type !== "StaticVector" /* STATIC_VECTOR */) {
+    if (activeObject instanceof Group && activeObject.type !== "StaticVector" /* STATIC_VECTOR */) {
       activeObject._objects.forEach((object) => {
         setObjectShadow(object, options);
       });
@@ -15017,7 +15776,7 @@ var Objects = class extends Base_default {
    */
   setGradient = ({ angle, colors }) => {
     const activeObject = this.canvas.getActiveObject();
-    if (activeObject instanceof fabric.Group) {
+    if (activeObject instanceof Group) {
       activeObject._objects.forEach((object) => {
         fabric_default(object, angle, colors);
       });
@@ -15038,16 +15797,16 @@ var Objects = class extends Base_default {
     if (activeObject.type !== "activeSelection" /* ACTIVE_SELECTION */) {
       return;
     }
-    activeObject.toGroup();
-    this.canvas.requestRenderAll();
-    this.editor.history.save();
-    const groupedActiveObject = this.canvas.getActiveObject();
-    groupedActiveObject.set({
+    const objects = activeObject.removeAll();
+    const group = new Group(objects, {
       name: "group",
       id: generateId(),
-      // @ts-ignore
       subTargetCheck: true
     });
+    this.canvas.add(group);
+    this.canvas.setActiveObject(group);
+    this.canvas.requestRenderAll();
+    this.editor.history.save();
     this.updateContextObjects();
   };
   ungroup = () => {
@@ -15059,12 +15818,14 @@ var Objects = class extends Base_default {
     if (activeObject.type !== "Group" /* GROUP */.toLowerCase()) {
       return;
     }
-    activeObject.clipPath = null;
-    const activeSelection = activeObject.toActiveSelection();
-    activeSelection._objects.forEach((object) => {
+    activeObject.clipPath = void 0;
+    const objects = activeObject.removeAll();
+    this.canvas.remove(activeObject);
+    const activeSelection = new ActiveSelection(objects, { canvas: this.canvas });
+    activeSelection.getObjects().forEach((object) => {
       object.clipPath = frame;
     });
-    this.state.setActiveObject(activeSelection);
+    this.canvas.setActiveObject(activeSelection);
     this.canvas.requestRenderAll();
     this.editor.history.save();
     this.updateContextObjects();
@@ -15346,6 +16107,7 @@ var Events = class extends Base_default {
       "mouse:wheel": this.onMouseWheel,
       "mouse:out": this.onMouseOut,
       "object:modified": this.objectModified,
+      // @ts-ignore - custom event
       "background:selected": this.onBackgroundSelected
     });
     this.canvas.wrapperEl.addEventListener("keydown", this.onKeyDown.bind(this), false);
@@ -15360,6 +16122,7 @@ var Events = class extends Base_default {
       "mouse:wheel": this.onMouseWheel,
       "mouse:out": this.onMouseOut,
       "object:modified": this.objectModified,
+      // @ts-ignore - custom event
       "background:selected": this.onBackgroundSelected
     });
     this.canvas.wrapperEl.removeEventListener("keydown", this.onKeyDown.bind(this));
@@ -15372,15 +16135,16 @@ var Events = class extends Base_default {
   };
   onMouseDown = (e) => {
     this.editor.objects.pasteStyle();
-    if (e.button === 3) {
+    if (e.e.button === 2) {
       this.state.setContextMenuRequest({ left: e.e.offsetX, top: e.e.offsetY, target: e.target });
     } else {
       this.state.setContextMenuRequest(null);
     }
   };
   objectModified = (event) => {
+    if (this.editor.history.isActive) return;
     const { target } = event;
-    if (target instanceof fabric.Textbox) {
+    if (target instanceof Textbox) {
       this.scaleTextbox(target);
     }
     this.editor.history.save();
@@ -15402,7 +16166,7 @@ var Events = class extends Base_default {
     } else {
       zoomRatio += 0.02;
     }
-    this.editor.zoom.zoomToPoint(new fabric.Point(this.canvas.getWidth() / 2, this.canvas.getHeight() / 2), zoomRatio);
+    this.editor.zoom.zoomToPoint(new Point(this.canvas.width / 2, this.canvas.height / 2), zoomRatio);
     event.e.preventDefault();
     event.e.stopPropagation();
   };
@@ -15467,7 +16231,7 @@ var Events = class extends Base_default {
             this.canvas.setActiveObject(filteredObjects[0]);
             this.state.setActiveObject(filteredObjects[0]);
           } else {
-            const activeSelection = new fabric.ActiveSelection(filteredObjects, {
+            const activeSelection = new ActiveSelection(filteredObjects, {
               canvas: this.canvas
             });
             this.canvas.setActiveObject(activeSelection);
@@ -15835,15 +16599,16 @@ function shape_default(object) {
 
 // src/engine/core/parser/parser.ts
 async function parseSVG(url) {
-  return new Promise((resolve, reject) => {
-    fabric.loadSVGFromURL(url, (objects, summary) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { objects, options: summary } = await loadSVGFromURL(url);
       const frame = {
         width: summary.width,
         height: summary.height
       };
       let layers = [];
       for (const object of objects) {
-        if (object.type === "path") {
+        if (object && object.type === "path") {
           const path2 = shape_default(object);
           layers = layers.concat(path2);
         }
@@ -15854,7 +16619,9 @@ async function parseSVG(url) {
         name: "Hello world"
       };
       resolve(design);
-    });
+    } catch (err) {
+      reject(err);
+    }
   });
 }
 var parser_default = parseSVG;
@@ -15929,7 +16696,7 @@ var Scene = class extends Base_default {
           });
           clonedObjects = clonedObjects.concat(cloned);
         }
-        const group = new fabric.Group(clonedObjects);
+        const group = new FabricGroup(clonedObjects);
         const component = objectExporter.export(group.toJSON(this.editor.config.propertiesToInclude), frame);
         const metadata = component.metadata ? component.metadata : {};
         return {
@@ -15964,7 +16731,7 @@ var Scene = class extends Base_default {
    */
   exportLayers = async (template) => {
     let elements = [];
-    for (const [index2, layer] of template.layers.entries()) {
+    for (const [index3, layer] of template.layers.entries()) {
       if (layer.type === "StaticVideo") {
         elements = elements.concat({
           id: layer.id,
@@ -15983,7 +16750,7 @@ var Scene = class extends Base_default {
           position: {
             x: layer.left,
             y: layer.top,
-            zIndex: index2,
+            zIndex: index3,
             width: layer.width,
             height: layer.height,
             scaleX: layer.scaleX,
@@ -16010,7 +16777,7 @@ var Scene = class extends Base_default {
           position: {
             x: layer.left,
             y: layer.top,
-            zIndex: index2,
+            zIndex: index3,
             width: layer.width,
             height: layer.height,
             scaleX: layer.scaleX,
@@ -16060,6 +16827,7 @@ var Scene = class extends Base_default {
     this.editor.zoom.zoomToFit();
     this.editor.objects.updateContextObjects();
     this.editor.history.save();
+    this.canvas.requestRenderAll();
   };
   async importFromSVG(url) {
     const design = await parser_default2(url);
@@ -16117,7 +16885,7 @@ var ObjectImporter2 = class {
           ...lineHeight && { lineHeight },
           metadata
         };
-        const element = new fabric.StaticText(textOptions);
+        const element = new StaticText(textOptions);
         updateObjectShadow(element, item.shadow);
         resolve(element);
       } catch (err) {
@@ -16131,7 +16899,7 @@ var ObjectImporter2 = class {
         const baseOptions = this.getBaseOptions(item);
         const { src, cropX, cropY } = item;
         const image = await loadImageFromURL(src);
-        const element = new fabric.StaticImage(image, {
+        const element = new StaticImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0
@@ -16149,7 +16917,7 @@ var ObjectImporter2 = class {
         const baseOptions = this.getBaseOptions(item);
         const { src, cropX, cropY } = item;
         const image = await loadImageFromURL(src);
-        const element = new fabric.BackgroundImage(image, {
+        const element = new BackgroundImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0
@@ -16167,7 +16935,7 @@ var ObjectImporter2 = class {
         const baseOptions = this.getBaseOptions(item);
         const { preview: src, cropX, cropY } = item;
         const image = await loadImageFromURL(src);
-        const element = new fabric.StaticImage(image, {
+        const element = new StaticImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0
@@ -16184,7 +16952,7 @@ var ObjectImporter2 = class {
       try {
         const baseOptions = this.getBaseOptions(item);
         const { path: path2, fill } = item;
-        const element = new fabric.StaticPath({
+        const element = new StaticPath({
           ...baseOptions,
           // @ts-ignore
           path: path2,
@@ -16205,7 +16973,7 @@ var ObjectImporter2 = class {
         for (const object of item.objects) {
           objects = objects.concat(await this.import(object, params));
         }
-        const element = new fabric.Group(objects, baseOptions);
+        const element = new Group(objects, baseOptions);
         updateObjectShadow(element, item.shadow);
         resolve(element);
       } catch (err) {
@@ -16218,7 +16986,7 @@ var ObjectImporter2 = class {
       try {
         const baseOptions = this.getBaseOptions(item);
         const { fill } = item;
-        const element = new fabric.Background({
+        const element = new Background({
           ...baseOptions,
           fill,
           id: "background",
@@ -16235,13 +17003,13 @@ var ObjectImporter2 = class {
       try {
         const baseOptions = this.getBaseOptions(item);
         const { src, colorMap = {} } = item;
-        fabric.loadSVGFromURL(src, (objects, opts) => {
+        loadSVGFromURL(src, (objects, opts) => {
           const { width, height } = baseOptions;
           if (!width || !height) {
             baseOptions.width = opts.width;
             baseOptions.height = opts.height;
           }
-          const element = new fabric.StaticVector(objects, opts, {
+          const element = new StaticVector(objects, opts, {
             ...baseOptions,
             src,
             colorMap
@@ -16315,10 +17083,9 @@ var Renderer = class {
   }
   async toDataURL(template, params) {
     return new Promise(async (resolve, reject) => {
-      const staticCanvas = new fabric.StaticCanvas(null);
+      const staticCanvas = new StaticCanvas(null);
       if (params.backgroundColor) {
-        staticCanvas.setBackgroundColor(params.backgroundColor, () => {
-        });
+        staticCanvas.backgroundColor = params.backgroundColor;
       }
       await this.loadTemplate(staticCanvas, template, params);
       const { format = "png", quality = 1, multiplier = 1 } = params;
@@ -16328,15 +17095,15 @@ var Renderer = class {
         multiplier,
         top: 0,
         left: 0,
-        height: staticCanvas.getHeight(),
-        width: staticCanvas.getWidth()
+        height: staticCanvas.height,
+        width: staticCanvas.width
       });
       resolve(data);
     });
   }
   renderLayer = (layer, params) => {
     return new Promise(async (resolve, reject) => {
-      const staticCanvas = new fabric.StaticCanvas(null);
+      const staticCanvas = new StaticCanvas(null);
       await this.loadTemplate(
         staticCanvas,
         {
@@ -16351,14 +17118,16 @@ var Renderer = class {
         params
       );
       const data = staticCanvas.toDataURL({
+        multiplier: 1,
         top: 0,
         left: 0,
-        height: staticCanvas.getHeight(),
-        width: staticCanvas.getWidth()
+        height: staticCanvas.height,
+        width: staticCanvas.width
       });
       resolve(data);
     });
   };
+  // @ts-ignore
   async loadTemplate(staticCanvas, template, params) {
     const { frame } = template;
     this.setDimensions(staticCanvas, frame);
@@ -16372,15 +17141,16 @@ var Renderer = class {
       }
     }
   }
+  // @ts-ignore
   setDimensions(staticCanvas, { width, height }) {
-    staticCanvas.setWidth(width).setHeight(height);
+    staticCanvas.setDimensions({ width, height });
   }
 };
 var Renderer_default = Renderer;
 function drawCircleIcon(ctx, left, top, __styleOverride, fabricObject) {
   ctx.save();
   ctx.translate(left, top);
-  ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
+  ctx.rotate(util.degreesToRadians(fabricObject.angle));
   ctx.beginPath();
   ctx.arc(0, 0, 6, 0, 2 * Math.PI);
   ctx.shadowColor = "#333333";
@@ -16401,143 +17171,148 @@ var Personalization = class extends Base_default {
       y: this.config.controlsPosition.rotation === "TOP" ? -0.5 : 0.5,
       offsetY: this.config.controlsPosition.rotation === "TOP" ? -30 : 30
     };
-    fabric.util.addListener(document.getElementsByClassName("upper-canvas")[0], "contextmenu", function(e) {
-      e.preventDefault();
-    });
-    fabric.Object.prototype.transparentCorners = false;
-    fabric.Object.prototype.cornerColor = "#20bf6b";
-    fabric.Object.prototype.cornerStyle = "circle";
-    fabric.Object.prototype.borderColor = "#3782F7";
-    fabric.Object.prototype.cornerSize = 12;
-    fabric.Object.prototype.borderScaleFactor = 2.25;
-    fabric.Object.prototype.borderOpacityWhenMoving = 1;
-    fabric.Object.prototype.borderOpacity = 1;
-    fabric.Object.prototype.controls.tr = new fabric.Control({
+    const upperCanvas = document.getElementsByClassName("upper-canvas")[0];
+    if (upperCanvas) {
+      upperCanvas.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+      });
+    }
+    Object$1.prototype.controls = Object$1.prototype.controls || {};
+    Object$1.prototype.transparentCorners = false;
+    Object$1.prototype.cornerColor = "#20bf6b";
+    Object$1.prototype.cornerStyle = "circle";
+    Object$1.prototype.borderColor = "#3782F7";
+    Object$1.prototype.cornerSize = 12;
+    Object$1.prototype.borderScaleFactor = 2.25;
+    Object$1.prototype.borderOpacityWhenMoving = 1;
+    Object$1.prototype.borderOpacity = 1;
+    Object$1.prototype.controls.tr = new Control({
       x: 0.5,
       y: -0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.tl = new fabric.Control({
+    Object$1.prototype.controls.tl = new Control({
       x: -0.5,
       y: -0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.bl = new fabric.Control({
+    Object$1.prototype.controls.bl = new Control({
       x: -0.5,
       y: 0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.br = new fabric.Control({
+    Object$1.prototype.controls.br = new Control({
       x: 0.5,
       y: 0.5,
-      actionHandler: fabric.controlsUtils.scalingEqually,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingEqually,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.ml = new fabric.Control({
+    Object$1.prototype.controls.ml = new Control({
       x: -0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.scalingXOrSkewingY,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingXOrSkewingY,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.mt = new fabric.Control({
+    Object$1.prototype.controls.mt = new Control({
       x: 0,
       y: -0.5,
-      actionHandler: fabric.controlsUtils.scalingYOrSkewingX,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingYOrSkewingX,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.mb = new fabric.Control({
+    Object$1.prototype.controls.mb = new Control({
       x: 0,
       y: 0.5,
-      actionHandler: fabric.controlsUtils.scalingYOrSkewingX,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingYOrSkewingX,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.mr = new fabric.Control({
+    Object$1.prototype.controls.mr = new Control({
       x: 0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.scalingXOrSkewingY,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
-      actionName: fabric.controlsUtils.scaleOrSkewActionName,
+      actionHandler: controlsUtils.scalingXOrSkewingY,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
+      actionName: controlsUtils.scaleOrSkewActionName,
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Object.prototype.controls.mtr = new fabric.Control({
+    Object$1.prototype.controls.mtr = new Control({
       x: 0,
       y: 0.5,
       offsetY: 30,
-      actionHandler: fabric.controlsUtils.rotationWithSnapping,
-      cursorStyleHandler: fabric.controlsUtils.rotationStyleHandler,
+      actionHandler: controlsUtils.rotationWithSnapping,
+      cursorStyleHandler: controlsUtils.rotationStyleHandler,
       actionName: "rotate",
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true,
       ...rotationControlPosition
     });
-    fabric.Textbox.prototype.controls.tr = fabric.Object.prototype.controls.tr;
-    fabric.Textbox.prototype.controls.tl = fabric.Object.prototype.controls.tl;
-    fabric.Textbox.prototype.controls.bl = fabric.Object.prototype.controls.bl;
-    fabric.Textbox.prototype.controls.br = fabric.Object.prototype.controls.br;
-    fabric.Textbox.prototype.controls.mt = new fabric.Control({
+    Textbox.prototype.controls = Textbox.prototype.controls || {};
+    Textbox.prototype.controls.tr = Object$1.prototype.controls.tr;
+    Textbox.prototype.controls.tl = Object$1.prototype.controls.tl;
+    Textbox.prototype.controls.bl = Object$1.prototype.controls.bl;
+    Textbox.prototype.controls.br = Object$1.prototype.controls.br;
+    Textbox.prototype.controls.mt = new Control({
       render: () => true
     });
-    fabric.Textbox.prototype.controls.mb = fabric.Textbox.prototype.controls.mt;
-    fabric.Textbox.prototype.controls.mr = new fabric.Control({
+    Textbox.prototype.controls.mb = Textbox.prototype.controls.mt;
+    Textbox.prototype.controls.mr = new Control({
       x: 0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.changeWidth,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
+      actionHandler: controlsUtils.changeWidth,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
       actionName: "resizing",
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Textbox.prototype.controls.ml = new fabric.Control({
+    Textbox.prototype.controls.ml = new Control({
       x: -0.5,
       y: 0,
-      actionHandler: fabric.controlsUtils.changeWidth,
-      cursorStyleHandler: fabric.controlsUtils.scaleSkewCursorStyleHandler,
+      actionHandler: controlsUtils.changeWidth,
+      cursorStyleHandler: controlsUtils.scaleSkewCursorStyleHandler,
       actionName: "resizing",
       render: drawCircleIcon,
       cornerSize: 28,
       withConnection: true
     });
-    fabric.Textbox.prototype.controls.mtr = new fabric.Control({
+    Textbox.prototype.controls.mtr = new Control({
       x: 0,
       y: 0.5,
       offsetY: 30,
-      actionHandler: fabric.controlsUtils.rotationWithSnapping,
-      cursorStyleHandler: fabric.controlsUtils.rotationStyleHandler,
+      actionHandler: controlsUtils.rotationWithSnapping,
+      cursorStyleHandler: controlsUtils.rotationStyleHandler,
       actionName: "rotate",
       render: drawCircleIcon,
       cornerSize: 28,
@@ -16653,7 +17428,7 @@ var Guidelines = class extends Base_default {
               y2: activeObjectTop > objectTop ? activeObjectTop + activeObjectHeight / 2 + aligningLineOffset : activeObjectTop - activeObjectHeight / 2 - aligningLineOffset
             });
           }
-          activeObject.setPositionByOrigin(new fabric.Point(objectLeft, activeObjectTop), "center", "center");
+          activeObject.setPositionByOrigin(new Point(objectLeft, activeObjectTop), "center", "center");
         }
         if (isInRange(objectLeft - objectWidth / 2, activeObjectLeft - activeObjectWidth / 2, backgroundImageMargin)) {
           verticalInTheRange = true;
@@ -16671,7 +17446,7 @@ var Guidelines = class extends Base_default {
             });
           }
           activeObject.setPositionByOrigin(
-            new fabric.Point(objectLeft - objectWidth / 2 + activeObjectWidth / 2, activeObjectTop),
+            new Point(objectLeft - objectWidth / 2 + activeObjectWidth / 2, activeObjectTop),
             "center",
             "center"
           );
@@ -16692,7 +17467,7 @@ var Guidelines = class extends Base_default {
             });
           }
           activeObject.setPositionByOrigin(
-            new fabric.Point(objectLeft + objectWidth / 2 - activeObjectWidth / 2, activeObjectTop),
+            new Point(objectLeft + objectWidth / 2 - activeObjectWidth / 2, activeObjectTop),
             "center",
             "center"
           );
@@ -16712,7 +17487,7 @@ var Guidelines = class extends Base_default {
               x2: activeObjectLeft > objectLeft ? activeObjectLeft + activeObjectWidth / 2 + aligningLineOffset : activeObjectLeft - activeObjectWidth / 2 - aligningLineOffset
             });
           }
-          activeObject.setPositionByOrigin(new fabric.Point(activeObjectLeft, objectTop), "center", "center");
+          activeObject.setPositionByOrigin(new Point(activeObjectLeft, objectTop), "center", "center");
         }
         if (isInRange(objectTop - objectHeight / 2, activeObjectTop - activeObjectHeight / 2, backgroundImageMargin)) {
           horizontalInTheRange = true;
@@ -16730,7 +17505,7 @@ var Guidelines = class extends Base_default {
             });
           }
           activeObject.setPositionByOrigin(
-            new fabric.Point(activeObjectLeft, objectTop - objectHeight / 2 + activeObjectHeight / 2),
+            new Point(activeObjectLeft, objectTop - objectHeight / 2 + activeObjectHeight / 2),
             "center",
             "center"
           );
@@ -16751,7 +17526,7 @@ var Guidelines = class extends Base_default {
             });
           }
           activeObject.setPositionByOrigin(
-            new fabric.Point(activeObjectLeft, objectTop + objectHeight / 2 - activeObjectHeight / 2),
+            new Point(activeObjectLeft, objectTop + objectHeight / 2 - activeObjectHeight / 2),
             "center",
             "center"
           );
@@ -16852,16 +17627,16 @@ var Editor = class extends event_manager_default {
   };
 };
 
-// node_modules/.pnpm/resize-observer-polyfill@1.5.1/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
+// ../../node_modules/.pnpm/resize-observer-polyfill@1.5.1/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js
 var MapShim = (function() {
   if (typeof Map !== "undefined") {
     return Map;
   }
   function getIndex(arr, key) {
     var result = -1;
-    arr.some(function(entry, index2) {
+    arr.some(function(entry, index3) {
       if (entry[0] === key) {
-        result = index2;
+        result = index3;
         return true;
       }
       return false;
@@ -16885,23 +17660,23 @@ var MapShim = (function() {
         configurable: true
       });
       class_1.prototype.get = function(key) {
-        var index2 = getIndex(this.__entries__, key);
-        var entry = this.__entries__[index2];
+        var index3 = getIndex(this.__entries__, key);
+        var entry = this.__entries__[index3];
         return entry && entry[1];
       };
       class_1.prototype.set = function(key, value) {
-        var index2 = getIndex(this.__entries__, key);
-        if (~index2) {
-          this.__entries__[index2][1] = value;
+        var index3 = getIndex(this.__entries__, key);
+        if (~index3) {
+          this.__entries__[index3][1] = value;
         } else {
           this.__entries__.push([key, value]);
         }
       };
       class_1.prototype.delete = function(key) {
         var entries = this.__entries__;
-        var index2 = getIndex(entries, key);
-        if (~index2) {
-          entries.splice(index2, 1);
+        var index3 = getIndex(entries, key);
+        if (~index3) {
+          entries.splice(index3, 1);
         }
       };
       class_1.prototype.has = function(key) {
@@ -17001,9 +17776,9 @@ var ResizeObserverController = (
     };
     ResizeObserverController2.prototype.removeObserver = function(observer) {
       var observers2 = this.observers_;
-      var index2 = observers2.indexOf(observer);
-      if (~index2) {
-        observers2.splice(index2, 1);
+      var index3 = observers2.indexOf(observer);
+      if (~index3) {
+        observers2.splice(index3, 1);
       }
       if (!observers2.length && this.connected_) {
         this.disconnect_();
@@ -17104,9 +17879,9 @@ function getBordersSize(styles) {
   for (var _i = 1; _i < arguments.length; _i++) {
     positions[_i - 1] = arguments[_i];
   }
-  return positions.reduce(function(size, position) {
+  return positions.reduce(function(size4, position) {
     var value = styles["border-" + position + "-width"];
-    return size + toFloat(value);
+    return size4 + toFloat(value);
   }, 0);
 }
 function getPaddings(styles) {
@@ -17345,14 +18120,29 @@ var ResizeObserver2 = (
   }
   return ResizeObserver2;
 }))();
-var Button = React24.forwardRef(
-  ({ variant = "secondary", size = "md", iconOnly, className, ...rest }, ref) => /* @__PURE__ */ jsx(
+
+// ../../node_modules/.pnpm/clsx@2.1.1/node_modules/clsx/dist/clsx.mjs
+function r(e) {
+  var t, f, n = "";
+  if ("string" == typeof e || "number" == typeof e) n += e;
+  else if ("object" == typeof e) if (Array.isArray(e)) {
+    var o = e.length;
+    for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+  } else for (f in e) e[f] && (n && (n += " "), n += f);
+  return n;
+}
+function clsx() {
+  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
+  return n;
+}
+var Button = React45.forwardRef(
+  ({ variant = "secondary", size: size4 = "md", iconOnly, className, ...rest }, ref) => /* @__PURE__ */ jsx(
     "button",
     {
       ref,
       "data-de-button": true,
       "data-variant": variant,
-      "data-size": size,
+      "data-size": size4,
       "data-icon-only": iconOnly ? "" : void 0,
       className: clsx("de-btn", className),
       ...rest
@@ -17360,88 +18150,6025 @@ var Button = React24.forwardRef(
   )
 );
 Button.displayName = "Button";
-function Popover({ children, content, open, onOpenChange, placement = "bottom", contentClassName }) {
-  return /* @__PURE__ */ jsxs(RadixPopover.Root, { open, onOpenChange, children: [
-    /* @__PURE__ */ jsx(RadixPopover.Trigger, { asChild: true, children }),
-    /* @__PURE__ */ jsx(RadixPopover.Portal, { children: /* @__PURE__ */ jsxs(
-      RadixPopover.Content,
+
+// ../../node_modules/.pnpm/@radix-ui+number@1.1.1/node_modules/@radix-ui/number/dist/index.mjs
+function clamp(value, [min2, max2]) {
+  return Math.min(max2, Math.max(min2, value));
+}
+function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
+  return function handleEvent(event) {
+    originalEventHandler?.(event);
+    if (checkForDefaultPrevented === false || !event.defaultPrevented) {
+      return ourEventHandler?.(event);
+    }
+  };
+}
+function setRef(ref, value) {
+  if (typeof ref === "function") {
+    return ref(value);
+  } else if (ref !== null && ref !== void 0) {
+    ref.current = value;
+  }
+}
+function composeRefs(...refs) {
+  return (node) => {
+    let hasCleanup = false;
+    const cleanups = refs.map((ref) => {
+      const cleanup = setRef(ref, node);
+      if (!hasCleanup && typeof cleanup == "function") {
+        hasCleanup = true;
+      }
+      return cleanup;
+    });
+    if (hasCleanup) {
+      return () => {
+        for (let i = 0; i < cleanups.length; i++) {
+          const cleanup = cleanups[i];
+          if (typeof cleanup == "function") {
+            cleanup();
+          } else {
+            setRef(refs[i], null);
+          }
+        }
+      };
+    }
+  };
+}
+function useComposedRefs(...refs) {
+  return React45.useCallback(composeRefs(...refs), refs);
+}
+function createContext22(rootComponentName, defaultContext) {
+  const Context2 = React45.createContext(defaultContext);
+  const Provider4 = (props) => {
+    const { children, ...context } = props;
+    const value = React45.useMemo(() => context, Object.values(context));
+    return /* @__PURE__ */ jsx(Context2.Provider, { value, children });
+  };
+  Provider4.displayName = rootComponentName + "Provider";
+  function useContext22(consumerName) {
+    const context = React45.useContext(Context2);
+    if (context) return context;
+    if (defaultContext !== void 0) return defaultContext;
+    throw new Error(`\`${consumerName}\` must be used within \`${rootComponentName}\``);
+  }
+  return [Provider4, useContext22];
+}
+function createContextScope(scopeName, createContextScopeDeps = []) {
+  let defaultContexts = [];
+  function createContext32(rootComponentName, defaultContext) {
+    const BaseContext = React45.createContext(defaultContext);
+    const index3 = defaultContexts.length;
+    defaultContexts = [...defaultContexts, defaultContext];
+    const Provider4 = (props) => {
+      const { scope, children, ...context } = props;
+      const Context2 = scope?.[scopeName]?.[index3] || BaseContext;
+      const value = React45.useMemo(() => context, Object.values(context));
+      return /* @__PURE__ */ jsx(Context2.Provider, { value, children });
+    };
+    Provider4.displayName = rootComponentName + "Provider";
+    function useContext22(consumerName, scope) {
+      const Context2 = scope?.[scopeName]?.[index3] || BaseContext;
+      const context = React45.useContext(Context2);
+      if (context) return context;
+      if (defaultContext !== void 0) return defaultContext;
+      throw new Error(`\`${consumerName}\` must be used within \`${rootComponentName}\``);
+    }
+    return [Provider4, useContext22];
+  }
+  const createScope = () => {
+    const scopeContexts = defaultContexts.map((defaultContext) => {
+      return React45.createContext(defaultContext);
+    });
+    return function useScope(scope) {
+      const contexts = scope?.[scopeName] || scopeContexts;
+      return React45.useMemo(
+        () => ({ [`__scope${scopeName}`]: { ...scope, [scopeName]: contexts } }),
+        [scope, contexts]
+      );
+    };
+  };
+  createScope.scopeName = scopeName;
+  return [createContext32, composeContextScopes(createScope, ...createContextScopeDeps)];
+}
+function composeContextScopes(...scopes) {
+  const baseScope = scopes[0];
+  if (scopes.length === 1) return baseScope;
+  const createScope = () => {
+    const scopeHooks = scopes.map((createScope2) => ({
+      useScope: createScope2(),
+      scopeName: createScope2.scopeName
+    }));
+    return function useComposedScopes(overrideScopes) {
+      const nextScopes = scopeHooks.reduce((nextScopes2, { useScope, scopeName }) => {
+        const scopeProps = useScope(overrideScopes);
+        const currentScope = scopeProps[`__scope${scopeName}`];
+        return { ...nextScopes2, ...currentScope };
+      }, {});
+      return React45.useMemo(() => ({ [`__scope${baseScope.scopeName}`]: nextScopes }), [nextScopes]);
+    };
+  };
+  createScope.scopeName = baseScope.scopeName;
+  return createScope;
+}
+var useLayoutEffect2 = globalThis?.document ? React45.useLayoutEffect : () => {
+};
+var useInsertionEffect = React45[" useInsertionEffect ".trim().toString()] || useLayoutEffect2;
+function useControllableState({
+  prop,
+  defaultProp,
+  onChange = () => {
+  },
+  caller
+}) {
+  const [uncontrolledProp, setUncontrolledProp, onChangeRef] = useUncontrolledState({
+    defaultProp,
+    onChange
+  });
+  const isControlled = prop !== void 0;
+  const value = isControlled ? prop : uncontrolledProp;
+  {
+    const isControlledRef = React45.useRef(prop !== void 0);
+    React45.useEffect(() => {
+      const wasControlled = isControlledRef.current;
+      if (wasControlled !== isControlled) {
+        const from = wasControlled ? "controlled" : "uncontrolled";
+        const to = isControlled ? "controlled" : "uncontrolled";
+        console.warn(
+          `${caller} is changing from ${from} to ${to}. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.`
+        );
+      }
+      isControlledRef.current = isControlled;
+    }, [isControlled, caller]);
+  }
+  const setValue = React45.useCallback(
+    (nextValue) => {
+      if (isControlled) {
+        const value2 = isFunction(nextValue) ? nextValue(prop) : nextValue;
+        if (value2 !== prop) {
+          onChangeRef.current?.(value2);
+        }
+      } else {
+        setUncontrolledProp(nextValue);
+      }
+    },
+    [isControlled, prop, setUncontrolledProp, onChangeRef]
+  );
+  return [value, setValue];
+}
+function useUncontrolledState({
+  defaultProp,
+  onChange
+}) {
+  const [value, setValue] = React45.useState(defaultProp);
+  const prevValueRef = React45.useRef(value);
+  const onChangeRef = React45.useRef(onChange);
+  useInsertionEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
+  React45.useEffect(() => {
+    if (prevValueRef.current !== value) {
+      onChangeRef.current?.(value);
+      prevValueRef.current = value;
+    }
+  }, [value, prevValueRef]);
+  return [value, setValue, onChangeRef];
+}
+function isFunction(value) {
+  return typeof value === "function";
+}
+var DirectionContext = React45.createContext(void 0);
+function useDirection(localDir) {
+  const globalDir = React45.useContext(DirectionContext);
+  return localDir || globalDir || "ltr";
+}
+function usePrevious(value) {
+  const ref = React45.useRef({ value, previous: value });
+  return React45.useMemo(() => {
+    if (ref.current.value !== value) {
+      ref.current.previous = ref.current.value;
+      ref.current.value = value;
+    }
+    return ref.current.previous;
+  }, [value]);
+}
+function useSize(element) {
+  const [size4, setSize] = React45.useState(void 0);
+  useLayoutEffect2(() => {
+    if (element) {
+      setSize({ width: element.offsetWidth, height: element.offsetHeight });
+      const resizeObserver = new ResizeObserver((entries) => {
+        if (!Array.isArray(entries)) {
+          return;
+        }
+        if (!entries.length) {
+          return;
+        }
+        const entry = entries[0];
+        let width;
+        let height;
+        if ("borderBoxSize" in entry) {
+          const borderSizeEntry = entry["borderBoxSize"];
+          const borderSize = Array.isArray(borderSizeEntry) ? borderSizeEntry[0] : borderSizeEntry;
+          width = borderSize["inlineSize"];
+          height = borderSize["blockSize"];
+        } else {
+          width = element.offsetWidth;
+          height = element.offsetHeight;
+        }
+        setSize({ width, height });
+      });
+      resizeObserver.observe(element, { box: "border-box" });
+      return () => resizeObserver.unobserve(element);
+    } else {
+      setSize(void 0);
+    }
+  }, [element]);
+  return size4;
+}
+// @__NO_SIDE_EFFECTS__
+function createSlot(ownerName) {
+  const SlotClone = /* @__PURE__ */ createSlotClone(ownerName);
+  const Slot22 = React45.forwardRef((props, forwardedRef) => {
+    const { children, ...slotProps } = props;
+    const childrenArray = React45.Children.toArray(children);
+    const slottable = childrenArray.find(isSlottable);
+    if (slottable) {
+      const newElement = slottable.props.children;
+      const newChildren = childrenArray.map((child) => {
+        if (child === slottable) {
+          if (React45.Children.count(newElement) > 1) return React45.Children.only(null);
+          return React45.isValidElement(newElement) ? newElement.props.children : null;
+        } else {
+          return child;
+        }
+      });
+      return /* @__PURE__ */ jsx(SlotClone, { ...slotProps, ref: forwardedRef, children: React45.isValidElement(newElement) ? React45.cloneElement(newElement, void 0, newChildren) : null });
+    }
+    return /* @__PURE__ */ jsx(SlotClone, { ...slotProps, ref: forwardedRef, children });
+  });
+  Slot22.displayName = `${ownerName}.Slot`;
+  return Slot22;
+}
+// @__NO_SIDE_EFFECTS__
+function createSlotClone(ownerName) {
+  const SlotClone = React45.forwardRef((props, forwardedRef) => {
+    const { children, ...slotProps } = props;
+    if (React45.isValidElement(children)) {
+      const childrenRef = getElementRef(children);
+      const props2 = mergeProps(slotProps, children.props);
+      if (children.type !== React45.Fragment) {
+        props2.ref = forwardedRef ? composeRefs(forwardedRef, childrenRef) : childrenRef;
+      }
+      return React45.cloneElement(children, props2);
+    }
+    return React45.Children.count(children) > 1 ? React45.Children.only(null) : null;
+  });
+  SlotClone.displayName = `${ownerName}.SlotClone`;
+  return SlotClone;
+}
+var SLOTTABLE_IDENTIFIER = /* @__PURE__ */ Symbol("radix.slottable");
+// @__NO_SIDE_EFFECTS__
+function createSlottable(ownerName) {
+  const Slottable2 = ({ children }) => {
+    return /* @__PURE__ */ jsx(Fragment, { children });
+  };
+  Slottable2.displayName = `${ownerName}.Slottable`;
+  Slottable2.__radixId = SLOTTABLE_IDENTIFIER;
+  return Slottable2;
+}
+function isSlottable(child) {
+  return React45.isValidElement(child) && typeof child.type === "function" && "__radixId" in child.type && child.type.__radixId === SLOTTABLE_IDENTIFIER;
+}
+function mergeProps(slotProps, childProps) {
+  const overrideProps = { ...childProps };
+  for (const propName in childProps) {
+    const slotPropValue = slotProps[propName];
+    const childPropValue = childProps[propName];
+    const isHandler = /^on[A-Z]/.test(propName);
+    if (isHandler) {
+      if (slotPropValue && childPropValue) {
+        overrideProps[propName] = (...args) => {
+          const result = childPropValue(...args);
+          slotPropValue(...args);
+          return result;
+        };
+      } else if (slotPropValue) {
+        overrideProps[propName] = slotPropValue;
+      }
+    } else if (propName === "style") {
+      overrideProps[propName] = { ...slotPropValue, ...childPropValue };
+    } else if (propName === "className") {
+      overrideProps[propName] = [slotPropValue, childPropValue].filter(Boolean).join(" ");
+    }
+  }
+  return { ...slotProps, ...overrideProps };
+}
+function getElementRef(element) {
+  let getter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get;
+  let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+  if (mayWarn) {
+    return element.ref;
+  }
+  getter = Object.getOwnPropertyDescriptor(element, "ref")?.get;
+  mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+  if (mayWarn) {
+    return element.props.ref;
+  }
+  return element.props.ref || element.ref;
+}
+var NODES = [
+  "a",
+  "button",
+  "div",
+  "form",
+  "h2",
+  "h3",
+  "img",
+  "input",
+  "label",
+  "li",
+  "nav",
+  "ol",
+  "p",
+  "select",
+  "span",
+  "svg",
+  "ul"
+];
+var Primitive = NODES.reduce((primitive, node) => {
+  const Slot4 = createSlot(`Primitive.${node}`);
+  const Node2 = React45.forwardRef((props, forwardedRef) => {
+    const { asChild, ...primitiveProps } = props;
+    const Comp = asChild ? Slot4 : node;
+    if (typeof window !== "undefined") {
+      window[/* @__PURE__ */ Symbol.for("radix-ui")] = true;
+    }
+    return /* @__PURE__ */ jsx(Comp, { ...primitiveProps, ref: forwardedRef });
+  });
+  Node2.displayName = `Primitive.${node}`;
+  return { ...primitive, [node]: Node2 };
+}, {});
+function dispatchDiscreteCustomEvent(target, event) {
+  if (target) ReactDOM4.flushSync(() => target.dispatchEvent(event));
+}
+function createCollection(name) {
+  const PROVIDER_NAME2 = name + "CollectionProvider";
+  const [createCollectionContext, createCollectionScope2] = createContextScope(PROVIDER_NAME2);
+  const [CollectionProviderImpl, useCollectionContext] = createCollectionContext(
+    PROVIDER_NAME2,
+    { collectionRef: { current: null }, itemMap: /* @__PURE__ */ new Map() }
+  );
+  const CollectionProvider = (props) => {
+    const { scope, children } = props;
+    const ref = React45__default.useRef(null);
+    const itemMap = React45__default.useRef(/* @__PURE__ */ new Map()).current;
+    return /* @__PURE__ */ jsx(CollectionProviderImpl, { scope, itemMap, collectionRef: ref, children });
+  };
+  CollectionProvider.displayName = PROVIDER_NAME2;
+  const COLLECTION_SLOT_NAME = name + "CollectionSlot";
+  const CollectionSlotImpl = createSlot(COLLECTION_SLOT_NAME);
+  const CollectionSlot = React45__default.forwardRef(
+    (props, forwardedRef) => {
+      const { scope, children } = props;
+      const context = useCollectionContext(COLLECTION_SLOT_NAME, scope);
+      const composedRefs = useComposedRefs(forwardedRef, context.collectionRef);
+      return /* @__PURE__ */ jsx(CollectionSlotImpl, { ref: composedRefs, children });
+    }
+  );
+  CollectionSlot.displayName = COLLECTION_SLOT_NAME;
+  const ITEM_SLOT_NAME = name + "CollectionItemSlot";
+  const ITEM_DATA_ATTR = "data-radix-collection-item";
+  const CollectionItemSlotImpl = createSlot(ITEM_SLOT_NAME);
+  const CollectionItemSlot = React45__default.forwardRef(
+    (props, forwardedRef) => {
+      const { scope, children, ...itemData } = props;
+      const ref = React45__default.useRef(null);
+      const composedRefs = useComposedRefs(forwardedRef, ref);
+      const context = useCollectionContext(ITEM_SLOT_NAME, scope);
+      React45__default.useEffect(() => {
+        context.itemMap.set(ref, { ref, ...itemData });
+        return () => void context.itemMap.delete(ref);
+      });
+      return /* @__PURE__ */ jsx(CollectionItemSlotImpl, { ...{ [ITEM_DATA_ATTR]: "" }, ref: composedRefs, children });
+    }
+  );
+  CollectionItemSlot.displayName = ITEM_SLOT_NAME;
+  function useCollection2(scope) {
+    const context = useCollectionContext(name + "CollectionConsumer", scope);
+    const getItems = React45__default.useCallback(() => {
+      const collectionNode = context.collectionRef.current;
+      if (!collectionNode) return [];
+      const orderedNodes = Array.from(collectionNode.querySelectorAll(`[${ITEM_DATA_ATTR}]`));
+      const items = Array.from(context.itemMap.values());
+      const orderedItems = items.sort(
+        (a, b) => orderedNodes.indexOf(a.ref.current) - orderedNodes.indexOf(b.ref.current)
+      );
+      return orderedItems;
+    }, [context.collectionRef, context.itemMap]);
+    return getItems;
+  }
+  return [
+    { Provider: CollectionProvider, Slot: CollectionSlot, ItemSlot: CollectionItemSlot },
+    useCollection2,
+    createCollectionScope2
+  ];
+}
+function useCallbackRef(callback) {
+  const callbackRef = React45.useRef(callback);
+  React45.useEffect(() => {
+    callbackRef.current = callback;
+  });
+  return React45.useMemo(() => (...args) => callbackRef.current?.(...args), []);
+}
+function useEscapeKeydown(onEscapeKeyDownProp, ownerDocument = globalThis?.document) {
+  const onEscapeKeyDown = useCallbackRef(onEscapeKeyDownProp);
+  React45.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onEscapeKeyDown(event);
+      }
+    };
+    ownerDocument.addEventListener("keydown", handleKeyDown, { capture: true });
+    return () => ownerDocument.removeEventListener("keydown", handleKeyDown, { capture: true });
+  }, [onEscapeKeyDown, ownerDocument]);
+}
+var DISMISSABLE_LAYER_NAME = "DismissableLayer";
+var CONTEXT_UPDATE = "dismissableLayer.update";
+var POINTER_DOWN_OUTSIDE = "dismissableLayer.pointerDownOutside";
+var FOCUS_OUTSIDE = "dismissableLayer.focusOutside";
+var originalBodyPointerEvents;
+var DismissableLayerContext = React45.createContext({
+  layers: /* @__PURE__ */ new Set(),
+  layersWithOutsidePointerEventsDisabled: /* @__PURE__ */ new Set(),
+  branches: /* @__PURE__ */ new Set()
+});
+var DismissableLayer = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      disableOutsidePointerEvents = false,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      onFocusOutside,
+      onInteractOutside,
+      onDismiss,
+      ...layerProps
+    } = props;
+    const context = React45.useContext(DismissableLayerContext);
+    const [node, setNode] = React45.useState(null);
+    const ownerDocument = node?.ownerDocument ?? globalThis?.document;
+    const [, force] = React45.useState({});
+    const composedRefs = useComposedRefs(forwardedRef, (node2) => setNode(node2));
+    const layers = Array.from(context.layers);
+    const [highestLayerWithOutsidePointerEventsDisabled] = [...context.layersWithOutsidePointerEventsDisabled].slice(-1);
+    const highestLayerWithOutsidePointerEventsDisabledIndex = layers.indexOf(highestLayerWithOutsidePointerEventsDisabled);
+    const index3 = node ? layers.indexOf(node) : -1;
+    const isBodyPointerEventsDisabled = context.layersWithOutsidePointerEventsDisabled.size > 0;
+    const isPointerEventsEnabled = index3 >= highestLayerWithOutsidePointerEventsDisabledIndex;
+    const pointerDownOutside = usePointerDownOutside((event) => {
+      const target = event.target;
+      const isPointerDownOnBranch = [...context.branches].some((branch) => branch.contains(target));
+      if (!isPointerEventsEnabled || isPointerDownOnBranch) return;
+      onPointerDownOutside?.(event);
+      onInteractOutside?.(event);
+      if (!event.defaultPrevented) onDismiss?.();
+    }, ownerDocument);
+    const focusOutside = useFocusOutside((event) => {
+      const target = event.target;
+      const isFocusInBranch = [...context.branches].some((branch) => branch.contains(target));
+      if (isFocusInBranch) return;
+      onFocusOutside?.(event);
+      onInteractOutside?.(event);
+      if (!event.defaultPrevented) onDismiss?.();
+    }, ownerDocument);
+    useEscapeKeydown((event) => {
+      const isHighestLayer = index3 === context.layers.size - 1;
+      if (!isHighestLayer) return;
+      onEscapeKeyDown?.(event);
+      if (!event.defaultPrevented && onDismiss) {
+        event.preventDefault();
+        onDismiss();
+      }
+    }, ownerDocument);
+    React45.useEffect(() => {
+      if (!node) return;
+      if (disableOutsidePointerEvents) {
+        if (context.layersWithOutsidePointerEventsDisabled.size === 0) {
+          originalBodyPointerEvents = ownerDocument.body.style.pointerEvents;
+          ownerDocument.body.style.pointerEvents = "none";
+        }
+        context.layersWithOutsidePointerEventsDisabled.add(node);
+      }
+      context.layers.add(node);
+      dispatchUpdate();
+      return () => {
+        if (disableOutsidePointerEvents && context.layersWithOutsidePointerEventsDisabled.size === 1) {
+          ownerDocument.body.style.pointerEvents = originalBodyPointerEvents;
+        }
+      };
+    }, [node, ownerDocument, disableOutsidePointerEvents, context]);
+    React45.useEffect(() => {
+      return () => {
+        if (!node) return;
+        context.layers.delete(node);
+        context.layersWithOutsidePointerEventsDisabled.delete(node);
+        dispatchUpdate();
+      };
+    }, [node, context]);
+    React45.useEffect(() => {
+      const handleUpdate = () => force({});
+      document.addEventListener(CONTEXT_UPDATE, handleUpdate);
+      return () => document.removeEventListener(CONTEXT_UPDATE, handleUpdate);
+    }, []);
+    return /* @__PURE__ */ jsx(
+      Primitive.div,
+      {
+        ...layerProps,
+        ref: composedRefs,
+        style: {
+          pointerEvents: isBodyPointerEventsDisabled ? isPointerEventsEnabled ? "auto" : "none" : void 0,
+          ...props.style
+        },
+        onFocusCapture: composeEventHandlers(props.onFocusCapture, focusOutside.onFocusCapture),
+        onBlurCapture: composeEventHandlers(props.onBlurCapture, focusOutside.onBlurCapture),
+        onPointerDownCapture: composeEventHandlers(
+          props.onPointerDownCapture,
+          pointerDownOutside.onPointerDownCapture
+        )
+      }
+    );
+  }
+);
+DismissableLayer.displayName = DISMISSABLE_LAYER_NAME;
+var BRANCH_NAME = "DismissableLayerBranch";
+var DismissableLayerBranch = React45.forwardRef((props, forwardedRef) => {
+  const context = React45.useContext(DismissableLayerContext);
+  const ref = React45.useRef(null);
+  const composedRefs = useComposedRefs(forwardedRef, ref);
+  React45.useEffect(() => {
+    const node = ref.current;
+    if (node) {
+      context.branches.add(node);
+      return () => {
+        context.branches.delete(node);
+      };
+    }
+  }, [context.branches]);
+  return /* @__PURE__ */ jsx(Primitive.div, { ...props, ref: composedRefs });
+});
+DismissableLayerBranch.displayName = BRANCH_NAME;
+function usePointerDownOutside(onPointerDownOutside, ownerDocument = globalThis?.document) {
+  const handlePointerDownOutside = useCallbackRef(onPointerDownOutside);
+  const isPointerInsideReactTreeRef = React45.useRef(false);
+  const handleClickRef = React45.useRef(() => {
+  });
+  React45.useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (event.target && !isPointerInsideReactTreeRef.current) {
+        let handleAndDispatchPointerDownOutsideEvent2 = function() {
+          handleAndDispatchCustomEvent(
+            POINTER_DOWN_OUTSIDE,
+            handlePointerDownOutside,
+            eventDetail,
+            { discrete: true }
+          );
+        };
+        const eventDetail = { originalEvent: event };
+        if (event.pointerType === "touch") {
+          ownerDocument.removeEventListener("click", handleClickRef.current);
+          handleClickRef.current = handleAndDispatchPointerDownOutsideEvent2;
+          ownerDocument.addEventListener("click", handleClickRef.current, { once: true });
+        } else {
+          handleAndDispatchPointerDownOutsideEvent2();
+        }
+      } else {
+        ownerDocument.removeEventListener("click", handleClickRef.current);
+      }
+      isPointerInsideReactTreeRef.current = false;
+    };
+    const timerId = window.setTimeout(() => {
+      ownerDocument.addEventListener("pointerdown", handlePointerDown);
+    }, 0);
+    return () => {
+      window.clearTimeout(timerId);
+      ownerDocument.removeEventListener("pointerdown", handlePointerDown);
+      ownerDocument.removeEventListener("click", handleClickRef.current);
+    };
+  }, [ownerDocument, handlePointerDownOutside]);
+  return {
+    // ensures we check React component tree (not just DOM tree)
+    onPointerDownCapture: () => isPointerInsideReactTreeRef.current = true
+  };
+}
+function useFocusOutside(onFocusOutside, ownerDocument = globalThis?.document) {
+  const handleFocusOutside = useCallbackRef(onFocusOutside);
+  const isFocusInsideReactTreeRef = React45.useRef(false);
+  React45.useEffect(() => {
+    const handleFocus = (event) => {
+      if (event.target && !isFocusInsideReactTreeRef.current) {
+        const eventDetail = { originalEvent: event };
+        handleAndDispatchCustomEvent(FOCUS_OUTSIDE, handleFocusOutside, eventDetail, {
+          discrete: false
+        });
+      }
+    };
+    ownerDocument.addEventListener("focusin", handleFocus);
+    return () => ownerDocument.removeEventListener("focusin", handleFocus);
+  }, [ownerDocument, handleFocusOutside]);
+  return {
+    onFocusCapture: () => isFocusInsideReactTreeRef.current = true,
+    onBlurCapture: () => isFocusInsideReactTreeRef.current = false
+  };
+}
+function dispatchUpdate() {
+  const event = new CustomEvent(CONTEXT_UPDATE);
+  document.dispatchEvent(event);
+}
+function handleAndDispatchCustomEvent(name, handler, detail, { discrete }) {
+  const target = detail.originalEvent.target;
+  const event = new CustomEvent(name, { bubbles: false, cancelable: true, detail });
+  if (handler) target.addEventListener(name, handler, { once: true });
+  if (discrete) {
+    dispatchDiscreteCustomEvent(target, event);
+  } else {
+    target.dispatchEvent(event);
+  }
+}
+var count = 0;
+function useFocusGuards() {
+  React45.useEffect(() => {
+    const edgeGuards = document.querySelectorAll("[data-radix-focus-guard]");
+    document.body.insertAdjacentElement("afterbegin", edgeGuards[0] ?? createFocusGuard());
+    document.body.insertAdjacentElement("beforeend", edgeGuards[1] ?? createFocusGuard());
+    count++;
+    return () => {
+      if (count === 1) {
+        document.querySelectorAll("[data-radix-focus-guard]").forEach((node) => node.remove());
+      }
+      count--;
+    };
+  }, []);
+}
+function createFocusGuard() {
+  const element = document.createElement("span");
+  element.setAttribute("data-radix-focus-guard", "");
+  element.tabIndex = 0;
+  element.style.outline = "none";
+  element.style.opacity = "0";
+  element.style.position = "fixed";
+  element.style.pointerEvents = "none";
+  return element;
+}
+var AUTOFOCUS_ON_MOUNT = "focusScope.autoFocusOnMount";
+var AUTOFOCUS_ON_UNMOUNT = "focusScope.autoFocusOnUnmount";
+var EVENT_OPTIONS = { bubbles: false, cancelable: true };
+var FOCUS_SCOPE_NAME = "FocusScope";
+var FocusScope = React45.forwardRef((props, forwardedRef) => {
+  const {
+    loop = false,
+    trapped = false,
+    onMountAutoFocus: onMountAutoFocusProp,
+    onUnmountAutoFocus: onUnmountAutoFocusProp,
+    ...scopeProps
+  } = props;
+  const [container, setContainer] = React45.useState(null);
+  const onMountAutoFocus = useCallbackRef(onMountAutoFocusProp);
+  const onUnmountAutoFocus = useCallbackRef(onUnmountAutoFocusProp);
+  const lastFocusedElementRef = React45.useRef(null);
+  const composedRefs = useComposedRefs(forwardedRef, (node) => setContainer(node));
+  const focusScope = React45.useRef({
+    paused: false,
+    pause() {
+      this.paused = true;
+    },
+    resume() {
+      this.paused = false;
+    }
+  }).current;
+  React45.useEffect(() => {
+    if (trapped) {
+      let handleFocusIn2 = function(event) {
+        if (focusScope.paused || !container) return;
+        const target = event.target;
+        if (container.contains(target)) {
+          lastFocusedElementRef.current = target;
+        } else {
+          focus(lastFocusedElementRef.current, { select: true });
+        }
+      }, handleFocusOut2 = function(event) {
+        if (focusScope.paused || !container) return;
+        const relatedTarget = event.relatedTarget;
+        if (relatedTarget === null) return;
+        if (!container.contains(relatedTarget)) {
+          focus(lastFocusedElementRef.current, { select: true });
+        }
+      }, handleMutations2 = function(mutations) {
+        const focusedElement = document.activeElement;
+        if (focusedElement !== document.body) return;
+        for (const mutation of mutations) {
+          if (mutation.removedNodes.length > 0) focus(container);
+        }
+      };
+      document.addEventListener("focusin", handleFocusIn2);
+      document.addEventListener("focusout", handleFocusOut2);
+      const mutationObserver = new MutationObserver(handleMutations2);
+      if (container) mutationObserver.observe(container, { childList: true, subtree: true });
+      return () => {
+        document.removeEventListener("focusin", handleFocusIn2);
+        document.removeEventListener("focusout", handleFocusOut2);
+        mutationObserver.disconnect();
+      };
+    }
+  }, [trapped, container, focusScope.paused]);
+  React45.useEffect(() => {
+    if (container) {
+      focusScopesStack.add(focusScope);
+      const previouslyFocusedElement = document.activeElement;
+      const hasFocusedCandidate = container.contains(previouslyFocusedElement);
+      if (!hasFocusedCandidate) {
+        const mountEvent = new CustomEvent(AUTOFOCUS_ON_MOUNT, EVENT_OPTIONS);
+        container.addEventListener(AUTOFOCUS_ON_MOUNT, onMountAutoFocus);
+        container.dispatchEvent(mountEvent);
+        if (!mountEvent.defaultPrevented) {
+          focusFirst(removeLinks(getTabbableCandidates(container)), { select: true });
+          if (document.activeElement === previouslyFocusedElement) {
+            focus(container);
+          }
+        }
+      }
+      return () => {
+        container.removeEventListener(AUTOFOCUS_ON_MOUNT, onMountAutoFocus);
+        setTimeout(() => {
+          const unmountEvent = new CustomEvent(AUTOFOCUS_ON_UNMOUNT, EVENT_OPTIONS);
+          container.addEventListener(AUTOFOCUS_ON_UNMOUNT, onUnmountAutoFocus);
+          container.dispatchEvent(unmountEvent);
+          if (!unmountEvent.defaultPrevented) {
+            focus(previouslyFocusedElement ?? document.body, { select: true });
+          }
+          container.removeEventListener(AUTOFOCUS_ON_UNMOUNT, onUnmountAutoFocus);
+          focusScopesStack.remove(focusScope);
+        }, 0);
+      };
+    }
+  }, [container, onMountAutoFocus, onUnmountAutoFocus, focusScope]);
+  const handleKeyDown = React45.useCallback(
+    (event) => {
+      if (!loop && !trapped) return;
+      if (focusScope.paused) return;
+      const isTabKey = event.key === "Tab" && !event.altKey && !event.ctrlKey && !event.metaKey;
+      const focusedElement = document.activeElement;
+      if (isTabKey && focusedElement) {
+        const container2 = event.currentTarget;
+        const [first, last] = getTabbableEdges(container2);
+        const hasTabbableElementsInside = first && last;
+        if (!hasTabbableElementsInside) {
+          if (focusedElement === container2) event.preventDefault();
+        } else {
+          if (!event.shiftKey && focusedElement === last) {
+            event.preventDefault();
+            if (loop) focus(first, { select: true });
+          } else if (event.shiftKey && focusedElement === first) {
+            event.preventDefault();
+            if (loop) focus(last, { select: true });
+          }
+        }
+      }
+    },
+    [loop, trapped, focusScope.paused]
+  );
+  return /* @__PURE__ */ jsx(Primitive.div, { tabIndex: -1, ...scopeProps, ref: composedRefs, onKeyDown: handleKeyDown });
+});
+FocusScope.displayName = FOCUS_SCOPE_NAME;
+function focusFirst(candidates, { select = false } = {}) {
+  const previouslyFocusedElement = document.activeElement;
+  for (const candidate of candidates) {
+    focus(candidate, { select });
+    if (document.activeElement !== previouslyFocusedElement) return;
+  }
+}
+function getTabbableEdges(container) {
+  const candidates = getTabbableCandidates(container);
+  const first = findVisible(candidates, container);
+  const last = findVisible(candidates.reverse(), container);
+  return [first, last];
+}
+function getTabbableCandidates(container) {
+  const nodes = [];
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_ELEMENT, {
+    acceptNode: (node) => {
+      const isHiddenInput = node.tagName === "INPUT" && node.type === "hidden";
+      if (node.disabled || node.hidden || isHiddenInput) return NodeFilter.FILTER_SKIP;
+      return node.tabIndex >= 0 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+    }
+  });
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  return nodes;
+}
+function findVisible(elements, container) {
+  for (const element of elements) {
+    if (!isHidden(element, { upTo: container })) return element;
+  }
+}
+function isHidden(node, { upTo }) {
+  if (getComputedStyle(node).visibility === "hidden") return true;
+  while (node) {
+    if (upTo !== void 0 && node === upTo) return false;
+    if (getComputedStyle(node).display === "none") return true;
+    node = node.parentElement;
+  }
+  return false;
+}
+function isSelectableInput(element) {
+  return element instanceof HTMLInputElement && "select" in element;
+}
+function focus(element, { select = false } = {}) {
+  if (element && element.focus) {
+    const previouslyFocusedElement = document.activeElement;
+    element.focus({ preventScroll: true });
+    if (element !== previouslyFocusedElement && isSelectableInput(element) && select)
+      element.select();
+  }
+}
+var focusScopesStack = createFocusScopesStack();
+function createFocusScopesStack() {
+  let stack = [];
+  return {
+    add(focusScope) {
+      const activeFocusScope = stack[0];
+      if (focusScope !== activeFocusScope) {
+        activeFocusScope?.pause();
+      }
+      stack = arrayRemove(stack, focusScope);
+      stack.unshift(focusScope);
+    },
+    remove(focusScope) {
+      stack = arrayRemove(stack, focusScope);
+      stack[0]?.resume();
+    }
+  };
+}
+function arrayRemove(array, item) {
+  const updatedArray = [...array];
+  const index3 = updatedArray.indexOf(item);
+  if (index3 !== -1) {
+    updatedArray.splice(index3, 1);
+  }
+  return updatedArray;
+}
+function removeLinks(items) {
+  return items.filter((item) => item.tagName !== "A");
+}
+var useReactId = React45[" useId ".trim().toString()] || (() => void 0);
+var count2 = 0;
+function useId(deterministicId) {
+  const [id, setId] = React45.useState(useReactId());
+  useLayoutEffect2(() => {
+    setId((reactId) => reactId ?? String(count2++));
+  }, [deterministicId]);
+  return (id ? `radix-${id}` : "");
+}
+
+// ../../node_modules/.pnpm/@floating-ui+utils@0.2.11/node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+var sides = ["top", "right", "bottom", "left"];
+var min = Math.min;
+var max = Math.max;
+var round = Math.round;
+var floor = Math.floor;
+var createCoords = (v) => ({
+  x: v,
+  y: v
+});
+var oppositeSideMap = {
+  left: "right",
+  right: "left",
+  bottom: "top",
+  top: "bottom"
+};
+function clamp2(start, value, end) {
+  return max(start, min(value, end));
+}
+function evaluate(value, param) {
+  return typeof value === "function" ? value(param) : value;
+}
+function getSide(placement) {
+  return placement.split("-")[0];
+}
+function getAlignment(placement) {
+  return placement.split("-")[1];
+}
+function getOppositeAxis(axis) {
+  return axis === "x" ? "y" : "x";
+}
+function getAxisLength(axis) {
+  return axis === "y" ? "height" : "width";
+}
+function getSideAxis(placement) {
+  const firstChar = placement[0];
+  return firstChar === "t" || firstChar === "b" ? "y" : "x";
+}
+function getAlignmentAxis(placement) {
+  return getOppositeAxis(getSideAxis(placement));
+}
+function getAlignmentSides(placement, rects, rtl) {
+  if (rtl === void 0) {
+    rtl = false;
+  }
+  const alignment = getAlignment(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const length = getAxisLength(alignmentAxis);
+  let mainAlignmentSide = alignmentAxis === "x" ? alignment === (rtl ? "end" : "start") ? "right" : "left" : alignment === "start" ? "bottom" : "top";
+  if (rects.reference[length] > rects.floating[length]) {
+    mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
+  }
+  return [mainAlignmentSide, getOppositePlacement(mainAlignmentSide)];
+}
+function getExpandedPlacements(placement) {
+  const oppositePlacement = getOppositePlacement(placement);
+  return [getOppositeAlignmentPlacement(placement), oppositePlacement, getOppositeAlignmentPlacement(oppositePlacement)];
+}
+function getOppositeAlignmentPlacement(placement) {
+  return placement.includes("start") ? placement.replace("start", "end") : placement.replace("end", "start");
+}
+var lrPlacement = ["left", "right"];
+var rlPlacement = ["right", "left"];
+var tbPlacement = ["top", "bottom"];
+var btPlacement = ["bottom", "top"];
+function getSideList(side, isStart, rtl) {
+  switch (side) {
+    case "top":
+    case "bottom":
+      if (rtl) return isStart ? rlPlacement : lrPlacement;
+      return isStart ? lrPlacement : rlPlacement;
+    case "left":
+    case "right":
+      return isStart ? tbPlacement : btPlacement;
+    default:
+      return [];
+  }
+}
+function getOppositeAxisPlacements(placement, flipAlignment, direction, rtl) {
+  const alignment = getAlignment(placement);
+  let list = getSideList(getSide(placement), direction === "start", rtl);
+  if (alignment) {
+    list = list.map((side) => side + "-" + alignment);
+    if (flipAlignment) {
+      list = list.concat(list.map(getOppositeAlignmentPlacement));
+    }
+  }
+  return list;
+}
+function getOppositePlacement(placement) {
+  const side = getSide(placement);
+  return oppositeSideMap[side] + placement.slice(side.length);
+}
+function expandPaddingObject(padding) {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    ...padding
+  };
+}
+function getPaddingObject(padding) {
+  return typeof padding !== "number" ? expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
+}
+function rectToClientRect(rect) {
+  const {
+    x,
+    y,
+    width,
+    height
+  } = rect;
+  return {
+    width,
+    height,
+    top: y,
+    left: x,
+    right: x + width,
+    bottom: y + height,
+    x,
+    y
+  };
+}
+
+// ../../node_modules/.pnpm/@floating-ui+core@1.7.5/node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+function computeCoordsFromPlacement(_ref, placement, rtl) {
+  let {
+    reference,
+    floating
+  } = _ref;
+  const sideAxis = getSideAxis(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const alignLength = getAxisLength(alignmentAxis);
+  const side = getSide(placement);
+  const isVertical = sideAxis === "y";
+  const commonX = reference.x + reference.width / 2 - floating.width / 2;
+  const commonY = reference.y + reference.height / 2 - floating.height / 2;
+  const commonAlign = reference[alignLength] / 2 - floating[alignLength] / 2;
+  let coords;
+  switch (side) {
+    case "top":
+      coords = {
+        x: commonX,
+        y: reference.y - floating.height
+      };
+      break;
+    case "bottom":
+      coords = {
+        x: commonX,
+        y: reference.y + reference.height
+      };
+      break;
+    case "right":
+      coords = {
+        x: reference.x + reference.width,
+        y: commonY
+      };
+      break;
+    case "left":
+      coords = {
+        x: reference.x - floating.width,
+        y: commonY
+      };
+      break;
+    default:
+      coords = {
+        x: reference.x,
+        y: reference.y
+      };
+  }
+  switch (getAlignment(placement)) {
+    case "start":
+      coords[alignmentAxis] -= commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+    case "end":
+      coords[alignmentAxis] += commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+  }
+  return coords;
+}
+async function detectOverflow(state, options) {
+  var _await$platform$isEle;
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    x,
+    y,
+    platform: platform2,
+    rects,
+    elements,
+    strategy
+  } = state;
+  const {
+    boundary = "clippingAncestors",
+    rootBoundary = "viewport",
+    elementContext = "floating",
+    altBoundary = false,
+    padding = 0
+  } = evaluate(options, state);
+  const paddingObject = getPaddingObject(padding);
+  const altContext = elementContext === "floating" ? "reference" : "floating";
+  const element = elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = rectToClientRect(await platform2.getClippingRect({
+    element: ((_await$platform$isEle = await (platform2.isElement == null ? void 0 : platform2.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || await (platform2.getDocumentElement == null ? void 0 : platform2.getDocumentElement(elements.floating)),
+    boundary,
+    rootBoundary,
+    strategy
+  }));
+  const rect = elementContext === "floating" ? {
+    x,
+    y,
+    width: rects.floating.width,
+    height: rects.floating.height
+  } : rects.reference;
+  const offsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating));
+  const offsetScale = await (platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? await (platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
+    x: 1,
+    y: 1
+  } : {
+    x: 1,
+    y: 1
+  };
+  const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
+    elements,
+    rect,
+    offsetParent,
+    strategy
+  }) : rect);
+  return {
+    top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
+    bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
+    left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
+    right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
+  };
+}
+var MAX_RESET_COUNT = 50;
+var computePosition = async (reference, floating, config) => {
+  const {
+    placement = "bottom",
+    strategy = "absolute",
+    middleware = [],
+    platform: platform2
+  } = config;
+  const platformWithDetectOverflow = platform2.detectOverflow ? platform2 : {
+    ...platform2,
+    detectOverflow
+  };
+  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(floating));
+  let rects = await platform2.getElementRects({
+    reference,
+    floating,
+    strategy
+  });
+  let {
+    x,
+    y
+  } = computeCoordsFromPlacement(rects, placement, rtl);
+  let statefulPlacement = placement;
+  let resetCount = 0;
+  const middlewareData = {};
+  for (let i = 0; i < middleware.length; i++) {
+    const currentMiddleware = middleware[i];
+    if (!currentMiddleware) {
+      continue;
+    }
+    const {
+      name,
+      fn
+    } = currentMiddleware;
+    const {
+      x: nextX,
+      y: nextY,
+      data,
+      reset
+    } = await fn({
+      x,
+      y,
+      initialPlacement: placement,
+      placement: statefulPlacement,
+      strategy,
+      middlewareData,
+      rects,
+      platform: platformWithDetectOverflow,
+      elements: {
+        reference,
+        floating
+      }
+    });
+    x = nextX != null ? nextX : x;
+    y = nextY != null ? nextY : y;
+    middlewareData[name] = {
+      ...middlewareData[name],
+      ...data
+    };
+    if (reset && resetCount < MAX_RESET_COUNT) {
+      resetCount++;
+      if (typeof reset === "object") {
+        if (reset.placement) {
+          statefulPlacement = reset.placement;
+        }
+        if (reset.rects) {
+          rects = reset.rects === true ? await platform2.getElementRects({
+            reference,
+            floating,
+            strategy
+          }) : reset.rects;
+        }
+        ({
+          x,
+          y
+        } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
+      }
+      i = -1;
+    }
+  }
+  return {
+    x,
+    y,
+    placement: statefulPlacement,
+    strategy,
+    middlewareData
+  };
+};
+var arrow = (options) => ({
+  name: "arrow",
+  options,
+  async fn(state) {
+    const {
+      x,
+      y,
+      placement,
+      rects,
+      platform: platform2,
+      elements,
+      middlewareData
+    } = state;
+    const {
+      element,
+      padding = 0
+    } = evaluate(options, state) || {};
+    if (element == null) {
+      return {};
+    }
+    const paddingObject = getPaddingObject(padding);
+    const coords = {
+      x,
+      y
+    };
+    const axis = getAlignmentAxis(placement);
+    const length = getAxisLength(axis);
+    const arrowDimensions = await platform2.getDimensions(element);
+    const isYAxis = axis === "y";
+    const minProp = isYAxis ? "top" : "left";
+    const maxProp = isYAxis ? "bottom" : "right";
+    const clientProp = isYAxis ? "clientHeight" : "clientWidth";
+    const endDiff = rects.reference[length] + rects.reference[axis] - coords[axis] - rects.floating[length];
+    const startDiff = coords[axis] - rects.reference[axis];
+    const arrowOffsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(element));
+    let clientSize = arrowOffsetParent ? arrowOffsetParent[clientProp] : 0;
+    if (!clientSize || !await (platform2.isElement == null ? void 0 : platform2.isElement(arrowOffsetParent))) {
+      clientSize = elements.floating[clientProp] || rects.floating[length];
+    }
+    const centerToReference = endDiff / 2 - startDiff / 2;
+    const largestPossiblePadding = clientSize / 2 - arrowDimensions[length] / 2 - 1;
+    const minPadding = min(paddingObject[minProp], largestPossiblePadding);
+    const maxPadding = min(paddingObject[maxProp], largestPossiblePadding);
+    const min$1 = minPadding;
+    const max2 = clientSize - arrowDimensions[length] - maxPadding;
+    const center = clientSize / 2 - arrowDimensions[length] / 2 + centerToReference;
+    const offset4 = clamp2(min$1, center, max2);
+    const shouldAddOffset = !middlewareData.arrow && getAlignment(placement) != null && center !== offset4 && rects.reference[length] / 2 - (center < min$1 ? minPadding : maxPadding) - arrowDimensions[length] / 2 < 0;
+    const alignmentOffset = shouldAddOffset ? center < min$1 ? center - min$1 : center - max2 : 0;
+    return {
+      [axis]: coords[axis] + alignmentOffset,
+      data: {
+        [axis]: offset4,
+        centerOffset: center - offset4 - alignmentOffset,
+        ...shouldAddOffset && {
+          alignmentOffset
+        }
+      },
+      reset: shouldAddOffset
+    };
+  }
+});
+var flip = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: "flip",
+    options,
+    async fn(state) {
+      var _middlewareData$arrow, _middlewareData$flip;
+      const {
+        placement,
+        middlewareData,
+        rects,
+        initialPlacement,
+        platform: platform2,
+        elements
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true,
+        fallbackPlacements: specifiedFallbackPlacements,
+        fallbackStrategy = "bestFit",
+        fallbackAxisSideDirection = "none",
+        flipAlignment = true,
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
+      const side = getSide(placement);
+      const initialSideAxis = getSideAxis(initialPlacement);
+      const isBasePlacement = getSide(initialPlacement) === initialPlacement;
+      const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
+      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
+      const hasFallbackAxisSideDirection = fallbackAxisSideDirection !== "none";
+      if (!specifiedFallbackPlacements && hasFallbackAxisSideDirection) {
+        fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
+      }
+      const placements2 = [initialPlacement, ...fallbackPlacements];
+      const overflow = await platform2.detectOverflow(state, detectOverflowOptions);
+      const overflows = [];
+      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
+      if (checkMainAxis) {
+        overflows.push(overflow[side]);
+      }
+      if (checkCrossAxis) {
+        const sides2 = getAlignmentSides(placement, rects, rtl);
+        overflows.push(overflow[sides2[0]], overflow[sides2[1]]);
+      }
+      overflowsData = [...overflowsData, {
+        placement,
+        overflows
+      }];
+      if (!overflows.every((side2) => side2 <= 0)) {
+        var _middlewareData$flip2, _overflowsData$filter;
+        const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
+        const nextPlacement = placements2[nextIndex];
+        if (nextPlacement) {
+          const ignoreCrossAxisOverflow = checkCrossAxis === "alignment" ? initialSideAxis !== getSideAxis(nextPlacement) : false;
+          if (!ignoreCrossAxisOverflow || // We leave the current main axis only if every placement on that axis
+          // overflows the main axis.
+          overflowsData.every((d) => getSideAxis(d.placement) === initialSideAxis ? d.overflows[0] > 0 : true)) {
+            return {
+              data: {
+                index: nextIndex,
+                overflows: overflowsData
+              },
+              reset: {
+                placement: nextPlacement
+              }
+            };
+          }
+        }
+        let resetPlacement = (_overflowsData$filter = overflowsData.filter((d) => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? void 0 : _overflowsData$filter.placement;
+        if (!resetPlacement) {
+          switch (fallbackStrategy) {
+            case "bestFit": {
+              var _overflowsData$filter2;
+              const placement2 = (_overflowsData$filter2 = overflowsData.filter((d) => {
+                if (hasFallbackAxisSideDirection) {
+                  const currentSideAxis = getSideAxis(d.placement);
+                  return currentSideAxis === initialSideAxis || // Create a bias to the `y` side axis due to horizontal
+                  // reading directions favoring greater width.
+                  currentSideAxis === "y";
+                }
+                return true;
+              }).map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$filter2[0];
+              if (placement2) {
+                resetPlacement = placement2;
+              }
+              break;
+            }
+            case "initialPlacement":
+              resetPlacement = initialPlacement;
+              break;
+          }
+        }
+        if (placement !== resetPlacement) {
+          return {
+            reset: {
+              placement: resetPlacement
+            }
+          };
+        }
+      }
+      return {};
+    }
+  };
+};
+function getSideOffsets(overflow, rect) {
+  return {
+    top: overflow.top - rect.height,
+    right: overflow.right - rect.width,
+    bottom: overflow.bottom - rect.height,
+    left: overflow.left - rect.width
+  };
+}
+function isAnySideFullyClipped(overflow) {
+  return sides.some((side) => overflow[side] >= 0);
+}
+var hide = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: "hide",
+    options,
+    async fn(state) {
+      const {
+        rects,
+        platform: platform2
+      } = state;
+      const {
+        strategy = "referenceHidden",
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      switch (strategy) {
+        case "referenceHidden": {
+          const overflow = await platform2.detectOverflow(state, {
+            ...detectOverflowOptions,
+            elementContext: "reference"
+          });
+          const offsets = getSideOffsets(overflow, rects.reference);
+          return {
+            data: {
+              referenceHiddenOffsets: offsets,
+              referenceHidden: isAnySideFullyClipped(offsets)
+            }
+          };
+        }
+        case "escaped": {
+          const overflow = await platform2.detectOverflow(state, {
+            ...detectOverflowOptions,
+            altBoundary: true
+          });
+          const offsets = getSideOffsets(overflow, rects.floating);
+          return {
+            data: {
+              escapedOffsets: offsets,
+              escaped: isAnySideFullyClipped(offsets)
+            }
+          };
+        }
+        default: {
+          return {};
+        }
+      }
+    }
+  };
+};
+var originSides = /* @__PURE__ */ new Set(["left", "top"]);
+async function convertValueToCoords(state, options) {
+  const {
+    placement,
+    platform: platform2,
+    elements
+  } = state;
+  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
+  const side = getSide(placement);
+  const alignment = getAlignment(placement);
+  const isVertical = getSideAxis(placement) === "y";
+  const mainAxisMulti = originSides.has(side) ? -1 : 1;
+  const crossAxisMulti = rtl && isVertical ? -1 : 1;
+  const rawValue = evaluate(options, state);
+  let {
+    mainAxis,
+    crossAxis,
+    alignmentAxis
+  } = typeof rawValue === "number" ? {
+    mainAxis: rawValue,
+    crossAxis: 0,
+    alignmentAxis: null
+  } : {
+    mainAxis: rawValue.mainAxis || 0,
+    crossAxis: rawValue.crossAxis || 0,
+    alignmentAxis: rawValue.alignmentAxis
+  };
+  if (alignment && typeof alignmentAxis === "number") {
+    crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
+  }
+  return isVertical ? {
+    x: crossAxis * crossAxisMulti,
+    y: mainAxis * mainAxisMulti
+  } : {
+    x: mainAxis * mainAxisMulti,
+    y: crossAxis * crossAxisMulti
+  };
+}
+var offset = function(options) {
+  if (options === void 0) {
+    options = 0;
+  }
+  return {
+    name: "offset",
+    options,
+    async fn(state) {
+      var _middlewareData$offse, _middlewareData$arrow;
+      const {
+        x,
+        y,
+        placement,
+        middlewareData
+      } = state;
+      const diffCoords = await convertValueToCoords(state, options);
+      if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: {
+          ...diffCoords,
+          placement
+        }
+      };
+    }
+  };
+};
+var shift = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: "shift",
+    options,
+    async fn(state) {
+      const {
+        x,
+        y,
+        placement,
+        platform: platform2
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = false,
+        limiter = {
+          fn: (_ref) => {
+            let {
+              x: x2,
+              y: y2
+            } = _ref;
+            return {
+              x: x2,
+              y: y2
+            };
+          }
+        },
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      const coords = {
+        x,
+        y
+      };
+      const overflow = await platform2.detectOverflow(state, detectOverflowOptions);
+      const crossAxis = getSideAxis(getSide(placement));
+      const mainAxis = getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      if (checkMainAxis) {
+        const minSide = mainAxis === "y" ? "top" : "left";
+        const maxSide = mainAxis === "y" ? "bottom" : "right";
+        const min2 = mainAxisCoord + overflow[minSide];
+        const max2 = mainAxisCoord - overflow[maxSide];
+        mainAxisCoord = clamp2(min2, mainAxisCoord, max2);
+      }
+      if (checkCrossAxis) {
+        const minSide = crossAxis === "y" ? "top" : "left";
+        const maxSide = crossAxis === "y" ? "bottom" : "right";
+        const min2 = crossAxisCoord + overflow[minSide];
+        const max2 = crossAxisCoord - overflow[maxSide];
+        crossAxisCoord = clamp2(min2, crossAxisCoord, max2);
+      }
+      const limitedCoords = limiter.fn({
+        ...state,
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      });
+      return {
+        ...limitedCoords,
+        data: {
+          x: limitedCoords.x - x,
+          y: limitedCoords.y - y,
+          enabled: {
+            [mainAxis]: checkMainAxis,
+            [crossAxis]: checkCrossAxis
+          }
+        }
+      };
+    }
+  };
+};
+var limitShift = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    options,
+    fn(state) {
+      const {
+        x,
+        y,
+        placement,
+        rects,
+        middlewareData
+      } = state;
+      const {
+        offset: offset4 = 0,
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true
+      } = evaluate(options, state);
+      const coords = {
+        x,
+        y
+      };
+      const crossAxis = getSideAxis(placement);
+      const mainAxis = getOppositeAxis(crossAxis);
+      let mainAxisCoord = coords[mainAxis];
+      let crossAxisCoord = coords[crossAxis];
+      const rawOffset = evaluate(offset4, state);
+      const computedOffset = typeof rawOffset === "number" ? {
+        mainAxis: rawOffset,
+        crossAxis: 0
+      } : {
+        mainAxis: 0,
+        crossAxis: 0,
+        ...rawOffset
+      };
+      if (checkMainAxis) {
+        const len = mainAxis === "y" ? "height" : "width";
+        const limitMin = rects.reference[mainAxis] - rects.floating[len] + computedOffset.mainAxis;
+        const limitMax = rects.reference[mainAxis] + rects.reference[len] - computedOffset.mainAxis;
+        if (mainAxisCoord < limitMin) {
+          mainAxisCoord = limitMin;
+        } else if (mainAxisCoord > limitMax) {
+          mainAxisCoord = limitMax;
+        }
+      }
+      if (checkCrossAxis) {
+        var _middlewareData$offse, _middlewareData$offse2;
+        const len = mainAxis === "y" ? "width" : "height";
+        const isOriginSide = originSides.has(getSide(placement));
+        const limitMin = rects.reference[crossAxis] - rects.floating[len] + (isOriginSide ? ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse[crossAxis]) || 0 : 0) + (isOriginSide ? 0 : computedOffset.crossAxis);
+        const limitMax = rects.reference[crossAxis] + rects.reference[len] + (isOriginSide ? 0 : ((_middlewareData$offse2 = middlewareData.offset) == null ? void 0 : _middlewareData$offse2[crossAxis]) || 0) - (isOriginSide ? computedOffset.crossAxis : 0);
+        if (crossAxisCoord < limitMin) {
+          crossAxisCoord = limitMin;
+        } else if (crossAxisCoord > limitMax) {
+          crossAxisCoord = limitMax;
+        }
+      }
+      return {
+        [mainAxis]: mainAxisCoord,
+        [crossAxis]: crossAxisCoord
+      };
+    }
+  };
+};
+var size = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: "size",
+    options,
+    async fn(state) {
+      var _state$middlewareData, _state$middlewareData2;
+      const {
+        placement,
+        rects,
+        platform: platform2,
+        elements
+      } = state;
+      const {
+        apply = () => {
+        },
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      const overflow = await platform2.detectOverflow(state, detectOverflowOptions);
+      const side = getSide(placement);
+      const alignment = getAlignment(placement);
+      const isYAxis = getSideAxis(placement) === "y";
+      const {
+        width,
+        height
+      } = rects.floating;
+      let heightSide;
+      let widthSide;
+      if (side === "top" || side === "bottom") {
+        heightSide = side;
+        widthSide = alignment === (await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating)) ? "start" : "end") ? "left" : "right";
+      } else {
+        widthSide = side;
+        heightSide = alignment === "end" ? "top" : "bottom";
+      }
+      const maximumClippingHeight = height - overflow.top - overflow.bottom;
+      const maximumClippingWidth = width - overflow.left - overflow.right;
+      const overflowAvailableHeight = min(height - overflow[heightSide], maximumClippingHeight);
+      const overflowAvailableWidth = min(width - overflow[widthSide], maximumClippingWidth);
+      const noShift = !state.middlewareData.shift;
+      let availableHeight = overflowAvailableHeight;
+      let availableWidth = overflowAvailableWidth;
+      if ((_state$middlewareData = state.middlewareData.shift) != null && _state$middlewareData.enabled.x) {
+        availableWidth = maximumClippingWidth;
+      }
+      if ((_state$middlewareData2 = state.middlewareData.shift) != null && _state$middlewareData2.enabled.y) {
+        availableHeight = maximumClippingHeight;
+      }
+      if (noShift && !alignment) {
+        const xMin = max(overflow.left, 0);
+        const xMax = max(overflow.right, 0);
+        const yMin = max(overflow.top, 0);
+        const yMax = max(overflow.bottom, 0);
+        if (isYAxis) {
+          availableWidth = width - 2 * (xMin !== 0 || xMax !== 0 ? xMin + xMax : max(overflow.left, overflow.right));
+        } else {
+          availableHeight = height - 2 * (yMin !== 0 || yMax !== 0 ? yMin + yMax : max(overflow.top, overflow.bottom));
+        }
+      }
+      await apply({
+        ...state,
+        availableWidth,
+        availableHeight
+      });
+      const nextDimensions = await platform2.getDimensions(elements.floating);
+      if (width !== nextDimensions.width || height !== nextDimensions.height) {
+        return {
+          reset: {
+            rects: true
+          }
+        };
+      }
+      return {};
+    }
+  };
+};
+
+// ../../node_modules/.pnpm/@floating-ui+utils@0.2.11/node_modules/@floating-ui/utils/dist/floating-ui.utils.dom.mjs
+function hasWindow() {
+  return typeof window !== "undefined";
+}
+function getNodeName(node) {
+  if (isNode(node)) {
+    return (node.nodeName || "").toLowerCase();
+  }
+  return "#document";
+}
+function getWindow(node) {
+  var _node$ownerDocument;
+  return (node == null || (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
+}
+function getDocumentElement(node) {
+  var _ref;
+  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
+}
+function isNode(value) {
+  if (!hasWindow()) {
+    return false;
+  }
+  return value instanceof Node || value instanceof getWindow(value).Node;
+}
+function isElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
+  return value instanceof Element || value instanceof getWindow(value).Element;
+}
+function isHTMLElement(value) {
+  if (!hasWindow()) {
+    return false;
+  }
+  return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
+}
+function isShadowRoot(value) {
+  if (!hasWindow() || typeof ShadowRoot === "undefined") {
+    return false;
+  }
+  return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
+}
+function isOverflowElement(element) {
+  const {
+    overflow,
+    overflowX,
+    overflowY,
+    display
+  } = getComputedStyle2(element);
+  return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && display !== "inline" && display !== "contents";
+}
+function isTableElement(element) {
+  return /^(table|td|th)$/.test(getNodeName(element));
+}
+function isTopLayer(element) {
+  try {
+    if (element.matches(":popover-open")) {
+      return true;
+    }
+  } catch (_e) {
+  }
+  try {
+    return element.matches(":modal");
+  } catch (_e) {
+    return false;
+  }
+}
+var willChangeRe = /transform|translate|scale|rotate|perspective|filter/;
+var containRe = /paint|layout|strict|content/;
+var isNotNone = (value) => !!value && value !== "none";
+var isWebKitValue;
+function isContainingBlock(elementOrCss) {
+  const css = isElement(elementOrCss) ? getComputedStyle2(elementOrCss) : elementOrCss;
+  return isNotNone(css.transform) || isNotNone(css.translate) || isNotNone(css.scale) || isNotNone(css.rotate) || isNotNone(css.perspective) || !isWebKit() && (isNotNone(css.backdropFilter) || isNotNone(css.filter)) || willChangeRe.test(css.willChange || "") || containRe.test(css.contain || "");
+}
+function getContainingBlock(element) {
+  let currentNode = getParentNode(element);
+  while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    if (isContainingBlock(currentNode)) {
+      return currentNode;
+    } else if (isTopLayer(currentNode)) {
+      return null;
+    }
+    currentNode = getParentNode(currentNode);
+  }
+  return null;
+}
+function isWebKit() {
+  if (isWebKitValue == null) {
+    isWebKitValue = typeof CSS !== "undefined" && CSS.supports && CSS.supports("-webkit-backdrop-filter", "none");
+  }
+  return isWebKitValue;
+}
+function isLastTraversableNode(node) {
+  return /^(html|body|#document)$/.test(getNodeName(node));
+}
+function getComputedStyle2(element) {
+  return getWindow(element).getComputedStyle(element);
+}
+function getNodeScroll(element) {
+  if (isElement(element)) {
+    return {
+      scrollLeft: element.scrollLeft,
+      scrollTop: element.scrollTop
+    };
+  }
+  return {
+    scrollLeft: element.scrollX,
+    scrollTop: element.scrollY
+  };
+}
+function getParentNode(node) {
+  if (getNodeName(node) === "html") {
+    return node;
+  }
+  const result = (
+    // Step into the shadow DOM of the parent of a slotted node.
+    node.assignedSlot || // DOM Element detected.
+    node.parentNode || // ShadowRoot detected.
+    isShadowRoot(node) && node.host || // Fallback.
+    getDocumentElement(node)
+  );
+  return isShadowRoot(result) ? result.host : result;
+}
+function getNearestOverflowAncestor(node) {
+  const parentNode = getParentNode(node);
+  if (isLastTraversableNode(parentNode)) {
+    return node.ownerDocument ? node.ownerDocument.body : node.body;
+  }
+  if (isHTMLElement(parentNode) && isOverflowElement(parentNode)) {
+    return parentNode;
+  }
+  return getNearestOverflowAncestor(parentNode);
+}
+function getOverflowAncestors(node, list, traverseIframes) {
+  var _node$ownerDocument2;
+  if (list === void 0) {
+    list = [];
+  }
+  if (traverseIframes === void 0) {
+    traverseIframes = true;
+  }
+  const scrollableAncestor = getNearestOverflowAncestor(node);
+  const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
+  const win = getWindow(scrollableAncestor);
+  if (isBody) {
+    const frameElement = getFrameElement(win);
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], frameElement && traverseIframes ? getOverflowAncestors(frameElement) : []);
+  } else {
+    return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
+  }
+}
+function getFrameElement(win) {
+  return win.parent && Object.getPrototypeOf(win.parent) ? win.frameElement : null;
+}
+
+// ../../node_modules/.pnpm/@floating-ui+dom@1.7.6/node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
+function getCssDimensions(element) {
+  const css = getComputedStyle2(element);
+  let width = parseFloat(css.width) || 0;
+  let height = parseFloat(css.height) || 0;
+  const hasOffset = isHTMLElement(element);
+  const offsetWidth = hasOffset ? element.offsetWidth : width;
+  const offsetHeight = hasOffset ? element.offsetHeight : height;
+  const shouldFallback = round(width) !== offsetWidth || round(height) !== offsetHeight;
+  if (shouldFallback) {
+    width = offsetWidth;
+    height = offsetHeight;
+  }
+  return {
+    width,
+    height,
+    $: shouldFallback
+  };
+}
+function unwrapElement(element) {
+  return !isElement(element) ? element.contextElement : element;
+}
+function getScale(element) {
+  const domElement = unwrapElement(element);
+  if (!isHTMLElement(domElement)) {
+    return createCoords(1);
+  }
+  const rect = domElement.getBoundingClientRect();
+  const {
+    width,
+    height,
+    $
+  } = getCssDimensions(domElement);
+  let x = ($ ? round(rect.width) : rect.width) / width;
+  let y = ($ ? round(rect.height) : rect.height) / height;
+  if (!x || !Number.isFinite(x)) {
+    x = 1;
+  }
+  if (!y || !Number.isFinite(y)) {
+    y = 1;
+  }
+  return {
+    x,
+    y
+  };
+}
+var noOffsets = /* @__PURE__ */ createCoords(0);
+function getVisualOffsets(element) {
+  const win = getWindow(element);
+  if (!isWebKit() || !win.visualViewport) {
+    return noOffsets;
+  }
+  return {
+    x: win.visualViewport.offsetLeft,
+    y: win.visualViewport.offsetTop
+  };
+}
+function shouldAddVisualOffsets(element, isFixed, floatingOffsetParent) {
+  if (isFixed === void 0) {
+    isFixed = false;
+  }
+  if (!floatingOffsetParent || isFixed && floatingOffsetParent !== getWindow(element)) {
+    return false;
+  }
+  return isFixed;
+}
+function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetParent) {
+  if (includeScale === void 0) {
+    includeScale = false;
+  }
+  if (isFixedStrategy === void 0) {
+    isFixedStrategy = false;
+  }
+  const clientRect = element.getBoundingClientRect();
+  const domElement = unwrapElement(element);
+  let scale = createCoords(1);
+  if (includeScale) {
+    if (offsetParent) {
+      if (isElement(offsetParent)) {
+        scale = getScale(offsetParent);
+      }
+    } else {
+      scale = getScale(element);
+    }
+  }
+  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
+  let x = (clientRect.left + visualOffsets.x) / scale.x;
+  let y = (clientRect.top + visualOffsets.y) / scale.y;
+  let width = clientRect.width / scale.x;
+  let height = clientRect.height / scale.y;
+  if (domElement) {
+    const win = getWindow(domElement);
+    const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
+    let currentWin = win;
+    let currentIFrame = getFrameElement(currentWin);
+    while (currentIFrame && offsetParent && offsetWin !== currentWin) {
+      const iframeScale = getScale(currentIFrame);
+      const iframeRect = currentIFrame.getBoundingClientRect();
+      const css = getComputedStyle2(currentIFrame);
+      const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css.paddingLeft)) * iframeScale.x;
+      const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css.paddingTop)) * iframeScale.y;
+      x *= iframeScale.x;
+      y *= iframeScale.y;
+      width *= iframeScale.x;
+      height *= iframeScale.y;
+      x += left;
+      y += top;
+      currentWin = getWindow(currentIFrame);
+      currentIFrame = getFrameElement(currentWin);
+    }
+  }
+  return rectToClientRect({
+    width,
+    height,
+    x,
+    y
+  });
+}
+function getWindowScrollBarX(element, rect) {
+  const leftScroll = getNodeScroll(element).scrollLeft;
+  if (!rect) {
+    return getBoundingClientRect(getDocumentElement(element)).left + leftScroll;
+  }
+  return rect.left + leftScroll;
+}
+function getHTMLOffset(documentElement, scroll) {
+  const htmlRect = documentElement.getBoundingClientRect();
+  const x = htmlRect.left + scroll.scrollLeft - getWindowScrollBarX(documentElement, htmlRect);
+  const y = htmlRect.top + scroll.scrollTop;
+  return {
+    x,
+    y
+  };
+}
+function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
+  let {
+    elements,
+    rect,
+    offsetParent,
+    strategy
+  } = _ref;
+  const isFixed = strategy === "fixed";
+  const documentElement = getDocumentElement(offsetParent);
+  const topLayer = elements ? isTopLayer(elements.floating) : false;
+  if (offsetParent === documentElement || topLayer && isFixed) {
+    return rect;
+  }
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  let scale = createCoords(1);
+  const offsets = createCoords(0);
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isOffsetParentAnElement) {
+      const offsetRect = getBoundingClientRect(offsetParent);
+      scale = getScale(offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    }
+  }
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
+  return {
+    width: rect.width * scale.x,
+    height: rect.height * scale.y,
+    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x + htmlOffset.x,
+    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y + htmlOffset.y
+  };
+}
+function getClientRects(element) {
+  return Array.from(element.getClientRects());
+}
+function getDocumentRect(element) {
+  const html = getDocumentElement(element);
+  const scroll = getNodeScroll(element);
+  const body = element.ownerDocument.body;
+  const width = max(html.scrollWidth, html.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = max(html.scrollHeight, html.clientHeight, body.scrollHeight, body.clientHeight);
+  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
+  const y = -scroll.scrollTop;
+  if (getComputedStyle2(body).direction === "rtl") {
+    x += max(html.clientWidth, body.clientWidth) - width;
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+var SCROLLBAR_MAX = 25;
+function getViewportRect(element, strategy) {
+  const win = getWindow(element);
+  const html = getDocumentElement(element);
+  const visualViewport = win.visualViewport;
+  let width = html.clientWidth;
+  let height = html.clientHeight;
+  let x = 0;
+  let y = 0;
+  if (visualViewport) {
+    width = visualViewport.width;
+    height = visualViewport.height;
+    const visualViewportBased = isWebKit();
+    if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
+      x = visualViewport.offsetLeft;
+      y = visualViewport.offsetTop;
+    }
+  }
+  const windowScrollbarX = getWindowScrollBarX(html);
+  if (windowScrollbarX <= 0) {
+    const doc = html.ownerDocument;
+    const body = doc.body;
+    const bodyStyles = getComputedStyle(body);
+    const bodyMarginInline = doc.compatMode === "CSS1Compat" ? parseFloat(bodyStyles.marginLeft) + parseFloat(bodyStyles.marginRight) || 0 : 0;
+    const clippingStableScrollbarWidth = Math.abs(html.clientWidth - body.clientWidth - bodyMarginInline);
+    if (clippingStableScrollbarWidth <= SCROLLBAR_MAX) {
+      width -= clippingStableScrollbarWidth;
+    }
+  } else if (windowScrollbarX <= SCROLLBAR_MAX) {
+    width += windowScrollbarX;
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getInnerBoundingClientRect(element, strategy) {
+  const clientRect = getBoundingClientRect(element, true, strategy === "fixed");
+  const top = clientRect.top + element.clientTop;
+  const left = clientRect.left + element.clientLeft;
+  const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
+  const width = element.clientWidth * scale.x;
+  const height = element.clientHeight * scale.y;
+  const x = left * scale.x;
+  const y = top * scale.y;
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
+  let rect;
+  if (clippingAncestor === "viewport") {
+    rect = getViewportRect(element, strategy);
+  } else if (clippingAncestor === "document") {
+    rect = getDocumentRect(getDocumentElement(element));
+  } else if (isElement(clippingAncestor)) {
+    rect = getInnerBoundingClientRect(clippingAncestor, strategy);
+  } else {
+    const visualOffsets = getVisualOffsets(element);
+    rect = {
+      x: clippingAncestor.x - visualOffsets.x,
+      y: clippingAncestor.y - visualOffsets.y,
+      width: clippingAncestor.width,
+      height: clippingAncestor.height
+    };
+  }
+  return rectToClientRect(rect);
+}
+function hasFixedPositionAncestor(element, stopNode) {
+  const parentNode = getParentNode(element);
+  if (parentNode === stopNode || !isElement(parentNode) || isLastTraversableNode(parentNode)) {
+    return false;
+  }
+  return getComputedStyle2(parentNode).position === "fixed" || hasFixedPositionAncestor(parentNode, stopNode);
+}
+function getClippingElementAncestors(element, cache2) {
+  const cachedResult = cache2.get(element);
+  if (cachedResult) {
+    return cachedResult;
+  }
+  let result = getOverflowAncestors(element, [], false).filter((el) => isElement(el) && getNodeName(el) !== "body");
+  let currentContainingBlockComputedStyle = null;
+  const elementIsFixed = getComputedStyle2(element).position === "fixed";
+  let currentNode = elementIsFixed ? getParentNode(element) : element;
+  while (isElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    const computedStyle = getComputedStyle2(currentNode);
+    const currentNodeIsContaining = isContainingBlock(currentNode);
+    if (!currentNodeIsContaining && computedStyle.position === "fixed") {
+      currentContainingBlockComputedStyle = null;
+    }
+    const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === "static" && !!currentContainingBlockComputedStyle && (currentContainingBlockComputedStyle.position === "absolute" || currentContainingBlockComputedStyle.position === "fixed") || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
+    if (shouldDropCurrentNode) {
+      result = result.filter((ancestor) => ancestor !== currentNode);
+    } else {
+      currentContainingBlockComputedStyle = computedStyle;
+    }
+    currentNode = getParentNode(currentNode);
+  }
+  cache2.set(element, result);
+  return result;
+}
+function getClippingRect(_ref) {
+  let {
+    element,
+    boundary,
+    rootBoundary,
+    strategy
+  } = _ref;
+  const elementClippingAncestors = boundary === "clippingAncestors" ? isTopLayer(element) ? [] : getClippingElementAncestors(element, this._c) : [].concat(boundary);
+  const clippingAncestors = [...elementClippingAncestors, rootBoundary];
+  const firstRect = getClientRectFromClippingAncestor(element, clippingAncestors[0], strategy);
+  let top = firstRect.top;
+  let right = firstRect.right;
+  let bottom = firstRect.bottom;
+  let left = firstRect.left;
+  for (let i = 1; i < clippingAncestors.length; i++) {
+    const rect = getClientRectFromClippingAncestor(element, clippingAncestors[i], strategy);
+    top = max(rect.top, top);
+    right = min(rect.right, right);
+    bottom = min(rect.bottom, bottom);
+    left = max(rect.left, left);
+  }
+  return {
+    width: right - left,
+    height: bottom - top,
+    x: left,
+    y: top
+  };
+}
+function getDimensions(element) {
+  const {
+    width,
+    height
+  } = getCssDimensions(element);
+  return {
+    width,
+    height
+  };
+}
+function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  const isFixed = strategy === "fixed";
+  const rect = getBoundingClientRect(element, true, isFixed, offsetParent);
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  const offsets = createCoords(0);
+  function setLeftRTLScrollbarOffset() {
+    offsets.x = getWindowScrollBarX(documentElement);
+  }
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isOffsetParentAnElement) {
+      const offsetRect = getBoundingClientRect(offsetParent, true, isFixed, offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    } else if (documentElement) {
+      setLeftRTLScrollbarOffset();
+    }
+  }
+  if (isFixed && !isOffsetParentAnElement && documentElement) {
+    setLeftRTLScrollbarOffset();
+  }
+  const htmlOffset = documentElement && !isOffsetParentAnElement && !isFixed ? getHTMLOffset(documentElement, scroll) : createCoords(0);
+  const x = rect.left + scroll.scrollLeft - offsets.x - htmlOffset.x;
+  const y = rect.top + scroll.scrollTop - offsets.y - htmlOffset.y;
+  return {
+    x,
+    y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+function isStaticPositioned(element) {
+  return getComputedStyle2(element).position === "static";
+}
+function getTrueOffsetParent(element, polyfill) {
+  if (!isHTMLElement(element) || getComputedStyle2(element).position === "fixed") {
+    return null;
+  }
+  if (polyfill) {
+    return polyfill(element);
+  }
+  let rawOffsetParent = element.offsetParent;
+  if (getDocumentElement(element) === rawOffsetParent) {
+    rawOffsetParent = rawOffsetParent.ownerDocument.body;
+  }
+  return rawOffsetParent;
+}
+function getOffsetParent(element, polyfill) {
+  const win = getWindow(element);
+  if (isTopLayer(element)) {
+    return win;
+  }
+  if (!isHTMLElement(element)) {
+    let svgOffsetParent = getParentNode(element);
+    while (svgOffsetParent && !isLastTraversableNode(svgOffsetParent)) {
+      if (isElement(svgOffsetParent) && !isStaticPositioned(svgOffsetParent)) {
+        return svgOffsetParent;
+      }
+      svgOffsetParent = getParentNode(svgOffsetParent);
+    }
+    return win;
+  }
+  let offsetParent = getTrueOffsetParent(element, polyfill);
+  while (offsetParent && isTableElement(offsetParent) && isStaticPositioned(offsetParent)) {
+    offsetParent = getTrueOffsetParent(offsetParent, polyfill);
+  }
+  if (offsetParent && isLastTraversableNode(offsetParent) && isStaticPositioned(offsetParent) && !isContainingBlock(offsetParent)) {
+    return win;
+  }
+  return offsetParent || getContainingBlock(element) || win;
+}
+var getElementRects = async function(data) {
+  const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
+  const getDimensionsFn = this.getDimensions;
+  const floatingDimensions = await getDimensionsFn(data.floating);
+  return {
+    reference: getRectRelativeToOffsetParent(data.reference, await getOffsetParentFn(data.floating), data.strategy),
+    floating: {
+      x: 0,
+      y: 0,
+      width: floatingDimensions.width,
+      height: floatingDimensions.height
+    }
+  };
+};
+function isRTL(element) {
+  return getComputedStyle2(element).direction === "rtl";
+}
+var platform = {
+  convertOffsetParentRelativeRectToViewportRelativeRect,
+  getDocumentElement,
+  getClippingRect,
+  getOffsetParent,
+  getElementRects,
+  getClientRects,
+  getDimensions,
+  getScale,
+  isElement,
+  isRTL
+};
+function rectsAreEqual(a, b) {
+  return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
+}
+function observeMove(element, onMove) {
+  let io = null;
+  let timeoutId;
+  const root = getDocumentElement(element);
+  function cleanup() {
+    var _io;
+    clearTimeout(timeoutId);
+    (_io = io) == null || _io.disconnect();
+    io = null;
+  }
+  function refresh(skip, threshold) {
+    if (skip === void 0) {
+      skip = false;
+    }
+    if (threshold === void 0) {
+      threshold = 1;
+    }
+    cleanup();
+    const elementRectForRootMargin = element.getBoundingClientRect();
+    const {
+      left,
+      top,
+      width,
+      height
+    } = elementRectForRootMargin;
+    if (!skip) {
+      onMove();
+    }
+    if (!width || !height) {
+      return;
+    }
+    const insetTop = floor(top);
+    const insetRight = floor(root.clientWidth - (left + width));
+    const insetBottom = floor(root.clientHeight - (top + height));
+    const insetLeft = floor(left);
+    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
+    const options = {
+      rootMargin,
+      threshold: max(0, min(1, threshold)) || 1
+    };
+    let isFirstUpdate = true;
+    function handleObserve(entries) {
+      const ratio = entries[0].intersectionRatio;
+      if (ratio !== threshold) {
+        if (!isFirstUpdate) {
+          return refresh();
+        }
+        if (!ratio) {
+          timeoutId = setTimeout(() => {
+            refresh(false, 1e-7);
+          }, 1e3);
+        } else {
+          refresh(false, ratio);
+        }
+      }
+      if (ratio === 1 && !rectsAreEqual(elementRectForRootMargin, element.getBoundingClientRect())) {
+        refresh();
+      }
+      isFirstUpdate = false;
+    }
+    try {
+      io = new IntersectionObserver(handleObserve, {
+        ...options,
+        // Handle <iframe>s
+        root: root.ownerDocument
+      });
+    } catch (_e) {
+      io = new IntersectionObserver(handleObserve, options);
+    }
+    io.observe(element);
+  }
+  refresh(true);
+  return cleanup;
+}
+function autoUpdate(reference, floating, update, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    ancestorScroll = true,
+    ancestorResize = true,
+    elementResize = typeof ResizeObserver === "function",
+    layoutShift = typeof IntersectionObserver === "function",
+    animationFrame = false
+  } = options;
+  const referenceEl = unwrapElement(reference);
+  const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...floating ? getOverflowAncestors(floating) : []] : [];
+  ancestors.forEach((ancestor) => {
+    ancestorScroll && ancestor.addEventListener("scroll", update, {
+      passive: true
+    });
+    ancestorResize && ancestor.addEventListener("resize", update);
+  });
+  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
+  let reobserveFrame = -1;
+  let resizeObserver = null;
+  if (elementResize) {
+    resizeObserver = new ResizeObserver((_ref) => {
+      let [firstEntry] = _ref;
+      if (firstEntry && firstEntry.target === referenceEl && resizeObserver && floating) {
+        resizeObserver.unobserve(floating);
+        cancelAnimationFrame(reobserveFrame);
+        reobserveFrame = requestAnimationFrame(() => {
+          var _resizeObserver;
+          (_resizeObserver = resizeObserver) == null || _resizeObserver.observe(floating);
+        });
+      }
+      update();
+    });
+    if (referenceEl && !animationFrame) {
+      resizeObserver.observe(referenceEl);
+    }
+    if (floating) {
+      resizeObserver.observe(floating);
+    }
+  }
+  let frameId;
+  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
+  if (animationFrame) {
+    frameLoop();
+  }
+  function frameLoop() {
+    const nextRefRect = getBoundingClientRect(reference);
+    if (prevRefRect && !rectsAreEqual(prevRefRect, nextRefRect)) {
+      update();
+    }
+    prevRefRect = nextRefRect;
+    frameId = requestAnimationFrame(frameLoop);
+  }
+  update();
+  return () => {
+    var _resizeObserver2;
+    ancestors.forEach((ancestor) => {
+      ancestorScroll && ancestor.removeEventListener("scroll", update);
+      ancestorResize && ancestor.removeEventListener("resize", update);
+    });
+    cleanupIo == null || cleanupIo();
+    (_resizeObserver2 = resizeObserver) == null || _resizeObserver2.disconnect();
+    resizeObserver = null;
+    if (animationFrame) {
+      cancelAnimationFrame(frameId);
+    }
+  };
+}
+var offset2 = offset;
+var shift2 = shift;
+var flip2 = flip;
+var size2 = size;
+var hide2 = hide;
+var arrow2 = arrow;
+var limitShift2 = limitShift;
+var computePosition2 = (reference, floating, options) => {
+  const cache2 = /* @__PURE__ */ new Map();
+  const mergedOptions = {
+    platform,
+    ...options
+  };
+  const platformWithCache = {
+    ...mergedOptions.platform,
+    _c: cache2
+  };
+  return computePosition(reference, floating, {
+    ...mergedOptions,
+    platform: platformWithCache
+  });
+};
+var isClient = typeof document !== "undefined";
+var noop = function noop2() {
+};
+var index2 = isClient ? useLayoutEffect : noop;
+function deepEqual(a, b) {
+  if (a === b) {
+    return true;
+  }
+  if (typeof a !== typeof b) {
+    return false;
+  }
+  if (typeof a === "function" && a.toString() === b.toString()) {
+    return true;
+  }
+  let length;
+  let i;
+  let keys;
+  if (a && b && typeof a === "object") {
+    if (Array.isArray(a)) {
+      length = a.length;
+      if (length !== b.length) return false;
+      for (i = length; i-- !== 0; ) {
+        if (!deepEqual(a[i], b[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+    keys = Object.keys(a);
+    length = keys.length;
+    if (length !== Object.keys(b).length) {
+      return false;
+    }
+    for (i = length; i-- !== 0; ) {
+      if (!{}.hasOwnProperty.call(b, keys[i])) {
+        return false;
+      }
+    }
+    for (i = length; i-- !== 0; ) {
+      const key = keys[i];
+      if (key === "_owner" && a.$$typeof) {
+        continue;
+      }
+      if (!deepEqual(a[key], b[key])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return a !== a && b !== b;
+}
+function getDPR(element) {
+  if (typeof window === "undefined") {
+    return 1;
+  }
+  const win = element.ownerDocument.defaultView || window;
+  return win.devicePixelRatio || 1;
+}
+function roundByDPR(element, value) {
+  const dpr = getDPR(element);
+  return Math.round(value * dpr) / dpr;
+}
+function useLatestRef(value) {
+  const ref = React45.useRef(value);
+  index2(() => {
+    ref.current = value;
+  });
+  return ref;
+}
+function useFloating(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    placement = "bottom",
+    strategy = "absolute",
+    middleware = [],
+    platform: platform2,
+    elements: {
+      reference: externalReference,
+      floating: externalFloating
+    } = {},
+    transform = true,
+    whileElementsMounted,
+    open
+  } = options;
+  const [data, setData] = React45.useState({
+    x: 0,
+    y: 0,
+    strategy,
+    placement,
+    middlewareData: {},
+    isPositioned: false
+  });
+  const [latestMiddleware, setLatestMiddleware] = React45.useState(middleware);
+  if (!deepEqual(latestMiddleware, middleware)) {
+    setLatestMiddleware(middleware);
+  }
+  const [_reference, _setReference] = React45.useState(null);
+  const [_floating, _setFloating] = React45.useState(null);
+  const setReference = React45.useCallback((node) => {
+    if (node !== referenceRef.current) {
+      referenceRef.current = node;
+      _setReference(node);
+    }
+  }, []);
+  const setFloating = React45.useCallback((node) => {
+    if (node !== floatingRef.current) {
+      floatingRef.current = node;
+      _setFloating(node);
+    }
+  }, []);
+  const referenceEl = externalReference || _reference;
+  const floatingEl = externalFloating || _floating;
+  const referenceRef = React45.useRef(null);
+  const floatingRef = React45.useRef(null);
+  const dataRef = React45.useRef(data);
+  const hasWhileElementsMounted = whileElementsMounted != null;
+  const whileElementsMountedRef = useLatestRef(whileElementsMounted);
+  const platformRef = useLatestRef(platform2);
+  const openRef = useLatestRef(open);
+  const update = React45.useCallback(() => {
+    if (!referenceRef.current || !floatingRef.current) {
+      return;
+    }
+    const config = {
+      placement,
+      strategy,
+      middleware: latestMiddleware
+    };
+    if (platformRef.current) {
+      config.platform = platformRef.current;
+    }
+    computePosition2(referenceRef.current, floatingRef.current, config).then((data2) => {
+      const fullData = {
+        ...data2,
+        // The floating element's position may be recomputed while it's closed
+        // but still mounted (such as when transitioning out). To ensure
+        // `isPositioned` will be `false` initially on the next open, avoid
+        // setting it to `true` when `open === false` (must be specified).
+        isPositioned: openRef.current !== false
+      };
+      if (isMountedRef.current && !deepEqual(dataRef.current, fullData)) {
+        dataRef.current = fullData;
+        ReactDOM4.flushSync(() => {
+          setData(fullData);
+        });
+      }
+    });
+  }, [latestMiddleware, placement, strategy, platformRef, openRef]);
+  index2(() => {
+    if (open === false && dataRef.current.isPositioned) {
+      dataRef.current.isPositioned = false;
+      setData((data2) => ({
+        ...data2,
+        isPositioned: false
+      }));
+    }
+  }, [open]);
+  const isMountedRef = React45.useRef(false);
+  index2(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+  index2(() => {
+    if (referenceEl) referenceRef.current = referenceEl;
+    if (floatingEl) floatingRef.current = floatingEl;
+    if (referenceEl && floatingEl) {
+      if (whileElementsMountedRef.current) {
+        return whileElementsMountedRef.current(referenceEl, floatingEl, update);
+      }
+      update();
+    }
+  }, [referenceEl, floatingEl, update, whileElementsMountedRef, hasWhileElementsMounted]);
+  const refs = React45.useMemo(() => ({
+    reference: referenceRef,
+    floating: floatingRef,
+    setReference,
+    setFloating
+  }), [setReference, setFloating]);
+  const elements = React45.useMemo(() => ({
+    reference: referenceEl,
+    floating: floatingEl
+  }), [referenceEl, floatingEl]);
+  const floatingStyles = React45.useMemo(() => {
+    const initialStyles = {
+      position: strategy,
+      left: 0,
+      top: 0
+    };
+    if (!elements.floating) {
+      return initialStyles;
+    }
+    const x = roundByDPR(elements.floating, data.x);
+    const y = roundByDPR(elements.floating, data.y);
+    if (transform) {
+      return {
+        ...initialStyles,
+        transform: "translate(" + x + "px, " + y + "px)",
+        ...getDPR(elements.floating) >= 1.5 && {
+          willChange: "transform"
+        }
+      };
+    }
+    return {
+      position: strategy,
+      left: x,
+      top: y
+    };
+  }, [strategy, transform, elements.floating, data.x, data.y]);
+  return React45.useMemo(() => ({
+    ...data,
+    update,
+    refs,
+    elements,
+    floatingStyles
+  }), [data, update, refs, elements, floatingStyles]);
+}
+var arrow$1 = (options) => {
+  function isRef(value) {
+    return {}.hasOwnProperty.call(value, "current");
+  }
+  return {
+    name: "arrow",
+    options,
+    fn(state) {
+      const {
+        element,
+        padding
+      } = typeof options === "function" ? options(state) : options;
+      if (element && isRef(element)) {
+        if (element.current != null) {
+          return arrow2({
+            element: element.current,
+            padding
+          }).fn(state);
+        }
+        return {};
+      }
+      if (element) {
+        return arrow2({
+          element,
+          padding
+        }).fn(state);
+      }
+      return {};
+    }
+  };
+};
+var offset3 = (options, deps) => {
+  const result = offset2(options);
+  return {
+    name: result.name,
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var shift3 = (options, deps) => {
+  const result = shift2(options);
+  return {
+    name: result.name,
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var limitShift3 = (options, deps) => {
+  const result = limitShift2(options);
+  return {
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var flip3 = (options, deps) => {
+  const result = flip2(options);
+  return {
+    name: result.name,
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var size3 = (options, deps) => {
+  const result = size2(options);
+  return {
+    name: result.name,
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var hide3 = (options, deps) => {
+  const result = hide2(options);
+  return {
+    name: result.name,
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var arrow3 = (options, deps) => {
+  const result = arrow$1(options);
+  return {
+    name: result.name,
+    fn: result.fn,
+    options: [options, deps]
+  };
+};
+var NAME = "Arrow";
+var Arrow = React45.forwardRef((props, forwardedRef) => {
+  const { children, width = 10, height = 5, ...arrowProps } = props;
+  return /* @__PURE__ */ jsx(
+    Primitive.svg,
+    {
+      ...arrowProps,
+      ref: forwardedRef,
+      width,
+      height,
+      viewBox: "0 0 30 10",
+      preserveAspectRatio: "none",
+      children: props.asChild ? children : /* @__PURE__ */ jsx("polygon", { points: "0,0 30,0 15,10" })
+    }
+  );
+});
+Arrow.displayName = NAME;
+var Root = Arrow;
+var POPPER_NAME = "Popper";
+var [createPopperContext, createPopperScope] = createContextScope(POPPER_NAME);
+var [PopperProvider, usePopperContext] = createPopperContext(POPPER_NAME);
+var Popper = (props) => {
+  const { __scopePopper, children } = props;
+  const [anchor, setAnchor] = React45.useState(null);
+  return /* @__PURE__ */ jsx(PopperProvider, { scope: __scopePopper, anchor, onAnchorChange: setAnchor, children });
+};
+Popper.displayName = POPPER_NAME;
+var ANCHOR_NAME = "PopperAnchor";
+var PopperAnchor = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopper, virtualRef, ...anchorProps } = props;
+    const context = usePopperContext(ANCHOR_NAME, __scopePopper);
+    const ref = React45.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, ref);
+    const anchorRef = React45.useRef(null);
+    React45.useEffect(() => {
+      const previousAnchor = anchorRef.current;
+      anchorRef.current = virtualRef?.current || ref.current;
+      if (previousAnchor !== anchorRef.current) {
+        context.onAnchorChange(anchorRef.current);
+      }
+    });
+    return virtualRef ? null : /* @__PURE__ */ jsx(Primitive.div, { ...anchorProps, ref: composedRefs });
+  }
+);
+PopperAnchor.displayName = ANCHOR_NAME;
+var CONTENT_NAME = "PopperContent";
+var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME);
+var PopperContent = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopePopper,
+      side = "bottom",
+      sideOffset = 0,
+      align = "center",
+      alignOffset = 0,
+      arrowPadding = 0,
+      avoidCollisions = true,
+      collisionBoundary = [],
+      collisionPadding: collisionPaddingProp = 0,
+      sticky = "partial",
+      hideWhenDetached = false,
+      updatePositionStrategy = "optimized",
+      onPlaced,
+      ...contentProps
+    } = props;
+    const context = usePopperContext(CONTENT_NAME, __scopePopper);
+    const [content, setContent] = React45.useState(null);
+    const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
+    const [arrow4, setArrow] = React45.useState(null);
+    const arrowSize = useSize(arrow4);
+    const arrowWidth = arrowSize?.width ?? 0;
+    const arrowHeight = arrowSize?.height ?? 0;
+    const desiredPlacement = side + (align !== "center" ? "-" + align : "");
+    const collisionPadding = typeof collisionPaddingProp === "number" ? collisionPaddingProp : { top: 0, right: 0, bottom: 0, left: 0, ...collisionPaddingProp };
+    const boundary = Array.isArray(collisionBoundary) ? collisionBoundary : [collisionBoundary];
+    const hasExplicitBoundaries = boundary.length > 0;
+    const detectOverflowOptions = {
+      padding: collisionPadding,
+      boundary: boundary.filter(isNotNull),
+      // with `strategy: 'fixed'`, this is the only way to get it to respect boundaries
+      altBoundary: hasExplicitBoundaries
+    };
+    const { refs, floatingStyles, placement, isPositioned, middlewareData } = useFloating({
+      // default to `fixed` strategy so users don't have to pick and we also avoid focus scroll issues
+      strategy: "fixed",
+      placement: desiredPlacement,
+      whileElementsMounted: (...args) => {
+        const cleanup = autoUpdate(...args, {
+          animationFrame: updatePositionStrategy === "always"
+        });
+        return cleanup;
+      },
+      elements: {
+        reference: context.anchor
+      },
+      middleware: [
+        offset3({ mainAxis: sideOffset + arrowHeight, alignmentAxis: alignOffset }),
+        avoidCollisions && shift3({
+          mainAxis: true,
+          crossAxis: false,
+          limiter: sticky === "partial" ? limitShift3() : void 0,
+          ...detectOverflowOptions
+        }),
+        avoidCollisions && flip3({ ...detectOverflowOptions }),
+        size3({
+          ...detectOverflowOptions,
+          apply: ({ elements, rects, availableWidth, availableHeight }) => {
+            const { width: anchorWidth, height: anchorHeight } = rects.reference;
+            const contentStyle = elements.floating.style;
+            contentStyle.setProperty("--radix-popper-available-width", `${availableWidth}px`);
+            contentStyle.setProperty("--radix-popper-available-height", `${availableHeight}px`);
+            contentStyle.setProperty("--radix-popper-anchor-width", `${anchorWidth}px`);
+            contentStyle.setProperty("--radix-popper-anchor-height", `${anchorHeight}px`);
+          }
+        }),
+        arrow4 && arrow3({ element: arrow4, padding: arrowPadding }),
+        transformOrigin({ arrowWidth, arrowHeight }),
+        hideWhenDetached && hide3({ strategy: "referenceHidden", ...detectOverflowOptions })
+      ]
+    });
+    const [placedSide, placedAlign] = getSideAndAlignFromPlacement(placement);
+    const handlePlaced = useCallbackRef(onPlaced);
+    useLayoutEffect2(() => {
+      if (isPositioned) {
+        handlePlaced?.();
+      }
+    }, [isPositioned, handlePlaced]);
+    const arrowX = middlewareData.arrow?.x;
+    const arrowY = middlewareData.arrow?.y;
+    const cannotCenterArrow = middlewareData.arrow?.centerOffset !== 0;
+    const [contentZIndex, setContentZIndex] = React45.useState();
+    useLayoutEffect2(() => {
+      if (content) setContentZIndex(window.getComputedStyle(content).zIndex);
+    }, [content]);
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref: refs.setFloating,
+        "data-radix-popper-content-wrapper": "",
+        style: {
+          ...floatingStyles,
+          transform: isPositioned ? floatingStyles.transform : "translate(0, -200%)",
+          // keep off the page when measuring
+          minWidth: "max-content",
+          zIndex: contentZIndex,
+          ["--radix-popper-transform-origin"]: [
+            middlewareData.transformOrigin?.x,
+            middlewareData.transformOrigin?.y
+          ].join(" "),
+          // hide the content if using the hide middleware and should be hidden
+          // set visibility to hidden and disable pointer events so the UI behaves
+          // as if the PopperContent isn't there at all
+          ...middlewareData.hide?.referenceHidden && {
+            visibility: "hidden",
+            pointerEvents: "none"
+          }
+        },
+        dir: props.dir,
+        children: /* @__PURE__ */ jsx(
+          PopperContentProvider,
+          {
+            scope: __scopePopper,
+            placedSide,
+            onArrowChange: setArrow,
+            arrowX,
+            arrowY,
+            shouldHideArrow: cannotCenterArrow,
+            children: /* @__PURE__ */ jsx(
+              Primitive.div,
+              {
+                "data-side": placedSide,
+                "data-align": placedAlign,
+                ...contentProps,
+                ref: composedRefs,
+                style: {
+                  ...contentProps.style,
+                  // if the PopperContent hasn't been placed yet (not all measurements done)
+                  // we prevent animations so that users's animation don't kick in too early referring wrong sides
+                  animation: !isPositioned ? "none" : void 0
+                }
+              }
+            )
+          }
+        )
+      }
+    );
+  }
+);
+PopperContent.displayName = CONTENT_NAME;
+var ARROW_NAME = "PopperArrow";
+var OPPOSITE_SIDE = {
+  top: "bottom",
+  right: "left",
+  bottom: "top",
+  left: "right"
+};
+var PopperArrow = React45.forwardRef(function PopperArrow2(props, forwardedRef) {
+  const { __scopePopper, ...arrowProps } = props;
+  const contentContext = useContentContext(ARROW_NAME, __scopePopper);
+  const baseSide = OPPOSITE_SIDE[contentContext.placedSide];
+  return (
+    // we have to use an extra wrapper because `ResizeObserver` (used by `useSize`)
+    // doesn't report size as we'd expect on SVG elements.
+    // it reports their bounding box which is effectively the largest path inside the SVG.
+    /* @__PURE__ */ jsx(
+      "span",
+      {
+        ref: contentContext.onArrowChange,
+        style: {
+          position: "absolute",
+          left: contentContext.arrowX,
+          top: contentContext.arrowY,
+          [baseSide]: 0,
+          transformOrigin: {
+            top: "",
+            right: "0 0",
+            bottom: "center 0",
+            left: "100% 0"
+          }[contentContext.placedSide],
+          transform: {
+            top: "translateY(100%)",
+            right: "translateY(50%) rotate(90deg) translateX(-50%)",
+            bottom: `rotate(180deg)`,
+            left: "translateY(50%) rotate(-90deg) translateX(50%)"
+          }[contentContext.placedSide],
+          visibility: contentContext.shouldHideArrow ? "hidden" : void 0
+        },
+        children: /* @__PURE__ */ jsx(
+          Root,
+          {
+            ...arrowProps,
+            ref: forwardedRef,
+            style: {
+              ...arrowProps.style,
+              // ensures the element can be measured correctly (mostly for if SVG)
+              display: "block"
+            }
+          }
+        )
+      }
+    )
+  );
+});
+PopperArrow.displayName = ARROW_NAME;
+function isNotNull(value) {
+  return value !== null;
+}
+var transformOrigin = (options) => ({
+  name: "transformOrigin",
+  options,
+  fn(data) {
+    const { placement, rects, middlewareData } = data;
+    const cannotCenterArrow = middlewareData.arrow?.centerOffset !== 0;
+    const isArrowHidden = cannotCenterArrow;
+    const arrowWidth = isArrowHidden ? 0 : options.arrowWidth;
+    const arrowHeight = isArrowHidden ? 0 : options.arrowHeight;
+    const [placedSide, placedAlign] = getSideAndAlignFromPlacement(placement);
+    const noArrowAlign = { start: "0%", center: "50%", end: "100%" }[placedAlign];
+    const arrowXCenter = (middlewareData.arrow?.x ?? 0) + arrowWidth / 2;
+    const arrowYCenter = (middlewareData.arrow?.y ?? 0) + arrowHeight / 2;
+    let x = "";
+    let y = "";
+    if (placedSide === "bottom") {
+      x = isArrowHidden ? noArrowAlign : `${arrowXCenter}px`;
+      y = `${-arrowHeight}px`;
+    } else if (placedSide === "top") {
+      x = isArrowHidden ? noArrowAlign : `${arrowXCenter}px`;
+      y = `${rects.floating.height + arrowHeight}px`;
+    } else if (placedSide === "right") {
+      x = `${-arrowHeight}px`;
+      y = isArrowHidden ? noArrowAlign : `${arrowYCenter}px`;
+    } else if (placedSide === "left") {
+      x = `${rects.floating.width + arrowHeight}px`;
+      y = isArrowHidden ? noArrowAlign : `${arrowYCenter}px`;
+    }
+    return { data: { x, y } };
+  }
+});
+function getSideAndAlignFromPlacement(placement) {
+  const [side, align = "center"] = placement.split("-");
+  return [side, align];
+}
+var Root2 = Popper;
+var Anchor = PopperAnchor;
+var Content = PopperContent;
+var Arrow2 = PopperArrow;
+var PORTAL_NAME = "Portal";
+var Portal = React45.forwardRef((props, forwardedRef) => {
+  const { container: containerProp, ...portalProps } = props;
+  const [mounted, setMounted] = React45.useState(false);
+  useLayoutEffect2(() => setMounted(true), []);
+  const container = containerProp || mounted && globalThis?.document?.body;
+  return container ? ReactDOM4__default.createPortal(/* @__PURE__ */ jsx(Primitive.div, { ...portalProps, ref: forwardedRef }), container) : null;
+});
+Portal.displayName = PORTAL_NAME;
+function useStateMachine(initialState, machine) {
+  return React45.useReducer((state, event) => {
+    const nextState = machine[state][event];
+    return nextState ?? state;
+  }, initialState);
+}
+var Presence = (props) => {
+  const { present, children } = props;
+  const presence = usePresence(present);
+  const child = typeof children === "function" ? children({ present: presence.isPresent }) : React45.Children.only(children);
+  const ref = useComposedRefs(presence.ref, getElementRef2(child));
+  const forceMount = typeof children === "function";
+  return forceMount || presence.isPresent ? React45.cloneElement(child, { ref }) : null;
+};
+Presence.displayName = "Presence";
+function usePresence(present) {
+  const [node, setNode] = React45.useState();
+  const stylesRef = React45.useRef(null);
+  const prevPresentRef = React45.useRef(present);
+  const prevAnimationNameRef = React45.useRef("none");
+  const initialState = present ? "mounted" : "unmounted";
+  const [state, send] = useStateMachine(initialState, {
+    mounted: {
+      UNMOUNT: "unmounted",
+      ANIMATION_OUT: "unmountSuspended"
+    },
+    unmountSuspended: {
+      MOUNT: "mounted",
+      ANIMATION_END: "unmounted"
+    },
+    unmounted: {
+      MOUNT: "mounted"
+    }
+  });
+  React45.useEffect(() => {
+    const currentAnimationName = getAnimationName(stylesRef.current);
+    prevAnimationNameRef.current = state === "mounted" ? currentAnimationName : "none";
+  }, [state]);
+  useLayoutEffect2(() => {
+    const styles = stylesRef.current;
+    const wasPresent = prevPresentRef.current;
+    const hasPresentChanged = wasPresent !== present;
+    if (hasPresentChanged) {
+      const prevAnimationName = prevAnimationNameRef.current;
+      const currentAnimationName = getAnimationName(styles);
+      if (present) {
+        send("MOUNT");
+      } else if (currentAnimationName === "none" || styles?.display === "none") {
+        send("UNMOUNT");
+      } else {
+        const isAnimating = prevAnimationName !== currentAnimationName;
+        if (wasPresent && isAnimating) {
+          send("ANIMATION_OUT");
+        } else {
+          send("UNMOUNT");
+        }
+      }
+      prevPresentRef.current = present;
+    }
+  }, [present, send]);
+  useLayoutEffect2(() => {
+    if (node) {
+      let timeoutId;
+      const ownerWindow = node.ownerDocument.defaultView ?? window;
+      const handleAnimationEnd = (event) => {
+        const currentAnimationName = getAnimationName(stylesRef.current);
+        const isCurrentAnimation = currentAnimationName.includes(CSS.escape(event.animationName));
+        if (event.target === node && isCurrentAnimation) {
+          send("ANIMATION_END");
+          if (!prevPresentRef.current) {
+            const currentFillMode = node.style.animationFillMode;
+            node.style.animationFillMode = "forwards";
+            timeoutId = ownerWindow.setTimeout(() => {
+              if (node.style.animationFillMode === "forwards") {
+                node.style.animationFillMode = currentFillMode;
+              }
+            });
+          }
+        }
+      };
+      const handleAnimationStart = (event) => {
+        if (event.target === node) {
+          prevAnimationNameRef.current = getAnimationName(stylesRef.current);
+        }
+      };
+      node.addEventListener("animationstart", handleAnimationStart);
+      node.addEventListener("animationcancel", handleAnimationEnd);
+      node.addEventListener("animationend", handleAnimationEnd);
+      return () => {
+        ownerWindow.clearTimeout(timeoutId);
+        node.removeEventListener("animationstart", handleAnimationStart);
+        node.removeEventListener("animationcancel", handleAnimationEnd);
+        node.removeEventListener("animationend", handleAnimationEnd);
+      };
+    } else {
+      send("ANIMATION_END");
+    }
+  }, [node, send]);
+  return {
+    isPresent: ["mounted", "unmountSuspended"].includes(state),
+    ref: React45.useCallback((node2) => {
+      stylesRef.current = node2 ? getComputedStyle(node2) : null;
+      setNode(node2);
+    }, [])
+  };
+}
+function getAnimationName(styles) {
+  return styles?.animationName || "none";
+}
+function getElementRef2(element) {
+  let getter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get;
+  let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+  if (mayWarn) {
+    return element.ref;
+  }
+  getter = Object.getOwnPropertyDescriptor(element, "ref")?.get;
+  mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+  if (mayWarn) {
+    return element.props.ref;
+  }
+  return element.props.ref || element.ref;
+}
+
+// ../../node_modules/.pnpm/aria-hidden@1.2.6/node_modules/aria-hidden/dist/es2015/index.js
+var getDefaultParent = function(originalTarget) {
+  if (typeof document === "undefined") {
+    return null;
+  }
+  var sampleTarget = Array.isArray(originalTarget) ? originalTarget[0] : originalTarget;
+  return sampleTarget.ownerDocument.body;
+};
+var counterMap = /* @__PURE__ */ new WeakMap();
+var uncontrolledNodes = /* @__PURE__ */ new WeakMap();
+var markerMap = {};
+var lockCount = 0;
+var unwrapHost = function(node) {
+  return node && (node.host || unwrapHost(node.parentNode));
+};
+var correctTargets = function(parent, targets) {
+  return targets.map(function(target) {
+    if (parent.contains(target)) {
+      return target;
+    }
+    var correctedTarget = unwrapHost(target);
+    if (correctedTarget && parent.contains(correctedTarget)) {
+      return correctedTarget;
+    }
+    console.error("aria-hidden", target, "in not contained inside", parent, ". Doing nothing");
+    return null;
+  }).filter(function(x) {
+    return Boolean(x);
+  });
+};
+var applyAttributeToOthers = function(originalTarget, parentNode, markerName, controlAttribute) {
+  var targets = correctTargets(parentNode, Array.isArray(originalTarget) ? originalTarget : [originalTarget]);
+  if (!markerMap[markerName]) {
+    markerMap[markerName] = /* @__PURE__ */ new WeakMap();
+  }
+  var markerCounter = markerMap[markerName];
+  var hiddenNodes = [];
+  var elementsToKeep = /* @__PURE__ */ new Set();
+  var elementsToStop = new Set(targets);
+  var keep = function(el) {
+    if (!el || elementsToKeep.has(el)) {
+      return;
+    }
+    elementsToKeep.add(el);
+    keep(el.parentNode);
+  };
+  targets.forEach(keep);
+  var deep = function(parent) {
+    if (!parent || elementsToStop.has(parent)) {
+      return;
+    }
+    Array.prototype.forEach.call(parent.children, function(node) {
+      if (elementsToKeep.has(node)) {
+        deep(node);
+      } else {
+        try {
+          var attr = node.getAttribute(controlAttribute);
+          var alreadyHidden = attr !== null && attr !== "false";
+          var counterValue = (counterMap.get(node) || 0) + 1;
+          var markerValue = (markerCounter.get(node) || 0) + 1;
+          counterMap.set(node, counterValue);
+          markerCounter.set(node, markerValue);
+          hiddenNodes.push(node);
+          if (counterValue === 1 && alreadyHidden) {
+            uncontrolledNodes.set(node, true);
+          }
+          if (markerValue === 1) {
+            node.setAttribute(markerName, "true");
+          }
+          if (!alreadyHidden) {
+            node.setAttribute(controlAttribute, "true");
+          }
+        } catch (e) {
+          console.error("aria-hidden: cannot operate on ", node, e);
+        }
+      }
+    });
+  };
+  deep(parentNode);
+  elementsToKeep.clear();
+  lockCount++;
+  return function() {
+    hiddenNodes.forEach(function(node) {
+      var counterValue = counterMap.get(node) - 1;
+      var markerValue = markerCounter.get(node) - 1;
+      counterMap.set(node, counterValue);
+      markerCounter.set(node, markerValue);
+      if (!counterValue) {
+        if (!uncontrolledNodes.has(node)) {
+          node.removeAttribute(controlAttribute);
+        }
+        uncontrolledNodes.delete(node);
+      }
+      if (!markerValue) {
+        node.removeAttribute(markerName);
+      }
+    });
+    lockCount--;
+    if (!lockCount) {
+      counterMap = /* @__PURE__ */ new WeakMap();
+      counterMap = /* @__PURE__ */ new WeakMap();
+      uncontrolledNodes = /* @__PURE__ */ new WeakMap();
+      markerMap = {};
+    }
+  };
+};
+var hideOthers = function(originalTarget, parentNode, markerName) {
+  if (markerName === void 0) {
+    markerName = "data-aria-hidden";
+  }
+  var targets = Array.from(Array.isArray(originalTarget) ? originalTarget : [originalTarget]);
+  var activeParentNode = getDefaultParent(originalTarget);
+  if (!activeParentNode) {
+    return function() {
+      return null;
+    };
+  }
+  targets.push.apply(targets, Array.from(activeParentNode.querySelectorAll("[aria-live], script")));
+  return applyAttributeToOthers(targets, activeParentNode, markerName, "aria-hidden");
+};
+
+// ../../node_modules/.pnpm/tslib@2.8.1/node_modules/tslib/tslib.es6.mjs
+var __assign = function() {
+  __assign = Object.assign || function __assign2(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+      for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+  };
+  return __assign.apply(this, arguments);
+};
+function __rest(s, e) {
+  var t = {};
+  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+    t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+      if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+        t[p[i]] = s[p[i]];
+    }
+  return t;
+}
+function __spreadArray(to, from, pack) {
+  for (var i = 0, l = from.length, ar; i < l; i++) {
+    if (ar || !(i in from)) {
+      if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+      ar[i] = from[i];
+    }
+  }
+  return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+// ../../node_modules/.pnpm/react-remove-scroll-bar@2.3.8_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll-bar/dist/es2015/constants.js
+var zeroRightClassName = "right-scroll-bar-position";
+var fullWidthClassName = "width-before-scroll-bar";
+var noScrollbarsClassName = "with-scroll-bars-hidden";
+var removedBarSizeVariable = "--removed-body-scroll-bar-size";
+
+// ../../node_modules/.pnpm/use-callback-ref@1.3.3_@types+react@18.3.29_react@18.3.1/node_modules/use-callback-ref/dist/es2015/assignRef.js
+function assignRef(ref, value) {
+  if (typeof ref === "function") {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+  return ref;
+}
+function useCallbackRef2(initialValue, callback) {
+  var ref = useState(function() {
+    return {
+      // value
+      value: initialValue,
+      // last callback
+      callback,
+      // "memoized" public interface
+      facade: {
+        get current() {
+          return ref.value;
+        },
+        set current(value) {
+          var last = ref.value;
+          if (last !== value) {
+            ref.value = value;
+            ref.callback(value, last);
+          }
+        }
+      }
+    };
+  })[0];
+  ref.callback = callback;
+  return ref.facade;
+}
+var useIsomorphicLayoutEffect = typeof window !== "undefined" ? React45.useLayoutEffect : React45.useEffect;
+var currentValues = /* @__PURE__ */ new WeakMap();
+function useMergeRefs(refs, defaultValue) {
+  var callbackRef = useCallbackRef2(null, function(newValue) {
+    return refs.forEach(function(ref) {
+      return assignRef(ref, newValue);
+    });
+  });
+  useIsomorphicLayoutEffect(function() {
+    var oldValue = currentValues.get(callbackRef);
+    if (oldValue) {
+      var prevRefs_1 = new Set(oldValue);
+      var nextRefs_1 = new Set(refs);
+      var current_1 = callbackRef.current;
+      prevRefs_1.forEach(function(ref) {
+        if (!nextRefs_1.has(ref)) {
+          assignRef(ref, null);
+        }
+      });
+      nextRefs_1.forEach(function(ref) {
+        if (!prevRefs_1.has(ref)) {
+          assignRef(ref, current_1);
+        }
+      });
+    }
+    currentValues.set(callbackRef, refs);
+  }, [refs]);
+  return callbackRef;
+}
+
+// ../../node_modules/.pnpm/use-sidecar@1.1.3_@types+react@18.3.29_react@18.3.1/node_modules/use-sidecar/dist/es2015/medium.js
+function ItoI(a) {
+  return a;
+}
+function innerCreateMedium(defaults, middleware) {
+  if (middleware === void 0) {
+    middleware = ItoI;
+  }
+  var buffer = [];
+  var assigned = false;
+  var medium = {
+    read: function() {
+      if (assigned) {
+        throw new Error("Sidecar: could not `read` from an `assigned` medium. `read` could be used only with `useMedium`.");
+      }
+      if (buffer.length) {
+        return buffer[buffer.length - 1];
+      }
+      return defaults;
+    },
+    useMedium: function(data) {
+      var item = middleware(data, assigned);
+      buffer.push(item);
+      return function() {
+        buffer = buffer.filter(function(x) {
+          return x !== item;
+        });
+      };
+    },
+    assignSyncMedium: function(cb) {
+      assigned = true;
+      while (buffer.length) {
+        var cbs = buffer;
+        buffer = [];
+        cbs.forEach(cb);
+      }
+      buffer = {
+        push: function(x) {
+          return cb(x);
+        },
+        filter: function() {
+          return buffer;
+        }
+      };
+    },
+    assignMedium: function(cb) {
+      assigned = true;
+      var pendingQueue = [];
+      if (buffer.length) {
+        var cbs = buffer;
+        buffer = [];
+        cbs.forEach(cb);
+        pendingQueue = buffer;
+      }
+      var executeQueue = function() {
+        var cbs2 = pendingQueue;
+        pendingQueue = [];
+        cbs2.forEach(cb);
+      };
+      var cycle = function() {
+        return Promise.resolve().then(executeQueue);
+      };
+      cycle();
+      buffer = {
+        push: function(x) {
+          pendingQueue.push(x);
+          cycle();
+        },
+        filter: function(filter) {
+          pendingQueue = pendingQueue.filter(filter);
+          return buffer;
+        }
+      };
+    }
+  };
+  return medium;
+}
+function createSidecarMedium(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  var medium = innerCreateMedium(null);
+  medium.options = __assign({ async: true, ssr: false }, options);
+  return medium;
+}
+var SideCar = function(_a) {
+  var sideCar = _a.sideCar, rest = __rest(_a, ["sideCar"]);
+  if (!sideCar) {
+    throw new Error("Sidecar: please provide `sideCar` property to import the right car");
+  }
+  var Target = sideCar.read();
+  if (!Target) {
+    throw new Error("Sidecar medium not found");
+  }
+  return React45.createElement(Target, __assign({}, rest));
+};
+SideCar.isSideCarExport = true;
+function exportSidecar(medium, exported) {
+  medium.useMedium(exported);
+  return SideCar;
+}
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/medium.js
+var effectCar = createSidecarMedium();
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/UI.js
+var nothing = function() {
+  return;
+};
+var RemoveScroll = React45.forwardRef(function(props, parentRef) {
+  var ref = React45.useRef(null);
+  var _a = React45.useState({
+    onScrollCapture: nothing,
+    onWheelCapture: nothing,
+    onTouchMoveCapture: nothing
+  }), callbacks = _a[0], setCallbacks = _a[1];
+  var forwardProps = props.forwardProps, children = props.children, className = props.className, removeScrollBar = props.removeScrollBar, enabled = props.enabled, shards = props.shards, sideCar = props.sideCar, noRelative = props.noRelative, noIsolation = props.noIsolation, inert = props.inert, allowPinchZoom = props.allowPinchZoom, _b = props.as, Container = _b === void 0 ? "div" : _b, gapMode = props.gapMode, rest = __rest(props, ["forwardProps", "children", "className", "removeScrollBar", "enabled", "shards", "sideCar", "noRelative", "noIsolation", "inert", "allowPinchZoom", "as", "gapMode"]);
+  var SideCar2 = sideCar;
+  var containerRef = useMergeRefs([ref, parentRef]);
+  var containerProps = __assign(__assign({}, rest), callbacks);
+  return React45.createElement(
+    React45.Fragment,
+    null,
+    enabled && React45.createElement(SideCar2, { sideCar: effectCar, removeScrollBar, shards, noRelative, noIsolation, inert, setCallbacks, allowPinchZoom: !!allowPinchZoom, lockRef: ref, gapMode }),
+    forwardProps ? React45.cloneElement(React45.Children.only(children), __assign(__assign({}, containerProps), { ref: containerRef })) : React45.createElement(Container, __assign({}, containerProps, { className, ref: containerRef }), children)
+  );
+});
+RemoveScroll.defaultProps = {
+  enabled: true,
+  removeScrollBar: true,
+  inert: false
+};
+RemoveScroll.classNames = {
+  fullWidth: fullWidthClassName,
+  zeroRight: zeroRightClassName
+};
+var getNonce = function() {
+  if (typeof __webpack_nonce__ !== "undefined") {
+    return __webpack_nonce__;
+  }
+  return void 0;
+};
+
+// ../../node_modules/.pnpm/react-style-singleton@2.2.3_@types+react@18.3.29_react@18.3.1/node_modules/react-style-singleton/dist/es2015/singleton.js
+function makeStyleTag() {
+  if (!document)
+    return null;
+  var tag = document.createElement("style");
+  tag.type = "text/css";
+  var nonce = getNonce();
+  if (nonce) {
+    tag.setAttribute("nonce", nonce);
+  }
+  return tag;
+}
+function injectStyles(tag, css) {
+  if (tag.styleSheet) {
+    tag.styleSheet.cssText = css;
+  } else {
+    tag.appendChild(document.createTextNode(css));
+  }
+}
+function insertStyleTag(tag) {
+  var head = document.head || document.getElementsByTagName("head")[0];
+  head.appendChild(tag);
+}
+var stylesheetSingleton = function() {
+  var counter = 0;
+  var stylesheet = null;
+  return {
+    add: function(style) {
+      if (counter == 0) {
+        if (stylesheet = makeStyleTag()) {
+          injectStyles(stylesheet, style);
+          insertStyleTag(stylesheet);
+        }
+      }
+      counter++;
+    },
+    remove: function() {
+      counter--;
+      if (!counter && stylesheet) {
+        stylesheet.parentNode && stylesheet.parentNode.removeChild(stylesheet);
+        stylesheet = null;
+      }
+    }
+  };
+};
+
+// ../../node_modules/.pnpm/react-style-singleton@2.2.3_@types+react@18.3.29_react@18.3.1/node_modules/react-style-singleton/dist/es2015/hook.js
+var styleHookSingleton = function() {
+  var sheet = stylesheetSingleton();
+  return function(styles, isDynamic) {
+    React45.useEffect(function() {
+      sheet.add(styles);
+      return function() {
+        sheet.remove();
+      };
+    }, [styles && isDynamic]);
+  };
+};
+
+// ../../node_modules/.pnpm/react-style-singleton@2.2.3_@types+react@18.3.29_react@18.3.1/node_modules/react-style-singleton/dist/es2015/component.js
+var styleSingleton = function() {
+  var useStyle = styleHookSingleton();
+  var Sheet = function(_a) {
+    var styles = _a.styles, dynamic = _a.dynamic;
+    useStyle(styles, dynamic);
+    return null;
+  };
+  return Sheet;
+};
+
+// ../../node_modules/.pnpm/react-remove-scroll-bar@2.3.8_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll-bar/dist/es2015/utils.js
+var zeroGap = {
+  left: 0,
+  top: 0,
+  right: 0,
+  gap: 0
+};
+var parse = function(x) {
+  return parseInt(x || "", 10) || 0;
+};
+var getOffset = function(gapMode) {
+  var cs = window.getComputedStyle(document.body);
+  var left = cs[gapMode === "padding" ? "paddingLeft" : "marginLeft"];
+  var top = cs[gapMode === "padding" ? "paddingTop" : "marginTop"];
+  var right = cs[gapMode === "padding" ? "paddingRight" : "marginRight"];
+  return [parse(left), parse(top), parse(right)];
+};
+var getGapWidth = function(gapMode) {
+  if (gapMode === void 0) {
+    gapMode = "margin";
+  }
+  if (typeof window === "undefined") {
+    return zeroGap;
+  }
+  var offsets = getOffset(gapMode);
+  var documentWidth = document.documentElement.clientWidth;
+  var windowWidth = window.innerWidth;
+  return {
+    left: offsets[0],
+    top: offsets[1],
+    right: offsets[2],
+    gap: Math.max(0, windowWidth - documentWidth + offsets[2] - offsets[0])
+  };
+};
+
+// ../../node_modules/.pnpm/react-remove-scroll-bar@2.3.8_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll-bar/dist/es2015/component.js
+var Style = styleSingleton();
+var lockAttribute = "data-scroll-locked";
+var getStyles = function(_a, allowRelative, gapMode, important) {
+  var left = _a.left, top = _a.top, right = _a.right, gap = _a.gap;
+  if (gapMode === void 0) {
+    gapMode = "margin";
+  }
+  return "\n  .".concat(noScrollbarsClassName, " {\n   overflow: hidden ").concat(important, ";\n   padding-right: ").concat(gap, "px ").concat(important, ";\n  }\n  body[").concat(lockAttribute, "] {\n    overflow: hidden ").concat(important, ";\n    overscroll-behavior: contain;\n    ").concat([
+    allowRelative && "position: relative ".concat(important, ";"),
+    gapMode === "margin" && "\n    padding-left: ".concat(left, "px;\n    padding-top: ").concat(top, "px;\n    padding-right: ").concat(right, "px;\n    margin-left:0;\n    margin-top:0;\n    margin-right: ").concat(gap, "px ").concat(important, ";\n    "),
+    gapMode === "padding" && "padding-right: ".concat(gap, "px ").concat(important, ";")
+  ].filter(Boolean).join(""), "\n  }\n  \n  .").concat(zeroRightClassName, " {\n    right: ").concat(gap, "px ").concat(important, ";\n  }\n  \n  .").concat(fullWidthClassName, " {\n    margin-right: ").concat(gap, "px ").concat(important, ";\n  }\n  \n  .").concat(zeroRightClassName, " .").concat(zeroRightClassName, " {\n    right: 0 ").concat(important, ";\n  }\n  \n  .").concat(fullWidthClassName, " .").concat(fullWidthClassName, " {\n    margin-right: 0 ").concat(important, ";\n  }\n  \n  body[").concat(lockAttribute, "] {\n    ").concat(removedBarSizeVariable, ": ").concat(gap, "px;\n  }\n");
+};
+var getCurrentUseCounter = function() {
+  var counter = parseInt(document.body.getAttribute(lockAttribute) || "0", 10);
+  return isFinite(counter) ? counter : 0;
+};
+var useLockAttribute = function() {
+  React45.useEffect(function() {
+    document.body.setAttribute(lockAttribute, (getCurrentUseCounter() + 1).toString());
+    return function() {
+      var newCounter = getCurrentUseCounter() - 1;
+      if (newCounter <= 0) {
+        document.body.removeAttribute(lockAttribute);
+      } else {
+        document.body.setAttribute(lockAttribute, newCounter.toString());
+      }
+    };
+  }, []);
+};
+var RemoveScrollBar = function(_a) {
+  var noRelative = _a.noRelative, noImportant = _a.noImportant, _b = _a.gapMode, gapMode = _b === void 0 ? "margin" : _b;
+  useLockAttribute();
+  var gap = React45.useMemo(function() {
+    return getGapWidth(gapMode);
+  }, [gapMode]);
+  return React45.createElement(Style, { styles: getStyles(gap, !noRelative, gapMode, !noImportant ? "!important" : "") });
+};
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/aggresiveCapture.js
+var passiveSupported = false;
+if (typeof window !== "undefined") {
+  try {
+    options = Object.defineProperty({}, "passive", {
+      get: function() {
+        passiveSupported = true;
+        return true;
+      }
+    });
+    window.addEventListener("test", options, options);
+    window.removeEventListener("test", options, options);
+  } catch (err) {
+    passiveSupported = false;
+  }
+}
+var options;
+var nonPassive = passiveSupported ? { passive: false } : false;
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/handleScroll.js
+var alwaysContainsScroll = function(node) {
+  return node.tagName === "TEXTAREA";
+};
+var elementCanBeScrolled = function(node, overflow) {
+  if (!(node instanceof Element)) {
+    return false;
+  }
+  var styles = window.getComputedStyle(node);
+  return (
+    // not-not-scrollable
+    styles[overflow] !== "hidden" && // contains scroll inside self
+    !(styles.overflowY === styles.overflowX && !alwaysContainsScroll(node) && styles[overflow] === "visible")
+  );
+};
+var elementCouldBeVScrolled = function(node) {
+  return elementCanBeScrolled(node, "overflowY");
+};
+var elementCouldBeHScrolled = function(node) {
+  return elementCanBeScrolled(node, "overflowX");
+};
+var locationCouldBeScrolled = function(axis, node) {
+  var ownerDocument = node.ownerDocument;
+  var current = node;
+  do {
+    if (typeof ShadowRoot !== "undefined" && current instanceof ShadowRoot) {
+      current = current.host;
+    }
+    var isScrollable = elementCouldBeScrolled(axis, current);
+    if (isScrollable) {
+      var _a = getScrollVariables(axis, current), scrollHeight = _a[1], clientHeight = _a[2];
+      if (scrollHeight > clientHeight) {
+        return true;
+      }
+    }
+    current = current.parentNode;
+  } while (current && current !== ownerDocument.body);
+  return false;
+};
+var getVScrollVariables = function(_a) {
+  var scrollTop = _a.scrollTop, scrollHeight = _a.scrollHeight, clientHeight = _a.clientHeight;
+  return [
+    scrollTop,
+    scrollHeight,
+    clientHeight
+  ];
+};
+var getHScrollVariables = function(_a) {
+  var scrollLeft = _a.scrollLeft, scrollWidth = _a.scrollWidth, clientWidth = _a.clientWidth;
+  return [
+    scrollLeft,
+    scrollWidth,
+    clientWidth
+  ];
+};
+var elementCouldBeScrolled = function(axis, node) {
+  return axis === "v" ? elementCouldBeVScrolled(node) : elementCouldBeHScrolled(node);
+};
+var getScrollVariables = function(axis, node) {
+  return axis === "v" ? getVScrollVariables(node) : getHScrollVariables(node);
+};
+var getDirectionFactor = function(axis, direction) {
+  return axis === "h" && direction === "rtl" ? -1 : 1;
+};
+var handleScroll = function(axis, endTarget, event, sourceDelta, noOverscroll) {
+  var directionFactor = getDirectionFactor(axis, window.getComputedStyle(endTarget).direction);
+  var delta = directionFactor * sourceDelta;
+  var target = event.target;
+  var targetInLock = endTarget.contains(target);
+  var shouldCancelScroll = false;
+  var isDeltaPositive = delta > 0;
+  var availableScroll = 0;
+  var availableScrollTop = 0;
+  do {
+    if (!target) {
+      break;
+    }
+    var _a = getScrollVariables(axis, target), position = _a[0], scroll_1 = _a[1], capacity = _a[2];
+    var elementScroll = scroll_1 - capacity - directionFactor * position;
+    if (position || elementScroll) {
+      if (elementCouldBeScrolled(axis, target)) {
+        availableScroll += elementScroll;
+        availableScrollTop += position;
+      }
+    }
+    var parent_1 = target.parentNode;
+    target = parent_1 && parent_1.nodeType === Node.DOCUMENT_FRAGMENT_NODE ? parent_1.host : parent_1;
+  } while (
+    // portaled content
+    !targetInLock && target !== document.body || // self content
+    targetInLock && (endTarget.contains(target) || endTarget === target)
+  );
+  if (isDeltaPositive && (Math.abs(availableScroll) < 1 || false)) {
+    shouldCancelScroll = true;
+  } else if (!isDeltaPositive && (Math.abs(availableScrollTop) < 1 || false)) {
+    shouldCancelScroll = true;
+  }
+  return shouldCancelScroll;
+};
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/SideEffect.js
+var getTouchXY = function(event) {
+  return "changedTouches" in event ? [event.changedTouches[0].clientX, event.changedTouches[0].clientY] : [0, 0];
+};
+var getDeltaXY = function(event) {
+  return [event.deltaX, event.deltaY];
+};
+var extractRef = function(ref) {
+  return ref && "current" in ref ? ref.current : ref;
+};
+var deltaCompare = function(x, y) {
+  return x[0] === y[0] && x[1] === y[1];
+};
+var generateStyle = function(id) {
+  return "\n  .block-interactivity-".concat(id, " {pointer-events: none;}\n  .allow-interactivity-").concat(id, " {pointer-events: all;}\n");
+};
+var idCounter = 0;
+var lockStack = [];
+function RemoveScrollSideCar(props) {
+  var shouldPreventQueue = React45.useRef([]);
+  var touchStartRef = React45.useRef([0, 0]);
+  var activeAxis = React45.useRef();
+  var id = React45.useState(idCounter++)[0];
+  var Style2 = React45.useState(styleSingleton)[0];
+  var lastProps = React45.useRef(props);
+  React45.useEffect(function() {
+    lastProps.current = props;
+  }, [props]);
+  React45.useEffect(function() {
+    if (props.inert) {
+      document.body.classList.add("block-interactivity-".concat(id));
+      var allow_1 = __spreadArray([props.lockRef.current], (props.shards || []).map(extractRef)).filter(Boolean);
+      allow_1.forEach(function(el) {
+        return el.classList.add("allow-interactivity-".concat(id));
+      });
+      return function() {
+        document.body.classList.remove("block-interactivity-".concat(id));
+        allow_1.forEach(function(el) {
+          return el.classList.remove("allow-interactivity-".concat(id));
+        });
+      };
+    }
+    return;
+  }, [props.inert, props.lockRef.current, props.shards]);
+  var shouldCancelEvent = React45.useCallback(function(event, parent) {
+    if ("touches" in event && event.touches.length === 2 || event.type === "wheel" && event.ctrlKey) {
+      return !lastProps.current.allowPinchZoom;
+    }
+    var touch = getTouchXY(event);
+    var touchStart = touchStartRef.current;
+    var deltaX = "deltaX" in event ? event.deltaX : touchStart[0] - touch[0];
+    var deltaY = "deltaY" in event ? event.deltaY : touchStart[1] - touch[1];
+    var currentAxis;
+    var target = event.target;
+    var moveDirection = Math.abs(deltaX) > Math.abs(deltaY) ? "h" : "v";
+    if ("touches" in event && moveDirection === "h" && target.type === "range") {
+      return false;
+    }
+    var selection = window.getSelection();
+    var anchorNode = selection && selection.anchorNode;
+    var isTouchingSelection = anchorNode ? anchorNode === target || anchorNode.contains(target) : false;
+    if (isTouchingSelection) {
+      return false;
+    }
+    var canBeScrolledInMainDirection = locationCouldBeScrolled(moveDirection, target);
+    if (!canBeScrolledInMainDirection) {
+      return true;
+    }
+    if (canBeScrolledInMainDirection) {
+      currentAxis = moveDirection;
+    } else {
+      currentAxis = moveDirection === "v" ? "h" : "v";
+      canBeScrolledInMainDirection = locationCouldBeScrolled(moveDirection, target);
+    }
+    if (!canBeScrolledInMainDirection) {
+      return false;
+    }
+    if (!activeAxis.current && "changedTouches" in event && (deltaX || deltaY)) {
+      activeAxis.current = currentAxis;
+    }
+    if (!currentAxis) {
+      return true;
+    }
+    var cancelingAxis = activeAxis.current || currentAxis;
+    return handleScroll(cancelingAxis, parent, event, cancelingAxis === "h" ? deltaX : deltaY);
+  }, []);
+  var shouldPrevent = React45.useCallback(function(_event) {
+    var event = _event;
+    if (!lockStack.length || lockStack[lockStack.length - 1] !== Style2) {
+      return;
+    }
+    var delta = "deltaY" in event ? getDeltaXY(event) : getTouchXY(event);
+    var sourceEvent = shouldPreventQueue.current.filter(function(e) {
+      return e.name === event.type && (e.target === event.target || event.target === e.shadowParent) && deltaCompare(e.delta, delta);
+    })[0];
+    if (sourceEvent && sourceEvent.should) {
+      if (event.cancelable) {
+        event.preventDefault();
+      }
+      return;
+    }
+    if (!sourceEvent) {
+      var shardNodes = (lastProps.current.shards || []).map(extractRef).filter(Boolean).filter(function(node) {
+        return node.contains(event.target);
+      });
+      var shouldStop = shardNodes.length > 0 ? shouldCancelEvent(event, shardNodes[0]) : !lastProps.current.noIsolation;
+      if (shouldStop) {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+    }
+  }, []);
+  var shouldCancel = React45.useCallback(function(name, delta, target, should) {
+    var event = { name, delta, target, should, shadowParent: getOutermostShadowParent(target) };
+    shouldPreventQueue.current.push(event);
+    setTimeout(function() {
+      shouldPreventQueue.current = shouldPreventQueue.current.filter(function(e) {
+        return e !== event;
+      });
+    }, 1);
+  }, []);
+  var scrollTouchStart = React45.useCallback(function(event) {
+    touchStartRef.current = getTouchXY(event);
+    activeAxis.current = void 0;
+  }, []);
+  var scrollWheel = React45.useCallback(function(event) {
+    shouldCancel(event.type, getDeltaXY(event), event.target, shouldCancelEvent(event, props.lockRef.current));
+  }, []);
+  var scrollTouchMove = React45.useCallback(function(event) {
+    shouldCancel(event.type, getTouchXY(event), event.target, shouldCancelEvent(event, props.lockRef.current));
+  }, []);
+  React45.useEffect(function() {
+    lockStack.push(Style2);
+    props.setCallbacks({
+      onScrollCapture: scrollWheel,
+      onWheelCapture: scrollWheel,
+      onTouchMoveCapture: scrollTouchMove
+    });
+    document.addEventListener("wheel", shouldPrevent, nonPassive);
+    document.addEventListener("touchmove", shouldPrevent, nonPassive);
+    document.addEventListener("touchstart", scrollTouchStart, nonPassive);
+    return function() {
+      lockStack = lockStack.filter(function(inst) {
+        return inst !== Style2;
+      });
+      document.removeEventListener("wheel", shouldPrevent, nonPassive);
+      document.removeEventListener("touchmove", shouldPrevent, nonPassive);
+      document.removeEventListener("touchstart", scrollTouchStart, nonPassive);
+    };
+  }, []);
+  var removeScrollBar = props.removeScrollBar, inert = props.inert;
+  return React45.createElement(
+    React45.Fragment,
+    null,
+    inert ? React45.createElement(Style2, { styles: generateStyle(id) }) : null,
+    removeScrollBar ? React45.createElement(RemoveScrollBar, { noRelative: props.noRelative, gapMode: props.gapMode }) : null
+  );
+}
+function getOutermostShadowParent(node) {
+  var shadowParent = null;
+  while (node !== null) {
+    if (node instanceof ShadowRoot) {
+      shadowParent = node.host;
+      node = node.host;
+    }
+    node = node.parentNode;
+  }
+  return shadowParent;
+}
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/sidecar.js
+var sidecar_default = exportSidecar(effectCar, RemoveScrollSideCar);
+
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.2_@types+react@18.3.29_react@18.3.1/node_modules/react-remove-scroll/dist/es2015/Combination.js
+var ReactRemoveScroll = React45.forwardRef(function(props, ref) {
+  return React45.createElement(RemoveScroll, __assign({}, props, { ref, sideCar: sidecar_default }));
+});
+ReactRemoveScroll.classNames = RemoveScroll.classNames;
+var Combination_default = ReactRemoveScroll;
+var POPOVER_NAME = "Popover";
+var [createPopoverContext] = createContextScope(POPOVER_NAME, [
+  createPopperScope
+]);
+var usePopperScope = createPopperScope();
+var [PopoverProvider, usePopoverContext] = createPopoverContext(POPOVER_NAME);
+var Popover = (props) => {
+  const {
+    __scopePopover,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    modal = false
+  } = props;
+  const popperScope = usePopperScope(__scopePopover);
+  const triggerRef = React45.useRef(null);
+  const [hasCustomAnchor, setHasCustomAnchor] = React45.useState(false);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: POPOVER_NAME
+  });
+  return /* @__PURE__ */ jsx(Root2, { ...popperScope, children: /* @__PURE__ */ jsx(
+    PopoverProvider,
+    {
+      scope: __scopePopover,
+      contentId: useId(),
+      triggerRef,
+      open,
+      onOpenChange: setOpen,
+      onOpenToggle: React45.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
+      hasCustomAnchor,
+      onCustomAnchorAdd: React45.useCallback(() => setHasCustomAnchor(true), []),
+      onCustomAnchorRemove: React45.useCallback(() => setHasCustomAnchor(false), []),
+      modal,
+      children
+    }
+  ) });
+};
+Popover.displayName = POPOVER_NAME;
+var ANCHOR_NAME2 = "PopoverAnchor";
+var PopoverAnchor = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...anchorProps } = props;
+    const context = usePopoverContext(ANCHOR_NAME2, __scopePopover);
+    const popperScope = usePopperScope(__scopePopover);
+    const { onCustomAnchorAdd, onCustomAnchorRemove } = context;
+    React45.useEffect(() => {
+      onCustomAnchorAdd();
+      return () => onCustomAnchorRemove();
+    }, [onCustomAnchorAdd, onCustomAnchorRemove]);
+    return /* @__PURE__ */ jsx(Anchor, { ...popperScope, ...anchorProps, ref: forwardedRef });
+  }
+);
+PopoverAnchor.displayName = ANCHOR_NAME2;
+var TRIGGER_NAME = "PopoverTrigger";
+var PopoverTrigger = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...triggerProps } = props;
+    const context = usePopoverContext(TRIGGER_NAME, __scopePopover);
+    const popperScope = usePopperScope(__scopePopover);
+    const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
+    const trigger = /* @__PURE__ */ jsx(
+      Primitive.button,
+      {
+        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-expanded": context.open,
+        "aria-controls": context.contentId,
+        "data-state": getState(context.open),
+        ...triggerProps,
+        ref: composedTriggerRef,
+        onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+      }
+    );
+    return context.hasCustomAnchor ? trigger : /* @__PURE__ */ jsx(Anchor, { asChild: true, ...popperScope, children: trigger });
+  }
+);
+PopoverTrigger.displayName = TRIGGER_NAME;
+var PORTAL_NAME2 = "PopoverPortal";
+var [PortalProvider, usePortalContext] = createPopoverContext(PORTAL_NAME2, {
+  forceMount: void 0
+});
+var PopoverPortal = (props) => {
+  const { __scopePopover, forceMount, children, container } = props;
+  const context = usePopoverContext(PORTAL_NAME2, __scopePopover);
+  return /* @__PURE__ */ jsx(PortalProvider, { scope: __scopePopover, forceMount, children: /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsx(Portal, { asChild: true, container, children }) }) });
+};
+PopoverPortal.displayName = PORTAL_NAME2;
+var CONTENT_NAME2 = "PopoverContent";
+var PopoverContent = React45.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext(CONTENT_NAME2, props.__scopePopover);
+    const { forceMount = portalContext.forceMount, ...contentProps } = props;
+    const context = usePopoverContext(CONTENT_NAME2, props.__scopePopover);
+    return /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsx(PopoverContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsx(PopoverContentNonModal, { ...contentProps, ref: forwardedRef }) });
+  }
+);
+PopoverContent.displayName = CONTENT_NAME2;
+var Slot = createSlot("PopoverContent.RemoveScroll");
+var PopoverContentModal = React45.forwardRef(
+  (props, forwardedRef) => {
+    const context = usePopoverContext(CONTENT_NAME2, props.__scopePopover);
+    const contentRef = React45.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, contentRef);
+    const isRightClickOutsideRef = React45.useRef(false);
+    React45.useEffect(() => {
+      const content = contentRef.current;
+      if (content) return hideOthers(content);
+    }, []);
+    return /* @__PURE__ */ jsx(Combination_default, { as: Slot, allowPinchZoom: true, children: /* @__PURE__ */ jsx(
+      PopoverContentImpl,
+      {
+        ...props,
+        ref: composedRefs,
+        trapFocus: context.open,
+        disableOutsidePointerEvents: true,
+        onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
+          event.preventDefault();
+          if (!isRightClickOutsideRef.current) context.triggerRef.current?.focus();
+        }),
+        onPointerDownOutside: composeEventHandlers(
+          props.onPointerDownOutside,
+          (event) => {
+            const originalEvent = event.detail.originalEvent;
+            const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
+            const isRightClick = originalEvent.button === 2 || ctrlLeftClick;
+            isRightClickOutsideRef.current = isRightClick;
+          },
+          { checkForDefaultPrevented: false }
+        ),
+        onFocusOutside: composeEventHandlers(
+          props.onFocusOutside,
+          (event) => event.preventDefault(),
+          { checkForDefaultPrevented: false }
+        )
+      }
+    ) });
+  }
+);
+var PopoverContentNonModal = React45.forwardRef(
+  (props, forwardedRef) => {
+    const context = usePopoverContext(CONTENT_NAME2, props.__scopePopover);
+    const hasInteractedOutsideRef = React45.useRef(false);
+    const hasPointerDownOutsideRef = React45.useRef(false);
+    return /* @__PURE__ */ jsx(
+      PopoverContentImpl,
+      {
+        ...props,
+        ref: forwardedRef,
+        trapFocus: false,
+        disableOutsidePointerEvents: false,
+        onCloseAutoFocus: (event) => {
+          props.onCloseAutoFocus?.(event);
+          if (!event.defaultPrevented) {
+            if (!hasInteractedOutsideRef.current) context.triggerRef.current?.focus();
+            event.preventDefault();
+          }
+          hasInteractedOutsideRef.current = false;
+          hasPointerDownOutsideRef.current = false;
+        },
+        onInteractOutside: (event) => {
+          props.onInteractOutside?.(event);
+          if (!event.defaultPrevented) {
+            hasInteractedOutsideRef.current = true;
+            if (event.detail.originalEvent.type === "pointerdown") {
+              hasPointerDownOutsideRef.current = true;
+            }
+          }
+          const target = event.target;
+          const targetIsTrigger = context.triggerRef.current?.contains(target);
+          if (targetIsTrigger) event.preventDefault();
+          if (event.detail.originalEvent.type === "focusin" && hasPointerDownOutsideRef.current) {
+            event.preventDefault();
+          }
+        }
+      }
+    );
+  }
+);
+var PopoverContentImpl = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopePopover,
+      trapFocus,
+      onOpenAutoFocus,
+      onCloseAutoFocus,
+      disableOutsidePointerEvents,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      onFocusOutside,
+      onInteractOutside,
+      ...contentProps
+    } = props;
+    const context = usePopoverContext(CONTENT_NAME2, __scopePopover);
+    const popperScope = usePopperScope(__scopePopover);
+    useFocusGuards();
+    return /* @__PURE__ */ jsx(
+      FocusScope,
+      {
+        asChild: true,
+        loop: true,
+        trapped: trapFocus,
+        onMountAutoFocus: onOpenAutoFocus,
+        onUnmountAutoFocus: onCloseAutoFocus,
+        children: /* @__PURE__ */ jsx(
+          DismissableLayer,
+          {
+            asChild: true,
+            disableOutsidePointerEvents,
+            onInteractOutside,
+            onEscapeKeyDown,
+            onPointerDownOutside,
+            onFocusOutside,
+            onDismiss: () => context.onOpenChange(false),
+            children: /* @__PURE__ */ jsx(
+              Content,
+              {
+                "data-state": getState(context.open),
+                role: "dialog",
+                id: context.contentId,
+                ...popperScope,
+                ...contentProps,
+                ref: forwardedRef,
+                style: {
+                  ...contentProps.style,
+                  // re-namespace exposed content custom properties
+                  ...{
+                    "--radix-popover-content-transform-origin": "var(--radix-popper-transform-origin)",
+                    "--radix-popover-content-available-width": "var(--radix-popper-available-width)",
+                    "--radix-popover-content-available-height": "var(--radix-popper-available-height)",
+                    "--radix-popover-trigger-width": "var(--radix-popper-anchor-width)",
+                    "--radix-popover-trigger-height": "var(--radix-popper-anchor-height)"
+                  }
+                }
+              }
+            )
+          }
+        )
+      }
+    );
+  }
+);
+var CLOSE_NAME = "PopoverClose";
+var PopoverClose = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...closeProps } = props;
+    const context = usePopoverContext(CLOSE_NAME, __scopePopover);
+    return /* @__PURE__ */ jsx(
+      Primitive.button,
+      {
+        type: "button",
+        ...closeProps,
+        ref: forwardedRef,
+        onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
+      }
+    );
+  }
+);
+PopoverClose.displayName = CLOSE_NAME;
+var ARROW_NAME2 = "PopoverArrow";
+var PopoverArrow = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopePopover, ...arrowProps } = props;
+    const popperScope = usePopperScope(__scopePopover);
+    return /* @__PURE__ */ jsx(Arrow2, { ...popperScope, ...arrowProps, ref: forwardedRef });
+  }
+);
+PopoverArrow.displayName = ARROW_NAME2;
+function getState(open) {
+  return open ? "open" : "closed";
+}
+var Root22 = Popover;
+var Trigger = PopoverTrigger;
+var Portal2 = PopoverPortal;
+var Content2 = PopoverContent;
+var Arrow22 = PopoverArrow;
+function Popover2({ children, content, open, onOpenChange, placement = "bottom", contentClassName }) {
+  return /* @__PURE__ */ jsxs(Root22, { open, onOpenChange, children: [
+    /* @__PURE__ */ jsx(Trigger, { asChild: true, children }),
+    /* @__PURE__ */ jsx(Portal2, { children: /* @__PURE__ */ jsxs(
+      Content2,
       {
         side: placement,
         sideOffset: 4,
         className: clsx("de-popover-content", contentClassName),
         children: [
           content,
-          /* @__PURE__ */ jsx(RadixPopover.Arrow, { className: "de-popover-arrow", width: 10, height: 5 })
+          /* @__PURE__ */ jsx(Arrow22, { className: "de-popover-arrow", width: 10, height: 5 })
         ]
       }
     ) })
   ] });
 }
-var Input = React24.forwardRef(
-  ({ className, size = "md", ...rest }, ref) => /* @__PURE__ */ jsx(
+var Input = React45.forwardRef(
+  ({ className, size: size4 = "md", ...rest }, ref) => /* @__PURE__ */ jsx(
     "input",
     {
       ref,
-      "data-size": size,
+      "data-size": size4,
       className: clsx("de-input", className),
       ...rest
     }
   )
 );
 Input.displayName = "Input";
-var Tooltip = React24.forwardRef(({ children, title, placement = "top", className }, ref) => {
+var VISUALLY_HIDDEN_STYLES = Object.freeze({
+  // See: https://github.com/twbs/bootstrap/blob/main/scss/mixins/_visually-hidden.scss
+  position: "absolute",
+  border: 0,
+  width: 1,
+  height: 1,
+  padding: 0,
+  margin: -1,
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  wordWrap: "normal"
+});
+var NAME2 = "VisuallyHidden";
+var VisuallyHidden = React45.forwardRef(
+  (props, forwardedRef) => {
+    return /* @__PURE__ */ jsx(
+      Primitive.span,
+      {
+        ...props,
+        ref: forwardedRef,
+        style: { ...VISUALLY_HIDDEN_STYLES, ...props.style }
+      }
+    );
+  }
+);
+VisuallyHidden.displayName = NAME2;
+var Root3 = VisuallyHidden;
+var [createTooltipContext] = createContextScope("Tooltip", [
+  createPopperScope
+]);
+var usePopperScope2 = createPopperScope();
+var PROVIDER_NAME = "TooltipProvider";
+var DEFAULT_DELAY_DURATION = 700;
+var TOOLTIP_OPEN = "tooltip.open";
+var [TooltipProviderContextProvider, useTooltipProviderContext] = createTooltipContext(PROVIDER_NAME);
+var TooltipProvider = (props) => {
+  const {
+    __scopeTooltip,
+    delayDuration = DEFAULT_DELAY_DURATION,
+    skipDelayDuration = 300,
+    disableHoverableContent = false,
+    children
+  } = props;
+  const isOpenDelayedRef = React45.useRef(true);
+  const isPointerInTransitRef = React45.useRef(false);
+  const skipDelayTimerRef = React45.useRef(0);
+  React45.useEffect(() => {
+    const skipDelayTimer = skipDelayTimerRef.current;
+    return () => window.clearTimeout(skipDelayTimer);
+  }, []);
+  return /* @__PURE__ */ jsx(
+    TooltipProviderContextProvider,
+    {
+      scope: __scopeTooltip,
+      isOpenDelayedRef,
+      delayDuration,
+      onOpen: React45.useCallback(() => {
+        window.clearTimeout(skipDelayTimerRef.current);
+        isOpenDelayedRef.current = false;
+      }, []),
+      onClose: React45.useCallback(() => {
+        window.clearTimeout(skipDelayTimerRef.current);
+        skipDelayTimerRef.current = window.setTimeout(
+          () => isOpenDelayedRef.current = true,
+          skipDelayDuration
+        );
+      }, [skipDelayDuration]),
+      isPointerInTransitRef,
+      onPointerInTransitChange: React45.useCallback((inTransit) => {
+        isPointerInTransitRef.current = inTransit;
+      }, []),
+      disableHoverableContent,
+      children
+    }
+  );
+};
+TooltipProvider.displayName = PROVIDER_NAME;
+var TOOLTIP_NAME = "Tooltip";
+var [TooltipContextProvider, useTooltipContext] = createTooltipContext(TOOLTIP_NAME);
+var Tooltip = (props) => {
+  const {
+    __scopeTooltip,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    disableHoverableContent: disableHoverableContentProp,
+    delayDuration: delayDurationProp
+  } = props;
+  const providerContext = useTooltipProviderContext(TOOLTIP_NAME, props.__scopeTooltip);
+  const popperScope = usePopperScope2(__scopeTooltip);
+  const [trigger, setTrigger] = React45.useState(null);
+  const contentId = useId();
+  const openTimerRef = React45.useRef(0);
+  const disableHoverableContent = disableHoverableContentProp ?? providerContext.disableHoverableContent;
+  const delayDuration = delayDurationProp ?? providerContext.delayDuration;
+  const wasOpenDelayedRef = React45.useRef(false);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: (open2) => {
+      if (open2) {
+        providerContext.onOpen();
+        document.dispatchEvent(new CustomEvent(TOOLTIP_OPEN));
+      } else {
+        providerContext.onClose();
+      }
+      onOpenChange?.(open2);
+    },
+    caller: TOOLTIP_NAME
+  });
+  const stateAttribute = React45.useMemo(() => {
+    return open ? wasOpenDelayedRef.current ? "delayed-open" : "instant-open" : "closed";
+  }, [open]);
+  const handleOpen = React45.useCallback(() => {
+    window.clearTimeout(openTimerRef.current);
+    openTimerRef.current = 0;
+    wasOpenDelayedRef.current = false;
+    setOpen(true);
+  }, [setOpen]);
+  const handleClose = React45.useCallback(() => {
+    window.clearTimeout(openTimerRef.current);
+    openTimerRef.current = 0;
+    setOpen(false);
+  }, [setOpen]);
+  const handleDelayedOpen = React45.useCallback(() => {
+    window.clearTimeout(openTimerRef.current);
+    openTimerRef.current = window.setTimeout(() => {
+      wasOpenDelayedRef.current = true;
+      setOpen(true);
+      openTimerRef.current = 0;
+    }, delayDuration);
+  }, [delayDuration, setOpen]);
+  React45.useEffect(() => {
+    return () => {
+      if (openTimerRef.current) {
+        window.clearTimeout(openTimerRef.current);
+        openTimerRef.current = 0;
+      }
+    };
+  }, []);
+  return /* @__PURE__ */ jsx(Root2, { ...popperScope, children: /* @__PURE__ */ jsx(
+    TooltipContextProvider,
+    {
+      scope: __scopeTooltip,
+      contentId,
+      open,
+      stateAttribute,
+      trigger,
+      onTriggerChange: setTrigger,
+      onTriggerEnter: React45.useCallback(() => {
+        if (providerContext.isOpenDelayedRef.current) handleDelayedOpen();
+        else handleOpen();
+      }, [providerContext.isOpenDelayedRef, handleDelayedOpen, handleOpen]),
+      onTriggerLeave: React45.useCallback(() => {
+        if (disableHoverableContent) {
+          handleClose();
+        } else {
+          window.clearTimeout(openTimerRef.current);
+          openTimerRef.current = 0;
+        }
+      }, [handleClose, disableHoverableContent]),
+      onOpen: handleOpen,
+      onClose: handleClose,
+      disableHoverableContent,
+      children
+    }
+  ) });
+};
+Tooltip.displayName = TOOLTIP_NAME;
+var TRIGGER_NAME2 = "TooltipTrigger";
+var TooltipTrigger = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTooltip, ...triggerProps } = props;
+    const context = useTooltipContext(TRIGGER_NAME2, __scopeTooltip);
+    const providerContext = useTooltipProviderContext(TRIGGER_NAME2, __scopeTooltip);
+    const popperScope = usePopperScope2(__scopeTooltip);
+    const ref = React45.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, ref, context.onTriggerChange);
+    const isPointerDownRef = React45.useRef(false);
+    const hasPointerMoveOpenedRef = React45.useRef(false);
+    const handlePointerUp = React45.useCallback(() => isPointerDownRef.current = false, []);
+    React45.useEffect(() => {
+      return () => document.removeEventListener("pointerup", handlePointerUp);
+    }, [handlePointerUp]);
+    return /* @__PURE__ */ jsx(Anchor, { asChild: true, ...popperScope, children: /* @__PURE__ */ jsx(
+      Primitive.button,
+      {
+        "aria-describedby": context.open ? context.contentId : void 0,
+        "data-state": context.stateAttribute,
+        ...triggerProps,
+        ref: composedRefs,
+        onPointerMove: composeEventHandlers(props.onPointerMove, (event) => {
+          if (event.pointerType === "touch") return;
+          if (!hasPointerMoveOpenedRef.current && !providerContext.isPointerInTransitRef.current) {
+            context.onTriggerEnter();
+            hasPointerMoveOpenedRef.current = true;
+          }
+        }),
+        onPointerLeave: composeEventHandlers(props.onPointerLeave, () => {
+          context.onTriggerLeave();
+          hasPointerMoveOpenedRef.current = false;
+        }),
+        onPointerDown: composeEventHandlers(props.onPointerDown, () => {
+          if (context.open) {
+            context.onClose();
+          }
+          isPointerDownRef.current = true;
+          document.addEventListener("pointerup", handlePointerUp, { once: true });
+        }),
+        onFocus: composeEventHandlers(props.onFocus, () => {
+          if (!isPointerDownRef.current) context.onOpen();
+        }),
+        onBlur: composeEventHandlers(props.onBlur, context.onClose),
+        onClick: composeEventHandlers(props.onClick, context.onClose)
+      }
+    ) });
+  }
+);
+TooltipTrigger.displayName = TRIGGER_NAME2;
+var PORTAL_NAME3 = "TooltipPortal";
+var [PortalProvider2, usePortalContext2] = createTooltipContext(PORTAL_NAME3, {
+  forceMount: void 0
+});
+var TooltipPortal = (props) => {
+  const { __scopeTooltip, forceMount, children, container } = props;
+  const context = useTooltipContext(PORTAL_NAME3, __scopeTooltip);
+  return /* @__PURE__ */ jsx(PortalProvider2, { scope: __scopeTooltip, forceMount, children: /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsx(Portal, { asChild: true, container, children }) }) });
+};
+TooltipPortal.displayName = PORTAL_NAME3;
+var CONTENT_NAME3 = "TooltipContent";
+var TooltipContent = React45.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext2(CONTENT_NAME3, props.__scopeTooltip);
+    const { forceMount = portalContext.forceMount, side = "top", ...contentProps } = props;
+    const context = useTooltipContext(CONTENT_NAME3, props.__scopeTooltip);
+    return /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: context.disableHoverableContent ? /* @__PURE__ */ jsx(TooltipContentImpl, { side, ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsx(TooltipContentHoverable, { side, ...contentProps, ref: forwardedRef }) });
+  }
+);
+var TooltipContentHoverable = React45.forwardRef((props, forwardedRef) => {
+  const context = useTooltipContext(CONTENT_NAME3, props.__scopeTooltip);
+  const providerContext = useTooltipProviderContext(CONTENT_NAME3, props.__scopeTooltip);
+  const ref = React45.useRef(null);
+  const composedRefs = useComposedRefs(forwardedRef, ref);
+  const [pointerGraceArea, setPointerGraceArea] = React45.useState(null);
+  const { trigger, onClose } = context;
+  const content = ref.current;
+  const { onPointerInTransitChange } = providerContext;
+  const handleRemoveGraceArea = React45.useCallback(() => {
+    setPointerGraceArea(null);
+    onPointerInTransitChange(false);
+  }, [onPointerInTransitChange]);
+  const handleCreateGraceArea = React45.useCallback(
+    (event, hoverTarget) => {
+      const currentTarget = event.currentTarget;
+      const exitPoint = { x: event.clientX, y: event.clientY };
+      const exitSide = getExitSideFromRect(exitPoint, currentTarget.getBoundingClientRect());
+      const paddedExitPoints = getPaddedExitPoints(exitPoint, exitSide);
+      const hoverTargetPoints = getPointsFromRect(hoverTarget.getBoundingClientRect());
+      const graceArea = getHull([...paddedExitPoints, ...hoverTargetPoints]);
+      setPointerGraceArea(graceArea);
+      onPointerInTransitChange(true);
+    },
+    [onPointerInTransitChange]
+  );
+  React45.useEffect(() => {
+    return () => handleRemoveGraceArea();
+  }, [handleRemoveGraceArea]);
+  React45.useEffect(() => {
+    if (trigger && content) {
+      const handleTriggerLeave = (event) => handleCreateGraceArea(event, content);
+      const handleContentLeave = (event) => handleCreateGraceArea(event, trigger);
+      trigger.addEventListener("pointerleave", handleTriggerLeave);
+      content.addEventListener("pointerleave", handleContentLeave);
+      return () => {
+        trigger.removeEventListener("pointerleave", handleTriggerLeave);
+        content.removeEventListener("pointerleave", handleContentLeave);
+      };
+    }
+  }, [trigger, content, handleCreateGraceArea, handleRemoveGraceArea]);
+  React45.useEffect(() => {
+    if (pointerGraceArea) {
+      const handleTrackPointerGrace = (event) => {
+        const target = event.target;
+        const pointerPosition = { x: event.clientX, y: event.clientY };
+        const hasEnteredTarget = trigger?.contains(target) || content?.contains(target);
+        const isPointerOutsideGraceArea = !isPointInPolygon(pointerPosition, pointerGraceArea);
+        if (hasEnteredTarget) {
+          handleRemoveGraceArea();
+        } else if (isPointerOutsideGraceArea) {
+          handleRemoveGraceArea();
+          onClose();
+        }
+      };
+      document.addEventListener("pointermove", handleTrackPointerGrace);
+      return () => document.removeEventListener("pointermove", handleTrackPointerGrace);
+    }
+  }, [trigger, content, pointerGraceArea, onClose, handleRemoveGraceArea]);
+  return /* @__PURE__ */ jsx(TooltipContentImpl, { ...props, ref: composedRefs });
+});
+var [VisuallyHiddenContentContextProvider, useVisuallyHiddenContentContext] = createTooltipContext(TOOLTIP_NAME, { isInside: false });
+var Slottable = createSlottable("TooltipContent");
+var TooltipContentImpl = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeTooltip,
+      children,
+      "aria-label": ariaLabel,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      ...contentProps
+    } = props;
+    const context = useTooltipContext(CONTENT_NAME3, __scopeTooltip);
+    const popperScope = usePopperScope2(__scopeTooltip);
+    const { onClose } = context;
+    React45.useEffect(() => {
+      document.addEventListener(TOOLTIP_OPEN, onClose);
+      return () => document.removeEventListener(TOOLTIP_OPEN, onClose);
+    }, [onClose]);
+    React45.useEffect(() => {
+      if (context.trigger) {
+        const handleScroll2 = (event) => {
+          const target = event.target;
+          if (target?.contains(context.trigger)) onClose();
+        };
+        window.addEventListener("scroll", handleScroll2, { capture: true });
+        return () => window.removeEventListener("scroll", handleScroll2, { capture: true });
+      }
+    }, [context.trigger, onClose]);
+    return /* @__PURE__ */ jsx(
+      DismissableLayer,
+      {
+        asChild: true,
+        disableOutsidePointerEvents: false,
+        onEscapeKeyDown,
+        onPointerDownOutside,
+        onFocusOutside: (event) => event.preventDefault(),
+        onDismiss: onClose,
+        children: /* @__PURE__ */ jsxs(
+          Content,
+          {
+            "data-state": context.stateAttribute,
+            ...popperScope,
+            ...contentProps,
+            ref: forwardedRef,
+            style: {
+              ...contentProps.style,
+              // re-namespace exposed content custom properties
+              ...{
+                "--radix-tooltip-content-transform-origin": "var(--radix-popper-transform-origin)",
+                "--radix-tooltip-content-available-width": "var(--radix-popper-available-width)",
+                "--radix-tooltip-content-available-height": "var(--radix-popper-available-height)",
+                "--radix-tooltip-trigger-width": "var(--radix-popper-anchor-width)",
+                "--radix-tooltip-trigger-height": "var(--radix-popper-anchor-height)"
+              }
+            },
+            children: [
+              /* @__PURE__ */ jsx(Slottable, { children }),
+              /* @__PURE__ */ jsx(VisuallyHiddenContentContextProvider, { scope: __scopeTooltip, isInside: true, children: /* @__PURE__ */ jsx(Root3, { id: context.contentId, role: "tooltip", children: ariaLabel || children }) })
+            ]
+          }
+        )
+      }
+    );
+  }
+);
+TooltipContent.displayName = CONTENT_NAME3;
+var ARROW_NAME3 = "TooltipArrow";
+var TooltipArrow = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTooltip, ...arrowProps } = props;
+    const popperScope = usePopperScope2(__scopeTooltip);
+    const visuallyHiddenContentContext = useVisuallyHiddenContentContext(
+      ARROW_NAME3,
+      __scopeTooltip
+    );
+    return visuallyHiddenContentContext.isInside ? null : /* @__PURE__ */ jsx(Arrow2, { ...popperScope, ...arrowProps, ref: forwardedRef });
+  }
+);
+TooltipArrow.displayName = ARROW_NAME3;
+function getExitSideFromRect(point, rect) {
+  const top = Math.abs(rect.top - point.y);
+  const bottom = Math.abs(rect.bottom - point.y);
+  const right = Math.abs(rect.right - point.x);
+  const left = Math.abs(rect.left - point.x);
+  switch (Math.min(top, bottom, right, left)) {
+    case left:
+      return "left";
+    case right:
+      return "right";
+    case top:
+      return "top";
+    case bottom:
+      return "bottom";
+    default:
+      throw new Error("unreachable");
+  }
+}
+function getPaddedExitPoints(exitPoint, exitSide, padding = 5) {
+  const paddedExitPoints = [];
+  switch (exitSide) {
+    case "top":
+      paddedExitPoints.push(
+        { x: exitPoint.x - padding, y: exitPoint.y + padding },
+        { x: exitPoint.x + padding, y: exitPoint.y + padding }
+      );
+      break;
+    case "bottom":
+      paddedExitPoints.push(
+        { x: exitPoint.x - padding, y: exitPoint.y - padding },
+        { x: exitPoint.x + padding, y: exitPoint.y - padding }
+      );
+      break;
+    case "left":
+      paddedExitPoints.push(
+        { x: exitPoint.x + padding, y: exitPoint.y - padding },
+        { x: exitPoint.x + padding, y: exitPoint.y + padding }
+      );
+      break;
+    case "right":
+      paddedExitPoints.push(
+        { x: exitPoint.x - padding, y: exitPoint.y - padding },
+        { x: exitPoint.x - padding, y: exitPoint.y + padding }
+      );
+      break;
+  }
+  return paddedExitPoints;
+}
+function getPointsFromRect(rect) {
+  const { top, right, bottom, left } = rect;
+  return [
+    { x: left, y: top },
+    { x: right, y: top },
+    { x: right, y: bottom },
+    { x: left, y: bottom }
+  ];
+}
+function isPointInPolygon(point, polygon) {
+  const { x, y } = point;
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const ii = polygon[i];
+    const jj = polygon[j];
+    const xi = ii.x;
+    const yi = ii.y;
+    const xj = jj.x;
+    const yj = jj.y;
+    const intersect = yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+function getHull(points) {
+  const newPoints = points.slice();
+  newPoints.sort((a, b) => {
+    if (a.x < b.x) return -1;
+    else if (a.x > b.x) return 1;
+    else if (a.y < b.y) return -1;
+    else if (a.y > b.y) return 1;
+    else return 0;
+  });
+  return getHullPresorted(newPoints);
+}
+function getHullPresorted(points) {
+  if (points.length <= 1) return points.slice();
+  const upperHull = [];
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    while (upperHull.length >= 2) {
+      const q = upperHull[upperHull.length - 1];
+      const r2 = upperHull[upperHull.length - 2];
+      if ((q.x - r2.x) * (p.y - r2.y) >= (q.y - r2.y) * (p.x - r2.x)) upperHull.pop();
+      else break;
+    }
+    upperHull.push(p);
+  }
+  upperHull.pop();
+  const lowerHull = [];
+  for (let i = points.length - 1; i >= 0; i--) {
+    const p = points[i];
+    while (lowerHull.length >= 2) {
+      const q = lowerHull[lowerHull.length - 1];
+      const r2 = lowerHull[lowerHull.length - 2];
+      if ((q.x - r2.x) * (p.y - r2.y) >= (q.y - r2.y) * (p.x - r2.x)) lowerHull.pop();
+      else break;
+    }
+    lowerHull.push(p);
+  }
+  lowerHull.pop();
+  if (upperHull.length === 1 && lowerHull.length === 1 && upperHull[0].x === lowerHull[0].x && upperHull[0].y === lowerHull[0].y) {
+    return upperHull;
+  } else {
+    return upperHull.concat(lowerHull);
+  }
+}
+var Provider2 = TooltipProvider;
+var Root32 = Tooltip;
+var Trigger2 = TooltipTrigger;
+var Portal3 = TooltipPortal;
+var Content22 = TooltipContent;
+var Arrow23 = TooltipArrow;
+var Tooltip2 = React45.forwardRef(({ children, title, placement = "top", className }, ref) => {
   if (!title) return /* @__PURE__ */ jsx(Fragment, { children });
-  return /* @__PURE__ */ jsx(RadixTooltip.Provider, { delayDuration: 200, children: /* @__PURE__ */ jsxs(RadixTooltip.Root, { children: [
-    /* @__PURE__ */ jsx(RadixTooltip.Trigger, { asChild: true, ref, children }),
-    /* @__PURE__ */ jsx(RadixTooltip.Portal, { children: /* @__PURE__ */ jsxs(
-      RadixTooltip.Content,
+  return /* @__PURE__ */ jsx(Provider2, { delayDuration: 200, children: /* @__PURE__ */ jsxs(Root32, { children: [
+    /* @__PURE__ */ jsx(Trigger2, { asChild: true, ref, children }),
+    /* @__PURE__ */ jsx(Portal3, { children: /* @__PURE__ */ jsxs(
+      Content22,
       {
         side: placement,
         sideOffset: 4,
         className: clsx("de-tooltip-content", className),
         children: [
           title,
-          /* @__PURE__ */ jsx(RadixTooltip.Arrow, { className: "de-tooltip-arrow", width: 8, height: 4 })
+          /* @__PURE__ */ jsx(Arrow23, { className: "de-tooltip-arrow", width: 8, height: 4 })
         ]
       }
     ) })
   ] }) });
 });
-var Select = React24.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
-  return /* @__PURE__ */ jsxs(RadixSelect.Root, { value, defaultValue, onValueChange, children: [
-    /* @__PURE__ */ jsxs(RadixSelect.Trigger, { ref, className: clsx("de-select-trigger", className), style, children: [
-      /* @__PURE__ */ jsx(RadixSelect.Value, { placeholder }),
-      /* @__PURE__ */ jsx(RadixSelect.Icon, { children: /* @__PURE__ */ jsx("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ jsx("path", { d: "M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819L7.43179 8.56819C7.60753 8.74393 7.89245 8.74393 8.06819 8.56819L10.5682 6.06819C10.7439 5.89245 10.7439 5.60753 10.5682 5.43179C10.3924 5.25605 10.1075 5.25605 9.93179 5.43179L7.75 7.61358L5.56819 5.43179C5.39245 5.25605 5.10753 5.25605 4.93179 5.43179Z", fill: "currentColor", fillRule: "evenodd", clipRule: "evenodd" }) }) })
-    ] }),
-    /* @__PURE__ */ jsx(RadixSelect.Portal, { children: /* @__PURE__ */ jsx(RadixSelect.Content, { className: "de-select-content", position: "popper", sideOffset: 4, children: /* @__PURE__ */ jsx(RadixSelect.Viewport, { className: "de-select-viewport", children: options.map((option) => /* @__PURE__ */ jsxs(RadixSelect.Item, { value: option.value, className: "de-select-item", children: [
-      /* @__PURE__ */ jsx(RadixSelect.ItemText, { children: option.label }),
-      /* @__PURE__ */ jsx(RadixSelect.ItemIndicator, { className: "de-select-item-indicator", children: /* @__PURE__ */ jsx("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ jsx("path", { d: "M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z", fill: "currentColor", fillRule: "evenodd", clipRule: "evenodd" }) }) })
-    ] }, option.value)) }) }) })
-  ] });
-});
-function PBtn({ active, danger, ...props }) {
-  return /* @__PURE__ */ jsx(
-    "button",
+var OPEN_KEYS = [" ", "Enter", "ArrowUp", "ArrowDown"];
+var SELECTION_KEYS = [" ", "Enter"];
+var SELECT_NAME = "Select";
+var [Collection, useCollection, createCollectionScope] = createCollection(SELECT_NAME);
+var [createSelectContext] = createContextScope(SELECT_NAME, [
+  createCollectionScope,
+  createPopperScope
+]);
+var usePopperScope3 = createPopperScope();
+var [SelectProvider, useSelectContext] = createSelectContext(SELECT_NAME);
+var [SelectNativeOptionsProvider, useSelectNativeOptionsContext] = createSelectContext(SELECT_NAME);
+var Select = (props) => {
+  const {
+    __scopeSelect,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    value: valueProp,
+    defaultValue,
+    onValueChange,
+    dir,
+    name,
+    autoComplete,
+    disabled,
+    required,
+    form
+  } = props;
+  const popperScope = usePopperScope3(__scopeSelect);
+  const [trigger, setTrigger] = React45.useState(null);
+  const [valueNode, setValueNode] = React45.useState(null);
+  const [valueNodeHasChildren, setValueNodeHasChildren] = React45.useState(false);
+  const direction = useDirection(dir);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: SELECT_NAME
+  });
+  const [value, setValue] = useControllableState({
+    prop: valueProp,
+    defaultProp: defaultValue,
+    onChange: onValueChange,
+    caller: SELECT_NAME
+  });
+  const triggerPointerDownPosRef = React45.useRef(null);
+  const isFormControl = trigger ? form || !!trigger.closest("form") : true;
+  const [nativeOptionsSet, setNativeOptionsSet] = React45.useState(/* @__PURE__ */ new Set());
+  const nativeSelectKey = Array.from(nativeOptionsSet).map((option) => option.props.value).join(";");
+  return /* @__PURE__ */ jsx(Root2, { ...popperScope, children: /* @__PURE__ */ jsxs(
+    SelectProvider,
     {
-      ...props,
+      required,
+      scope: __scopeSelect,
+      trigger,
+      onTriggerChange: setTrigger,
+      valueNode,
+      onValueNodeChange: setValueNode,
+      valueNodeHasChildren,
+      onValueNodeHasChildrenChange: setValueNodeHasChildren,
+      contentId: useId(),
+      value,
+      onValueChange: setValue,
+      open,
+      onOpenChange: setOpen,
+      dir: direction,
+      triggerPointerDownPosRef,
+      disabled,
+      children: [
+        /* @__PURE__ */ jsx(Collection.Provider, { scope: __scopeSelect, children: /* @__PURE__ */ jsx(
+          SelectNativeOptionsProvider,
+          {
+            scope: props.__scopeSelect,
+            onNativeOptionAdd: React45.useCallback((option) => {
+              setNativeOptionsSet((prev) => new Set(prev).add(option));
+            }, []),
+            onNativeOptionRemove: React45.useCallback((option) => {
+              setNativeOptionsSet((prev) => {
+                const optionsSet = new Set(prev);
+                optionsSet.delete(option);
+                return optionsSet;
+              });
+            }, []),
+            children
+          }
+        ) }),
+        isFormControl ? /* @__PURE__ */ jsxs(
+          SelectBubbleInput,
+          {
+            "aria-hidden": true,
+            required,
+            tabIndex: -1,
+            name,
+            autoComplete,
+            value,
+            onChange: (event) => setValue(event.target.value),
+            disabled,
+            form,
+            children: [
+              value === void 0 ? /* @__PURE__ */ jsx("option", { value: "" }) : null,
+              Array.from(nativeOptionsSet)
+            ]
+          },
+          nativeSelectKey
+        ) : null
+      ]
+    }
+  ) });
+};
+Select.displayName = SELECT_NAME;
+var TRIGGER_NAME3 = "SelectTrigger";
+var SelectTrigger = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, disabled = false, ...triggerProps } = props;
+    const popperScope = usePopperScope3(__scopeSelect);
+    const context = useSelectContext(TRIGGER_NAME3, __scopeSelect);
+    const isDisabled = context.disabled || disabled;
+    const composedRefs = useComposedRefs(forwardedRef, context.onTriggerChange);
+    const getItems = useCollection(__scopeSelect);
+    const pointerTypeRef = React45.useRef("touch");
+    const [searchRef, handleTypeaheadSearch, resetTypeahead] = useTypeaheadSearch((search) => {
+      const enabledItems = getItems().filter((item) => !item.disabled);
+      const currentItem = enabledItems.find((item) => item.value === context.value);
+      const nextItem = findNextItem(enabledItems, search, currentItem);
+      if (nextItem !== void 0) {
+        context.onValueChange(nextItem.value);
+      }
+    });
+    const handleOpen = (pointerEvent) => {
+      if (!isDisabled) {
+        context.onOpenChange(true);
+        resetTypeahead();
+      }
+      if (pointerEvent) {
+        context.triggerPointerDownPosRef.current = {
+          x: Math.round(pointerEvent.pageX),
+          y: Math.round(pointerEvent.pageY)
+        };
+      }
+    };
+    return /* @__PURE__ */ jsx(Anchor, { asChild: true, ...popperScope, children: /* @__PURE__ */ jsx(
+      Primitive.button,
+      {
+        type: "button",
+        role: "combobox",
+        "aria-controls": context.contentId,
+        "aria-expanded": context.open,
+        "aria-required": context.required,
+        "aria-autocomplete": "none",
+        dir: context.dir,
+        "data-state": context.open ? "open" : "closed",
+        disabled: isDisabled,
+        "data-disabled": isDisabled ? "" : void 0,
+        "data-placeholder": shouldShowPlaceholder(context.value) ? "" : void 0,
+        ...triggerProps,
+        ref: composedRefs,
+        onClick: composeEventHandlers(triggerProps.onClick, (event) => {
+          event.currentTarget.focus();
+          if (pointerTypeRef.current !== "mouse") {
+            handleOpen(event);
+          }
+        }),
+        onPointerDown: composeEventHandlers(triggerProps.onPointerDown, (event) => {
+          pointerTypeRef.current = event.pointerType;
+          const target = event.target;
+          if (target.hasPointerCapture(event.pointerId)) {
+            target.releasePointerCapture(event.pointerId);
+          }
+          if (event.button === 0 && event.ctrlKey === false && event.pointerType === "mouse") {
+            handleOpen(event);
+            event.preventDefault();
+          }
+        }),
+        onKeyDown: composeEventHandlers(triggerProps.onKeyDown, (event) => {
+          const isTypingAhead = searchRef.current !== "";
+          const isModifierKey = event.ctrlKey || event.altKey || event.metaKey;
+          if (!isModifierKey && event.key.length === 1) handleTypeaheadSearch(event.key);
+          if (isTypingAhead && event.key === " ") return;
+          if (OPEN_KEYS.includes(event.key)) {
+            handleOpen();
+            event.preventDefault();
+          }
+        })
+      }
+    ) });
+  }
+);
+SelectTrigger.displayName = TRIGGER_NAME3;
+var VALUE_NAME = "SelectValue";
+var SelectValue = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, className, style, children, placeholder = "", ...valueProps } = props;
+    const context = useSelectContext(VALUE_NAME, __scopeSelect);
+    const { onValueNodeHasChildrenChange } = context;
+    const hasChildren = children !== void 0;
+    const composedRefs = useComposedRefs(forwardedRef, context.onValueNodeChange);
+    useLayoutEffect2(() => {
+      onValueNodeHasChildrenChange(hasChildren);
+    }, [onValueNodeHasChildrenChange, hasChildren]);
+    return /* @__PURE__ */ jsx(
+      Primitive.span,
+      {
+        ...valueProps,
+        ref: composedRefs,
+        style: { pointerEvents: "none" },
+        children: shouldShowPlaceholder(context.value) ? /* @__PURE__ */ jsx(Fragment, { children: placeholder }) : children
+      }
+    );
+  }
+);
+SelectValue.displayName = VALUE_NAME;
+var ICON_NAME = "SelectIcon";
+var SelectIcon = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, children, ...iconProps } = props;
+    return /* @__PURE__ */ jsx(Primitive.span, { "aria-hidden": true, ...iconProps, ref: forwardedRef, children: children || "\u25BC" });
+  }
+);
+SelectIcon.displayName = ICON_NAME;
+var PORTAL_NAME4 = "SelectPortal";
+var SelectPortal = (props) => {
+  return /* @__PURE__ */ jsx(Portal, { asChild: true, ...props });
+};
+SelectPortal.displayName = PORTAL_NAME4;
+var CONTENT_NAME4 = "SelectContent";
+var SelectContent = React45.forwardRef(
+  (props, forwardedRef) => {
+    const context = useSelectContext(CONTENT_NAME4, props.__scopeSelect);
+    const [fragment, setFragment] = React45.useState();
+    useLayoutEffect2(() => {
+      setFragment(new DocumentFragment());
+    }, []);
+    if (!context.open) {
+      const frag = fragment;
+      return frag ? ReactDOM4.createPortal(
+        /* @__PURE__ */ jsx(SelectContentProvider, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsx(Collection.Slot, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsx("div", { children: props.children }) }) }),
+        frag
+      ) : null;
+    }
+    return /* @__PURE__ */ jsx(SelectContentImpl, { ...props, ref: forwardedRef });
+  }
+);
+SelectContent.displayName = CONTENT_NAME4;
+var CONTENT_MARGIN = 10;
+var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME4);
+var CONTENT_IMPL_NAME = "SelectContentImpl";
+var Slot2 = createSlot("SelectContent.RemoveScroll");
+var SelectContentImpl = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeSelect,
+      position = "item-aligned",
+      onCloseAutoFocus,
+      onEscapeKeyDown,
+      onPointerDownOutside,
+      //
+      // PopperContent props
+      side,
+      sideOffset,
+      align,
+      alignOffset,
+      arrowPadding,
+      collisionBoundary,
+      collisionPadding,
+      sticky,
+      hideWhenDetached,
+      avoidCollisions,
+      //
+      ...contentProps
+    } = props;
+    const context = useSelectContext(CONTENT_NAME4, __scopeSelect);
+    const [content, setContent] = React45.useState(null);
+    const [viewport, setViewport] = React45.useState(null);
+    const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
+    const [selectedItem, setSelectedItem] = React45.useState(null);
+    const [selectedItemText, setSelectedItemText] = React45.useState(
+      null
+    );
+    const getItems = useCollection(__scopeSelect);
+    const [isPositioned, setIsPositioned] = React45.useState(false);
+    const firstValidItemFoundRef = React45.useRef(false);
+    React45.useEffect(() => {
+      if (content) return hideOthers(content);
+    }, [content]);
+    useFocusGuards();
+    const focusFirst2 = React45.useCallback(
+      (candidates) => {
+        const [firstItem, ...restItems] = getItems().map((item) => item.ref.current);
+        const [lastItem] = restItems.slice(-1);
+        const PREVIOUSLY_FOCUSED_ELEMENT = document.activeElement;
+        for (const candidate of candidates) {
+          if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) return;
+          candidate?.scrollIntoView({ block: "nearest" });
+          if (candidate === firstItem && viewport) viewport.scrollTop = 0;
+          if (candidate === lastItem && viewport) viewport.scrollTop = viewport.scrollHeight;
+          candidate?.focus();
+          if (document.activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) return;
+        }
+      },
+      [getItems, viewport]
+    );
+    const focusSelectedItem = React45.useCallback(
+      () => focusFirst2([selectedItem, content]),
+      [focusFirst2, selectedItem, content]
+    );
+    React45.useEffect(() => {
+      if (isPositioned) {
+        focusSelectedItem();
+      }
+    }, [isPositioned, focusSelectedItem]);
+    const { onOpenChange, triggerPointerDownPosRef } = context;
+    React45.useEffect(() => {
+      if (content) {
+        let pointerMoveDelta = { x: 0, y: 0 };
+        const handlePointerMove = (event) => {
+          pointerMoveDelta = {
+            x: Math.abs(Math.round(event.pageX) - (triggerPointerDownPosRef.current?.x ?? 0)),
+            y: Math.abs(Math.round(event.pageY) - (triggerPointerDownPosRef.current?.y ?? 0))
+          };
+        };
+        const handlePointerUp = (event) => {
+          if (pointerMoveDelta.x <= 10 && pointerMoveDelta.y <= 10) {
+            event.preventDefault();
+          } else {
+            if (!content.contains(event.target)) {
+              onOpenChange(false);
+            }
+          }
+          document.removeEventListener("pointermove", handlePointerMove);
+          triggerPointerDownPosRef.current = null;
+        };
+        if (triggerPointerDownPosRef.current !== null) {
+          document.addEventListener("pointermove", handlePointerMove);
+          document.addEventListener("pointerup", handlePointerUp, { capture: true, once: true });
+        }
+        return () => {
+          document.removeEventListener("pointermove", handlePointerMove);
+          document.removeEventListener("pointerup", handlePointerUp, { capture: true });
+        };
+      }
+    }, [content, onOpenChange, triggerPointerDownPosRef]);
+    React45.useEffect(() => {
+      const close = () => onOpenChange(false);
+      window.addEventListener("blur", close);
+      window.addEventListener("resize", close);
+      return () => {
+        window.removeEventListener("blur", close);
+        window.removeEventListener("resize", close);
+      };
+    }, [onOpenChange]);
+    const [searchRef, handleTypeaheadSearch] = useTypeaheadSearch((search) => {
+      const enabledItems = getItems().filter((item) => !item.disabled);
+      const currentItem = enabledItems.find((item) => item.ref.current === document.activeElement);
+      const nextItem = findNextItem(enabledItems, search, currentItem);
+      if (nextItem) {
+        setTimeout(() => nextItem.ref.current.focus());
+      }
+    });
+    const itemRefCallback = React45.useCallback(
+      (node, value, disabled) => {
+        const isFirstValidItem = !firstValidItemFoundRef.current && !disabled;
+        const isSelectedItem = context.value !== void 0 && context.value === value;
+        if (isSelectedItem || isFirstValidItem) {
+          setSelectedItem(node);
+          if (isFirstValidItem) firstValidItemFoundRef.current = true;
+        }
+      },
+      [context.value]
+    );
+    const handleItemLeave = React45.useCallback(() => content?.focus(), [content]);
+    const itemTextRefCallback = React45.useCallback(
+      (node, value, disabled) => {
+        const isFirstValidItem = !firstValidItemFoundRef.current && !disabled;
+        const isSelectedItem = context.value !== void 0 && context.value === value;
+        if (isSelectedItem || isFirstValidItem) {
+          setSelectedItemText(node);
+        }
+      },
+      [context.value]
+    );
+    const SelectPosition = position === "popper" ? SelectPopperPosition : SelectItemAlignedPosition;
+    const popperContentProps = SelectPosition === SelectPopperPosition ? {
+      side,
+      sideOffset,
+      align,
+      alignOffset,
+      arrowPadding,
+      collisionBoundary,
+      collisionPadding,
+      sticky,
+      hideWhenDetached,
+      avoidCollisions
+    } : {};
+    return /* @__PURE__ */ jsx(
+      SelectContentProvider,
+      {
+        scope: __scopeSelect,
+        content,
+        viewport,
+        onViewportChange: setViewport,
+        itemRefCallback,
+        selectedItem,
+        onItemLeave: handleItemLeave,
+        itemTextRefCallback,
+        focusSelectedItem,
+        selectedItemText,
+        position,
+        isPositioned,
+        searchRef,
+        children: /* @__PURE__ */ jsx(Combination_default, { as: Slot2, allowPinchZoom: true, children: /* @__PURE__ */ jsx(
+          FocusScope,
+          {
+            asChild: true,
+            trapped: context.open,
+            onMountAutoFocus: (event) => {
+              event.preventDefault();
+            },
+            onUnmountAutoFocus: composeEventHandlers(onCloseAutoFocus, (event) => {
+              context.trigger?.focus({ preventScroll: true });
+              event.preventDefault();
+            }),
+            children: /* @__PURE__ */ jsx(
+              DismissableLayer,
+              {
+                asChild: true,
+                disableOutsidePointerEvents: true,
+                onEscapeKeyDown,
+                onPointerDownOutside,
+                onFocusOutside: (event) => event.preventDefault(),
+                onDismiss: () => context.onOpenChange(false),
+                children: /* @__PURE__ */ jsx(
+                  SelectPosition,
+                  {
+                    role: "listbox",
+                    id: context.contentId,
+                    "data-state": context.open ? "open" : "closed",
+                    dir: context.dir,
+                    onContextMenu: (event) => event.preventDefault(),
+                    ...contentProps,
+                    ...popperContentProps,
+                    onPlaced: () => setIsPositioned(true),
+                    ref: composedRefs,
+                    style: {
+                      // flex layout so we can place the scroll buttons properly
+                      display: "flex",
+                      flexDirection: "column",
+                      // reset the outline by default as the content MAY get focused
+                      outline: "none",
+                      ...contentProps.style
+                    },
+                    onKeyDown: composeEventHandlers(contentProps.onKeyDown, (event) => {
+                      const isModifierKey = event.ctrlKey || event.altKey || event.metaKey;
+                      if (event.key === "Tab") event.preventDefault();
+                      if (!isModifierKey && event.key.length === 1) handleTypeaheadSearch(event.key);
+                      if (["ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) {
+                        const items = getItems().filter((item) => !item.disabled);
+                        let candidateNodes = items.map((item) => item.ref.current);
+                        if (["ArrowUp", "End"].includes(event.key)) {
+                          candidateNodes = candidateNodes.slice().reverse();
+                        }
+                        if (["ArrowUp", "ArrowDown"].includes(event.key)) {
+                          const currentElement = event.target;
+                          const currentIndex = candidateNodes.indexOf(currentElement);
+                          candidateNodes = candidateNodes.slice(currentIndex + 1);
+                        }
+                        setTimeout(() => focusFirst2(candidateNodes));
+                        event.preventDefault();
+                      }
+                    })
+                  }
+                )
+              }
+            )
+          }
+        ) })
+      }
+    );
+  }
+);
+SelectContentImpl.displayName = CONTENT_IMPL_NAME;
+var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
+var SelectItemAlignedPosition = React45.forwardRef((props, forwardedRef) => {
+  const { __scopeSelect, onPlaced, ...popperProps } = props;
+  const context = useSelectContext(CONTENT_NAME4, __scopeSelect);
+  const contentContext = useSelectContentContext(CONTENT_NAME4, __scopeSelect);
+  const [contentWrapper, setContentWrapper] = React45.useState(null);
+  const [content, setContent] = React45.useState(null);
+  const composedRefs = useComposedRefs(forwardedRef, (node) => setContent(node));
+  const getItems = useCollection(__scopeSelect);
+  const shouldExpandOnScrollRef = React45.useRef(false);
+  const shouldRepositionRef = React45.useRef(true);
+  const { viewport, selectedItem, selectedItemText, focusSelectedItem } = contentContext;
+  const position = React45.useCallback(() => {
+    if (context.trigger && context.valueNode && contentWrapper && content && viewport && selectedItem && selectedItemText) {
+      const triggerRect = context.trigger.getBoundingClientRect();
+      const contentRect = content.getBoundingClientRect();
+      const valueNodeRect = context.valueNode.getBoundingClientRect();
+      const itemTextRect = selectedItemText.getBoundingClientRect();
+      if (context.dir !== "rtl") {
+        const itemTextOffset = itemTextRect.left - contentRect.left;
+        const left = valueNodeRect.left - itemTextOffset;
+        const leftDelta = triggerRect.left - left;
+        const minContentWidth = triggerRect.width + leftDelta;
+        const contentWidth = Math.max(minContentWidth, contentRect.width);
+        const rightEdge = window.innerWidth - CONTENT_MARGIN;
+        const clampedLeft = clamp(left, [
+          CONTENT_MARGIN,
+          // Prevents the content from going off the starting edge of the
+          // viewport. It may still go off the ending edge, but this can be
+          // controlled by the user since they may want to manage overflow in a
+          // specific way.
+          // https://github.com/radix-ui/primitives/issues/2049
+          Math.max(CONTENT_MARGIN, rightEdge - contentWidth)
+        ]);
+        contentWrapper.style.minWidth = minContentWidth + "px";
+        contentWrapper.style.left = clampedLeft + "px";
+      } else {
+        const itemTextOffset = contentRect.right - itemTextRect.right;
+        const right = window.innerWidth - valueNodeRect.right - itemTextOffset;
+        const rightDelta = window.innerWidth - triggerRect.right - right;
+        const minContentWidth = triggerRect.width + rightDelta;
+        const contentWidth = Math.max(minContentWidth, contentRect.width);
+        const leftEdge = window.innerWidth - CONTENT_MARGIN;
+        const clampedRight = clamp(right, [
+          CONTENT_MARGIN,
+          Math.max(CONTENT_MARGIN, leftEdge - contentWidth)
+        ]);
+        contentWrapper.style.minWidth = minContentWidth + "px";
+        contentWrapper.style.right = clampedRight + "px";
+      }
+      const items = getItems();
+      const availableHeight = window.innerHeight - CONTENT_MARGIN * 2;
+      const itemsHeight = viewport.scrollHeight;
+      const contentStyles = window.getComputedStyle(content);
+      const contentBorderTopWidth = parseInt(contentStyles.borderTopWidth, 10);
+      const contentPaddingTop = parseInt(contentStyles.paddingTop, 10);
+      const contentBorderBottomWidth = parseInt(contentStyles.borderBottomWidth, 10);
+      const contentPaddingBottom = parseInt(contentStyles.paddingBottom, 10);
+      const fullContentHeight = contentBorderTopWidth + contentPaddingTop + itemsHeight + contentPaddingBottom + contentBorderBottomWidth;
+      const minContentHeight = Math.min(selectedItem.offsetHeight * 5, fullContentHeight);
+      const viewportStyles = window.getComputedStyle(viewport);
+      const viewportPaddingTop = parseInt(viewportStyles.paddingTop, 10);
+      const viewportPaddingBottom = parseInt(viewportStyles.paddingBottom, 10);
+      const topEdgeToTriggerMiddle = triggerRect.top + triggerRect.height / 2 - CONTENT_MARGIN;
+      const triggerMiddleToBottomEdge = availableHeight - topEdgeToTriggerMiddle;
+      const selectedItemHalfHeight = selectedItem.offsetHeight / 2;
+      const itemOffsetMiddle = selectedItem.offsetTop + selectedItemHalfHeight;
+      const contentTopToItemMiddle = contentBorderTopWidth + contentPaddingTop + itemOffsetMiddle;
+      const itemMiddleToContentBottom = fullContentHeight - contentTopToItemMiddle;
+      const willAlignWithoutTopOverflow = contentTopToItemMiddle <= topEdgeToTriggerMiddle;
+      if (willAlignWithoutTopOverflow) {
+        const isLastItem = items.length > 0 && selectedItem === items[items.length - 1].ref.current;
+        contentWrapper.style.bottom = "0px";
+        const viewportOffsetBottom = content.clientHeight - viewport.offsetTop - viewport.offsetHeight;
+        const clampedTriggerMiddleToBottomEdge = Math.max(
+          triggerMiddleToBottomEdge,
+          selectedItemHalfHeight + // viewport might have padding bottom, include it to avoid a scrollable viewport
+          (isLastItem ? viewportPaddingBottom : 0) + viewportOffsetBottom + contentBorderBottomWidth
+        );
+        const height = contentTopToItemMiddle + clampedTriggerMiddleToBottomEdge;
+        contentWrapper.style.height = height + "px";
+      } else {
+        const isFirstItem = items.length > 0 && selectedItem === items[0].ref.current;
+        contentWrapper.style.top = "0px";
+        const clampedTopEdgeToTriggerMiddle = Math.max(
+          topEdgeToTriggerMiddle,
+          contentBorderTopWidth + viewport.offsetTop + // viewport might have padding top, include it to avoid a scrollable viewport
+          (isFirstItem ? viewportPaddingTop : 0) + selectedItemHalfHeight
+        );
+        const height = clampedTopEdgeToTriggerMiddle + itemMiddleToContentBottom;
+        contentWrapper.style.height = height + "px";
+        viewport.scrollTop = contentTopToItemMiddle - topEdgeToTriggerMiddle + viewport.offsetTop;
+      }
+      contentWrapper.style.margin = `${CONTENT_MARGIN}px 0`;
+      contentWrapper.style.minHeight = minContentHeight + "px";
+      contentWrapper.style.maxHeight = availableHeight + "px";
+      onPlaced?.();
+      requestAnimationFrame(() => shouldExpandOnScrollRef.current = true);
+    }
+  }, [
+    getItems,
+    context.trigger,
+    context.valueNode,
+    contentWrapper,
+    content,
+    viewport,
+    selectedItem,
+    selectedItemText,
+    context.dir,
+    onPlaced
+  ]);
+  useLayoutEffect2(() => position(), [position]);
+  const [contentZIndex, setContentZIndex] = React45.useState();
+  useLayoutEffect2(() => {
+    if (content) setContentZIndex(window.getComputedStyle(content).zIndex);
+  }, [content]);
+  const handleScrollButtonChange = React45.useCallback(
+    (node) => {
+      if (node && shouldRepositionRef.current === true) {
+        position();
+        focusSelectedItem?.();
+        shouldRepositionRef.current = false;
+      }
+    },
+    [position, focusSelectedItem]
+  );
+  return /* @__PURE__ */ jsx(
+    SelectViewportProvider,
+    {
+      scope: __scopeSelect,
+      contentWrapper,
+      shouldExpandOnScrollRef,
+      onScrollButtonChange: handleScrollButtonChange,
+      children: /* @__PURE__ */ jsx(
+        "div",
+        {
+          ref: setContentWrapper,
+          style: {
+            display: "flex",
+            flexDirection: "column",
+            position: "fixed",
+            zIndex: contentZIndex
+          },
+          children: /* @__PURE__ */ jsx(
+            Primitive.div,
+            {
+              ...popperProps,
+              ref: composedRefs,
+              style: {
+                // When we get the height of the content, it includes borders. If we were to set
+                // the height without having `boxSizing: 'border-box'` it would be too big.
+                boxSizing: "border-box",
+                // We need to ensure the content doesn't get taller than the wrapper
+                maxHeight: "100%",
+                ...popperProps.style
+              }
+            }
+          )
+        }
+      )
+    }
+  );
+});
+SelectItemAlignedPosition.displayName = ITEM_ALIGNED_POSITION_NAME;
+var POPPER_POSITION_NAME = "SelectPopperPosition";
+var SelectPopperPosition = React45.forwardRef((props, forwardedRef) => {
+  const {
+    __scopeSelect,
+    align = "start",
+    collisionPadding = CONTENT_MARGIN,
+    ...popperProps
+  } = props;
+  const popperScope = usePopperScope3(__scopeSelect);
+  return /* @__PURE__ */ jsx(
+    Content,
+    {
+      ...popperScope,
+      ...popperProps,
+      ref: forwardedRef,
+      align,
+      collisionPadding,
       style: {
-        width: 30,
-        height: 30,
-        padding: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: danger ? "rgba(239, 68, 68, 0.1)" : active ? "rgba(37, 99, 235, 0.15)" : "transparent",
-        color: danger ? "#ef4444" : active ? "var(--color-primary, #2563eb)" : "inherit",
-        border: "none",
-        borderRadius: 6,
-        cursor: "pointer",
-        transition: "all 0.15s ease",
-        ...props.style
+        // Ensure border-box for floating-ui calculations
+        boxSizing: "border-box",
+        ...popperProps.style,
+        // re-namespace exposed content custom properties
+        ...{
+          "--radix-select-content-transform-origin": "var(--radix-popper-transform-origin)",
+          "--radix-select-content-available-width": "var(--radix-popper-available-width)",
+          "--radix-select-content-available-height": "var(--radix-popper-available-height)",
+          "--radix-select-trigger-width": "var(--radix-popper-anchor-width)",
+          "--radix-select-trigger-height": "var(--radix-popper-anchor-height)"
+        }
       }
     }
   );
+});
+SelectPopperPosition.displayName = POPPER_POSITION_NAME;
+var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME4, {});
+var VIEWPORT_NAME = "SelectViewport";
+var SelectViewport = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, nonce, ...viewportProps } = props;
+    const contentContext = useSelectContentContext(VIEWPORT_NAME, __scopeSelect);
+    const viewportContext = useSelectViewportContext(VIEWPORT_NAME, __scopeSelect);
+    const composedRefs = useComposedRefs(forwardedRef, contentContext.onViewportChange);
+    const prevScrollTopRef = React45.useRef(0);
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(
+        "style",
+        {
+          dangerouslySetInnerHTML: {
+            __html: `[data-radix-select-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-select-viewport]::-webkit-scrollbar{display:none}`
+          },
+          nonce
+        }
+      ),
+      /* @__PURE__ */ jsx(Collection.Slot, { scope: __scopeSelect, children: /* @__PURE__ */ jsx(
+        Primitive.div,
+        {
+          "data-radix-select-viewport": "",
+          role: "presentation",
+          ...viewportProps,
+          ref: composedRefs,
+          style: {
+            // we use position: 'relative' here on the `viewport` so that when we call
+            // `selectedItem.offsetTop` in calculations, the offset is relative to the viewport
+            // (independent of the scrollUpButton).
+            position: "relative",
+            flex: 1,
+            // Viewport should only be scrollable in the vertical direction.
+            // This won't work in vertical writing modes, so we'll need to
+            // revisit this if/when that is supported
+            // https://developer.chrome.com/blog/vertical-form-controls
+            overflow: "hidden auto",
+            ...viewportProps.style
+          },
+          onScroll: composeEventHandlers(viewportProps.onScroll, (event) => {
+            const viewport = event.currentTarget;
+            const { contentWrapper, shouldExpandOnScrollRef } = viewportContext;
+            if (shouldExpandOnScrollRef?.current && contentWrapper) {
+              const scrolledBy = Math.abs(prevScrollTopRef.current - viewport.scrollTop);
+              if (scrolledBy > 0) {
+                const availableHeight = window.innerHeight - CONTENT_MARGIN * 2;
+                const cssMinHeight = parseFloat(contentWrapper.style.minHeight);
+                const cssHeight = parseFloat(contentWrapper.style.height);
+                const prevHeight = Math.max(cssMinHeight, cssHeight);
+                if (prevHeight < availableHeight) {
+                  const nextHeight = prevHeight + scrolledBy;
+                  const clampedNextHeight = Math.min(availableHeight, nextHeight);
+                  const heightDiff = nextHeight - clampedNextHeight;
+                  contentWrapper.style.height = clampedNextHeight + "px";
+                  if (contentWrapper.style.bottom === "0px") {
+                    viewport.scrollTop = heightDiff > 0 ? heightDiff : 0;
+                    contentWrapper.style.justifyContent = "flex-end";
+                  }
+                }
+              }
+            }
+            prevScrollTopRef.current = viewport.scrollTop;
+          })
+        }
+      ) })
+    ] });
+  }
+);
+SelectViewport.displayName = VIEWPORT_NAME;
+var GROUP_NAME = "SelectGroup";
+var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME);
+var SelectGroup = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, ...groupProps } = props;
+    const groupId = useId();
+    return /* @__PURE__ */ jsx(SelectGroupContextProvider, { scope: __scopeSelect, id: groupId, children: /* @__PURE__ */ jsx(Primitive.div, { role: "group", "aria-labelledby": groupId, ...groupProps, ref: forwardedRef }) });
+  }
+);
+SelectGroup.displayName = GROUP_NAME;
+var LABEL_NAME = "SelectLabel";
+var SelectLabel = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, ...labelProps } = props;
+    const groupContext = useSelectGroupContext(LABEL_NAME, __scopeSelect);
+    return /* @__PURE__ */ jsx(Primitive.div, { id: groupContext.id, ...labelProps, ref: forwardedRef });
+  }
+);
+SelectLabel.displayName = LABEL_NAME;
+var ITEM_NAME = "SelectItem";
+var [SelectItemContextProvider, useSelectItemContext] = createSelectContext(ITEM_NAME);
+var SelectItem = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeSelect,
+      value,
+      disabled = false,
+      textValue: textValueProp,
+      ...itemProps
+    } = props;
+    const context = useSelectContext(ITEM_NAME, __scopeSelect);
+    const contentContext = useSelectContentContext(ITEM_NAME, __scopeSelect);
+    const isSelected = context.value === value;
+    const [textValue, setTextValue] = React45.useState(textValueProp ?? "");
+    const [isFocused, setIsFocused] = React45.useState(false);
+    const composedRefs = useComposedRefs(
+      forwardedRef,
+      (node) => contentContext.itemRefCallback?.(node, value, disabled)
+    );
+    const textId = useId();
+    const pointerTypeRef = React45.useRef("touch");
+    const handleSelect = () => {
+      if (!disabled) {
+        context.onValueChange(value);
+        context.onOpenChange(false);
+      }
+    };
+    if (value === "") {
+      throw new Error(
+        "A <Select.Item /> must have a value prop that is not an empty string. This is because the Select value can be set to an empty string to clear the selection and show the placeholder."
+      );
+    }
+    return /* @__PURE__ */ jsx(
+      SelectItemContextProvider,
+      {
+        scope: __scopeSelect,
+        value,
+        disabled,
+        textId,
+        isSelected,
+        onItemTextChange: React45.useCallback((node) => {
+          setTextValue((prevTextValue) => prevTextValue || (node?.textContent ?? "").trim());
+        }, []),
+        children: /* @__PURE__ */ jsx(
+          Collection.ItemSlot,
+          {
+            scope: __scopeSelect,
+            value,
+            disabled,
+            textValue,
+            children: /* @__PURE__ */ jsx(
+              Primitive.div,
+              {
+                role: "option",
+                "aria-labelledby": textId,
+                "data-highlighted": isFocused ? "" : void 0,
+                "aria-selected": isSelected && isFocused,
+                "data-state": isSelected ? "checked" : "unchecked",
+                "aria-disabled": disabled || void 0,
+                "data-disabled": disabled ? "" : void 0,
+                tabIndex: disabled ? void 0 : -1,
+                ...itemProps,
+                ref: composedRefs,
+                onFocus: composeEventHandlers(itemProps.onFocus, () => setIsFocused(true)),
+                onBlur: composeEventHandlers(itemProps.onBlur, () => setIsFocused(false)),
+                onClick: composeEventHandlers(itemProps.onClick, () => {
+                  if (pointerTypeRef.current !== "mouse") handleSelect();
+                }),
+                onPointerUp: composeEventHandlers(itemProps.onPointerUp, () => {
+                  if (pointerTypeRef.current === "mouse") handleSelect();
+                }),
+                onPointerDown: composeEventHandlers(itemProps.onPointerDown, (event) => {
+                  pointerTypeRef.current = event.pointerType;
+                }),
+                onPointerMove: composeEventHandlers(itemProps.onPointerMove, (event) => {
+                  pointerTypeRef.current = event.pointerType;
+                  if (disabled) {
+                    contentContext.onItemLeave?.();
+                  } else if (pointerTypeRef.current === "mouse") {
+                    event.currentTarget.focus({ preventScroll: true });
+                  }
+                }),
+                onPointerLeave: composeEventHandlers(itemProps.onPointerLeave, (event) => {
+                  if (event.currentTarget === document.activeElement) {
+                    contentContext.onItemLeave?.();
+                  }
+                }),
+                onKeyDown: composeEventHandlers(itemProps.onKeyDown, (event) => {
+                  const isTypingAhead = contentContext.searchRef?.current !== "";
+                  if (isTypingAhead && event.key === " ") return;
+                  if (SELECTION_KEYS.includes(event.key)) handleSelect();
+                  if (event.key === " ") event.preventDefault();
+                })
+              }
+            )
+          }
+        )
+      }
+    );
+  }
+);
+SelectItem.displayName = ITEM_NAME;
+var ITEM_TEXT_NAME = "SelectItemText";
+var SelectItemText = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, className, style, ...itemTextProps } = props;
+    const context = useSelectContext(ITEM_TEXT_NAME, __scopeSelect);
+    const contentContext = useSelectContentContext(ITEM_TEXT_NAME, __scopeSelect);
+    const itemContext = useSelectItemContext(ITEM_TEXT_NAME, __scopeSelect);
+    const nativeOptionsContext = useSelectNativeOptionsContext(ITEM_TEXT_NAME, __scopeSelect);
+    const [itemTextNode, setItemTextNode] = React45.useState(null);
+    const composedRefs = useComposedRefs(
+      forwardedRef,
+      (node) => setItemTextNode(node),
+      itemContext.onItemTextChange,
+      (node) => contentContext.itemTextRefCallback?.(node, itemContext.value, itemContext.disabled)
+    );
+    const textContent = itemTextNode?.textContent;
+    const nativeOption = React45.useMemo(
+      () => /* @__PURE__ */ jsx("option", { value: itemContext.value, disabled: itemContext.disabled, children: textContent }, itemContext.value),
+      [itemContext.disabled, itemContext.value, textContent]
+    );
+    const { onNativeOptionAdd, onNativeOptionRemove } = nativeOptionsContext;
+    useLayoutEffect2(() => {
+      onNativeOptionAdd(nativeOption);
+      return () => onNativeOptionRemove(nativeOption);
+    }, [onNativeOptionAdd, onNativeOptionRemove, nativeOption]);
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(Primitive.span, { id: itemContext.textId, ...itemTextProps, ref: composedRefs }),
+      itemContext.isSelected && context.valueNode && !context.valueNodeHasChildren ? ReactDOM4.createPortal(itemTextProps.children, context.valueNode) : null
+    ] });
+  }
+);
+SelectItemText.displayName = ITEM_TEXT_NAME;
+var ITEM_INDICATOR_NAME = "SelectItemIndicator";
+var SelectItemIndicator = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, ...itemIndicatorProps } = props;
+    const itemContext = useSelectItemContext(ITEM_INDICATOR_NAME, __scopeSelect);
+    return itemContext.isSelected ? /* @__PURE__ */ jsx(Primitive.span, { "aria-hidden": true, ...itemIndicatorProps, ref: forwardedRef }) : null;
+  }
+);
+SelectItemIndicator.displayName = ITEM_INDICATOR_NAME;
+var SCROLL_UP_BUTTON_NAME = "SelectScrollUpButton";
+var SelectScrollUpButton = React45.forwardRef((props, forwardedRef) => {
+  const contentContext = useSelectContentContext(SCROLL_UP_BUTTON_NAME, props.__scopeSelect);
+  const viewportContext = useSelectViewportContext(SCROLL_UP_BUTTON_NAME, props.__scopeSelect);
+  const [canScrollUp, setCanScrollUp] = React45.useState(false);
+  const composedRefs = useComposedRefs(forwardedRef, viewportContext.onScrollButtonChange);
+  useLayoutEffect2(() => {
+    if (contentContext.viewport && contentContext.isPositioned) {
+      let handleScroll22 = function() {
+        const canScrollUp2 = viewport.scrollTop > 0;
+        setCanScrollUp(canScrollUp2);
+      };
+      const viewport = contentContext.viewport;
+      handleScroll22();
+      viewport.addEventListener("scroll", handleScroll22);
+      return () => viewport.removeEventListener("scroll", handleScroll22);
+    }
+  }, [contentContext.viewport, contentContext.isPositioned]);
+  return canScrollUp ? /* @__PURE__ */ jsx(
+    SelectScrollButtonImpl,
+    {
+      ...props,
+      ref: composedRefs,
+      onAutoScroll: () => {
+        const { viewport, selectedItem } = contentContext;
+        if (viewport && selectedItem) {
+          viewport.scrollTop = viewport.scrollTop - selectedItem.offsetHeight;
+        }
+      }
+    }
+  ) : null;
+});
+SelectScrollUpButton.displayName = SCROLL_UP_BUTTON_NAME;
+var SCROLL_DOWN_BUTTON_NAME = "SelectScrollDownButton";
+var SelectScrollDownButton = React45.forwardRef((props, forwardedRef) => {
+  const contentContext = useSelectContentContext(SCROLL_DOWN_BUTTON_NAME, props.__scopeSelect);
+  const viewportContext = useSelectViewportContext(SCROLL_DOWN_BUTTON_NAME, props.__scopeSelect);
+  const [canScrollDown, setCanScrollDown] = React45.useState(false);
+  const composedRefs = useComposedRefs(forwardedRef, viewportContext.onScrollButtonChange);
+  useLayoutEffect2(() => {
+    if (contentContext.viewport && contentContext.isPositioned) {
+      let handleScroll22 = function() {
+        const maxScroll = viewport.scrollHeight - viewport.clientHeight;
+        const canScrollDown2 = Math.ceil(viewport.scrollTop) < maxScroll;
+        setCanScrollDown(canScrollDown2);
+      };
+      const viewport = contentContext.viewport;
+      handleScroll22();
+      viewport.addEventListener("scroll", handleScroll22);
+      return () => viewport.removeEventListener("scroll", handleScroll22);
+    }
+  }, [contentContext.viewport, contentContext.isPositioned]);
+  return canScrollDown ? /* @__PURE__ */ jsx(
+    SelectScrollButtonImpl,
+    {
+      ...props,
+      ref: composedRefs,
+      onAutoScroll: () => {
+        const { viewport, selectedItem } = contentContext;
+        if (viewport && selectedItem) {
+          viewport.scrollTop = viewport.scrollTop + selectedItem.offsetHeight;
+        }
+      }
+    }
+  ) : null;
+});
+SelectScrollDownButton.displayName = SCROLL_DOWN_BUTTON_NAME;
+var SelectScrollButtonImpl = React45.forwardRef((props, forwardedRef) => {
+  const { __scopeSelect, onAutoScroll, ...scrollIndicatorProps } = props;
+  const contentContext = useSelectContentContext("SelectScrollButton", __scopeSelect);
+  const autoScrollTimerRef = React45.useRef(null);
+  const getItems = useCollection(__scopeSelect);
+  const clearAutoScrollTimer = React45.useCallback(() => {
+    if (autoScrollTimerRef.current !== null) {
+      window.clearInterval(autoScrollTimerRef.current);
+      autoScrollTimerRef.current = null;
+    }
+  }, []);
+  React45.useEffect(() => {
+    return () => clearAutoScrollTimer();
+  }, [clearAutoScrollTimer]);
+  useLayoutEffect2(() => {
+    const activeItem = getItems().find((item) => item.ref.current === document.activeElement);
+    activeItem?.ref.current?.scrollIntoView({ block: "nearest" });
+  }, [getItems]);
+  return /* @__PURE__ */ jsx(
+    Primitive.div,
+    {
+      "aria-hidden": true,
+      ...scrollIndicatorProps,
+      ref: forwardedRef,
+      style: { flexShrink: 0, ...scrollIndicatorProps.style },
+      onPointerDown: composeEventHandlers(scrollIndicatorProps.onPointerDown, () => {
+        if (autoScrollTimerRef.current === null) {
+          autoScrollTimerRef.current = window.setInterval(onAutoScroll, 50);
+        }
+      }),
+      onPointerMove: composeEventHandlers(scrollIndicatorProps.onPointerMove, () => {
+        contentContext.onItemLeave?.();
+        if (autoScrollTimerRef.current === null) {
+          autoScrollTimerRef.current = window.setInterval(onAutoScroll, 50);
+        }
+      }),
+      onPointerLeave: composeEventHandlers(scrollIndicatorProps.onPointerLeave, () => {
+        clearAutoScrollTimer();
+      })
+    }
+  );
+});
+var SEPARATOR_NAME = "SelectSeparator";
+var SelectSeparator = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, ...separatorProps } = props;
+    return /* @__PURE__ */ jsx(Primitive.div, { "aria-hidden": true, ...separatorProps, ref: forwardedRef });
+  }
+);
+SelectSeparator.displayName = SEPARATOR_NAME;
+var ARROW_NAME4 = "SelectArrow";
+var SelectArrow = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSelect, ...arrowProps } = props;
+    const popperScope = usePopperScope3(__scopeSelect);
+    const context = useSelectContext(ARROW_NAME4, __scopeSelect);
+    const contentContext = useSelectContentContext(ARROW_NAME4, __scopeSelect);
+    return context.open && contentContext.position === "popper" ? /* @__PURE__ */ jsx(Arrow2, { ...popperScope, ...arrowProps, ref: forwardedRef }) : null;
+  }
+);
+SelectArrow.displayName = ARROW_NAME4;
+var BUBBLE_INPUT_NAME = "SelectBubbleInput";
+var SelectBubbleInput = React45.forwardRef(
+  ({ __scopeSelect, value, ...props }, forwardedRef) => {
+    const ref = React45.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, ref);
+    const prevValue = usePrevious(value);
+    React45.useEffect(() => {
+      const select = ref.current;
+      if (!select) return;
+      const selectProto = window.HTMLSelectElement.prototype;
+      const descriptor = Object.getOwnPropertyDescriptor(
+        selectProto,
+        "value"
+      );
+      const setValue = descriptor.set;
+      if (prevValue !== value && setValue) {
+        const event = new Event("change", { bubbles: true });
+        setValue.call(select, value);
+        select.dispatchEvent(event);
+      }
+    }, [prevValue, value]);
+    return /* @__PURE__ */ jsx(
+      Primitive.select,
+      {
+        ...props,
+        style: { ...VISUALLY_HIDDEN_STYLES, ...props.style },
+        ref: composedRefs,
+        defaultValue: value
+      }
+    );
+  }
+);
+SelectBubbleInput.displayName = BUBBLE_INPUT_NAME;
+function shouldShowPlaceholder(value) {
+  return value === "" || value === void 0;
 }
+function useTypeaheadSearch(onSearchChange) {
+  const handleSearchChange = useCallbackRef(onSearchChange);
+  const searchRef = React45.useRef("");
+  const timerRef = React45.useRef(0);
+  const handleTypeaheadSearch = React45.useCallback(
+    (key) => {
+      const search = searchRef.current + key;
+      handleSearchChange(search);
+      (function updateSearch(value) {
+        searchRef.current = value;
+        window.clearTimeout(timerRef.current);
+        if (value !== "") timerRef.current = window.setTimeout(() => updateSearch(""), 1e3);
+      })(search);
+    },
+    [handleSearchChange]
+  );
+  const resetTypeahead = React45.useCallback(() => {
+    searchRef.current = "";
+    window.clearTimeout(timerRef.current);
+  }, []);
+  React45.useEffect(() => {
+    return () => window.clearTimeout(timerRef.current);
+  }, []);
+  return [searchRef, handleTypeaheadSearch, resetTypeahead];
+}
+function findNextItem(items, search, currentItem) {
+  const isRepeated = search.length > 1 && Array.from(search).every((char) => char === search[0]);
+  const normalizedSearch = isRepeated ? search[0] : search;
+  const currentItemIndex = currentItem ? items.indexOf(currentItem) : -1;
+  let wrappedItems = wrapArray(items, Math.max(currentItemIndex, 0));
+  const excludeCurrentItem = normalizedSearch.length === 1;
+  if (excludeCurrentItem) wrappedItems = wrappedItems.filter((v) => v !== currentItem);
+  const nextItem = wrappedItems.find(
+    (item) => item.textValue.toLowerCase().startsWith(normalizedSearch.toLowerCase())
+  );
+  return nextItem !== currentItem ? nextItem : void 0;
+}
+function wrapArray(array, startIndex) {
+  return array.map((_, index3) => array[(startIndex + index3) % array.length]);
+}
+var Root23 = Select;
+var Trigger3 = SelectTrigger;
+var Value = SelectValue;
+var Icon = SelectIcon;
+var Portal4 = SelectPortal;
+var Content23 = SelectContent;
+var Viewport = SelectViewport;
+var Item = SelectItem;
+var ItemText = SelectItemText;
+var ItemIndicator = SelectItemIndicator;
+var Select2 = React45.forwardRef(({ value, defaultValue, onValueChange, options, placeholder, className, style }, ref) => {
+  return /* @__PURE__ */ jsxs(Root23, { value, defaultValue, onValueChange, children: [
+    /* @__PURE__ */ jsxs(Trigger3, { ref, className: clsx("de-select-trigger", className), style, children: [
+      /* @__PURE__ */ jsx(Value, { placeholder }),
+      /* @__PURE__ */ jsx(Icon, { children: /* @__PURE__ */ jsx("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ jsx("path", { d: "M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819L7.43179 8.56819C7.60753 8.74393 7.89245 8.74393 8.06819 8.56819L10.5682 6.06819C10.7439 5.89245 10.7439 5.60753 10.5682 5.43179C10.3924 5.25605 10.1075 5.25605 9.93179 5.43179L7.75 7.61358L5.56819 5.43179C5.39245 5.25605 5.10753 5.25605 4.93179 5.43179Z", fill: "currentColor", fillRule: "evenodd", clipRule: "evenodd" }) }) })
+    ] }),
+    /* @__PURE__ */ jsx(Portal4, { children: /* @__PURE__ */ jsx(Content23, { className: "de-select-content", position: "popper", sideOffset: 4, children: /* @__PURE__ */ jsx(Viewport, { className: "de-select-viewport", children: options.map((option) => /* @__PURE__ */ jsxs(Item, { value: option.value, className: "de-select-item", children: [
+      /* @__PURE__ */ jsx(ItemText, { children: option.label }),
+      /* @__PURE__ */ jsx(ItemIndicator, { className: "de-select-item-indicator", children: /* @__PURE__ */ jsx("svg", { width: "15", height: "15", viewBox: "0 0 15 15", fill: "none", xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ jsx("path", { d: "M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z", fill: "currentColor", fillRule: "evenodd", clipRule: "evenodd" }) }) })
+    ] }, option.value)) }) }) })
+  ] });
+});
+var PBtn = React45.forwardRef(
+  ({ active, danger, ...props }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "button",
+      {
+        ref,
+        ...props,
+        style: {
+          width: 30,
+          height: 30,
+          padding: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: danger ? "rgba(239, 68, 68, 0.1)" : active ? "rgba(37, 99, 235, 0.15)" : "transparent",
+          color: danger ? "#ef4444" : active ? "var(--color-primary, #2563eb)" : "inherit",
+          border: "none",
+          borderRadius: 6,
+          cursor: "pointer",
+          transition: "all 0.15s ease",
+          ...props.style
+        }
+      }
+    );
+  }
+);
+PBtn.displayName = "PBtn";
 function PDivider(props) {
   return /* @__PURE__ */ jsx("hr", { ...props });
 }
@@ -17454,6 +24181,982 @@ var toastApi = {
   info: (msg) => toast(msg),
   warning: (msg) => toast.warning(msg)
 };
+var DIALOG_NAME = "Dialog";
+var [createDialogContext] = createContextScope(DIALOG_NAME);
+var [DialogProvider, useDialogContext] = createDialogContext(DIALOG_NAME);
+var Dialog = (props) => {
+  const {
+    __scopeDialog,
+    children,
+    open: openProp,
+    defaultOpen,
+    onOpenChange,
+    modal = true
+  } = props;
+  const triggerRef = React45.useRef(null);
+  const contentRef = React45.useRef(null);
+  const [open, setOpen] = useControllableState({
+    prop: openProp,
+    defaultProp: defaultOpen ?? false,
+    onChange: onOpenChange,
+    caller: DIALOG_NAME
+  });
+  return /* @__PURE__ */ jsx(
+    DialogProvider,
+    {
+      scope: __scopeDialog,
+      triggerRef,
+      contentRef,
+      contentId: useId(),
+      titleId: useId(),
+      descriptionId: useId(),
+      open,
+      onOpenChange: setOpen,
+      onOpenToggle: React45.useCallback(() => setOpen((prevOpen) => !prevOpen), [setOpen]),
+      modal,
+      children
+    }
+  );
+};
+Dialog.displayName = DIALOG_NAME;
+var TRIGGER_NAME4 = "DialogTrigger";
+var DialogTrigger = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...triggerProps } = props;
+    const context = useDialogContext(TRIGGER_NAME4, __scopeDialog);
+    const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
+    return /* @__PURE__ */ jsx(
+      Primitive.button,
+      {
+        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-expanded": context.open,
+        "aria-controls": context.contentId,
+        "data-state": getState2(context.open),
+        ...triggerProps,
+        ref: composedTriggerRef,
+        onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+      }
+    );
+  }
+);
+DialogTrigger.displayName = TRIGGER_NAME4;
+var PORTAL_NAME5 = "DialogPortal";
+var [PortalProvider3, usePortalContext3] = createDialogContext(PORTAL_NAME5, {
+  forceMount: void 0
+});
+var DialogPortal = (props) => {
+  const { __scopeDialog, forceMount, children, container } = props;
+  const context = useDialogContext(PORTAL_NAME5, __scopeDialog);
+  return /* @__PURE__ */ jsx(PortalProvider3, { scope: __scopeDialog, forceMount, children: React45.Children.map(children, (child) => /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsx(Portal, { asChild: true, container, children: child }) })) });
+};
+DialogPortal.displayName = PORTAL_NAME5;
+var OVERLAY_NAME = "DialogOverlay";
+var DialogOverlay = React45.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext3(OVERLAY_NAME, props.__scopeDialog);
+    const { forceMount = portalContext.forceMount, ...overlayProps } = props;
+    const context = useDialogContext(OVERLAY_NAME, props.__scopeDialog);
+    return context.modal ? /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsx(DialogOverlayImpl, { ...overlayProps, ref: forwardedRef }) }) : null;
+  }
+);
+DialogOverlay.displayName = OVERLAY_NAME;
+var Slot3 = createSlot("DialogOverlay.RemoveScroll");
+var DialogOverlayImpl = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...overlayProps } = props;
+    const context = useDialogContext(OVERLAY_NAME, __scopeDialog);
+    return (
+      // Make sure `Content` is scrollable even when it doesn't live inside `RemoveScroll`
+      // ie. when `Overlay` and `Content` are siblings
+      /* @__PURE__ */ jsx(Combination_default, { as: Slot3, allowPinchZoom: true, shards: [context.contentRef], children: /* @__PURE__ */ jsx(
+        Primitive.div,
+        {
+          "data-state": getState2(context.open),
+          ...overlayProps,
+          ref: forwardedRef,
+          style: { pointerEvents: "auto", ...overlayProps.style }
+        }
+      ) })
+    );
+  }
+);
+var CONTENT_NAME5 = "DialogContent";
+var DialogContent = React45.forwardRef(
+  (props, forwardedRef) => {
+    const portalContext = usePortalContext3(CONTENT_NAME5, props.__scopeDialog);
+    const { forceMount = portalContext.forceMount, ...contentProps } = props;
+    const context = useDialogContext(CONTENT_NAME5, props.__scopeDialog);
+    return /* @__PURE__ */ jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsx(DialogContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsx(DialogContentNonModal, { ...contentProps, ref: forwardedRef }) });
+  }
+);
+DialogContent.displayName = CONTENT_NAME5;
+var DialogContentModal = React45.forwardRef(
+  (props, forwardedRef) => {
+    const context = useDialogContext(CONTENT_NAME5, props.__scopeDialog);
+    const contentRef = React45.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, context.contentRef, contentRef);
+    React45.useEffect(() => {
+      const content = contentRef.current;
+      if (content) return hideOthers(content);
+    }, []);
+    return /* @__PURE__ */ jsx(
+      DialogContentImpl,
+      {
+        ...props,
+        ref: composedRefs,
+        trapFocus: context.open,
+        disableOutsidePointerEvents: true,
+        onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
+          event.preventDefault();
+          context.triggerRef.current?.focus();
+        }),
+        onPointerDownOutside: composeEventHandlers(props.onPointerDownOutside, (event) => {
+          const originalEvent = event.detail.originalEvent;
+          const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
+          const isRightClick = originalEvent.button === 2 || ctrlLeftClick;
+          if (isRightClick) event.preventDefault();
+        }),
+        onFocusOutside: composeEventHandlers(
+          props.onFocusOutside,
+          (event) => event.preventDefault()
+        )
+      }
+    );
+  }
+);
+var DialogContentNonModal = React45.forwardRef(
+  (props, forwardedRef) => {
+    const context = useDialogContext(CONTENT_NAME5, props.__scopeDialog);
+    const hasInteractedOutsideRef = React45.useRef(false);
+    const hasPointerDownOutsideRef = React45.useRef(false);
+    return /* @__PURE__ */ jsx(
+      DialogContentImpl,
+      {
+        ...props,
+        ref: forwardedRef,
+        trapFocus: false,
+        disableOutsidePointerEvents: false,
+        onCloseAutoFocus: (event) => {
+          props.onCloseAutoFocus?.(event);
+          if (!event.defaultPrevented) {
+            if (!hasInteractedOutsideRef.current) context.triggerRef.current?.focus();
+            event.preventDefault();
+          }
+          hasInteractedOutsideRef.current = false;
+          hasPointerDownOutsideRef.current = false;
+        },
+        onInteractOutside: (event) => {
+          props.onInteractOutside?.(event);
+          if (!event.defaultPrevented) {
+            hasInteractedOutsideRef.current = true;
+            if (event.detail.originalEvent.type === "pointerdown") {
+              hasPointerDownOutsideRef.current = true;
+            }
+          }
+          const target = event.target;
+          const targetIsTrigger = context.triggerRef.current?.contains(target);
+          if (targetIsTrigger) event.preventDefault();
+          if (event.detail.originalEvent.type === "focusin" && hasPointerDownOutsideRef.current) {
+            event.preventDefault();
+          }
+        }
+      }
+    );
+  }
+);
+var DialogContentImpl = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, trapFocus, onOpenAutoFocus, onCloseAutoFocus, ...contentProps } = props;
+    const context = useDialogContext(CONTENT_NAME5, __scopeDialog);
+    const contentRef = React45.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, contentRef);
+    useFocusGuards();
+    return /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx(
+        FocusScope,
+        {
+          asChild: true,
+          loop: true,
+          trapped: trapFocus,
+          onMountAutoFocus: onOpenAutoFocus,
+          onUnmountAutoFocus: onCloseAutoFocus,
+          children: /* @__PURE__ */ jsx(
+            DismissableLayer,
+            {
+              role: "dialog",
+              id: context.contentId,
+              "aria-describedby": context.descriptionId,
+              "aria-labelledby": context.titleId,
+              "data-state": getState2(context.open),
+              ...contentProps,
+              ref: composedRefs,
+              onDismiss: () => context.onOpenChange(false)
+            }
+          )
+        }
+      ),
+      /* @__PURE__ */ jsxs(Fragment, { children: [
+        /* @__PURE__ */ jsx(TitleWarning, { titleId: context.titleId }),
+        /* @__PURE__ */ jsx(DescriptionWarning, { contentRef, descriptionId: context.descriptionId })
+      ] })
+    ] });
+  }
+);
+var TITLE_NAME = "DialogTitle";
+var DialogTitle = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...titleProps } = props;
+    const context = useDialogContext(TITLE_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsx(Primitive.h2, { id: context.titleId, ...titleProps, ref: forwardedRef });
+  }
+);
+DialogTitle.displayName = TITLE_NAME;
+var DESCRIPTION_NAME = "DialogDescription";
+var DialogDescription = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...descriptionProps } = props;
+    const context = useDialogContext(DESCRIPTION_NAME, __scopeDialog);
+    return /* @__PURE__ */ jsx(Primitive.p, { id: context.descriptionId, ...descriptionProps, ref: forwardedRef });
+  }
+);
+DialogDescription.displayName = DESCRIPTION_NAME;
+var CLOSE_NAME2 = "DialogClose";
+var DialogClose = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeDialog, ...closeProps } = props;
+    const context = useDialogContext(CLOSE_NAME2, __scopeDialog);
+    return /* @__PURE__ */ jsx(
+      Primitive.button,
+      {
+        type: "button",
+        ...closeProps,
+        ref: forwardedRef,
+        onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
+      }
+    );
+  }
+);
+DialogClose.displayName = CLOSE_NAME2;
+function getState2(open) {
+  return open ? "open" : "closed";
+}
+var TITLE_WARNING_NAME = "DialogTitleWarning";
+var [WarningProvider, useWarningContext] = createContext22(TITLE_WARNING_NAME, {
+  contentName: CONTENT_NAME5,
+  titleName: TITLE_NAME,
+  docsSlug: "dialog"
+});
+var TitleWarning = ({ titleId }) => {
+  const titleWarningContext = useWarningContext(TITLE_WARNING_NAME);
+  const MESSAGE = `\`${titleWarningContext.contentName}\` requires a \`${titleWarningContext.titleName}\` for the component to be accessible for screen reader users.
+
+If you want to hide the \`${titleWarningContext.titleName}\`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/${titleWarningContext.docsSlug}`;
+  React45.useEffect(() => {
+    if (titleId) {
+      const hasTitle = document.getElementById(titleId);
+      if (!hasTitle) console.error(MESSAGE);
+    }
+  }, [MESSAGE, titleId]);
+  return null;
+};
+var DESCRIPTION_WARNING_NAME = "DialogDescriptionWarning";
+var DescriptionWarning = ({ contentRef, descriptionId }) => {
+  const descriptionWarningContext = useWarningContext(DESCRIPTION_WARNING_NAME);
+  const MESSAGE = `Warning: Missing \`Description\` or \`aria-describedby={undefined}\` for {${descriptionWarningContext.contentName}}.`;
+  React45.useEffect(() => {
+    const describedById = contentRef.current?.getAttribute("aria-describedby");
+    if (descriptionId && describedById) {
+      const hasDescription = document.getElementById(descriptionId);
+      if (!hasDescription) console.warn(MESSAGE);
+    }
+  }, [MESSAGE, contentRef, descriptionId]);
+  return null;
+};
+var Root4 = Dialog;
+var Trigger4 = DialogTrigger;
+var Portal5 = DialogPortal;
+var Overlay = DialogOverlay;
+var Content3 = DialogContent;
+var Title = DialogTitle;
+var Description = DialogDescription;
+var Close = DialogClose;
+var Dialog2 = Root4;
+var DialogTrigger2 = Trigger4;
+var DialogPortal2 = Portal5;
+var DialogClose2 = Close;
+var DialogOverlay2 = React45.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Overlay,
+  {
+    ref,
+    className: `fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 ${className || ""}`,
+    ...props
+  }
+));
+DialogOverlay2.displayName = Overlay.displayName;
+var DialogContent2 = React45.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal2, { children: [
+  /* @__PURE__ */ jsx(DialogOverlay2, {}),
+  /* @__PURE__ */ jsx(
+    Content3,
+    {
+      ref,
+      className: `fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-[var(--color-surface)] p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg ${className || ""}`,
+      ...props,
+      children
+    }
+  )
+] }));
+DialogContent2.displayName = Content3.displayName;
+var DialogTitle2 = React45.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Title,
+  {
+    ref,
+    className,
+    ...props
+  }
+));
+DialogTitle2.displayName = Title.displayName;
+var DialogDescription2 = React45.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Description,
+  {
+    ref,
+    className,
+    ...props
+  }
+));
+DialogDescription2.displayName = Description.displayName;
+var SWITCH_NAME = "Switch";
+var [createSwitchContext] = createContextScope(SWITCH_NAME);
+var [SwitchProvider, useSwitchContext] = createSwitchContext(SWITCH_NAME);
+var Switch = React45.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeSwitch,
+      name,
+      checked: checkedProp,
+      defaultChecked,
+      required,
+      disabled,
+      value = "on",
+      onCheckedChange,
+      form,
+      ...switchProps
+    } = props;
+    const [button, setButton] = React45.useState(null);
+    const composedRefs = useComposedRefs(forwardedRef, (node) => setButton(node));
+    const hasConsumerStoppedPropagationRef = React45.useRef(false);
+    const isFormControl = button ? form || !!button.closest("form") : true;
+    const [checked, setChecked] = useControllableState({
+      prop: checkedProp,
+      defaultProp: defaultChecked ?? false,
+      onChange: onCheckedChange,
+      caller: SWITCH_NAME
+    });
+    return /* @__PURE__ */ jsxs(SwitchProvider, { scope: __scopeSwitch, checked, disabled, children: [
+      /* @__PURE__ */ jsx(
+        Primitive.button,
+        {
+          type: "button",
+          role: "switch",
+          "aria-checked": checked,
+          "aria-required": required,
+          "data-state": getState3(checked),
+          "data-disabled": disabled ? "" : void 0,
+          disabled,
+          value,
+          ...switchProps,
+          ref: composedRefs,
+          onClick: composeEventHandlers(props.onClick, (event) => {
+            setChecked((prevChecked) => !prevChecked);
+            if (isFormControl) {
+              hasConsumerStoppedPropagationRef.current = event.isPropagationStopped();
+              if (!hasConsumerStoppedPropagationRef.current) event.stopPropagation();
+            }
+          })
+        }
+      ),
+      isFormControl && /* @__PURE__ */ jsx(
+        SwitchBubbleInput,
+        {
+          control: button,
+          bubbles: !hasConsumerStoppedPropagationRef.current,
+          name,
+          value,
+          checked,
+          required,
+          disabled,
+          form,
+          style: { transform: "translateX(-100%)" }
+        }
+      )
+    ] });
+  }
+);
+Switch.displayName = SWITCH_NAME;
+var THUMB_NAME = "SwitchThumb";
+var SwitchThumb = React45.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSwitch, ...thumbProps } = props;
+    const context = useSwitchContext(THUMB_NAME, __scopeSwitch);
+    return /* @__PURE__ */ jsx(
+      Primitive.span,
+      {
+        "data-state": getState3(context.checked),
+        "data-disabled": context.disabled ? "" : void 0,
+        ...thumbProps,
+        ref: forwardedRef
+      }
+    );
+  }
+);
+SwitchThumb.displayName = THUMB_NAME;
+var BUBBLE_INPUT_NAME2 = "SwitchBubbleInput";
+var SwitchBubbleInput = React45.forwardRef(
+  ({
+    __scopeSwitch,
+    control,
+    checked,
+    bubbles = true,
+    ...props
+  }, forwardedRef) => {
+    const ref = React45.useRef(null);
+    const composedRefs = useComposedRefs(ref, forwardedRef);
+    const prevChecked = usePrevious(checked);
+    const controlSize = useSize(control);
+    React45.useEffect(() => {
+      const input = ref.current;
+      if (!input) return;
+      const inputProto = window.HTMLInputElement.prototype;
+      const descriptor = Object.getOwnPropertyDescriptor(
+        inputProto,
+        "checked"
+      );
+      const setChecked = descriptor.set;
+      if (prevChecked !== checked && setChecked) {
+        const event = new Event("click", { bubbles });
+        setChecked.call(input, checked);
+        input.dispatchEvent(event);
+      }
+    }, [prevChecked, checked, bubbles]);
+    return /* @__PURE__ */ jsx(
+      "input",
+      {
+        type: "checkbox",
+        "aria-hidden": true,
+        defaultChecked: checked,
+        ...props,
+        tabIndex: -1,
+        ref: composedRefs,
+        style: {
+          ...props.style,
+          ...controlSize,
+          position: "absolute",
+          pointerEvents: "none",
+          opacity: 0,
+          margin: 0
+        }
+      }
+    );
+  }
+);
+SwitchBubbleInput.displayName = BUBBLE_INPUT_NAME2;
+function getState3(checked) {
+  return checked ? "checked" : "unchecked";
+}
+var Root5 = Switch;
+var Thumb = SwitchThumb;
+var Switch2 = React45.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Root5,
+  {
+    className: `peer inline-flex h-[20px] w-[36px] shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[var(--color-primary)] data-[state=unchecked]:bg-[var(--color-border)] ${className || ""}`,
+    ...props,
+    ref,
+    children: /* @__PURE__ */ jsx(
+      Thumb,
+      {
+        className: `pointer-events-none block h-4 w-4 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0`
+      }
+    )
+  }
+));
+Switch2.displayName = Root5.displayName;
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/shared/src/utils.js
+var toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+var toCamelCase = (string) => string.replace(
+  /^([A-Z])|[\s-_]+(\w)/g,
+  (match, p1, p2) => p2 ? p2.toUpperCase() : p1.toLowerCase()
+);
+var toPascalCase = (string) => {
+  const camelCase = toCamelCase(string);
+  return camelCase.charAt(0).toUpperCase() + camelCase.slice(1);
+};
+var mergeClasses = (...classes) => classes.filter((className, index3, array) => {
+  return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index3;
+}).join(" ").trim();
+var hasA11yProp = (props) => {
+  for (const prop in props) {
+    if (prop.startsWith("aria-") || prop === "role" || prop === "title") {
+      return true;
+    }
+  }
+};
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/defaultAttributes.js
+var defaultAttributes = {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+};
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/Icon.js
+var Icon2 = forwardRef(
+  ({
+    color = "currentColor",
+    size: size4 = 24,
+    strokeWidth = 2,
+    absoluteStrokeWidth,
+    className = "",
+    children,
+    iconNode,
+    ...rest
+  }, ref) => createElement(
+    "svg",
+    {
+      ref,
+      ...defaultAttributes,
+      width: size4,
+      height: size4,
+      stroke: color,
+      strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size4) : strokeWidth,
+      className: mergeClasses("lucide", className),
+      ...!children && !hasA11yProp(rest) && { "aria-hidden": "true" },
+      ...rest
+    },
+    [
+      ...iconNode.map(([tag, attrs]) => createElement(tag, attrs)),
+      ...Array.isArray(children) ? children : [children]
+    ]
+  )
+);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/createLucideIcon.js
+var createLucideIcon = (iconName, iconNode) => {
+  const Component2 = forwardRef(
+    ({ className, ...props }, ref) => createElement(Icon2, {
+      ref,
+      iconNode,
+      className: mergeClasses(
+        `lucide-${toKebabCase(toPascalCase(iconName))}`,
+        `lucide-${iconName}`,
+        className
+      ),
+      ...props
+    })
+  );
+  Component2.displayName = toPascalCase(iconName);
+  return Component2;
+};
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/align-center.js
+var __iconNode = [
+  ["path", { d: "M17 12H7", key: "16if0g" }],
+  ["path", { d: "M19 18H5", key: "18s9l3" }],
+  ["path", { d: "M21 6H3", key: "1jwq7v" }]
+];
+var AlignCenter = createLucideIcon("align-center", __iconNode);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/align-left.js
+var __iconNode2 = [
+  ["path", { d: "M15 12H3", key: "6jk70r" }],
+  ["path", { d: "M17 18H3", key: "1amg6g" }],
+  ["path", { d: "M21 6H3", key: "1jwq7v" }]
+];
+var AlignLeft = createLucideIcon("align-left", __iconNode2);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/align-right.js
+var __iconNode3 = [
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M21 18H7", key: "1ygte8" }],
+  ["path", { d: "M21 6H3", key: "1jwq7v" }]
+];
+var AlignRight = createLucideIcon("align-right", __iconNode3);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/arrow-left.js
+var __iconNode4 = [
+  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
+  ["path", { d: "M19 12H5", key: "x3x0zl" }]
+];
+var ArrowLeft = createLucideIcon("arrow-left", __iconNode4);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/bold.js
+var __iconNode5 = [
+  [
+    "path",
+    { d: "M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8", key: "mg9rjx" }
+  ]
+];
+var Bold = createLucideIcon("bold", __iconNode5);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/bring-to-front.js
+var __iconNode6 = [
+  ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "2", key: "yj20xf" }],
+  ["path", { d: "M4 10a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2", key: "1ltk23" }],
+  ["path", { d: "M14 20a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2", key: "1q24h9" }]
+];
+var BringToFront = createLucideIcon("bring-to-front", __iconNode6);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/chevron-down.js
+var __iconNode7 = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+var ChevronDown = createLucideIcon("chevron-down", __iconNode7);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/chevron-right.js
+var __iconNode8 = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+var ChevronRight = createLucideIcon("chevron-right", __iconNode8);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/chevron-up.js
+var __iconNode9 = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+var ChevronUp = createLucideIcon("chevron-up", __iconNode9);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/cloud-upload.js
+var __iconNode10 = [
+  ["path", { d: "M12 13v8", key: "1l5pq0" }],
+  ["path", { d: "M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242", key: "1pljnt" }],
+  ["path", { d: "m8 17 4-4 4 4", key: "1quai1" }]
+];
+var CloudUpload = createLucideIcon("cloud-upload", __iconNode10);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/component.js
+var __iconNode11 = [
+  [
+    "path",
+    {
+      d: "M15.536 11.293a1 1 0 0 0 0 1.414l2.376 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z",
+      key: "1uwlt4"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M2.297 11.293a1 1 0 0 0 0 1.414l2.377 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414L6.088 8.916a1 1 0 0 0-1.414 0z",
+      key: "10291m"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M8.916 17.912a1 1 0 0 0 0 1.415l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.415l-2.377-2.376a1 1 0 0 0-1.414 0z",
+      key: "1tqoq1"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M8.916 4.674a1 1 0 0 0 0 1.414l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z",
+      key: "1x6lto"
+    }
+  ]
+];
+var Component = createLucideIcon("component", __iconNode11);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/copy.js
+var __iconNode12 = [
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+];
+var Copy = createLucideIcon("copy", __iconNode12);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/ellipsis.js
+var __iconNode13 = [
+  ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
+  ["circle", { cx: "19", cy: "12", r: "1", key: "1wjl8i" }],
+  ["circle", { cx: "5", cy: "12", r: "1", key: "1pcz8c" }]
+];
+var Ellipsis = createLucideIcon("ellipsis", __iconNode13);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/eye-off.js
+var __iconNode14 = [
+  [
+    "path",
+    {
+      d: "M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49",
+      key: "ct8e1f"
+    }
+  ],
+  ["path", { d: "M14.084 14.158a3 3 0 0 1-4.242-4.242", key: "151rxh" }],
+  [
+    "path",
+    {
+      d: "M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143",
+      key: "13bj9a"
+    }
+  ],
+  ["path", { d: "m2 2 20 20", key: "1ooewy" }]
+];
+var EyeOff = createLucideIcon("eye-off", __iconNode14);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/eye.js
+var __iconNode15 = [
+  [
+    "path",
+    {
+      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
+      key: "1nclc0"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+var Eye = createLucideIcon("eye", __iconNode15);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/flip-horizontal.js
+var __iconNode16 = [
+  ["path", { d: "M8 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h3", key: "1i73f7" }],
+  ["path", { d: "M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3", key: "saxlbk" }],
+  ["path", { d: "M12 20v2", key: "1lh1kg" }],
+  ["path", { d: "M12 14v2", key: "8jcxud" }],
+  ["path", { d: "M12 8v2", key: "1woqiv" }],
+  ["path", { d: "M12 2v2", key: "tus03m" }]
+];
+var FlipHorizontal = createLucideIcon("flip-horizontal", __iconNode16);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/flip-vertical.js
+var __iconNode17 = [
+  ["path", { d: "M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3", key: "14bfxa" }],
+  ["path", { d: "M21 16v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3", key: "14rx03" }],
+  ["path", { d: "M4 12H2", key: "rhcxmi" }],
+  ["path", { d: "M10 12H8", key: "s88cx1" }],
+  ["path", { d: "M16 12h-2", key: "10asgb" }],
+  ["path", { d: "M22 12h-2", key: "14jgyd" }]
+];
+var FlipVertical = createLucideIcon("flip-vertical", __iconNode17);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/folder.js
+var __iconNode18 = [
+  [
+    "path",
+    {
+      d: "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
+      key: "1kt360"
+    }
+  ]
+];
+var Folder = createLucideIcon("folder", __iconNode18);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/image.js
+var __iconNode19 = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
+  ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
+  ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
+];
+var Image5 = createLucideIcon("image", __iconNode19);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/italic.js
+var __iconNode20 = [
+  ["line", { x1: "19", x2: "10", y1: "4", y2: "4", key: "15jd3p" }],
+  ["line", { x1: "14", x2: "5", y1: "20", y2: "20", key: "bu0au3" }],
+  ["line", { x1: "15", x2: "9", y1: "4", y2: "20", key: "uljnxc" }]
+];
+var Italic = createLucideIcon("italic", __iconNode20);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/layout-grid.js
+var __iconNode21 = [
+  ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
+  ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
+  ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
+  ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
+];
+var LayoutGrid = createLucideIcon("layout-grid", __iconNode21);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/layout-template.js
+var __iconNode22 = [
+  ["rect", { width: "18", height: "7", x: "3", y: "3", rx: "1", key: "f1a2em" }],
+  ["rect", { width: "9", height: "7", x: "3", y: "14", rx: "1", key: "jqznyg" }],
+  ["rect", { width: "5", height: "7", x: "16", y: "14", rx: "1", key: "q5h2i8" }]
+];
+var LayoutTemplate = createLucideIcon("layout-template", __iconNode22);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/loader-circle.js
+var __iconNode23 = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+var LoaderCircle = createLucideIcon("loader-circle", __iconNode23);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/maximize-2.js
+var __iconNode24 = [
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "m21 3-7 7", key: "1l2asr" }],
+  ["path", { d: "m3 21 7-7", key: "tjx5ai" }],
+  ["path", { d: "M9 21H3v-6", key: "wtvkvv" }]
+];
+var Maximize2 = createLucideIcon("maximize-2", __iconNode24);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/minimize-2.js
+var __iconNode25 = [
+  ["path", { d: "m14 10 7-7", key: "oa77jy" }],
+  ["path", { d: "M20 10h-6V4", key: "mjg0md" }],
+  ["path", { d: "m3 21 7-7", key: "tjx5ai" }],
+  ["path", { d: "M4 14h6v6", key: "rmj7iw" }]
+];
+var Minimize2 = createLucideIcon("minimize-2", __iconNode25);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/redo.js
+var __iconNode26 = [
+  ["path", { d: "M21 7v6h-6", key: "3ptur4" }],
+  ["path", { d: "M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7", key: "1kgawr" }]
+];
+var Redo = createLucideIcon("redo", __iconNode26);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/save.js
+var __iconNode27 = [
+  [
+    "path",
+    {
+      d: "M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z",
+      key: "1c8476"
+    }
+  ],
+  ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
+  ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
+];
+var Save = createLucideIcon("save", __iconNode27);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/scissors.js
+var __iconNode28 = [
+  ["circle", { cx: "6", cy: "6", r: "3", key: "1lh9wr" }],
+  ["path", { d: "M8.12 8.12 12 12", key: "1alkpv" }],
+  ["path", { d: "M20 4 8.12 15.88", key: "xgtan2" }],
+  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
+  ["path", { d: "M14.8 14.8 20 20", key: "ptml3r" }]
+];
+var Scissors = createLucideIcon("scissors", __iconNode28);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/search.js
+var __iconNode29 = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+var Search = createLucideIcon("search", __iconNode29);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/send-to-back.js
+var __iconNode30 = [
+  ["rect", { x: "14", y: "14", width: "8", height: "8", rx: "2", key: "1b0bso" }],
+  ["rect", { x: "2", y: "2", width: "8", height: "8", rx: "2", key: "1x09vl" }],
+  ["path", { d: "M7 14v1a2 2 0 0 0 2 2h1", key: "pao6x6" }],
+  ["path", { d: "M14 7h1a2 2 0 0 1 2 2v1", key: "19tdru" }]
+];
+var SendToBack = createLucideIcon("send-to-back", __iconNode30);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/settings.js
+var __iconNode31 = [
+  [
+    "path",
+    {
+      d: "M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z",
+      key: "1qme2f"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+var Settings = createLucideIcon("settings", __iconNode31);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/shapes.js
+var __iconNode32 = [
+  [
+    "path",
+    {
+      d: "M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z",
+      key: "1bo67w"
+    }
+  ],
+  ["rect", { x: "3", y: "14", width: "7", height: "7", rx: "1", key: "1bkyp8" }],
+  ["circle", { cx: "17.5", cy: "17.5", r: "3.5", key: "w3z12y" }]
+];
+var Shapes = createLucideIcon("shapes", __iconNode32);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/smile.js
+var __iconNode33 = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M8 14s1.5 2 4 2 4-2 4-2", key: "1y1vjs" }],
+  ["line", { x1: "9", x2: "9.01", y1: "9", y2: "9", key: "yxxnd0" }],
+  ["line", { x1: "15", x2: "15.01", y1: "9", y2: "9", key: "1p4y9e" }]
+];
+var Smile = createLucideIcon("smile", __iconNode33);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/trash-2.js
+var __iconNode34 = [
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+];
+var Trash2 = createLucideIcon("trash-2", __iconNode34);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/type.js
+var __iconNode35 = [
+  ["path", { d: "M12 4v16", key: "1654pz" }],
+  ["path", { d: "M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2", key: "e0r10z" }],
+  ["path", { d: "M9 20h6", key: "s66wpe" }]
+];
+var Type = createLucideIcon("type", __iconNode35);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/undo.js
+var __iconNode36 = [
+  ["path", { d: "M3 7v6h6", key: "1v2h90" }],
+  ["path", { d: "M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13", key: "1r6uu6" }]
+];
+var Undo = createLucideIcon("undo", __iconNode36);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/upload.js
+var __iconNode37 = [
+  ["path", { d: "M12 3v12", key: "1x0j5s" }],
+  ["path", { d: "m17 8-5-5-5 5", key: "7q97r8" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
+];
+var Upload = createLucideIcon("upload", __iconNode37);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/video.js
+var __iconNode38 = [
+  [
+    "path",
+    {
+      d: "m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5",
+      key: "ftymec"
+    }
+  ],
+  ["rect", { x: "2", y: "6", width: "14", height: "12", rx: "2", key: "158x01" }]
+];
+var Video = createLucideIcon("video", __iconNode38);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/x.js
+var __iconNode39 = [
+  ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
+  ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
+];
+var X = createLucideIcon("x", __iconNode39);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/zoom-in.js
+var __iconNode40 = [
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
+  ["line", { x1: "21", x2: "16.65", y1: "21", y2: "16.65", key: "13gj7c" }],
+  ["line", { x1: "11", x2: "11", y1: "8", y2: "14", key: "1vmskp" }],
+  ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
+];
+var ZoomIn = createLucideIcon("zoom-in", __iconNode40);
+
+// ../../node_modules/.pnpm/lucide-react@0.511.0_react@18.3.1/node_modules/lucide-react/dist/esm/icons/zoom-out.js
+var __iconNode41 = [
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
+  ["line", { x1: "21", x2: "16.65", y1: "21", y2: "16.65", key: "13gj7c" }],
+  ["line", { x1: "8", x2: "14", y1: "11", y2: "11", key: "durymu" }]
+];
+var ZoomOut = createLucideIcon("zoom-out", __iconNode41);
 var AD_SIZES = [
   { label: "1920\xD71080 (Landscape)", value: "1920x1080" },
   { label: "1080\xD71080 (Square)", value: "1080x1080" },
@@ -17463,7 +25166,7 @@ var AD_SIZES = [
   { label: "Custom\u2026", value: "custom" }
 ];
 function useCanvasSize(editor) {
-  const [size, setSize] = useState("1920x1080");
+  const [size4, setSize] = useState("1920x1080");
   const [customOpen, setCustomOpen] = useState(false);
   const [customW, setCustomW] = useState(1920);
   const [customH, setCustomH] = useState(1080);
@@ -17489,7 +25192,7 @@ function useCanvasSize(editor) {
     applySize(w, h);
   }, [customW, customH, applySize]);
   return {
-    size,
+    size: size4,
     customOpen,
     setCustomOpen,
     customW,
@@ -17521,31 +25224,9 @@ var TOOL_BTN_ACTIVE = {
   color: "var(--color-primary)",
   boxShadow: "0 0 0 1px var(--color-primary)"
 };
-function Toolbar({
-  editor,
-  zoomPct,
-  size,
-  customOpen,
-  setCustomOpen,
-  customW,
-  setCustomW,
-  customH,
-  setCustomH,
-  handleSizeChange,
-  handleApplyCustom,
-  layerPanelOpen,
-  onToggleLayers,
-  exporting,
-  onExport,
-  onBack,
-  settings,
-  onSettings,
-  canvasBg,
-  onBgChange,
-  workspaceBg,
-  onWorkspaceBgChange,
-  title
-}) {
+function Toolbar(props) {
+  const { editor, zoomPct, size: size4, customOpen, setCustomOpen, customW, setCustomW, customH, setCustomH, handleSizeChange, handleApplyCustom, layerPanelOpen, onToggleLayers, exporting, onExport, onBack, settings, onSettings, canvasBg, onBgChange, workspaceBg, onWorkspaceBgChange, title, hasUnsavedChanges } = props;
+  console.log("DEBUG Toolbar dependencies:", { Tooltip: Tooltip2, Select: Select2, Popover: Popover2, Button, Dialog: Dialog2, DialogTrigger: DialogTrigger2, DialogContent: DialogContent2, DialogOverlay: DialogOverlay2, Switch: Switch2, ArrowLeft, Undo, Redo, ZoomIn, ZoomOut, Save, LayoutGrid, Settings, HDivider });
   const settingsContent = /* @__PURE__ */ jsxs("div", { style: {
     width: 230,
     display: "flex",
@@ -17564,12 +25245,10 @@ function Toolbar({
     ].map(({ label, key }) => /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
       /* @__PURE__ */ jsx("span", { style: { fontSize: 13, color: "var(--color-text)" }, children: label }),
       /* @__PURE__ */ jsx(
-        Switch,
+        Switch2,
         {
-          size: "small",
           checked: settings[key],
-          onChange: (v) => onSettings({ [key]: v }),
-          style: { background: settings[key] ? "var(--color-primary)" : void 0 }
+          onCheckedChange: (v) => onSettings({ [key]: v })
         }
       )
     ] }, key)),
@@ -17598,6 +25277,40 @@ function Toolbar({
       )) })
     ] })
   ] });
+  const exitButton = /* @__PURE__ */ jsxs(
+    "button",
+    {
+      onClick: !hasUnsavedChanges ? onBack : void 0,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 7,
+        background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+        border: "1px solid var(--color-border)",
+        borderRadius: 9,
+        padding: "6px 13px",
+        cursor: "pointer",
+        color: "var(--color-text-muted)",
+        fontSize: 12,
+        fontWeight: 600,
+        transition: "all 0.15s",
+        outline: "none"
+      },
+      onMouseEnter: (e) => {
+        e.currentTarget.style.color = "var(--color-text)";
+        e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 10%, transparent)";
+      },
+      onMouseLeave: (e) => {
+        e.currentTarget.style.color = "var(--color-text-muted)";
+        e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 5%, transparent)";
+      },
+      children: [
+        /* @__PURE__ */ jsx(ArrowLeft, { size: 14 }),
+        " ",
+        /* @__PURE__ */ jsx("span", { className: "hidden md:inline", children: "Exit" })
+      ]
+    }
+  );
   return /* @__PURE__ */ jsxs(
     "div",
     {
@@ -17610,46 +25323,17 @@ function Toolbar({
         WebkitBackdropFilter: "blur(20px)"
       },
       children: [
-        onBack && /* @__PURE__ */ jsxs(
-          "button",
-          {
-            onClick: () => Modal.confirm({
-              title: "Leave without saving?",
-              content: "Any unsaved changes will be lost.",
-              okText: "Leave",
-              cancelText: "Stay",
-              onOk: onBack
-            }),
-            style: {
-              display: "flex",
-              alignItems: "center",
-              gap: 7,
-              background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
-              border: "1px solid var(--color-border)",
-              borderRadius: 9,
-              padding: "6px 13px",
-              cursor: "pointer",
-              color: "var(--color-text-muted)",
-              fontSize: 12,
-              fontWeight: 600,
-              transition: "all 0.15s",
-              outline: "none"
-            },
-            onMouseEnter: (e) => {
-              e.currentTarget.style.color = "var(--color-text)";
-              e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 10%, transparent)";
-            },
-            onMouseLeave: (e) => {
-              e.currentTarget.style.color = "var(--color-text-muted)";
-              e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 5%, transparent)";
-            },
-            children: [
-              /* @__PURE__ */ jsx(ArrowLeftOutlined, { style: { fontSize: 11 } }),
-              " ",
-              /* @__PURE__ */ jsx("span", { className: "hidden md:inline", children: "Back" })
-            ]
-          }
-        ),
+        onBack && (hasUnsavedChanges ? /* @__PURE__ */ jsxs(Dialog2, { children: [
+          /* @__PURE__ */ jsx(DialogTrigger2, { asChild: true, children: exitButton }),
+          /* @__PURE__ */ jsxs(DialogContent2, { className: "max-w-md p-6", children: [
+            /* @__PURE__ */ jsx(DialogTitle2, { className: "text-lg font-semibold text-[var(--color-text)] mb-2", children: "Leave without saving?" }),
+            /* @__PURE__ */ jsx(DialogDescription2, { className: "text-[var(--color-text-muted)] mb-6", children: "Any unsaved changes will be lost." }),
+            /* @__PURE__ */ jsxs("div", { className: "flex justify-end gap-3", children: [
+              /* @__PURE__ */ jsx(DialogClose2, { asChild: true, children: /* @__PURE__ */ jsx(Button, { variant: "secondary", size: "md", children: "Stay" }) }),
+              /* @__PURE__ */ jsx(DialogClose2, { asChild: true, children: /* @__PURE__ */ jsx(Button, { variant: "primary", size: "md", onClick: onBack, children: "Exit" }) })
+            ] })
+          ] })
+        ] }) : exitButton),
         /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8, marginLeft: 8, marginRight: 4 }, children: [
           /* @__PURE__ */ jsx("div", { style: {
             width: 26,
@@ -17667,10 +25351,10 @@ function Toolbar({
           /* @__PURE__ */ jsx("span", { className: "hidden md:inline", style: { fontSize: 13, fontWeight: 700, color: "var(--color-text)", letterSpacing: "-0.01em" }, children: title || "FastlabAI Design Studio" })
         ] }),
         /* @__PURE__ */ jsx(HDivider, {}),
-        /* @__PURE__ */ jsx(Tooltip, { title: "Undo (Ctrl+Z)", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.history.undo(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(UndoOutlined, {}) }) }),
-        /* @__PURE__ */ jsx(Tooltip, { title: "Redo (Ctrl+Y)", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.history.redo(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(RedoOutlined, {}) }) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Undo (Ctrl+Z)", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.history.undo(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(Undo, { size: 16 }) }) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Redo (Ctrl+Y)", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.history.redo(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(Redo, { size: 16 }) }) }),
         /* @__PURE__ */ jsx(HDivider, {}),
-        /* @__PURE__ */ jsx(Tooltip, { title: "Zoom out", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.zoom.zoomOut(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(ZoomOutOutlined, {}) }) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Zoom out", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.zoom.zoomOut(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(ZoomOut, { size: 16 }) }) }),
         /* @__PURE__ */ jsxs("div", { style: {
           minWidth: 50,
           textAlign: "center",
@@ -17686,7 +25370,7 @@ function Toolbar({
           zoomPct,
           "%"
         ] }),
-        /* @__PURE__ */ jsx(Tooltip, { title: "Zoom in", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.zoom.zoomIn(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(ZoomInOutlined, {}) }) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Zoom in", placement: "bottom", children: /* @__PURE__ */ jsx("button", { onClick: () => editor?.zoom.zoomIn(), style: TOOL_BTN, children: /* @__PURE__ */ jsx(ZoomIn, { size: 16 }) }) }),
         /* @__PURE__ */ jsx(HDivider, {}),
         /* @__PURE__ */ jsx(
           ColorPickerBtn,
@@ -17709,7 +25393,7 @@ function Toolbar({
         ),
         /* @__PURE__ */ jsx("div", { style: { flex: 1 } }),
         /* @__PURE__ */ jsx(
-          Popover,
+          Popover2,
           {
             open: customOpen,
             onOpenChange: (open) => !open && setCustomOpen(false),
@@ -17717,38 +25401,44 @@ function Toolbar({
             content: /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 10, width: 220, padding: 4 }, children: [
               /* @__PURE__ */ jsx("div", { style: { fontWeight: 700, fontSize: 12, color: "var(--color-primary)", textTransform: "uppercase", letterSpacing: "0.07em" }, children: "Custom Canvas Size" }),
               /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: 8, alignItems: "center" }, children: [
-                /* @__PURE__ */ jsx(
-                  InputNumber,
-                  {
-                    min: 100,
-                    max: 8e3,
-                    value: customW,
-                    onChange: (v) => setCustomW(v ?? 100),
-                    style: { flex: 1 },
-                    addonAfter: "px",
-                    placeholder: "Width"
-                  }
-                ),
+                /* @__PURE__ */ jsxs("div", { className: "flex-1 relative", children: [
+                  /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "number",
+                      min: 100,
+                      max: 8e3,
+                      value: customW,
+                      onChange: (e) => setCustomW(Number(e.target.value) || 100),
+                      className: "w-full bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] border border-transparent focus:border-[var(--color-primary)] outline-none rounded-md px-3 py-1.5 text-sm",
+                      placeholder: "Width"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx("span", { className: "absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] text-xs", children: "px" })
+                ] }),
                 /* @__PURE__ */ jsx("span", { style: { color: "var(--color-text-muted)", fontWeight: 600 }, children: "\xD7" }),
-                /* @__PURE__ */ jsx(
-                  InputNumber,
-                  {
-                    min: 100,
-                    max: 8e3,
-                    value: customH,
-                    onChange: (v) => setCustomH(v ?? 100),
-                    style: { flex: 1 },
-                    addonAfter: "px",
-                    placeholder: "Height"
-                  }
-                )
+                /* @__PURE__ */ jsxs("div", { className: "flex-1 relative", children: [
+                  /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "number",
+                      min: 100,
+                      max: 8e3,
+                      value: customH,
+                      onChange: (e) => setCustomH(Number(e.target.value) || 100),
+                      className: "w-full bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] border border-transparent focus:border-[var(--color-primary)] outline-none rounded-md px-3 py-1.5 text-sm",
+                      placeholder: "Height"
+                    }
+                  ),
+                  /* @__PURE__ */ jsx("span", { className: "absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] text-xs", children: "px" })
+                ] })
               ] }),
               /* @__PURE__ */ jsx(Button, { variant: "primary", size: "sm", onClick: handleApplyCustom, style: { width: "100%" }, children: "Apply" })
             ] }),
             children: /* @__PURE__ */ jsx(
-              Select,
+              Select2,
               {
-                value: size,
+                value: size4,
                 onValueChange: handleSizeChange,
                 options: AD_SIZES,
                 style: { width: "auto", minWidth: 160, maxWidth: 220 },
@@ -17759,19 +25449,19 @@ function Toolbar({
         ),
         /* @__PURE__ */ jsx(HDivider, {}),
         /* @__PURE__ */ jsx(
-          Popover,
+          Popover2,
           {
             content: settingsContent,
             placement: "bottom",
-            children: /* @__PURE__ */ jsx("button", { style: TOOL_BTN, children: /* @__PURE__ */ jsx(SettingOutlined, {}) })
+            children: /* @__PURE__ */ jsx("button", { style: TOOL_BTN, children: /* @__PURE__ */ jsx(Settings, { size: 18 }) })
           }
         ),
-        /* @__PURE__ */ jsx(Tooltip, { title: "Toggle layers panel", placement: "bottom", children: /* @__PURE__ */ jsx(
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Toggle layers panel", placement: "bottom", children: /* @__PURE__ */ jsx(
           "button",
           {
             onClick: onToggleLayers,
             style: layerPanelOpen ? TOOL_BTN_ACTIVE : TOOL_BTN,
-            children: /* @__PURE__ */ jsx(AppstoreOutlined, {})
+            children: /* @__PURE__ */ jsx(LayoutGrid, { size: 18 })
           }
         ) }),
         /* @__PURE__ */ jsx(HDivider, {}),
@@ -17798,7 +25488,7 @@ function Toolbar({
               outline: "none"
             },
             children: [
-              /* @__PURE__ */ jsx(SaveOutlined, { style: { fontSize: 13 } }),
+              /* @__PURE__ */ jsx(Save, { size: 16 }),
               /* @__PURE__ */ jsx("span", { className: "hidden md:inline", children: exporting ? "Saving\u2026" : "Save to Library" }),
               /* @__PURE__ */ jsx("span", { className: "md:hidden", children: exporting ? "\u2026" : "Save" })
             ]
@@ -18002,13 +25692,13 @@ function ColorPickerBtn({
     }
   );
   return /* @__PURE__ */ jsx(
-    Popover,
+    Popover2,
     {
       content: pickerContent,
       placement: "bottom",
       open,
       onOpenChange: setOpen,
-      children: /* @__PURE__ */ jsx("div", { style: { display: "inline-block" }, children: /* @__PURE__ */ jsx(Tooltip, { title: tooltip, placement: "bottom", children: /* @__PURE__ */ jsxs(
+      children: /* @__PURE__ */ jsx("div", { style: { display: "inline-block" }, children: /* @__PURE__ */ jsx(Tooltip2, { title: tooltip, placement: "bottom", children: /* @__PURE__ */ jsxs(
         "button",
         {
           style: {
@@ -18047,12 +25737,12 @@ function hslToRgb(h, s, l) {
   return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
 }
 var ICONS = [
-  { key: "templates", icon: /* @__PURE__ */ jsx(LayoutOutlined, {}), label: "Templates" },
-  { key: "elements", icon: /* @__PURE__ */ jsx(BlockOutlined, {}), label: "Elements" },
-  { key: "upload", icon: /* @__PURE__ */ jsx(UploadOutlined, {}), label: "Upload" },
-  { key: "text", icon: /* @__PURE__ */ jsx(FontSizeOutlined, {}), label: "Text" },
-  { key: "shapes", icon: /* @__PURE__ */ jsx(AppstoreOutlined, {}), label: "Shapes" },
-  { key: "stickers", icon: /* @__PURE__ */ jsx(SmileOutlined, {}), label: "Stickers" }
+  { key: "templates", icon: /* @__PURE__ */ jsx(LayoutTemplate, { size: 20 }), label: "Templates" },
+  { key: "elements", icon: /* @__PURE__ */ jsx(Component, { size: 20 }), label: "Elements" },
+  { key: "upload", icon: /* @__PURE__ */ jsx(Upload, { size: 20 }), label: "Upload" },
+  { key: "text", icon: /* @__PURE__ */ jsx(Type, { size: 20 }), label: "Text" },
+  { key: "shapes", icon: /* @__PURE__ */ jsx(Shapes, { size: 20 }), label: "Shapes" },
+  { key: "stickers", icon: /* @__PURE__ */ jsx(Smile, { size: 20 }), label: "Stickers" }
 ];
 function IconRail({ activePanel, onTogglePanel }) {
   return /* @__PURE__ */ jsx(
@@ -18100,7 +25790,6 @@ function RailButton({ icon, label, active, onClick }) {
       children: [
         /* @__PURE__ */ jsx("span", { style: {
           fontSize: 17,
-          filter: active ? "drop-shadow(0 0 6px var(--color-primary))" : "none",
           transition: "filter 0.2s"
         }, children: icon }),
         /* @__PURE__ */ jsx("span", { style: {
@@ -18115,8 +25804,7 @@ function RailButton({ icon, label, active, onClick }) {
           {
             className: "absolute top-[-4px] left-1/2 -translate-x-1/2 w-[22px] h-[3px] rounded-b-sm md:top-1/2 md:left-auto md:right-[-1px] md:-translate-x-0 md:-translate-y-1/2 md:w-[3px] md:h-[22px] md:rounded-l-sm md:rounded-b-none",
             style: {
-              background: "var(--color-primary)",
-              boxShadow: "0 0 8px var(--color-primary)"
+              background: "var(--color-primary)"
             }
           }
         )
@@ -18252,14 +25940,14 @@ var CanvasArea = memo(function CanvasArea2({
   );
 });
 var TYPE_ICONS = {
-  StaticImage: /* @__PURE__ */ jsx(PictureOutlined, {}),
-  BackgroundImage: /* @__PURE__ */ jsx(PictureOutlined, {}),
-  StaticText: /* @__PURE__ */ jsx(FontSizeOutlined, {}),
-  DynamicText: /* @__PURE__ */ jsx(FontSizeOutlined, {}),
-  StaticVideo: /* @__PURE__ */ jsx(VideoCameraOutlined, {}),
-  StaticPath: /* @__PURE__ */ jsx(AppstoreOutlined, {}),
-  StaticVector: /* @__PURE__ */ jsx(AppstoreOutlined, {}),
-  Group: /* @__PURE__ */ jsx(FolderOutlined, {})
+  StaticImage: /* @__PURE__ */ jsx(Image5, { size: 14 }),
+  BackgroundImage: /* @__PURE__ */ jsx(Image5, { size: 14 }),
+  StaticText: /* @__PURE__ */ jsx(Type, { size: 14 }),
+  DynamicText: /* @__PURE__ */ jsx(Type, { size: 14 }),
+  StaticVideo: /* @__PURE__ */ jsx(Video, { size: 14 }),
+  StaticPath: /* @__PURE__ */ jsx(Shapes, { size: 14 }),
+  StaticVector: /* @__PURE__ */ jsx(Shapes, { size: 14 }),
+  Group: /* @__PURE__ */ jsx(Folder, { size: 14 })
 };
 function LayerPanel({ layers, activeId, editor, onClose }) {
   const [selectedIds, setSelectedIds] = useState(/* @__PURE__ */ new Set());
@@ -18320,13 +26008,13 @@ function LayerPanel({ layers, activeId, editor, onClose }) {
             textTransform: "uppercase",
             letterSpacing: "0.09em"
           }, children: "Layers" }),
-          selectedIds.size >= 2 && /* @__PURE__ */ jsx(Tooltip, { title: "Group selected layers", children: /* @__PURE__ */ jsx("button", { onClick: handleGroup, style: ICON_BTN, children: /* @__PURE__ */ jsx(FolderOutlined, { style: { fontSize: 12 } }) }) }),
-          /* @__PURE__ */ jsx(Tooltip, { title: "Close layers panel", children: /* @__PURE__ */ jsx(
+          selectedIds.size >= 2 && /* @__PURE__ */ jsx(Tooltip2, { title: "Group selected layers", children: /* @__PURE__ */ jsx("button", { onClick: handleGroup, style: ICON_BTN, children: /* @__PURE__ */ jsx(Folder, { size: 14 }) }) }),
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Close layers panel", children: /* @__PURE__ */ jsx(
             "button",
             {
               onClick: onClose,
               style: { ...ICON_BTN, color: "var(--color-text-muted)" },
-              children: /* @__PURE__ */ jsx(CloseOutlined, { style: { fontSize: 12 } })
+              children: /* @__PURE__ */ jsx(X, { size: 14 })
             }
           ) })
         ] }),
@@ -18412,10 +26100,10 @@ function LayerRow({ layer, isActive, isSelected, depth, onSelect, onToggleVisibl
                 setCollapsed((c) => !c);
               },
               style: { fontSize: 10, color: "var(--color-text-muted)", flexShrink: 0, cursor: "pointer" },
-              children: collapsed ? /* @__PURE__ */ jsx(RightOutlined, {}) : /* @__PURE__ */ jsx(DownOutlined, {})
+              children: collapsed ? /* @__PURE__ */ jsx(ChevronRight, { size: 12 }) : /* @__PURE__ */ jsx(ChevronDown, { size: 12 })
             }
           ) : /* @__PURE__ */ jsx("span", { style: { width: 10 } }),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: isActive ? "var(--color-primary)" : "var(--color-text-muted)", flexShrink: 0 }, children: TYPE_ICONS[layer.type] ?? /* @__PURE__ */ jsx(AppstoreOutlined, {}) }),
+          /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: isActive ? "var(--color-primary)" : "var(--color-text-muted)", flexShrink: 0 }, children: TYPE_ICONS[layer.type] ?? /* @__PURE__ */ jsx(Shapes, { size: 14 }) }),
           editing ? /* @__PURE__ */ jsx(
             "input",
             {
@@ -18452,18 +26140,18 @@ function LayerRow({ layer, isActive, isSelected, depth, onSelect, onToggleVisibl
             opacity: layer.visible ? 1 : 0.45
           }, children: layer.name }),
           (hov || isActive) && !editing && /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: 1, flexShrink: 0 }, children: [
-            /* @__PURE__ */ jsx(Tooltip, { title: layer.visible ? "Hide" : "Show", children: /* @__PURE__ */ jsx("button", { onClick: (e) => {
+            /* @__PURE__ */ jsx(Tooltip2, { title: layer.visible ? "Hide" : "Show", children: /* @__PURE__ */ jsx("button", { onClick: (e) => {
               e.stopPropagation();
               onToggleVisible();
-            }, style: ICON_BTN, children: layer.visible ? /* @__PURE__ */ jsx(EyeOutlined, { style: { fontSize: 10 } }) : /* @__PURE__ */ jsx(EyeInvisibleOutlined, { style: { fontSize: 10 } }) }) }),
-            /* @__PURE__ */ jsx(Tooltip, { title: "Duplicate", children: /* @__PURE__ */ jsx("button", { onClick: (e) => {
+            }, style: ICON_BTN, children: layer.visible ? /* @__PURE__ */ jsx(Eye, { size: 12 }) : /* @__PURE__ */ jsx(EyeOff, { size: 12 }) }) }),
+            /* @__PURE__ */ jsx(Tooltip2, { title: "Duplicate", children: /* @__PURE__ */ jsx("button", { onClick: (e) => {
               e.stopPropagation();
               onCopy();
-            }, style: ICON_BTN, children: /* @__PURE__ */ jsx(CopyOutlined, { style: { fontSize: 10 } }) }) }),
-            /* @__PURE__ */ jsx(Tooltip, { title: "Delete", children: /* @__PURE__ */ jsx("button", { onClick: (e) => {
+            }, style: ICON_BTN, children: /* @__PURE__ */ jsx(Copy, { size: 12 }) }) }),
+            /* @__PURE__ */ jsx(Tooltip2, { title: "Delete", children: /* @__PURE__ */ jsx("button", { onClick: (e) => {
               e.stopPropagation();
               onDelete();
-            }, style: { ...ICON_BTN, color: "var(--color-danger)" }, children: /* @__PURE__ */ jsx(DeleteOutlined, { style: { fontSize: 10 } }) }) })
+            }, style: { ...ICON_BTN, color: "var(--color-danger)" }, children: /* @__PURE__ */ jsx(Trash2, { size: 12 }) }) })
           ] })
         ]
       }
@@ -18564,7 +26252,7 @@ function FontPickerPopover({ fontProvider, currentFamily, onChange }) {
       },
       children: [
         /* @__PURE__ */ jsx("span", { style: { flex: 1, overflow: "hidden", textOverflow: "ellipsis" }, children: currentFamily ?? "Default" }),
-        /* @__PURE__ */ jsx(DownOutlined, { style: { fontSize: 9, flexShrink: 0 } })
+        /* @__PURE__ */ jsx(ChevronDown, { size: 12, style: { flexShrink: 0 } })
       ]
     }
   );
@@ -18655,7 +26343,7 @@ function FontPickerPopover({ fontProvider, currentFamily, onChange }) {
                 outline: "none"
               },
               children: [
-                /* @__PURE__ */ jsx(UploadOutlined, { style: { fontSize: 11 } }),
+                /* @__PURE__ */ jsx(Upload, { size: 14 }),
                 "Upload font"
               ]
             }
@@ -18675,7 +26363,7 @@ function FontPickerPopover({ fontProvider, currentFamily, onChange }) {
     )
   ] });
   return /* @__PURE__ */ jsx(
-    Popover,
+    Popover2,
     {
       content: popoverContent,
       open,
@@ -18706,12 +26394,70 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
   );
   const [textTransform, setTextTransform] = useState("none");
   const originalTextRef = useRef(void 0);
+  const [isEditingText, setIsEditingText] = useState(false);
+  const [selStyle, setSelStyle] = useState({});
+  const readSelectionStyles = useCallback(() => {
+    const obj = activeObj;
+    if (!obj || !obj.isEditing) return;
+    const selStart = obj.selectionStart ?? 0;
+    const selEnd = obj.selectionEnd ?? 0;
+    if (selEnd <= selStart) {
+      setSelStyle({});
+      return;
+    }
+    const styles = obj.getSelectionStyles?.(selStart, selEnd) ?? [];
+    if (!styles.length) {
+      setSelStyle({});
+      return;
+    }
+    const merged = {};
+    const keys = new Set(styles.flatMap((s) => Object.keys(s)));
+    keys.forEach((k) => {
+      const values = styles.map((s) => s[k]).filter((v) => v !== void 0);
+      merged[k] = values[0];
+    });
+    setSelStyle(merged);
+  }, [activeObj]);
+  useEffect(() => {
+    if (!editor) return;
+    const fabricCanvas = editor.canvas?.canvas;
+    if (!fabricCanvas) return;
+    const onEditingEntered = () => {
+      setIsEditingText(true);
+      readSelectionStyles();
+    };
+    const onEditingExited = () => {
+      setIsEditingText(false);
+      setSelStyle({});
+    };
+    const onSelectionChanged = () => {
+      readSelectionStyles();
+    };
+    fabricCanvas.on("text:editing:entered", onEditingEntered);
+    fabricCanvas.on("text:editing:exited", onEditingExited);
+    fabricCanvas.on("text:selection:changed", onSelectionChanged);
+    return () => {
+      fabricCanvas.off("text:editing:entered", onEditingEntered);
+      fabricCanvas.off("text:editing:exited", onEditingExited);
+      fabricCanvas.off("text:selection:changed", onSelectionChanged);
+    };
+  }, [editor, readSelectionStyles]);
+  const [borderRadius, setBorderRadius] = useState(
+    () => activeObj?.rx ?? 0
+  );
+  const [shadowEnabled, setShadowEnabled] = useState(
+    () => !!activeObj?.shadow
+  );
   useEffect(() => {
     setFontFamily(activeObj?.fontFamily);
     setCharSpacing((activeObj?.charSpacing ?? 0) / 1e3);
     setLineHeight(activeObj?.lineHeight ?? 1.2);
     setTextTransform("none");
     originalTextRef.current = void 0;
+    setIsEditingText(false);
+    setSelStyle({});
+    setBorderRadius(activeObj?.rx ?? 0);
+    setShadowEnabled(!!activeObj?.shadow);
   }, [activeObj?.id]);
   const handleFontChange = useCallback((family) => {
     setFontFamily(family);
@@ -18753,6 +26499,26 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
     setTextTransform(transform);
     editor?.objects.update({ text: transformed });
   }, [editor, activeObj]);
+  const handleToggleShadow = useCallback(() => {
+    const next = !shadowEnabled;
+    setShadowEnabled(next);
+    if (next) {
+      editor?.objects.update({
+        shadow: {
+          color: "rgba(0,0,0,0.35)",
+          blur: 12,
+          offsetX: 4,
+          offsetY: 4
+        }
+      });
+    } else {
+      editor?.objects.update({ shadow: null });
+    }
+  }, [editor, shadowEnabled]);
+  const handleBorderRadius = useCallback((val) => {
+    setBorderRadius(val);
+    editor?.objects.update({ rx: val, ry: val });
+  }, [editor]);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 768);
@@ -18783,6 +26549,239 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
   }, []);
   const label = isImage ? "Image" : isText ? "Text" : isShape ? "Shape" : "Object";
   const posStyle = isMobile ? { position: "absolute", bottom: 12, left: 12, right: 12, transform: "none", width: "auto" } : pos ? { position: "absolute", left: pos.x, top: pos.y, transform: "none", bottom: "auto" } : { position: "absolute", bottom: 20, left: "50%", transform: "translateX(-50%)" };
+  const textMoreContent = /* @__PURE__ */ jsxs("div", { style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+    padding: "14px 16px",
+    minWidth: 220,
+    background: "var(--color-surface)",
+    border: "1px solid var(--color-border)",
+    borderRadius: 12,
+    boxShadow: "0 8px 32px var(--shadow-color)"
+  }, children: [
+    /* @__PURE__ */ jsx("div", { style: { fontWeight: 700, fontSize: 11, color: "var(--color-primary)", textTransform: "uppercase", letterSpacing: "0.08em" }, children: "Typography" }),
+    /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 6 }, children: [
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "Letter Spacing" }),
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--color-text)", minWidth: 36, textAlign: "right" }, children: charSpacing.toFixed(2) })
+      ] }),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type: "range",
+          min: -0.5,
+          max: 2,
+          step: 0.01,
+          value: charSpacing,
+          style: { width: "100%", accentColor: "var(--color-primary)", cursor: "pointer" },
+          onChange: (e) => handleCharSpacingChange(Number(e.target.value))
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 6 }, children: [
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "Line Height" }),
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--color-text)", minWidth: 36, textAlign: "right" }, children: lineHeight.toFixed(1) })
+      ] }),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type: "range",
+          min: 0.5,
+          max: 4,
+          step: 0.1,
+          value: lineHeight,
+          style: { width: "100%", accentColor: "var(--color-primary)", cursor: "pointer" },
+          onChange: (e) => handleLineHeightChange(Number(e.target.value))
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxs("div", { children: [
+      /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)", display: "block", marginBottom: 6 }, children: "Case" }),
+      /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 4 }, children: [
+        { value: "none", label: "Aa", title: "Normal" },
+        { value: "upper", label: "AA", title: "Uppercase" },
+        { value: "lower", label: "aa", title: "Lowercase" },
+        { value: "title", label: "Tt", title: "Title Case" }
+      ].map((opt) => /* @__PURE__ */ jsx(
+        "button",
+        {
+          title: opt.title,
+          onClick: () => handleTextTransformChange(opt.value),
+          style: {
+            flex: 1,
+            height: 30,
+            fontSize: 11,
+            fontWeight: 700,
+            cursor: "pointer",
+            background: textTransform === opt.value ? "color-mix(in srgb, var(--color-primary) 15%, transparent)" : "color-mix(in srgb, var(--color-text) 5%, transparent)",
+            border: textTransform === opt.value ? "1.5px solid var(--color-primary)" : "1px solid var(--color-border)",
+            color: textTransform === opt.value ? "var(--color-primary)" : "var(--color-text-muted)",
+            borderRadius: 6,
+            outline: "none",
+            transition: "all 0.15s"
+          },
+          children: opt.label
+        },
+        opt.value
+      )) })
+    ] }),
+    /* @__PURE__ */ jsx("div", { style: { borderTop: "1px solid var(--color-border)", paddingTop: 12 }, children: /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 6 }, children: [
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "Opacity" }),
+        /* @__PURE__ */ jsxs("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--color-text)", minWidth: 36, textAlign: "right" }, children: [
+          opacity,
+          "%"
+        ] })
+      ] }),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type: "range",
+          min: 0,
+          max: 100,
+          value: opacity,
+          style: { width: "100%", accentColor: "var(--color-primary)", cursor: "pointer" },
+          onChange: (e) => {
+            const v = Number(e.target.value);
+            setOpacity(v);
+            editor?.objects.update({ opacity: v / 100 });
+          }
+        }
+      )
+    ] }) })
+  ] });
+  const imageMoreContent = /* @__PURE__ */ jsxs("div", { style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+    padding: "14px 16px",
+    minWidth: 220,
+    background: "var(--color-surface)",
+    border: "1px solid var(--color-border)",
+    borderRadius: 12,
+    boxShadow: "0 8px 32px var(--shadow-color)"
+  }, children: [
+    /* @__PURE__ */ jsx("div", { style: { fontWeight: 700, fontSize: 11, color: "var(--color-primary)", textTransform: "uppercase", letterSpacing: "0.08em" }, children: "Image Settings" }),
+    /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 6 }, children: [
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "Corner Radius" }),
+        /* @__PURE__ */ jsxs("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--color-text)", minWidth: 36, textAlign: "right" }, children: [
+          borderRadius,
+          "px"
+        ] })
+      ] }),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type: "range",
+          min: 0,
+          max: 200,
+          step: 1,
+          value: borderRadius,
+          style: { width: "100%", accentColor: "var(--color-primary)", cursor: "pointer" },
+          onChange: (e) => handleBorderRadius(Number(e.target.value))
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" }, children: [
+      /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "Drop Shadow" }),
+      /* @__PURE__ */ jsx(
+        "button",
+        {
+          onClick: handleToggleShadow,
+          style: {
+            padding: "4px 12px",
+            borderRadius: 6,
+            cursor: "pointer",
+            fontSize: 11,
+            fontWeight: 600,
+            background: shadowEnabled ? "color-mix(in srgb, var(--color-primary) 15%, transparent)" : "color-mix(in srgb, var(--color-text) 5%, transparent)",
+            border: shadowEnabled ? "1.5px solid var(--color-primary)" : "1px solid var(--color-border)",
+            color: shadowEnabled ? "var(--color-primary)" : "var(--color-text-muted)",
+            outline: "none",
+            transition: "all 0.15s"
+          },
+          children: shadowEnabled ? "On" : "Off"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxs("div", { children: [
+      /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)", display: "block", marginBottom: 6 }, children: "Fit Mode" }),
+      /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 4 }, children: [
+        { label: "Fit", title: "Fit image inside frame", icon: /* @__PURE__ */ jsx(Minimize2, { size: 12 }) },
+        { label: "Fill", title: "Fill frame with image", icon: /* @__PURE__ */ jsx(Maximize2, { size: 12 }) }
+      ].map(({ label: label2, title, icon }) => /* @__PURE__ */ jsxs(
+        "button",
+        {
+          title,
+          onClick: () => {
+            if (label2 === "Fit") {
+              editor?.objects.update({ objectFit: "contain" });
+            } else {
+              editor?.objects.update({ objectFit: "cover" });
+            }
+          },
+          style: {
+            flex: 1,
+            height: 30,
+            fontSize: 11,
+            fontWeight: 600,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+            background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+            border: "1px solid var(--color-border)",
+            color: "var(--color-text-muted)",
+            borderRadius: 6,
+            outline: "none",
+            transition: "all 0.15s"
+          },
+          onMouseEnter: (e) => {
+            e.currentTarget.style.borderColor = "var(--color-primary)";
+            e.currentTarget.style.color = "var(--color-primary)";
+          },
+          onMouseLeave: (e) => {
+            e.currentTarget.style.borderColor = "var(--color-border)";
+            e.currentTarget.style.color = "var(--color-text-muted)";
+          },
+          children: [
+            icon,
+            " ",
+            label2
+          ]
+        },
+        label2
+      )) })
+    ] }),
+    /* @__PURE__ */ jsx("div", { style: { borderTop: "1px solid var(--color-border)", paddingTop: 12 }, children: /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 6 }, children: [
+      /* @__PURE__ */ jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
+        /* @__PURE__ */ jsx("span", { style: { fontSize: 12, color: "var(--color-text-muted)" }, children: "Opacity" }),
+        /* @__PURE__ */ jsxs("span", { style: { fontSize: 12, fontWeight: 600, color: "var(--color-text)", minWidth: 36, textAlign: "right" }, children: [
+          opacity,
+          "%"
+        ] })
+      ] }),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type: "range",
+          min: 0,
+          max: 100,
+          value: opacity,
+          style: { width: "100%", accentColor: "var(--color-primary)", cursor: "pointer" },
+          onChange: (e) => {
+            const v = Number(e.target.value);
+            setOpacity(v);
+            editor?.objects.update({ opacity: v / 100 });
+          }
+        }
+      )
+    ] }) })
+  ] });
   return /* @__PURE__ */ jsxs(
     "div",
     {
@@ -18792,8 +26791,8 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
         zIndex: 30,
         display: "flex",
         alignItems: "center",
-        gap: 6,
-        padding: "7px 12px",
+        gap: 4,
+        padding: "6px 10px",
         background: "color-mix(in srgb, var(--color-surface) 94%, transparent)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
@@ -18801,7 +26800,7 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
         borderRadius: 14,
         boxShadow: "0 8px 32px var(--shadow-color)",
         whiteSpace: "nowrap",
-        overflowX: "auto"
+        overflowX: "visible"
       },
       children: [
         /* @__PURE__ */ jsx(
@@ -18825,114 +26824,111 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
           flexShrink: 0
         }, children: label }),
         /* @__PURE__ */ jsx(PDivider, {}),
-        /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Opacity" }),
-        /* @__PURE__ */ jsx(
-          "input",
-          {
-            type: "range",
-            min: 0,
-            max: 100,
-            value: opacity,
-            style: { width: 72, accentColor: "var(--color-primary)", cursor: "pointer" },
-            onChange: (e) => {
-              const v = Number(e.target.value);
-              setOpacity(v);
-              editor?.objects.update({ opacity: v / 100 });
+        !isText && !isImage && /* @__PURE__ */ jsxs(Fragment, { children: [
+          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Opacity" }),
+          /* @__PURE__ */ jsx(
+            "input",
+            {
+              type: "range",
+              min: 0,
+              max: 100,
+              value: opacity,
+              style: { width: 72, accentColor: "var(--color-primary)", cursor: "pointer" },
+              onChange: (e) => {
+                const v = Number(e.target.value);
+                setOpacity(v);
+                editor?.objects.update({ opacity: v / 100 });
+              }
             }
-          }
-        ),
-        /* @__PURE__ */ jsxs("span", { style: { fontSize: 11, color: "var(--color-text)", minWidth: 30, textAlign: "right" }, children: [
-          opacity,
-          "%"
-        ] }),
-        isImage && /* @__PURE__ */ jsxs(Fragment, { children: [
-          /* @__PURE__ */ jsx(PDivider, {}),
-          /* @__PURE__ */ jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 4 }, children: [
-            /* @__PURE__ */ jsxs("div", { style: { display: "flex", gap: 6 }, children: [
-              /* @__PURE__ */ jsx(PBtn, { title: "Flip horizontal", onClick: () => editor?.objects.update({ flipX: !activeObj?.flipX }), children: /* @__PURE__ */ jsx(SwapOutlined, {}) }),
-              /* @__PURE__ */ jsx(PBtn, { title: "Flip vertical", onClick: () => editor?.objects.update({ flipY: !activeObj?.flipY }), children: /* @__PURE__ */ jsx(SwapOutlined, { style: { transform: "rotate(90deg)" } }) }),
-              /* @__PURE__ */ jsxs(
-                PBtn,
-                {
-                  title: "Remove image background (runs in-browser)",
-                  onClick: onRemoveBg,
-                  style: {
-                    fontSize: 11,
-                    fontWeight: 600,
-                    padding: "0 10px",
-                    background: removingBg ? "color-mix(in srgb, var(--color-text) 5%, transparent)" : "color-mix(in srgb, var(--color-primary) 12%, transparent)",
-                    border: `1px solid ${removingBg ? "var(--color-border)" : "var(--color-primary)"}`,
-                    color: removingBg ? "var(--color-text-muted)" : "var(--color-primary)"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsx(ScissorOutlined, { style: { fontSize: 12 } }),
-                    removingBg ? "Removing\u2026" : "Remove BG"
-                  ]
-                }
-              )
-            ] }),
-            activeObj?.clipPath && /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6, marginTop: 4 }, children: [
-              /* @__PURE__ */ jsx("span", { style: { fontSize: 10, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Img Scale" }),
-              /* @__PURE__ */ jsx(
-                "input",
-                {
-                  type: "range",
-                  min: 0.1,
-                  max: 3,
-                  step: 0.1,
-                  defaultValue: activeObj?.scaleX || 1,
-                  style: { width: 60, accentColor: "var(--color-primary)", cursor: "pointer" },
-                  onChange: (e) => {
-                    const v = Number(e.target.value);
-                    editor?.objects.update({ scaleX: v, scaleY: v });
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsx("span", { style: { fontSize: 10, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Crop X/Y" }),
-              /* @__PURE__ */ jsx(
-                "input",
-                {
-                  type: "range",
-                  min: -100,
-                  max: 100,
-                  step: 1,
-                  defaultValue: 0,
-                  style: { width: 40, accentColor: "var(--color-primary)", cursor: "pointer" },
-                  onChange: (e) => {
-                  }
-                }
-              )
-            ] })
+          ),
+          /* @__PURE__ */ jsxs("span", { style: { fontSize: 11, color: "var(--color-text)", minWidth: 28, textAlign: "right" }, children: [
+            opacity,
+            "%"
           ] })
         ] }),
-        isText && /* @__PURE__ */ jsxs(Fragment, { children: [
+        isImage && /* @__PURE__ */ jsxs(Fragment, { children: [
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Flip horizontal", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.update({ flipX: !activeObj?.flipX }), children: /* @__PURE__ */ jsx(FlipHorizontal, { size: 14 }) }) }),
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Flip vertical", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.update({ flipY: !activeObj?.flipY }), children: /* @__PURE__ */ jsx(FlipVertical, { size: 14 }) }) }),
           /* @__PURE__ */ jsx(PDivider, {}),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Font" }),
+          /* @__PURE__ */ jsxs(
+            "button",
+            {
+              title: "Remove image background",
+              onClick: onRemoveBg,
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: 5,
+                padding: "4px 10px",
+                borderRadius: 7,
+                cursor: removingBg ? "wait" : "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+                background: removingBg ? "color-mix(in srgb, var(--color-text) 5%, transparent)" : "color-mix(in srgb, var(--color-primary) 12%, transparent)",
+                border: `1px solid ${removingBg ? "var(--color-border)" : "var(--color-primary)"}`,
+                color: removingBg ? "var(--color-text-muted)" : "var(--color-primary)",
+                outline: "none",
+                transition: "all 0.15s"
+              },
+              children: [
+                /* @__PURE__ */ jsx(Scissors, { size: 13 }),
+                removingBg ? "Removing\u2026" : "Remove BG"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsx(PDivider, {}),
+          /* @__PURE__ */ jsx(Popover2, { content: imageMoreContent, placement: "top", children: /* @__PURE__ */ jsxs(
+            "button",
+            {
+              title: "More image options",
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                padding: "4px 8px",
+                borderRadius: 7,
+                cursor: "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+                background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
+                border: "1px solid var(--color-border)",
+                color: "var(--color-text-muted)",
+                outline: "none",
+                transition: "all 0.15s"
+              },
+              children: [
+                /* @__PURE__ */ jsx(Ellipsis, { size: 14 }),
+                /* @__PURE__ */ jsx("span", { style: { fontSize: 10 }, children: "More" })
+              ]
+            }
+          ) })
+        ] }),
+        isText && /* @__PURE__ */ jsxs(Fragment, { children: [
           /* @__PURE__ */ jsx(
             FontPickerPopover,
             {
               fontProvider: DEFAULT_FONT_PROVIDER,
-              currentFamily: fontFamily,
+              currentFamily: isEditingText && selStyle.fontFamily ? selStyle.fontFamily : fontFamily,
               onChange: handleFontChange
             }
           ),
           /* @__PURE__ */ jsx(PDivider, {}),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Size" }),
           /* @__PURE__ */ jsx(
             "input",
             {
               type: "number",
               min: 6,
               max: 500,
-              defaultValue: activeObj?.fontSize ?? 32,
+              value: isEditingText && selStyle.fontSize != null ? selStyle.fontSize : activeObj?.fontSize ?? 32,
+              title: "Font size",
               style: {
-                width: 52,
+                width: 46,
                 background: "var(--color-bg)",
                 border: "1px solid var(--color-border)",
                 borderRadius: 6,
                 color: "var(--color-text)",
                 fontSize: 12,
-                padding: "4px 6px",
+                padding: "4px 4px",
                 textAlign: "center",
                 outline: "none"
               },
@@ -18940,105 +26936,63 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
             },
             activeObj?.id + "-fs"
           ),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Color" }),
+          /* @__PURE__ */ jsx(PDivider, {}),
           /* @__PURE__ */ jsx(
             PropertyColorPicker,
             {
-              color: typeof activeObj?.fill === "string" ? activeObj.fill : "#000000",
+              color: isEditingText && typeof selStyle.fill === "string" ? selStyle.fill : typeof activeObj?.fill === "string" ? activeObj.fill : "#000000",
               onChange: (c) => editor?.objects.update({ fill: c }),
               tooltip: "Text color",
               activeObjId: activeObj?.id
             }
           ),
           /* @__PURE__ */ jsx(PDivider, {}),
-          /* @__PURE__ */ jsx(
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Bold", placement: "top", children: /* @__PURE__ */ jsx(
             PBtn,
             {
-              title: "Bold",
-              onClick: () => editor?.objects.update({ fontWeight: activeObj?.fontWeight === "bold" ? "normal" : "bold" }),
-              active: activeObj?.fontWeight === "bold",
-              children: /* @__PURE__ */ jsx(BoldOutlined, {})
+              onClick: () => editor?.objects.update({ fontWeight: (isEditingText ? selStyle.fontWeight : activeObj?.fontWeight) === "bold" ? "normal" : "bold" }),
+              active: (isEditingText ? selStyle.fontWeight : activeObj?.fontWeight) === "bold",
+              children: /* @__PURE__ */ jsx(Bold, { size: 14 })
             }
-          ),
-          /* @__PURE__ */ jsx(
+          ) }),
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Italic", placement: "top", children: /* @__PURE__ */ jsx(
             PBtn,
             {
-              title: "Italic",
               onClick: () => editor?.objects.update({ fontStyle: activeObj?.fontStyle === "italic" ? "normal" : "italic" }),
               active: activeObj?.fontStyle === "italic",
-              children: /* @__PURE__ */ jsx(ItalicOutlined, {})
+              children: /* @__PURE__ */ jsx(Italic, { size: 14 })
             }
-          ),
+          ) }),
           /* @__PURE__ */ jsx(PDivider, {}),
-          /* @__PURE__ */ jsx(PBtn, { title: "Align left", onClick: () => editor?.objects.update({ textAlign: "left" }), active: activeObj?.textAlign === "left", children: /* @__PURE__ */ jsx(AlignLeftOutlined, {}) }),
-          /* @__PURE__ */ jsx(PBtn, { title: "Align center", onClick: () => editor?.objects.update({ textAlign: "center" }), active: activeObj?.textAlign === "center", children: /* @__PURE__ */ jsx(AlignCenterOutlined, {}) }),
-          /* @__PURE__ */ jsx(PBtn, { title: "Align right", onClick: () => editor?.objects.update({ textAlign: "right" }), active: activeObj?.textAlign === "right", children: /* @__PURE__ */ jsx(AlignRightOutlined, {}) }),
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Align left", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.update({ textAlign: "left" }), active: activeObj?.textAlign === "left", children: /* @__PURE__ */ jsx(AlignLeft, { size: 14 }) }) }),
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Align center", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.update({ textAlign: "center" }), active: activeObj?.textAlign === "center", children: /* @__PURE__ */ jsx(AlignCenter, { size: 14 }) }) }),
+          /* @__PURE__ */ jsx(Tooltip2, { title: "Align right", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.update({ textAlign: "right" }), active: activeObj?.textAlign === "right", children: /* @__PURE__ */ jsx(AlignRight, { size: 14 }) }) }),
           /* @__PURE__ */ jsx(PDivider, {}),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Spacing" }),
-          /* @__PURE__ */ jsx(
-            "input",
+          /* @__PURE__ */ jsx(Popover2, { content: textMoreContent, placement: "top", children: /* @__PURE__ */ jsxs(
+            "button",
             {
-              type: "number",
-              min: -0.5,
-              max: 2,
-              step: 0.01,
-              value: charSpacing,
+              title: "More text options",
               style: {
-                width: 52,
-                background: "var(--color-bg)",
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                padding: "4px 8px",
+                borderRadius: 7,
+                cursor: "pointer",
+                fontSize: 11,
+                fontWeight: 600,
+                background: "color-mix(in srgb, var(--color-text) 5%, transparent)",
                 border: "1px solid var(--color-border)",
-                borderRadius: 6,
-                color: "var(--color-text)",
-                fontSize: 12,
-                padding: "4px 6px",
-                textAlign: "center",
-                outline: "none"
+                color: "var(--color-text-muted)",
+                outline: "none",
+                transition: "all 0.15s"
               },
-              onChange: (e) => handleCharSpacingChange(Number(e.target.value))
-            },
-            activeObj?.id + "-ls"
-          ),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Leading" }),
-          /* @__PURE__ */ jsx(
-            "input",
-            {
-              type: "number",
-              min: 0.5,
-              max: 4,
-              step: 0.1,
-              value: lineHeight,
-              style: {
-                width: 52,
-                background: "var(--color-bg)",
-                border: "1px solid var(--color-border)",
-                borderRadius: 6,
-                color: "var(--color-text)",
-                fontSize: 12,
-                padding: "4px 6px",
-                textAlign: "center",
-                outline: "none"
-              },
-              onChange: (e) => handleLineHeightChange(Number(e.target.value))
-            },
-            activeObj?.id + "-lh"
-          ),
-          /* @__PURE__ */ jsx("span", { style: { fontSize: 11, color: "var(--color-text-muted)", flexShrink: 0 }, children: "Case" }),
-          /* @__PURE__ */ jsx("div", { style: { display: "flex", gap: 2 }, children: [
-            { value: "none", label: "Aa" },
-            { value: "upper", label: "AA" },
-            { value: "lower", label: "aa" },
-            { value: "title", label: "Tt" }
-          ].map((opt) => /* @__PURE__ */ jsx(
-            PBtn,
-            {
-              title: opt.value === "none" ? "No transform" : opt.value === "upper" ? "Uppercase" : opt.value === "lower" ? "Lowercase" : "Title case",
-              active: textTransform === opt.value,
-              onClick: () => handleTextTransformChange(opt.value),
-              style: { width: 26, height: 26, fontSize: 10, fontWeight: 700 },
-              children: opt.label
-            },
-            opt.value
-          )) })
+              children: [
+                /* @__PURE__ */ jsx(Ellipsis, { size: 14 }),
+                /* @__PURE__ */ jsx("span", { style: { fontSize: 10 }, children: "More" })
+              ]
+            }
+          ) })
         ] }),
         (isShape || !isImage && !isText) && /* @__PURE__ */ jsxs(Fragment, { children: [
           /* @__PURE__ */ jsx(PDivider, {}),
@@ -19069,6 +27023,7 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
               min: 0,
               max: 40,
               defaultValue: activeObj?.strokeWidth ?? 0,
+              title: "Stroke width",
               style: {
                 width: 44,
                 background: "var(--color-bg)",
@@ -19086,11 +27041,11 @@ function ObjectPropertiesBar({ activeObj, editor, removingBg, onRemoveBg }) {
           )
         ] }),
         /* @__PURE__ */ jsx(PDivider, {}),
-        /* @__PURE__ */ jsx(PBtn, { title: "Bring forward", onClick: () => editor?.objects.bringForward(), children: /* @__PURE__ */ jsx(VerticalAlignTopOutlined, {}) }),
-        /* @__PURE__ */ jsx(PBtn, { title: "Send backward", onClick: () => editor?.objects.sendBackwards(), children: /* @__PURE__ */ jsx(VerticalAlignBottomOutlined, {}) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Bring forward", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.bringForward(), children: /* @__PURE__ */ jsx(BringToFront, { size: 16 }) }) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Send backward", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.sendBackwards(), children: /* @__PURE__ */ jsx(SendToBack, { size: 16 }) }) }),
         /* @__PURE__ */ jsx(PDivider, {}),
-        /* @__PURE__ */ jsx(PBtn, { title: "Duplicate", onClick: () => editor?.objects.clone(), children: /* @__PURE__ */ jsx(CopyOutlined, {}) }),
-        /* @__PURE__ */ jsx(PBtn, { title: "Delete (Del)", onClick: () => editor?.objects.remove(), danger: true, children: /* @__PURE__ */ jsx(DeleteOutlined, {}) })
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Duplicate", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.clone(), children: /* @__PURE__ */ jsx(Copy, { size: 16 }) }) }),
+        /* @__PURE__ */ jsx(Tooltip2, { title: "Delete (Del)", placement: "top", children: /* @__PURE__ */ jsx(PBtn, { onClick: () => editor?.objects.remove(), danger: true, children: /* @__PURE__ */ jsx(Trash2, { size: 16 }) }) })
       ]
     }
   );
@@ -19152,6 +27107,7 @@ function PropertyColorPicker({
   activeObjId
 }) {
   const [hex, setHex] = useState(color);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     setHex(color);
   }, [color, activeObjId]);
@@ -19290,20 +27246,23 @@ function PropertyColorPicker({
     }
   );
   return /* @__PURE__ */ jsx(
-    Popover,
+    Popover2,
     {
       content: pickerContent,
       placement: "top",
-      children: /* @__PURE__ */ jsx(Tooltip, { title: tooltip, placement: "top", children: /* @__PURE__ */ jsx(
+      open,
+      onOpenChange: setOpen,
+      children: /* @__PURE__ */ jsx(
         "button",
         {
+          title: tooltip,
           style: {
             height: 30,
             width: 38,
             padding: 3,
             borderRadius: 8,
-            border: "1px solid var(--color-border)",
-            background: "var(--color-bg)",
+            border: open ? "1.5px solid var(--color-primary)" : "1px solid var(--color-border)",
+            background: open ? "color-mix(in srgb, var(--color-primary) 8%, var(--color-bg))" : "var(--color-bg)",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
@@ -19313,12 +27272,16 @@ function PropertyColorPicker({
             outline: "none"
           },
           onMouseEnter: (e) => {
-            e.currentTarget.style.borderColor = "color-mix(in srgb, var(--color-text) 30%, var(--color-border))";
-            e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 4%, var(--color-bg))";
+            if (!open) {
+              e.currentTarget.style.borderColor = "color-mix(in srgb, var(--color-text) 30%, var(--color-border))";
+              e.currentTarget.style.background = "color-mix(in srgb, var(--color-text) 4%, var(--color-bg))";
+            }
           },
           onMouseLeave: (e) => {
-            e.currentTarget.style.borderColor = "var(--color-border)";
-            e.currentTarget.style.background = "var(--color-bg)";
+            if (!open) {
+              e.currentTarget.style.borderColor = "var(--color-border)";
+              e.currentTarget.style.background = "var(--color-bg)";
+            }
           },
           children: /* @__PURE__ */ jsx("div", { style: {
             width: "100%",
@@ -19329,18 +27292,18 @@ function PropertyColorPicker({
             boxShadow: "inset 0 1px 2px rgba(0,0,0,0.1)"
           } })
         }
-      ) })
+      )
     }
   );
 }
 function TemplateSearchBar({ value, onChange, debounceMs = 300 }) {
-  const [local, setLocal] = React24.useState(value);
-  const lastEmittedRef = React24.useRef(value);
-  React24.useEffect(() => {
+  const [local, setLocal] = React45.useState(value);
+  const lastEmittedRef = React45.useRef(value);
+  React45.useEffect(() => {
     setLocal(value);
     lastEmittedRef.current = value;
   }, [value]);
-  React24.useEffect(() => {
+  React45.useEffect(() => {
     if (local === lastEmittedRef.current) return;
     const id = setTimeout(() => {
       lastEmittedRef.current = local;
@@ -19373,12 +27336,12 @@ var inFlight = /* @__PURE__ */ new Map();
 function useSceneThumbnail(input, ref, editorOverride) {
   const hookEditor = useEditor();
   const editor = hookEditor;
-  const [src, setSrc] = React24.useState(() => {
+  const [src, setSrc] = React45.useState(() => {
     if (input.thumbnailUrl) return input.thumbnailUrl;
     return cache.get(input.id);
   });
-  const [loading, setLoading] = React24.useState(() => !src && !input.thumbnailUrl);
-  React24.useEffect(() => {
+  const [loading, setLoading] = React45.useState(() => !src && !input.thumbnailUrl);
+  React45.useEffect(() => {
     if (input.thumbnailUrl) {
       setSrc(input.thumbnailUrl);
       setLoading(false);
@@ -19440,7 +27403,7 @@ function useSceneThumbnail(input, ref, editorOverride) {
   return { src, loading };
 }
 function TemplateThumbnail({ template, onClick }) {
-  const ref = React24.useRef(null);
+  const ref = React45.useRef(null);
   const { src, loading } = useSceneThumbnail({
     id: template.id,
     scene: template.scene,
@@ -19490,10 +27453,10 @@ function TemplateThumbnail({ template, onClick }) {
 }
 var ROW_LIMIT = 6;
 function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
-  const [items, setItems] = React24.useState([]);
-  const [loading, setLoading] = React24.useState(true);
-  const [error, setError] = React24.useState(false);
-  const load = React24.useCallback(() => {
+  const [items, setItems] = React45.useState([]);
+  const [loading, setLoading] = React45.useState(true);
+  const [error, setError] = React45.useState(false);
+  const load = React45.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -19514,7 +27477,7 @@ function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
       ac.abort();
     };
   }, [provider, category.id]);
-  React24.useEffect(() => {
+  React45.useEffect(() => {
     return load();
   }, [load]);
   return /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
@@ -19567,12 +27530,12 @@ function TemplateCategoryRow({ category, provider, onSelect, onSeeMore }) {
   ] });
 }
 function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
-  const [items, setItems] = React24.useState([]);
-  const [cursor, setCursor] = React24.useState(void 0);
-  const [loading, setLoading] = React24.useState(true);
-  const [loadingMore, setLoadingMore] = React24.useState(false);
-  const [error, setError] = React24.useState(null);
-  React24.useEffect(() => {
+  const [items, setItems] = React45.useState([]);
+  const [cursor, setCursor] = React45.useState(void 0);
+  const [loading, setLoading] = React45.useState(true);
+  const [loadingMore, setLoadingMore] = React45.useState(false);
+  const [error, setError] = React45.useState(null);
+  React45.useEffect(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -19591,7 +27554,7 @@ function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
       ac.abort();
     };
   }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
-  const loadMore = React24.useCallback(async () => {
+  const loadMore = React45.useCallback(async () => {
     if (!cursor) return;
     setLoadingMore(true);
     try {
@@ -19633,12 +27596,12 @@ function TemplateGrid({ provider, listOpts, emptyMessage, onSelect }) {
   ] });
 }
 function TemplatesPanel({ provider, onApplyTemplate }) {
-  const [categories, setCategories] = React24.useState([]);
-  const [loading, setLoading] = React24.useState(true);
-  const [error, setError] = React24.useState(false);
-  const [search, setSearch] = React24.useState("");
-  const [mode, setMode] = React24.useState({ kind: "browse" });
-  const loadCategories = React24.useCallback(() => {
+  const [categories, setCategories] = React45.useState([]);
+  const [loading, setLoading] = React45.useState(true);
+  const [error, setError] = React45.useState(false);
+  const [search, setSearch] = React45.useState("");
+  const [mode, setMode] = React45.useState({ kind: "browse" });
+  const loadCategories = React45.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -19659,8 +27622,8 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
       ac.abort();
     };
   }, [provider]);
-  React24.useEffect(() => loadCategories(), [loadCategories]);
-  const handleSearchChange = React24.useCallback((next) => {
+  React45.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React45.useCallback((next) => {
     setSearch(next);
     if (next.trim()) {
       setMode({ kind: "search", query: next.trim() });
@@ -19668,10 +27631,10 @@ function TemplatesPanel({ provider, onApplyTemplate }) {
       setMode({ kind: "browse" });
     }
   }, []);
-  const handleSeeMore = React24.useCallback((categoryId) => {
+  const handleSeeMore = React45.useCallback((categoryId) => {
     setMode({ kind: "category", categoryId });
   }, []);
-  const handleBack = React24.useCallback(() => {
+  const handleBack = React45.useCallback(() => {
     setMode({ kind: "browse" });
   }, []);
   const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
@@ -19978,7 +27941,7 @@ function ShapesPanel({ onAddShape }) {
   ) : SHAPES;
   return /* @__PURE__ */ jsxs("div", { className: "flex flex-col h-full bg-surface", children: [
     /* @__PURE__ */ jsx("div", { className: "px-4 pt-4 pb-2", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] rounded-lg px-3 py-2 border border-[var(--color-border)] focus-within:border-[var(--color-primary)] transition-colors", children: [
-      /* @__PURE__ */ jsx(SearchOutlined, { className: "text-[var(--color-text-muted)] mr-2" }),
+      /* @__PURE__ */ jsx(Search, { size: 14, className: "text-[var(--color-text-muted)] mr-2" }),
       /* @__PURE__ */ jsx(
         "input",
         {
@@ -20031,7 +27994,7 @@ function ShapeCategory({
           className: "flex items-center text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors bg-transparent border-none cursor-pointer",
           children: [
             expanded ? "Less" : `More (${shapes.length})`,
-            expanded ? /* @__PURE__ */ jsx(UpOutlined, { className: "ml-1 text-[10px]" }) : /* @__PURE__ */ jsx(DownOutlined, { className: "ml-1 text-[10px]" })
+            expanded ? /* @__PURE__ */ jsx(ChevronUp, { size: 10, className: "ml-1" }) : /* @__PURE__ */ jsx(ChevronDown, { size: 10, className: "ml-1" })
           ]
         }
       )
@@ -20058,7 +28021,7 @@ function ScrollRow({
   shapes,
   onAddShape
 }) {
-  const scrollRef = React24__default.useRef(null);
+  const scrollRef = React45__default.useRef(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -20106,7 +28069,7 @@ function ScrollRow({
           background: "var(--color-surface, #fff)",
           boxShadow: "-8px 0 14px 8px var(--color-surface, #fff)"
         },
-        children: /* @__PURE__ */ jsx(RightOutlined, { style: { fontSize: 10, color: "var(--color-text-muted)" } })
+        children: /* @__PURE__ */ jsx(ChevronRight, { size: 14, style: { color: "var(--color-text-muted)" } })
       }
     )
   ] });
@@ -20126,7 +28089,7 @@ function ShapeTile({
       imageUrl
     );
   };
-  return /* @__PURE__ */ jsx(Tooltip, { title: shape.label, placement: "top", children: /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsx(Tooltip2, { title: shape.label, placement: "top", children: /* @__PURE__ */ jsx(
     "button",
     {
       onClick,
@@ -20349,7 +28312,7 @@ function StickersPanel({ onAddSticker }) {
   }, [search]);
   return /* @__PURE__ */ jsxs("div", { className: "flex flex-col h-full bg-surface", children: [
     /* @__PURE__ */ jsx("div", { className: "px-4 pt-4 pb-2", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center bg-[color-mix(in_srgb,var(--color-text)_5%,transparent)] rounded-lg px-3 py-2 border border-[var(--color-border)] focus-within:border-[var(--color-primary)] transition-colors", children: [
-      /* @__PURE__ */ jsx(SearchOutlined, { className: "text-[var(--color-text-muted)] mr-2" }),
+      /* @__PURE__ */ jsx(Search, { size: 14, className: "text-[var(--color-text-muted)] mr-2" }),
       /* @__PURE__ */ jsx(
         "input",
         {
@@ -20403,7 +28366,7 @@ function StickerCategory({
           className: "flex items-center text-xs font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors bg-transparent border-none cursor-pointer",
           children: [
             expanded ? "Less" : `More (${stickers.length})`,
-            expanded ? /* @__PURE__ */ jsx(UpOutlined, { className: "ml-1 text-[10px]" }) : /* @__PURE__ */ jsx(DownOutlined, { className: "ml-1 text-[10px]" })
+            expanded ? /* @__PURE__ */ jsx(ChevronUp, { size: 10, className: "ml-1" }) : /* @__PURE__ */ jsx(ChevronDown, { size: 10, className: "ml-1" })
           ]
         }
       )
@@ -20430,7 +28393,7 @@ function ScrollRow2({
   stickers,
   onAddSticker
 }) {
-  const scrollRef = React24__default.useRef(null);
+  const scrollRef = React45__default.useRef(null);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -20478,7 +28441,7 @@ function ScrollRow2({
           background: "var(--color-surface, #fff)",
           boxShadow: "-8px 0 14px 8px var(--color-surface, #fff)"
         },
-        children: /* @__PURE__ */ jsx(RightOutlined, { style: { fontSize: 10, color: "var(--color-text-muted)" } })
+        children: /* @__PURE__ */ jsx(ChevronRight, { size: 14, style: { color: "var(--color-text-muted)" } })
       }
     )
   ] });
@@ -20498,7 +28461,7 @@ function StickerTile({
       imageUrl
     );
   };
-  return /* @__PURE__ */ jsx(Tooltip, { title: sticker.label, placement: "top", children: /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsx(Tooltip2, { title: sticker.label, placement: "top", children: /* @__PURE__ */ jsx(
     "button",
     {
       onClick,
@@ -20533,13 +28496,13 @@ function StickerTile({
   ) });
 }
 function TextDesignSearchBar({ value, onChange, debounceMs = 300 }) {
-  const [local, setLocal] = React24.useState(value);
-  const lastEmittedRef = React24.useRef(value);
-  React24.useEffect(() => {
+  const [local, setLocal] = React45.useState(value);
+  const lastEmittedRef = React45.useRef(value);
+  React45.useEffect(() => {
     setLocal(value);
     lastEmittedRef.current = value;
   }, [value]);
-  React24.useEffect(() => {
+  React45.useEffect(() => {
     if (local === lastEmittedRef.current) return;
     const id = setTimeout(() => {
       lastEmittedRef.current = local;
@@ -20568,7 +28531,7 @@ function TextDesignSearchBar({ value, onChange, debounceMs = 300 }) {
   ) });
 }
 function TextDesignThumbnail({ textDesign, onClick }) {
-  const ref = React24.useRef(null);
+  const ref = React45.useRef(null);
   const { src, loading } = useSceneThumbnail({
     id: textDesign.id,
     scene: textDesign.scene,
@@ -20618,10 +28581,10 @@ function TextDesignThumbnail({ textDesign, onClick }) {
 }
 var ROW_LIMIT2 = 6;
 function TextDesignCategoryRow({ category, provider, onSelect, onSeeMore }) {
-  const [items, setItems] = React24.useState([]);
-  const [loading, setLoading] = React24.useState(true);
-  const [error, setError] = React24.useState(false);
-  const load = React24.useCallback(() => {
+  const [items, setItems] = React45.useState([]);
+  const [loading, setLoading] = React45.useState(true);
+  const [error, setError] = React45.useState(false);
+  const load = React45.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -20642,7 +28605,7 @@ function TextDesignCategoryRow({ category, provider, onSelect, onSeeMore }) {
       ac.abort();
     };
   }, [provider, category.id]);
-  React24.useEffect(() => {
+  React45.useEffect(() => {
     return load();
   }, [load]);
   return /* @__PURE__ */ jsxs("div", { style: { padding: "12px 12px 4px 12px" }, children: [
@@ -20695,12 +28658,12 @@ function TextDesignCategoryRow({ category, provider, onSelect, onSeeMore }) {
   ] });
 }
 function TextDesignGrid({ provider, listOpts, emptyMessage, onSelect }) {
-  const [items, setItems] = React24.useState([]);
-  const [cursor, setCursor] = React24.useState(void 0);
-  const [loading, setLoading] = React24.useState(true);
-  const [loadingMore, setLoadingMore] = React24.useState(false);
-  const [error, setError] = React24.useState(null);
-  React24.useEffect(() => {
+  const [items, setItems] = React45.useState([]);
+  const [cursor, setCursor] = React45.useState(void 0);
+  const [loading, setLoading] = React45.useState(true);
+  const [loadingMore, setLoadingMore] = React45.useState(false);
+  const [error, setError] = React45.useState(null);
+  React45.useEffect(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -20719,7 +28682,7 @@ function TextDesignGrid({ provider, listOpts, emptyMessage, onSelect }) {
       ac.abort();
     };
   }, [provider, listOpts.categoryId, listOpts.search, listOpts.limit]);
-  const loadMore = React24.useCallback(async () => {
+  const loadMore = React45.useCallback(async () => {
     if (!cursor) return;
     setLoadingMore(true);
     try {
@@ -20766,12 +28729,12 @@ var QUICK_ADD_PRESETS = [
   { label: "Body", preset: "body", fontSize: 28, fontWeight: 400 }
 ];
 function TextPanel({ provider, onApplyTextDesign, onAddPlainText }) {
-  const [categories, setCategories] = React24.useState([]);
-  const [loading, setLoading] = React24.useState(true);
-  const [error, setError] = React24.useState(false);
-  const [search, setSearch] = React24.useState("");
-  const [mode, setMode] = React24.useState({ kind: "browse" });
-  const loadCategories = React24.useCallback(() => {
+  const [categories, setCategories] = React45.useState([]);
+  const [loading, setLoading] = React45.useState(true);
+  const [error, setError] = React45.useState(false);
+  const [search, setSearch] = React45.useState("");
+  const [mode, setMode] = React45.useState({ kind: "browse" });
+  const loadCategories = React45.useCallback(() => {
     let cancelled = false;
     const ac = new AbortController();
     setLoading(true);
@@ -20792,8 +28755,8 @@ function TextPanel({ provider, onApplyTextDesign, onAddPlainText }) {
       ac.abort();
     };
   }, [provider]);
-  React24.useEffect(() => loadCategories(), [loadCategories]);
-  const handleSearchChange = React24.useCallback((next) => {
+  React45.useEffect(() => loadCategories(), [loadCategories]);
+  const handleSearchChange = React45.useCallback((next) => {
     setSearch(next);
     if (next.trim()) {
       setMode({ kind: "search", query: next.trim() });
@@ -20801,10 +28764,10 @@ function TextPanel({ provider, onApplyTextDesign, onAddPlainText }) {
       setMode({ kind: "browse" });
     }
   }, []);
-  const handleSeeMore = React24.useCallback((categoryId) => {
+  const handleSeeMore = React45.useCallback((categoryId) => {
     setMode({ kind: "category", categoryId });
   }, []);
-  const handleBack = React24.useCallback(() => {
+  const handleBack = React45.useCallback(() => {
     setMode({ kind: "browse" });
   }, []);
   const activeCategory = mode.kind === "category" ? categories.find((c) => c.id === mode.categoryId) : void 0;
@@ -20959,7 +28922,7 @@ function UploadPanel({ onUploadFile }) {
           flexShrink: 0
         },
         children: [
-          isUploading ? /* @__PURE__ */ jsx(LoadingOutlined, { style: { fontSize: 32, color: "var(--color-primary)" } }) : /* @__PURE__ */ jsx(CloudUploadOutlined, { style: { fontSize: 32, color: "var(--color-primary)" } }),
+          isUploading ? /* @__PURE__ */ jsx(LoaderCircle, { size: 32, color: "var(--color-primary)", className: "animate-spin" }) : /* @__PURE__ */ jsx(CloudUpload, { size: 32, color: "var(--color-primary)" }),
           /* @__PURE__ */ jsxs("div", { style: { textAlign: "center" }, children: [
             /* @__PURE__ */ jsx("div", { style: { color: "var(--color-text)", fontSize: 13, fontWeight: 600 }, children: isUploading ? "Uploading..." : "Click to upload" }),
             /* @__PURE__ */ jsx("div", { style: { color: "var(--color-text-muted)", fontSize: 11, marginTop: 4 }, children: "PNG \xB7 JPG \xB7 SVG \xB7 MP4 \xB7 max 50 MB" })
@@ -21012,12 +28975,12 @@ function ElementsPanel({
 }
 function Section({
   title,
-  count,
+  count: count3,
   onSeeAll,
   totalOverride,
   children
 }) {
-  const displayCount = totalOverride ?? count;
+  const displayCount = totalOverride ?? count3;
   return /* @__PURE__ */ jsxs("div", { style: { padding: "12px 16px 0" }, children: [
     /* @__PURE__ */ jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }, children: [
       /* @__PURE__ */ jsx("span", { style: { fontSize: 13, fontWeight: 700, color: "var(--color-text)" }, children: title }),
@@ -21039,7 +29002,7 @@ function Section({
             "More (",
             displayCount,
             ") ",
-            /* @__PURE__ */ jsx(RightOutlined, { style: { fontSize: 9 } })
+            /* @__PURE__ */ jsx(ChevronRight, { size: 10 })
           ]
         }
       )
@@ -21161,9 +29124,9 @@ function PlaceholderThumb({ label }) {
     }
   );
 }
-var Ctx = React24.createContext(null);
+var Ctx = React45.createContext(null);
 function useEditorContext() {
-  const v = React24.useContext(Ctx);
+  const v = React45.useContext(Ctx);
   if (!v) throw new Error("useEditorContext must be used inside <DesignEditor>");
   return v;
 }
@@ -21304,7 +29267,7 @@ function getStorageSafe(key, DEFAULT_SETTINGS) {
     return DEFAULT_SETTINGS;
   }
 }
-function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title, textDesignProvider }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, libraryPanel, title, textDesignProvider }) {
   const editor = useEditor();
   const activeObj = useActiveObject();
   const zoomRatio = useZoomRatio();
@@ -21316,6 +29279,57 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
   const [removingBg, setRemovingBg] = useState(false);
   const [shimmerRect, setShimmerRect] = useState(null);
   const [dragOver, setDragOver] = useState(false);
+  const [spaceDown, setSpaceDown] = useState(false);
+  const [isPanning, setIsPanning] = useState(false);
+  const panRef = useRef(null);
+  const canvasWrapRef = useRef(null);
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.code === "Space" && !e.repeat && e.target?.tagName !== "INPUT" && e.target?.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        setSpaceDown(true);
+      }
+    };
+    const onKeyUp = (e) => {
+      if (e.code === "Space") {
+        setSpaceDown(false);
+        panRef.current = null;
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keyup", onKeyUp);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("keyup", onKeyUp);
+    };
+  }, []);
+  const handleCanvasMouseDown = useCallback((e) => {
+    if (!spaceDown || !editor) return;
+    e.preventDefault();
+    const fabricCanvas = editor.canvas?.canvas;
+    if (!fabricCanvas) return;
+    const vpt = fabricCanvas.viewportTransform ? [...fabricCanvas.viewportTransform] : [1, 0, 0, 1, 0, 0];
+    panRef.current = { startX: e.clientX, startY: e.clientY, vpt };
+    setIsPanning(true);
+  }, [spaceDown, editor]);
+  const handleCanvasMouseMove = useCallback((e) => {
+    if (!panRef.current || !editor) return;
+    const fabricCanvas = editor.canvas?.canvas;
+    if (!fabricCanvas) return;
+    const dx = e.clientX - panRef.current.startX;
+    const dy = e.clientY - panRef.current.startY;
+    const vpt = [...panRef.current.vpt];
+    vpt[4] += dx;
+    vpt[5] += dy;
+    fabricCanvas.setViewportTransform(vpt);
+    fabricCanvas.requestRenderAll();
+  }, [editor]);
+  const handleCanvasMouseUp = useCallback(() => {
+    if (panRef.current) {
+      panRef.current = null;
+      setIsPanning(false);
+    }
+  }, []);
   const { layers, activeId } = useLayerPanel();
   const [canvasBg, setCanvasBg] = useState(() => {
     return initialScene?.canvasBg || getStorageSafe("studio_canvasBg", "#ffffff");
@@ -21408,7 +29422,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
   }, [editor, initialScene, restoreShapes, setHasUnsavedChanges, sceneKey]);
   const zoomPct = Math.round(zoomRatio * 100);
   const {
-    size,
+    size: size4,
     customOpen,
     setCustomOpen,
     customW,
@@ -21476,7 +29490,11 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     const frameH = frameOpts?.height ?? 1080;
     const dx = (frameW - design.scene.frame.width) / 2;
     const dy = (frameH - design.scene.frame.height) / 2;
-    for (const layer of design.scene.layers) {
+    const textTypes = /* @__PURE__ */ new Set(["StaticText", "DynamicText"]);
+    const textLayers = design.scene.layers.filter((l) => textTypes.has(l.type));
+    const allLayers = design.scene.layers;
+    const layersToAdd = textLayers.length === 1 && allLayers.length === 1 ? textLayers : allLayers;
+    for (const layer of layersToAdd) {
       editor.objects.add({
         ...layer,
         id: generateId(),
@@ -21583,7 +29601,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
       {
         editor,
         zoomPct,
-        size,
+        size: size4,
         customOpen,
         setCustomOpen,
         customW,
@@ -21603,7 +29621,8 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
         onBgChange: setCanvasBg,
         workspaceBg,
         onWorkspaceBgChange: setWorkspaceBg,
-        title
+        title,
+        hasUnsavedChanges
       }
     ),
     /* @__PURE__ */ jsxs("div", { style: { flex: 1, display: "flex", overflow: "hidden" }, children: [
@@ -21658,47 +29677,58 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
           } }),
           activePanel === "shapes" && /* @__PURE__ */ jsx(ShapesPanel, { onAddShape: (src) => addImageToCanvas(src) }),
           activePanel === "stickers" && /* @__PURE__ */ jsx(StickersPanel, { onAddSticker: (url) => addImageToCanvas(url) }),
-          activePanel === "upload" && /* @__PURE__ */ jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) })
+          activePanel === "upload" && (libraryPanel ? typeof libraryPanel === "function" ? libraryPanel({ onAddMedia: handleAddMedia }) : libraryPanel : /* @__PURE__ */ jsx(UploadPanel, { onUploadFile: (url) => handleAddMedia(url) }))
         ] })
       ] }),
-      /* @__PURE__ */ jsxs("div", { style: { flex: 1, position: "relative", overflow: "hidden" }, children: [
-        /* @__PURE__ */ jsx(
-          CanvasArea,
-          {
-            canvasBg,
-            workspaceBg,
-            dragOver,
-            onDragOver: (e) => {
-              e.preventDefault();
-              setDragOver(true);
-            },
-            onDragLeave: () => setDragOver(false),
-            onDrop: handleDrop
-          }
-        ),
-        removingBg && shimmerRect && /* @__PURE__ */ jsx("div", { style: {
-          position: "absolute",
-          top: shimmerRect.top,
-          left: shimmerRect.left,
-          width: shimmerRect.width,
-          height: shimmerRect.height,
-          background: "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)",
-          backgroundSize: "200% 100%",
-          animation: "shimmer 1.5s infinite",
-          pointerEvents: "none",
-          zIndex: 9999,
-          borderRadius: 8
-        } }),
-        activeObj && /* @__PURE__ */ jsx(
-          ObjectPropertiesBar,
-          {
-            activeObj,
-            editor,
-            removingBg,
-            onRemoveBg: handleRemoveBg
-          }
-        )
-      ] }),
+      /* @__PURE__ */ jsxs(
+        "div",
+        {
+          ref: canvasWrapRef,
+          style: { flex: 1, position: "relative", overflow: "hidden", cursor: spaceDown ? isPanning ? "grabbing" : "grab" : "default" },
+          onMouseDown: handleCanvasMouseDown,
+          onMouseMove: handleCanvasMouseMove,
+          onMouseUp: handleCanvasMouseUp,
+          onMouseLeave: handleCanvasMouseUp,
+          children: [
+            /* @__PURE__ */ jsx(
+              CanvasArea,
+              {
+                canvasBg,
+                workspaceBg,
+                dragOver,
+                onDragOver: (e) => {
+                  e.preventDefault();
+                  setDragOver(true);
+                },
+                onDragLeave: () => setDragOver(false),
+                onDrop: handleDrop
+              }
+            ),
+            removingBg && shimmerRect && /* @__PURE__ */ jsx("div", { style: {
+              position: "absolute",
+              top: shimmerRect.top,
+              left: shimmerRect.left,
+              width: shimmerRect.width,
+              height: shimmerRect.height,
+              background: "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%)",
+              backgroundSize: "200% 100%",
+              animation: "shimmer 1.5s infinite",
+              pointerEvents: "none",
+              zIndex: 9999,
+              borderRadius: 8
+            } }),
+            activeObj && /* @__PURE__ */ jsx(
+              ObjectPropertiesBar,
+              {
+                activeObj,
+                editor,
+                removingBg,
+                onRemoveBg: handleRemoveBg
+              }
+            )
+          ]
+        }
+      ),
       layerPanelOpen && /* @__PURE__ */ jsx(
         LayerPanel,
         {
@@ -21723,15 +29753,16 @@ function DesignEditor({
   persistenceProvider = createLocalStoragePersistence(),
   className,
   templatesPanel,
+  libraryPanel,
   title
 }) {
   const resolvedBackgroundRemovalProvider = backgroundRemovalProvider ?? createImglyBackgroundRemoval();
-  const ctx = React24__default.useMemo(
+  const ctx = React45__default.useMemo(
     () => ({ templateProvider, textDesignProvider, fontProvider, backgroundRemovalProvider: resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack }),
     [templateProvider, textDesignProvider, fontProvider, resolvedBackgroundRemovalProvider, persistenceProvider, sceneKey, onExport, onBack]
   );
   return /* @__PURE__ */ jsx(Provider, { children: /* @__PURE__ */ jsxs(EditorContextProvider, { value: ctx, children: [
-    /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, title, textDesignProvider }),
+    /* @__PURE__ */ jsx(DesignEditorInner, { onBack, initialScene, className, templatesPanel, libraryPanel, title, textDesignProvider }),
     /* @__PURE__ */ jsx(Toaster, { position: "bottom-right" })
   ] }) });
 }
@@ -21748,6 +29779,59 @@ lodash/lodash.js:
    * Released under MIT license <https://lodash.com/license>
    * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
    * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+   *)
+
+lucide-react/dist/esm/shared/src/utils.js:
+lucide-react/dist/esm/defaultAttributes.js:
+lucide-react/dist/esm/Icon.js:
+lucide-react/dist/esm/createLucideIcon.js:
+lucide-react/dist/esm/icons/align-center.js:
+lucide-react/dist/esm/icons/align-left.js:
+lucide-react/dist/esm/icons/align-right.js:
+lucide-react/dist/esm/icons/arrow-left.js:
+lucide-react/dist/esm/icons/bold.js:
+lucide-react/dist/esm/icons/bring-to-front.js:
+lucide-react/dist/esm/icons/chevron-down.js:
+lucide-react/dist/esm/icons/chevron-right.js:
+lucide-react/dist/esm/icons/chevron-up.js:
+lucide-react/dist/esm/icons/cloud-upload.js:
+lucide-react/dist/esm/icons/component.js:
+lucide-react/dist/esm/icons/copy.js:
+lucide-react/dist/esm/icons/ellipsis.js:
+lucide-react/dist/esm/icons/eye-off.js:
+lucide-react/dist/esm/icons/eye.js:
+lucide-react/dist/esm/icons/flip-horizontal.js:
+lucide-react/dist/esm/icons/flip-vertical.js:
+lucide-react/dist/esm/icons/folder.js:
+lucide-react/dist/esm/icons/image.js:
+lucide-react/dist/esm/icons/italic.js:
+lucide-react/dist/esm/icons/layout-grid.js:
+lucide-react/dist/esm/icons/layout-template.js:
+lucide-react/dist/esm/icons/loader-circle.js:
+lucide-react/dist/esm/icons/maximize-2.js:
+lucide-react/dist/esm/icons/minimize-2.js:
+lucide-react/dist/esm/icons/redo.js:
+lucide-react/dist/esm/icons/save.js:
+lucide-react/dist/esm/icons/scissors.js:
+lucide-react/dist/esm/icons/search.js:
+lucide-react/dist/esm/icons/send-to-back.js:
+lucide-react/dist/esm/icons/settings.js:
+lucide-react/dist/esm/icons/shapes.js:
+lucide-react/dist/esm/icons/smile.js:
+lucide-react/dist/esm/icons/trash-2.js:
+lucide-react/dist/esm/icons/type.js:
+lucide-react/dist/esm/icons/undo.js:
+lucide-react/dist/esm/icons/upload.js:
+lucide-react/dist/esm/icons/video.js:
+lucide-react/dist/esm/icons/x.js:
+lucide-react/dist/esm/icons/zoom-in.js:
+lucide-react/dist/esm/icons/zoom-out.js:
+lucide-react/dist/esm/lucide-react.js:
+  (**
+   * @license lucide-react v0.511.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
    *)
 */
 

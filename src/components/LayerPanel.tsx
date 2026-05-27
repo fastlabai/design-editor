@@ -1,22 +1,22 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react'
 import {
-  PictureOutlined, FontSizeOutlined, VideoCameraOutlined,
-  AppstoreOutlined, CloseOutlined, EyeOutlined, EyeInvisibleOutlined,
-  DeleteOutlined, CopyOutlined, FolderOutlined, RightOutlined, DownOutlined,
-} from '@ant-design/icons'
+  Image as ImageIcon, Type, Video,
+  Shapes, X, Eye, EyeOff,
+  Trash2, Copy, Folder, ChevronRight, ChevronDown,
+} from 'lucide-react'
 import { Tooltip } from './primitives'
 import type { LayerItem } from '../hooks/useLayerPanel'
 
 const TYPE_ICONS: Record<string, React.ReactNode> = {
-  StaticImage:    <PictureOutlined />,
-  BackgroundImage:<PictureOutlined />,
-  StaticText:     <FontSizeOutlined />,
-  DynamicText:    <FontSizeOutlined />,
-  StaticVideo:    <VideoCameraOutlined />,
-  StaticPath:     <AppstoreOutlined />,
-  StaticVector:   <AppstoreOutlined />,
-  Group:          <FolderOutlined />,
+  StaticImage:    <ImageIcon size={14} />,
+  BackgroundImage:<ImageIcon size={14} />,
+  StaticText:     <Type size={14} />,
+  DynamicText:    <Type size={14} />,
+  StaticVideo:    <Video size={14} />,
+  StaticPath:     <Shapes size={14} />,
+  StaticVector:   <Shapes size={14} />,
+  Group:          <Folder size={14} />,
 }
 
 interface Props {
@@ -77,7 +77,7 @@ export function LayerPanel({ layers, activeId, editor, onClose }: Props) {
         {selectedIds.size >= 2 && (
           <Tooltip title="Group selected layers">
             <button onClick={handleGroup} style={ICON_BTN}>
-              <FolderOutlined style={{ fontSize: 12 }} />
+              <Folder size={14} />
             </button>
           </Tooltip>
         )}
@@ -86,7 +86,7 @@ export function LayerPanel({ layers, activeId, editor, onClose }: Props) {
             onClick={onClose}
             style={{ ...ICON_BTN, color: 'var(--color-text-muted)' }}
           >
-            <CloseOutlined style={{ fontSize: 12 }} />
+            <X size={14} />
           </button>
         </Tooltip>
       </div>
@@ -179,12 +179,12 @@ function LayerRow({ layer, isActive, isSelected, depth, onSelect, onToggleVisibl
             onClick={(e) => { e.stopPropagation(); setCollapsed(c => !c) }}
             style={{ fontSize: 10, color: 'var(--color-text-muted)', flexShrink: 0, cursor: 'pointer' }}
           >
-            {collapsed ? <RightOutlined /> : <DownOutlined />}
+            {collapsed ? <ChevronRight size={12} /> : <ChevronDown size={12} />}
           </span>
         ) : <span style={{ width: 10 }} />}
 
         <span style={{ fontSize: 12, color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)', flexShrink: 0 }}>
-          {TYPE_ICONS[layer.type] ?? <AppstoreOutlined />}
+          {TYPE_ICONS[layer.type] ?? <Shapes size={14} />}
         </span>
 
         {editing ? (
@@ -215,17 +215,17 @@ function LayerRow({ layer, isActive, isSelected, depth, onSelect, onToggleVisibl
           <div style={{ display: 'flex', gap: 1, flexShrink: 0 }}>
             <Tooltip title={layer.visible ? 'Hide' : 'Show'}>
               <button onClick={(e) => { e.stopPropagation(); onToggleVisible() }} style={ICON_BTN}>
-                {layer.visible ? <EyeOutlined style={{ fontSize: 10 }} /> : <EyeInvisibleOutlined style={{ fontSize: 10 }} />}
+                {layer.visible ? <Eye size={12} /> : <EyeOff size={12} />}
               </button>
             </Tooltip>
             <Tooltip title="Duplicate">
               <button onClick={(e) => { e.stopPropagation(); onCopy() }} style={ICON_BTN}>
-                <CopyOutlined style={{ fontSize: 10 }} />
+                <Copy size={12} />
               </button>
             </Tooltip>
             <Tooltip title="Delete">
               <button onClick={(e) => { e.stopPropagation(); onDelete() }} style={{ ...ICON_BTN, color: 'var(--color-danger)' }}>
-                <DeleteOutlined style={{ fontSize: 10 }} />
+                <Trash2 size={12} />
               </button>
             </Tooltip>
           </div>

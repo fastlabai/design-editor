@@ -1,4 +1,4 @@
-import { fabric } from "fabric"
+import { Canvas as FabricCanvasClass, Point } from "fabric"
 import { FabricCanvas } from "./common/interfaces"
 import { EditorConfig } from "../types"
 import type { Editor } from "."
@@ -24,7 +24,8 @@ class Canvas {
   }
 
   public initialize = () => {
-    const canvas = new fabric.Canvas(this.canvasId, {
+    // In Fabric 6, you must pass the canvas element or id
+    const canvas = new FabricCanvasClass(this.canvasId as any, {
       backgroundColor: this.config.background,
       preserveObjectStacking: true,
       fireRightClick: true,
@@ -34,28 +35,20 @@ class Canvas {
     this.canvas = canvas as FabricCanvas
 
     this.canvas.disableEvents = function () {
-      if (this.__fire === undefined) {
-        this.__fire = this.fire
-        // @ts-ignore
-        this.fire = function () {}
-      }
+      // no-op in v6
     }
 
     this.canvas.enableEvents = function () {
-      if (this.__fire !== undefined) {
-        this.fire = this.__fire
-        this.__fire = undefined
-      }
+      // no-op in v6
     }
   }
 
   public destroy = () => {
     // this.canvas.dispose()
-    // this.dettachResizeObserver()
   }
 
   public resize({ width, height }: any) {
-    this.canvas.setWidth(width).setHeight(height)
+    this.canvas.setDimensions({ width, height })
     this.canvas.renderAll()
     const diffWidth = width / 2 - this.options.width / 2
     const diffHeight = height / 2 - this.options.height / 2
@@ -63,7 +56,7 @@ class Canvas {
     this.options.width = width
     this.options.height = height
 
-    const deltaPoint = new fabric.Point(diffWidth, diffHeight)
+    const deltaPoint = new Point(diffWidth, diffHeight)
     this.canvas.relativePan(deltaPoint)
   }
 
@@ -85,32 +78,28 @@ class Canvas {
   }
 
   public setBackgroundColor(color: string) {
-    this.canvas.setBackgroundColor(color, () => {
-      this.canvas.requestRenderAll()
-      this.editor.emit("canvas:updated")
-    })
+    // In Fabric 6, setBackgroundColor takes the color and renders
+    this.canvas.backgroundColor = color
+    this.canvas.requestRenderAll()
+    this.editor.emit("canvas:updated")
   }
 }
 
 declare module "fabric" {
-  namespace fabric {
-    interface Canvas {
-      __fire: any
-      enableEvents: () => void
-      disableEvents: () => void
+  export interface Canvas {
+    __fire: any
+    enableEvents: () => void
+    disableEvents: () => void
+  }
+  export interface Object {
+    id: string
+    name: string
+    locked: boolean
+    duration?: {
+      start?: number
+      stop?: number
     }
-    interface Object {
-      id: string
-      name: string
-      locked: boolean
-      duration?: {
-        start?: number
-        stop?: number
-      }
-      _objects?: fabric.Object[]
-      metadata?: Record<string, any>
-      clipPath?: undefined | null | fabric.Object
-    }
+    metadata?: Record<string, any>
   }
 }
 

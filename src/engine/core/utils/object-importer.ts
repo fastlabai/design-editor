@@ -1,4 +1,14 @@
-import { fabric } from "fabric"
+
+import { StaticText } from "../../objects/StaticText";
+import { StaticImage } from "../../objects/StaticImage";
+import { BackgroundImage } from "../../objects/BackgroundImage";
+import { StaticPath } from "../../objects/StaticPath";
+import { StaticVideo } from "../../objects/StaticVideo";
+import { StaticAudio } from "../../objects/StaticAudio";
+import { StaticVector } from "../../objects/StaticVector";
+import { Background } from "../../objects/Background";
+import { loadSVGFromURL } from "fabric";
+import { Object as FabricObject, Canvas, Group, util } from "fabric"
 import { generateId } from "./id"
 import { LayerType } from "../common/constants"
 import { loadImageFromURL } from "./image-loader"
@@ -20,8 +30,8 @@ import { createVideoElement } from "./video-loader"
 
 class ObjectImporter {
   constructor(public editor: Editor) {}
-  async import(item: ILayer, options: Required<ILayer>, inGroup: boolean = false): Promise<fabric.Object> {
-    let object: fabric.Object
+  async import(item: ILayer, options: Required<ILayer>, inGroup: boolean = false): Promise<FabricObject> {
+    let object: FabricObject
     switch (item.type) {
       case LayerType.STATIC_TEXT:
         object = await this.staticText(item, options, inGroup)
@@ -59,7 +69,7 @@ class ObjectImporter {
     return object
   }
 
-  public staticText(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.StaticText> {
+  public staticText(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<StaticText> {
     return new Promise((resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
@@ -84,7 +94,7 @@ class ObjectImporter {
           fontURL,
         }
         // @ts-ignore
-        const element = new fabric.StaticText(textOptions)
+        const element = new StaticText(textOptions)
         updateObjectBounds(element, options)
         updateObjectShadow(element, item.shadow)
 
@@ -95,7 +105,7 @@ class ObjectImporter {
     })
   }
 
-  public staticImage(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.StaticImage> {
+  public staticImage(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<StaticImage> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
@@ -109,7 +119,7 @@ class ObjectImporter {
           baseOptions.height = image.height
         }
 
-        const element = new fabric.StaticImage(image, {
+        const element = new StaticImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0,
@@ -125,7 +135,7 @@ class ObjectImporter {
     })
   }
 
-  public backgroundImage(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.BackgroundImage> {
+  public backgroundImage(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<BackgroundImage> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
@@ -139,7 +149,7 @@ class ObjectImporter {
           baseOptions.height = image.height
         }
 
-        const element = new fabric.BackgroundImage(image, {
+        const element = new BackgroundImage(image, {
           ...baseOptions,
           cropX: cropX || 0,
           cropY: cropY || 0,
@@ -155,7 +165,7 @@ class ObjectImporter {
     })
   }
 
-  public staticVideo(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.Object> {
+  public staticVideo(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<FabricObject> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
@@ -169,7 +179,7 @@ class ObjectImporter {
           baseOptions.height = videoElement.videoHeight
         }
 
-        const element = new fabric.StaticVideo(videoElement, {
+        const element = new StaticVideo(videoElement, {
           ...baseOptions,
           src: src,
           duration: videoElement.duration,
@@ -185,13 +195,13 @@ class ObjectImporter {
     })
   }
 
-  public staticAudio(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.StaticAudio> {
+  public staticAudio(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<StaticAudio> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
         const { src } = item as IStaticAudio
         // @ts-ignore
-        const element = new fabric.StaticAudio({
+        const element = new StaticAudio({
           ...baseOptions,
           src: src,
         })
@@ -202,13 +212,13 @@ class ObjectImporter {
     })
   }
 
-  public staticPath(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.StaticPath> {
+  public staticPath(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<StaticPath> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
         const { path, fill } = item as IStaticPath
 
-        const element = new fabric.StaticPath({
+        const element = new StaticPath({
           ...baseOptions,
           // @ts-ignore
           path,
@@ -225,18 +235,18 @@ class ObjectImporter {
     })
   }
 
-  public group(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.Group> {
+  public group(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<Group> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
-        let objects: fabric.Object[] = []
+        let objects: FabricObject[] = []
 
         for (const object of (item as IGroup).objects) {
           // @ts-ignore
           objects = objects.concat(await this.import(object, options, true))
         }
         // @ts-ignore
-        const element = new fabric.Group(objects, { ...baseOptions, subTargetCheck: true })
+        const element = new Group(objects, { ...baseOptions, subTargetCheck: true })
 
         updateObjectBounds(element, options)
         updateObjectShadow(element, item.shadow)
@@ -248,13 +258,13 @@ class ObjectImporter {
     })
   }
 
-  public background(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.Background> {
+  public background(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<Background> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
         const { fill } = item as IBackground
         // @ts-ignore
-        const element = new fabric.Background({
+        const element = new Background({
           ...baseOptions,
           fill: fill,
           // @ts-ignore
@@ -268,13 +278,13 @@ class ObjectImporter {
     })
   }
 
-  public staticVector(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<fabric.StaticVector> {
+  public staticVector(item: ILayer, options: Required<ILayer>, inGroup: boolean): Promise<StaticVector> {
     return new Promise(async (resolve, reject) => {
       try {
         const baseOptions = this.getBaseOptions(item, options, inGroup)
         const { src, colorMap = {} } = item as IStaticVector
 
-        fabric.loadSVGFromURL(src, (objects, opts) => {
+        loadSVGFromURL(src).then(({ objects, options: opts }) => {
           const { width, height } = baseOptions
           if (!width || !height) {
             baseOptions.width = opts.width
@@ -283,7 +293,8 @@ class ObjectImporter {
             baseOptions.left = options.left
           }
 
-          const element = new fabric.StaticVector(objects, opts, {
+      // @ts-ignore
+          const element = new StaticVector(objects, opts, {
             ...baseOptions,
             src,
             colorMap,
@@ -293,7 +304,7 @@ class ObjectImporter {
           updateObjectShadow(element, item.shadow)
 
           resolve(element)
-        })
+        }).catch(reject)
       } catch (err) {
         reject(err)
       }

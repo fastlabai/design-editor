@@ -1,4 +1,5 @@
-import { fabric } from "fabric"
+import { StaticCanvas } from 'fabric';
+import { util, Object as FabricObject, Point, Canvas } from "fabric"
 import { IScene, ILayer } from "../../types"
 import ObjectImporter from "../utils/object-importer-render"
 
@@ -9,9 +10,10 @@ class Renderer {
 
   public async toDataURL(template: IScene, params: Record<string, any>) {
     return new Promise(async (resolve, reject) => {
-      const staticCanvas = new fabric.StaticCanvas(null)
+      // @ts-ignore
+      const staticCanvas = new StaticCanvas(null)
       if (params.backgroundColor) {
-        staticCanvas.setBackgroundColor(params.backgroundColor, () => {})
+        staticCanvas.backgroundColor = params.backgroundColor
       }
       await this.loadTemplate(staticCanvas, template, params)
       const { format = 'png', quality = 1, multiplier = 1 } = params
@@ -21,16 +23,17 @@ class Renderer {
         multiplier,
         top: 0,
         left: 0,
-        height: staticCanvas.getHeight(),
-        width: staticCanvas.getWidth(),
-      })
+        height: staticCanvas.height,
+        width: staticCanvas.width,
+      } as any)
       resolve(data)
     })
   }
 
   public renderLayer = (layer: Required<ILayer>, params: {}) => {
     return new Promise(async (resolve, reject) => {
-      const staticCanvas = new fabric.StaticCanvas(null)
+      // @ts-ignore
+      const staticCanvas = new StaticCanvas(null)
       await this.loadTemplate(
         staticCanvas,
         {
@@ -45,15 +48,17 @@ class Renderer {
         params
       )
       const data = staticCanvas.toDataURL({
+        multiplier: 1, 
         top: 0,
         left: 0,
-        height: staticCanvas.getHeight(),
-        width: staticCanvas.getWidth(),
-      })
+        height: staticCanvas.height,
+        width: staticCanvas.width,
+      } as any)
       resolve(data)
     })
   }
-  private async loadTemplate(staticCanvas: fabric.StaticCanvas, template: IScene, params: Record<string, any>) {
+      // @ts-ignore
+  private async loadTemplate(staticCanvas: StaticCanvas, template: IScene, params: Record<string, any>) {
     const { frame } = template
     this.setDimensions(staticCanvas, frame)
     const objectImporter = new ObjectImporter()
@@ -68,8 +73,9 @@ class Renderer {
     }
   }
 
-  private setDimensions(staticCanvas: fabric.StaticCanvas, { width, height }: { width: number; height: number }) {
-    staticCanvas.setWidth(width).setHeight(height)
+      // @ts-ignore
+  private setDimensions(staticCanvas: StaticCanvas, { width, height }: { width: number; height: number }) {
+    staticCanvas.setDimensions({ width: width, height: height })
   }
 }
 

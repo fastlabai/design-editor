@@ -1,9 +1,10 @@
-import { fabric } from "fabric"
+import { loadSVGFromURL } from "fabric"
 import generatePath from "./shape"
 
 async function parseSVG(url: string) {
-  return new Promise((resolve, reject) => {
-    fabric.loadSVGFromURL(url, (objects, summary) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { objects, options: summary } = await loadSVGFromURL(url)
       const frame = {
         width: summary.width,
         height: summary.height,
@@ -12,7 +13,7 @@ async function parseSVG(url: string) {
       let layers: any[] = []
 
       for (const object of objects) {
-        if (object.type === "path") {
+        if (object && (object as any).type === "path") {
           const path = generatePath(object)
           layers = layers.concat(path)
         }
@@ -24,7 +25,9 @@ async function parseSVG(url: string) {
         name: "Hello world",
       }
       resolve(design)
-    })
+    } catch (err) {
+      reject(err)
+    }
   })
 }
 

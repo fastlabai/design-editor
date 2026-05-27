@@ -1,47 +1,51 @@
-import { fabric } from "fabric"
+import { Textbox, classRegistry } from "fabric"
+import type { TextboxProps } from "fabric"
 
-export class StaticTextObject extends fabric.Textbox {
+export type StaticTextOptions = TextboxProps & { text: string; fontURL?: string }
+
+export class StaticText extends Textbox {
   static type = "StaticText"
-  public fontURL: any
-  initialize(options: StaticTextOptions) {
-    const { text, ...textOptions } = options
-    //@ts-ignore
-    super.initialize(text, { ...textOptions })
+  
+  get type() {
+    return "StaticText"
+  }
+  set type(_value: string) {
+    // fixed value — intentional no-op
+  }
 
-    return this
+  public fontURL?: string
+
+  constructor(options: StaticTextOptions) {
+    const { text, ...textOptions } = options
+    super(text, { ...textOptions } as any)
+    if (options.fontURL) {
+      this.fontURL = options.fontURL
+    }
   }
-  toObject(propertiesToInclude = []) {
-    // const originalText = this.getText()
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {
+
+  // @ts-ignore
+  toObject(propertiesToInclude: string[] = []): any {
+    return {
+      ...super.toObject(propertiesToInclude as any),
       fontURL: this.fontURL,
-      // keys: this.keys,
-      // originalText: originalText,
-      // metadata: this.metadata,
-    })
+    }
   }
-  toJSON(propertiesToInclude = []) {
-    // const originalText = this.getText()
-    return fabric.util.object.extend(super.toObject.call(this, propertiesToInclude), {
+
+  // @ts-ignore
+  toJSON(propertiesToInclude: string[] = []): any {
+    return {
+      ...super.toObject(propertiesToInclude as any),
       fontURL: this.fontURL,
-      // keys: this.keys,
-      // originalText: originalText,
-      // metadata: this.metadata,
-    })
+    }
   }
-  static fromObject(options: StaticTextOptions, callback: Function) {
-    return callback && callback(new fabric.StaticText(options))
+
+  static async fromObject(options: StaticTextOptions) {
+    return new StaticText(options)
   }
 }
 
-fabric.StaticText = fabric.util.createClass(StaticTextObject, {
-  type: StaticTextObject.type,
-})
-fabric.StaticText.fromObject = StaticTextObject.fromObject
-
-export type StaticTextOptions = fabric.ITextboxOptions & { text: string; fontURL: string }
+classRegistry.setClass(StaticText, StaticText.type)
 
 declare module "fabric" {
-  namespace fabric {
-    interface StaticText {}
-  }
+  export interface StaticText {}
 }

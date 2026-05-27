@@ -1,4 +1,5 @@
-import { fabric } from "fabric"
+import { ActiveSelection, Textbox, Point } from "fabric"
+import type { TPointerEventInfo, BasicTransformEvent, Object as FabricObject } from "fabric"
 import Base from "./Base"
 import shourcutsManager from "../utils/shourcutsManager"
 import { LayerType } from "../common/constants"
@@ -23,6 +24,7 @@ class Events extends Base {
       "mouse:wheel": this.onMouseWheel,
       "mouse:out": this.onMouseOut,
       "object:modified": this.objectModified,
+      // @ts-ignore - custom event
       "background:selected": this.onBackgroundSelected,
     })
 
@@ -30,6 +32,7 @@ class Events extends Base {
   }
 
   public destroy() {
+    // @ts-ignore
     this.canvas.off({
       "mouse:dblclick": this.onDoubleClick,
       "mouse:down": this.onMouseDown,
@@ -39,30 +42,34 @@ class Events extends Base {
       "mouse:wheel": this.onMouseWheel,
       "mouse:out": this.onMouseOut,
       "object:modified": this.objectModified,
+      // @ts-ignore - custom event
       "background:selected": this.onBackgroundSelected,
     })
 
     this.canvas.wrapperEl.removeEventListener("keydown", this.onKeyDown.bind(this))
   }
 
-  private onDoubleClick = (event: fabric.IEvent<any>) => {
+  private onDoubleClick = (event: any) => {
     const subTarget = event.subTargets![0]
     if (subTarget) {
       this.editor.objects.select(subTarget.id)
     }
   }
 
-  private onMouseDown = (e: fabric.IEvent<any>) => {
+  private onMouseDown = (e: any) => {
     this.editor.objects.pasteStyle()
-    if (e.button === 3) {
-      this.state.setContextMenuRequest({ left: e.e.offsetX, top: e.e.offsetY, target: e.target })
+    if (e.e.button === 2) { // 2 is right click in standard MouseEvent (changed from 3)
+      this.state.setContextMenuRequest({ left: (e.e as MouseEvent).offsetX, top: (e.e as MouseEvent).offsetY, target: e.target })
     } else {
       this.state.setContextMenuRequest(null)
     }
   }
-  objectModified = (event: fabric.IEvent) => {
+  
+  objectModified = (event: any) => {
+    // Skip saves while history is restoring to avoid corrupting the undo stack
+    if (this.editor.history.isActive) return
     const { target } = event
-    if (target instanceof fabric.Textbox) {
+    if (target instanceof Textbox) {
       this.scaleTextbox(target)
     }
     this.editor.history.save()
@@ -72,22 +79,22 @@ class Events extends Base {
     this.canvas.renderAll()
   }
 
-  onMouseWheel = (event: fabric.IEvent<any>) => {
+  onMouseWheel = (event: any) => {
     const isCtrlKey = event.e.ctrlKey
     if (isCtrlKey) {
       this.handleZoom(event)
     }
   }
 
-  handleZoom = (event: fabric.IEvent<any>) => {
-    const delta = event.e.deltaY
+  handleZoom = (event: any) => {
+    const delta = (event.e as WheelEvent).deltaY
     let zoomRatio = this.canvas.getZoom()
     if (delta > 0) {
       zoomRatio -= 0.02
     } else {
       zoomRatio += 0.02
     }
-    this.editor.zoom.zoomToPoint(new fabric.Point(this.canvas.getWidth() / 2, this.canvas.getHeight() / 2), zoomRatio)
+    this.editor.zoom.zoomToPoint(new Point(this.canvas.width! / 2, this.canvas.height! / 2), zoomRatio)
     event.e.preventDefault()
     event.e.stopPropagation()
   }
@@ -137,7 +144,7 @@ class Events extends Base {
     this.canvas.requestRenderAll()
   }
 
-  handleSelection = (target: fabric.IEvent) => {
+  handleSelection = (target: any) => {
     if (target) {
       this.state.setActiveObject(null)
       const initialSelection = this.canvas.getActiveObject() as any
@@ -146,7 +153,7 @@ class Events extends Base {
         (initialSelection && initialSelection.type === LayerType.STATIC_VECTOR)
 
       if (initialSelection && !isNotMultipleSelection && initialSelection._objects) {
-        const filteredObjects = (initialSelection._objects as fabric.Object[]).filter((object) => {
+        const filteredObjects = (initialSelection._objects as FabricObject[]).filter((object) => {
           if (object.type === LayerType.BACKGROUND) {
             return false
           }
@@ -158,9 +165,9 @@ class Events extends Base {
             this.canvas.setActiveObject(filteredObjects[0])
             this.state.setActiveObject(filteredObjects[0])
           } else {
-            const activeSelection = new fabric.ActiveSelection(filteredObjects, {
-              canvas: this.canvas,
-            }) as fabric.Object
+            const activeSelection = new ActiveSelection(filteredObjects, {
+              canvas: this.canvas as any,
+            }) as FabricObject
             this.canvas.setActiveObject(activeSelection)
             this.state.setActiveObject(activeSelection)
           }
@@ -174,7 +181,7 @@ class Events extends Base {
     this.canvas.requestRenderAll()
   }
 
-  scaleTextbox = (target: fabric.Textbox) => {
+  scaleTextbox = (target: Textbox) => {
     const { fontSize, width, scaleX } = target
     target.set({
       fontSize: fontSize! * scaleX!,

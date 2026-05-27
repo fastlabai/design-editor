@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { useEditor, useActiveObject, useZoomRatio } from '../engine/react'
 import { generateId } from '../engine/core/utils/id'
 import type { TextDesign } from '../providers/textDesigns'
@@ -49,8 +49,9 @@ function getStorageSafe(key: string, DEFAULT_SETTINGS: any) {
 }
 
 type TemplatesPanelRenderProp = React.ReactNode | ((props: { onApplyTemplate: (t: DesignTemplate) => void }) => React.ReactNode)
+type LibraryPanelRenderProp = React.ReactNode | ((props: { onAddMedia: (url: string) => void }) => React.ReactNode)
 
-function DesignEditorInner({ onBack, initialScene, className, templatesPanel, title, textDesignProvider }: { onBack?: () => void; initialScene?: any; className?: string; templatesPanel?: TemplatesPanelRenderProp; title?: React.ReactNode; textDesignProvider: TextDesignProvider }) {
+function DesignEditorInner({ onBack, initialScene, className, templatesPanel, libraryPanel, title, textDesignProvider }: { onBack?: () => void; initialScene?: any; className?: string; templatesPanel?: TemplatesPanelRenderProp; libraryPanel?: LibraryPanelRenderProp; title?: React.ReactNode; textDesignProvider: TextDesignProvider }) {
   const editor    = useEditor()
   const activeObj = useActiveObject() as any
   const zoomRatio = useZoomRatio<number>()
@@ -60,11 +61,67 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
 
   const [activePanel,    setActivePanel]    = useState<PanelKey | null>(null)
   const [layerPanelOpen, setLayerPanelOpen] = useState(false)
-  
 
   const [removingBg,        setRemovingBg]        = useState(false)
   const [shimmerRect,       setShimmerRect]       = useState<{top: number, left: number, width: number, height: number} | null>(null)
   const [dragOver,          setDragOver]          = useState(false)
+
+  // ── Canvas pan state (Space + drag) ──────────────────────────────────
+  const [spaceDown, setSpaceDown] = useState(false)
+  const [isPanning, setIsPanning] = useState(false)
+  const panRef = useRef<{ startX: number; startY: number; vpt: number[] } | null>(null)
+  const canvasWrapRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && !e.repeat && (e.target as HTMLElement)?.tagName !== 'INPUT' && (e.target as HTMLElement)?.tagName !== 'TEXTAREA') {
+        e.preventDefault()
+        setSpaceDown(true)
+      }
+    }
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        setSpaceDown(false)
+        panRef.current = null
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keyup', onKeyUp)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+    }
+  }, [])
+
+  const handleCanvasMouseDown = useCallback((e: React.MouseEvent) => {
+    if (!spaceDown || !editor) return
+    e.preventDefault()
+    const fabricCanvas = (editor as any).canvas?.canvas
+    if (!fabricCanvas) return
+    const vpt = fabricCanvas.viewportTransform ? [...fabricCanvas.viewportTransform] : [1, 0, 0, 1, 0, 0]
+    panRef.current = { startX: e.clientX, startY: e.clientY, vpt }
+    setIsPanning(true)
+  }, [spaceDown, editor])
+
+  const handleCanvasMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!panRef.current || !editor) return
+    const fabricCanvas = (editor as any).canvas?.canvas
+    if (!fabricCanvas) return
+    const dx = e.clientX - panRef.current.startX
+    const dy = e.clientY - panRef.current.startY
+    const vpt = [...panRef.current.vpt]
+    vpt[4] += dx
+    vpt[5] += dy
+    fabricCanvas.setViewportTransform(vpt)
+    fabricCanvas.requestRenderAll()
+  }, [editor])
+
+  const handleCanvasMouseUp = useCallback(() => {
+    if (panRef.current) {
+      panRef.current = null
+      setIsPanning(false)
+    }
+  }, [])
 
   const { layers, activeId } = useLayerPanel()
 
@@ -227,12 +284,25 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
     const frameH: number = frameOpts?.height ?? 1080
     const dx = (frameW - design.scene.frame.width) / 2
     const dy = (frameH - design.scene.frame.height) / 2
-    for (const layer of design.scene.layers) {
+
+    // Find the primary text layer(s) from the design
+    const textTypes = new Set(['StaticText', 'DynamicText'])
+    const textLayers = design.scene.layers.filter((l: any) => textTypes.has(l.type))
+    const allLayers  = design.scene.layers
+
+    // If there is exactly one text layer and no other visual layers, add it as
+    // a single editable text object so the user can immediately double-click to edit.
+    // If it's a multi-element design, keep all layers (grouped look).
+    const layersToAdd = textLayers.length === 1 && allLayers.length === 1
+      ? textLayers
+      : allLayers
+
+    for (const layer of layersToAdd) {
       editor.objects.add({
         ...layer,
         id: generateId(),
         left: ((layer.left as number) ?? 0) + dx,
-        top: ((layer.top as number) ?? 0) + dy,
+        top:  ((layer.top  as number) ?? 0) + dy,
       } as any)
     }
   }, [editor])
@@ -365,6 +435,7 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
           workspaceBg={workspaceBg}
           onWorkspaceBgChange={setWorkspaceBg}
           title={title}
+          hasUnsavedChanges={hasUnsavedChanges}
         />
 
         <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
@@ -418,12 +489,23 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, ti
                 {activePanel === 'text'     && <TextPanel provider={textDesignProvider} onApplyTextDesign={handleApplyTextDesign} onAddPlainText={(preset) => { const map = { heading: 72, subheading: 48, body: 28 } as const; handleAddText(preset, map[preset]) }} />}
                 {activePanel === 'shapes'   && <ShapesPanel onAddShape={(src) => addImageToCanvas(src)} />}
                 {activePanel === 'stickers' && <StickersPanel onAddSticker={url => addImageToCanvas(url)} />}
-                {activePanel === 'upload'   && <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />}
+                {activePanel === 'upload'   && (
+                  libraryPanel
+                    ? typeof libraryPanel === 'function' ? libraryPanel({ onAddMedia: handleAddMedia }) : libraryPanel
+                    : <UploadPanel onUploadFile={(url) => handleAddMedia(url)} />
+                )}
               </div>
             </div>
           )}
 
-          <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+          <div
+            ref={canvasWrapRef}
+            style={{ flex: 1, position: 'relative', overflow: 'hidden', cursor: spaceDown ? (isPanning ? 'grabbing' : 'grab') : 'default' }}
+            onMouseDown={handleCanvasMouseDown}
+            onMouseMove={handleCanvasMouseMove}
+            onMouseUp={handleCanvasMouseUp}
+            onMouseLeave={handleCanvasMouseUp}
+          >
             <CanvasArea
               canvasBg={canvasBg}
               workspaceBg={workspaceBg}
@@ -496,6 +578,8 @@ export interface DesignEditorProps {
   className?: string
   /** Custom render override for the Templates panel — useful to inject host-app template UI. */
   templatesPanel?: TemplatesPanelRenderProp
+  /** Custom render override for the Upload/Library panel — useful to inject host-app media library UI. */
+  libraryPanel?: LibraryPanelRenderProp
   /** Optional title to display in the toolbar. Defaults to "FastlabAI Design Studio". */
   title?: React.ReactNode
 }
@@ -529,6 +613,7 @@ export function DesignEditor({
   persistenceProvider = createLocalStoragePersistence(),
   className,
   templatesPanel,
+  libraryPanel,
   title,
 }: DesignEditorProps) {
   const resolvedBackgroundRemovalProvider =
@@ -541,7 +626,7 @@ export function DesignEditor({
   return (
     <EngineProvider>
       <EditorContextProvider value={ctx}>
-        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} templatesPanel={templatesPanel} title={title} textDesignProvider={textDesignProvider} />
+        <DesignEditorInner onBack={onBack} initialScene={initialScene} className={className} templatesPanel={templatesPanel} libraryPanel={libraryPanel} title={title} textDesignProvider={textDesignProvider} />
         <Toaster position="bottom-right" />
       </EditorContextProvider>
     </EngineProvider>

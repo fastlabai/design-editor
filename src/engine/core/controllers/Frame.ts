@@ -1,9 +1,10 @@
 import { ILayer } from "../../types"
-import { fabric } from "fabric"
 import { defaultFrameOptions, LayerType, defaultBackgroundOptions } from "../common/constants"
 import { ControllerOptions, Dimension, GradientOptions } from "../common/interfaces"
 import setObjectGradient from "../utils/fabric"
 import Base from "./Base"
+import { Frame as FrameObject } from "../../objects/Frame"
+import { Background as BackgroundObject } from "../../objects/Background"
 
 class Frame extends Base {
   constructor(props: ControllerOptions) {
@@ -12,19 +13,20 @@ class Frame extends Base {
   }
 
   initialize() {
-    const frame = new fabric.Frame({
+    const frame = new FrameObject({
       ...defaultFrameOptions,
       absolutePositioned: this.config.clipToFrame,
-    })
-    const background = new fabric.Background({
+    } as any)
+    const background = new BackgroundObject({
       ...defaultBackgroundOptions,
       shadow: this.config.shadow,
-    })
+    } as any)
 
-    this.canvas.add(frame, background)
-    const center = this.canvas.getCenter()
-    frame.center()
-    background.center()
+
+      // @ts-ignore
+    this.canvas.add(frame, background);
+    (this.canvas as any).centerObject(frame);
+    (this.canvas as any).centerObject(background);
 
     this.state.setFrame({
       height: defaultFrameOptions.width,
@@ -38,17 +40,19 @@ class Frame extends Base {
   }
 
   get frame() {
-    return this.canvas.getObjects().find((object) => object.type === LayerType.FRAME) as Required<fabric.Frame>
+      // @ts-ignore
+    return this.canvas.getObjects().find((object) => object.type === LayerType.FRAME) as Required<FrameObject>
   }
 
   get background() {
+      // @ts-ignore
     return this.canvas
       .getObjects()
-      .find((object) => object.type === LayerType.BACKGROUND) as Required<fabric.Background>
+      .find((object) => object.type === LayerType.BACKGROUND) as Required<BackgroundObject>
   }
 
   get options(): Required<ILayer> {
-    const options = this.frame.toJSON(this.config.propertiesToInclude)
+    const options = this.frame.toJSON(this.config.propertiesToInclude as any)
     return options as unknown as Required<ILayer>
   }
 
@@ -59,11 +63,13 @@ class Frame extends Base {
     })
     const frame = this.frame
     const background = this.background
-    frame.set({ width, height })
-    frame.center()
+      // @ts-ignore
+    frame.set({ width, height });
+    (this.canvas as any).centerObject(frame);
     if (background) {
-      background.set({ width, height })
-      background.center()
+      // @ts-ignore
+      background.set({ width, height });
+      (this.canvas as any).centerObject(background);
     }
     this.editor.zoom.zoomToFit()
   }
@@ -78,8 +84,7 @@ class Frame extends Base {
   public setBackgroundColor = (color: string) => {
     let background = this.background
     if (!background) {
-      background = new fabric.Background({
-        type: LayerType.BACKGROUND,
+      background = new BackgroundObject({
         name: "Initial Frame",
         fill: color,
         id: "background",
@@ -97,11 +102,12 @@ class Frame extends Base {
         originX: this.frame.originX,
         originY: this.frame.originY,
         shadow: this.config.shadow,
-      }) as Required<fabric.Background>
-      this.canvas.insertAt(background, 1, false)
+      } as any) as Required<BackgroundObject>
+      // @ts-ignore
+      this.canvas.insertAt(1, background)
     } else {
       background.set({ fill: color })
-      background.dirty = true
+      background.set("dirty", true)
     }
     this.canvas.requestRenderAll()
     this.editor.history.save()
@@ -110,8 +116,7 @@ class Frame extends Base {
   public setBackgroundGradient = ({ angle, colors }: GradientOptions) => {
     let background = this.background
     if (!background) {
-      background = new fabric.Background({
-        type: LayerType.BACKGROUND,
+      background = new BackgroundObject({
         name: "Initial Frame",
         fill: "#ffffff",
         id: "background",
@@ -129,11 +134,13 @@ class Frame extends Base {
         originX: this.frame.originX,
         originY: this.frame.originY,
         shadow: this.config.shadow,
-      }) as Required<fabric.Background>
-      this.canvas.insertAt(background, 1, false)
+      } as any) as Required<BackgroundObject>
+      // @ts-ignore
+      this.canvas.insertAt(1, background)
     }
+      // @ts-ignore
     setObjectGradient(background, angle, colors)
-    background.dirty = true
+    background.set("dirty", true)
     this.canvas.requestRenderAll()
     this.editor.history.save()
   }
@@ -144,9 +151,9 @@ class Frame extends Base {
   }
 
   get fitRatio() {
-    const options = this.frame as Required<fabric.Frame>
-    const canvasWidth = this.canvas.getWidth() - this.config.frameMargin
-    const canvasHeight = this.canvas.getHeight() - this.config.frameMargin
+    const options = this.frame as Required<FrameObject>
+    const canvasWidth = this.canvas.width! - this.config.frameMargin
+    const canvasHeight = this.canvas.height! - this.config.frameMargin
     let scaleX = canvasWidth / options.width
     let scaleY = canvasHeight / options.height
     if (options.height >= options.width) {

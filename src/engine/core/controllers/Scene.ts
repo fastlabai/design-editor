@@ -1,4 +1,4 @@
-import { fabric } from "fabric"
+import { util, Object as FabricObject, Point, Canvas } from "fabric"
 import { generateId } from "../utils/id"
 import { IScene, ILayer } from "../../types"
 import { LayerType } from "../common/constants"
@@ -16,6 +16,7 @@ class Scene extends Base {
   public exportToJSON(): IScene {
     let animated = false
 
+      // @ts-ignore
     const canvasJSON: any = this.canvas.toJSON(this.config.propertiesToInclude)
     const frame = this.editor.frame.options
     const template: IScene = {
@@ -59,7 +60,7 @@ class Scene extends Base {
         const objects = activeObject._objects
         for (const object of objects!) {
           const cloned = await new Promise((resolve) => {
-            object.clone((c: fabric.Object) => {
+            object.clone((c: FabricObject) => {
               c.clipPath = undefined
               resolve(c)
             }, this.editor.config.propertiesToInclude)
@@ -67,7 +68,8 @@ class Scene extends Base {
           clonedObjects = clonedObjects.concat(cloned)
         }
 
-        const group = new fabric.Group(clonedObjects)
+      // @ts-ignore
+        const group = new FabricGroup(clonedObjects)
         // @ts-ignore — vendored: group.toJSON() returns loose object, compatible at runtime
         const component = objectExporter.export(group.toJSON(this.editor.config.propertiesToInclude), frame) as any
         const metadata = component.metadata ? component.metadata : {}
@@ -195,7 +197,7 @@ class Scene extends Base {
       const element = await objectImporter.import(layer, frame)
       if (element) {
         if (this.config.clipToFrame) {
-          element.clipPath = frame as unknown as fabric.Object
+          element.clipPath = frame as any
         }
         this.canvas.add(element)
       } else {
@@ -205,6 +207,7 @@ class Scene extends Base {
     this.editor.zoom.zoomToFit()
     this.editor.objects.updateContextObjects()
     this.editor.history.save()
+    this.canvas.requestRenderAll()
   }
 
   public async importFromSVG(url: string) {
