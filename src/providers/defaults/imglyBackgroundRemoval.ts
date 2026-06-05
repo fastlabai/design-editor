@@ -4,14 +4,15 @@ import type { BackgroundRemovalProvider } from '../backgroundRemoval'
 export function createImglyBackgroundRemoval(): BackgroundRemovalProvider {
   return {
     async remove(input, opts) {
-      let removeBackground: typeof import('@imgly/background-removal').removeBackground
+      let removeBackground: any
       try {
-        const mod = await import('@imgly/background-removal')
+        // @ts-ignore: Dynamic HTTP imports are not typed in standard TS config
+        const mod = await import('https://esm.sh/@imgly/background-removal@1.7.0')
         removeBackground = mod.removeBackground
       } catch (e) {
         console.error(e)
         throw new Error(
-          '@imgly/background-removal is not installed. Either install it as a peer dependency or pass a custom backgroundRemovalProvider prop.',
+          '@imgly/background-removal could not be loaded from CDN. Please check your internet connection or pass a custom backgroundRemovalProvider.',
         )
       }
       return removeBackground(input, {
