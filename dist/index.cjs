@@ -7911,12 +7911,12 @@ function createImglyBackgroundRemoval() {
     async remove(input, opts) {
       let removeBackground;
       try {
-        const mod = await import('https://esm.sh/@imgly/background-removal@1.7.0');
+        const mod = await import('@imgly/background-removal');
         removeBackground = mod.removeBackground;
       } catch (e) {
         console.error(e);
         throw new Error(
-          "@imgly/background-removal could not be loaded from CDN. Please check your internet connection or pass a custom backgroundRemovalProvider."
+          "Failed to load @imgly/background-removal module. Please check your build configuration."
         );
       }
       return removeBackground(input, {
