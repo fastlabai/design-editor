@@ -9,7 +9,7 @@
  */
 
 /** Current package version. */
-export const VERSION = '1.0.0-beta.3'
+export const VERSION = '1.0.0-beta.10'
 
 export * from './providers'
 export * from './components/DesignEditor'

@@ -209,14 +209,25 @@ class ObjectExporter {
       shadow,
       preview,
     } = item as Required<ILayer>
+
+    let frameLeft = options.left
+    let frameTop = options.top
+    if (!inGroup) {
+      if (options.originX === 'center') frameLeft -= (options.width * (options.scaleX || 1)) / 2
+      else if (options.originX === 'right') frameLeft -= options.width * (options.scaleX || 1)
+      
+      if (options.originY === 'center') frameTop -= (options.height * (options.scaleY || 1)) / 2
+      else if (options.originY === 'right') frameTop -= options.height * (options.scaleY || 1)
+    }
+
     const baseOptions = {
       id,
       name: name ? name : type,
       angle,
       stroke,
       strokeWidth,
-      left: inGroup ? left : left - options.left,
-      top: inGroup ? top : top - options.top,
+      left: inGroup ? left : left - frameLeft,
+      top: inGroup ? top : top - frameTop,
       width,
       height,
       opacity,

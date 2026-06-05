@@ -15,10 +15,14 @@ class Frame extends Base {
   initialize() {
     const frame = new FrameObject({
       ...defaultFrameOptions,
+      originX: 'left',
+      originY: 'top',
       absolutePositioned: this.config.clipToFrame,
     } as any)
     const background = new BackgroundObject({
       ...defaultBackgroundOptions,
+      originX: 'left',
+      originY: 'top',
       shadow: this.config.shadow,
     } as any)
 
@@ -27,6 +31,8 @@ class Frame extends Base {
     this.canvas.add(frame, background);
     (this.canvas as any).centerObject(frame);
     (this.canvas as any).centerObject(background);
+    frame.setCoords?.()
+    background.setCoords?.()
 
     this.state.setFrame({
       height: defaultFrameOptions.width,
@@ -66,10 +72,12 @@ class Frame extends Base {
       // @ts-ignore
     frame.set({ width, height });
     (this.canvas as any).centerObject(frame);
+    frame.setCoords?.()
     if (background) {
       // @ts-ignore
       background.set({ width, height });
       (this.canvas as any).centerObject(background);
+      background.setCoords?.()
     }
     this.editor.zoom.zoomToFit()
   }

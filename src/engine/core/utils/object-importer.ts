@@ -323,8 +323,8 @@ class ObjectImporter {
       scaleY,
       stroke,
       strokeWidth,
-      angle,
       opacity,
+      angle,
       flipX,
       flipY,
       skewX,
@@ -332,16 +332,28 @@ class ObjectImporter {
       originX,
       originY,
       type,
+      shadow,
       preview,
     } = item as Required<ILayer>
+
+    let frameLeft = options.left
+    let frameTop = options.top
+    if (!inGroup) {
+      if (options.originX === 'center') frameLeft -= (options.width * (options.scaleX || 1)) / 2
+      else if (options.originX === 'right') frameLeft -= options.width * (options.scaleX || 1)
+      
+      if (options.originY === 'center') frameTop -= (options.height * (options.scaleY || 1)) / 2
+      else if (options.originY === 'right') frameTop -= options.height * (options.scaleY || 1)
+    }
+
     let metadata = item.metadata ? item.metadata : {}
     const { fill } = metadata
     let baseOptions = {
       id: id ? id : generateId(),
       name: name ? name : type,
       angle: angle ? angle : 0,
-      top: inGroup ? top : options.top + top,
-      left: inGroup ? left : options.left + left,
+      top: inGroup ? top : frameTop + top,
+      left: inGroup ? left : frameLeft + left,
       width: width,
       height: height,
       originX: originX || "left",

@@ -427,6 +427,6 @@ declare function DesignEditor({ initialScene, sceneKey, onBack, onExport, templa
  * @packageDocumentation
  */
 /** Current package version. */
-declare const VERSION = "1.0.0-beta.3";
+declare const VERSION = "1.0.0-beta.10";
 
 export { type BackgroundRemovalProvider, DesignEditor, type DesignEditorProps, type DesignTemplate, type FontChangeHandler, type FontDescriptor, type FontProvider, type ILayer, type IScene, type PersistenceProvider, type TemplateCategory, type TemplateListOpts, type TemplateListResult, type TemplateProvider, type TextDesign, type TextDesignCategory, type TextDesignListOpts, type TextDesignListResult, type TextDesignProvider, VERSION, createDefaultFontProvider, createDefaultTemplateProvider, createDefaultTextDesignProvider, createImglyBackgroundRemoval, createLocalStoragePersistence };

@@ -334,7 +334,8 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
   }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message])
 
   const handleRemoveBg = useCallback(async () => {
-    if (!editor || !activeObj || activeObj.type !== 'StaticImage' || !activeObj.src) return
+    const src = activeObj?.getSrc ? activeObj.getSrc() : (activeObj as any)?.src
+    if (!editor || !activeObj || activeObj.type !== 'StaticImage' || !src) return
 
     setShimmerRect({
       top: activeObj.top ?? 0,
@@ -346,16 +347,26 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
     setRemovingBg(true)
     message.info('Removing background...')
     try {
-      const blob = await backgroundRemovalProvider.remove(activeObj.src)
-      const newUrl = URL.createObjectURL(blob)
-
-      editor?.objects.update({ src: newUrl })
+      const blob = await backgroundRemovalProvider.remove(src)
+      const reader = new FileReader()
+      reader.onload = async () => {
+        const b64 = reader.result as string
+        await activeObj.setSrc(b64)
+        editor?.canvas.requestRenderAll()
+        editor?.history.save()
+        setRemovingBg(false)
+        setShimmerRect(null)
+      }
+      reader.onerror = () => {
+        setRemovingBg(false)
+        setShimmerRect(null)
+        message.error('Failed to read image blob')
+      }
+      reader.readAsDataURL(blob)
       message.success('Background removed successfully!')
     } catch (err: any) {
       console.error('[handleRemoveBg] Error:', err)
       message.error(`Failed: ${err.message || 'Unknown error'}`)
-    }
-    finally { 
       setRemovingBg(false)
       setShimmerRect(null)
     }
@@ -405,9 +416,9 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
   }, [editor, addImageToCanvas, handleAddMedia])
 
   return (
-    <div data-de-root className={className} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--de-color-bg)', color: 'var(--de-color-fg)' }}>
+    <div data-de-root className={className} style={{ position: 'fixed', inset: 0, width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--de-color-bg)', color: 'var(--de-color-fg)' }}>
       <div style={{
-        position: 'fixed', inset: 0, zIndex: 100,
+        position: 'absolute', inset: 0, zIndex: 0,
         display: 'flex', flexDirection: 'column',
         background: WORKSPACE_BG,
       }}>
@@ -538,6 +549,43 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
                 onRemoveBg={handleRemoveBg}
               />
             )}
+
+            {/* Development Badge */}
+            <div style={{
+              position: 'absolute',
+              bottom: 24,
+              left: 24,
+              background: 'rgba(20, 20, 20, 0.65)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+              borderRadius: '24px',
+              padding: '6px 14px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              zIndex: 50,
+              pointerEvents: 'none',
+            }}>
+              <div style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: '#a855f7',
+                boxShadow: '0 0 10px #a855f7',
+              }} />
+              <span style={{
+                color: '#fff',
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase',
+                textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+              }}>
+                In Development
+              </span>
+            </div>
           </div>
 
           {layerPanelOpen && (

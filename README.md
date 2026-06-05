@@ -49,6 +49,7 @@ export default function App() {
   sceneKey="my-unique-design-id"
   templateProvider={myTemplateProvider}
   templatesPanel={({ onApplyTemplate }) => <MyCustomTemplatesPanel onApply={onApplyTemplate} />}
+  libraryPanel={({ onAddMedia }) => <MyCustomLibraryPanel onAddMedia={onAddMedia} />}
   fontProvider={myFontProvider}
   persistenceProvider={myPersistenceProvider}
   onExport={async (blob, format, scene) => {

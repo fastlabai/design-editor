@@ -50,9 +50,46 @@ const FrozenCanvas = memo(
           if (!container) return
           const nw = container.clientWidth  || 800
           const nh = container.clientHeight || 600
-          try { editor?.canvas?.resize?.({ width: nw, height: nh }) } catch { /* ignore */ }
+          try {
+            editor?.canvas?.resize?.({ width: nw, height: nh })
+            // Re-center frame on the new canvas dimensions and refresh coords
+            window.requestAnimationFrame(() => {
+              try {
+                const fabricCanvas = (editor as any).canvas?.canvas
+                const frame = (editor as any).frame?.frame
+                const bg = (editor as any).frame?.background
+                if (fabricCanvas && frame) {
+                  fabricCanvas.centerObject(frame)
+                  frame.setCoords?.()
+                }
+                if (fabricCanvas && bg) {
+                  fabricCanvas.centerObject(bg)
+                  bg.setCoords?.()
+                }
+                editor.zoom.zoomToFit()
+              } catch { /* ignore */ }
+            })
+          } catch { /* ignore */ }
         })
         resizeObserver.observe(container)
+
+        // After layout settles, re-center frame on actual dimensions and fit
+        window.setTimeout(() => {
+          try {
+            const fabricCanvas = (editor as any).canvas?.canvas
+            const frame = (editor as any).frame?.frame
+            const bg = (editor as any).frame?.background
+            if (fabricCanvas && frame) {
+              fabricCanvas.centerObject(frame)
+              frame.setCoords?.()
+            }
+            if (fabricCanvas && bg) {
+              fabricCanvas.centerObject(bg)
+              bg.setCoords?.()
+            }
+            editor.zoom.zoomToFit()
+          } catch { /* ignore */ }
+        }, 80)
 
         ;(container as any).__layerhubEditor   = editor
         ;(container as any).__layerhubObserver = resizeObserver

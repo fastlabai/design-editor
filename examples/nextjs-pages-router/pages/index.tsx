@@ -9,7 +9,14 @@ const DesignEditor = dynamic(
 export default function Home() {
   return (
     <main style={{ height: '100vh' }}>
-      <DesignEditor title="FastlabAI Studio" sceneKey="example-scene-1" />
+        <DesignEditor
+          title="FastlabAI Studio (Pages Router)"
+          sceneKey="nextjs-pages-scene-1"
+          onExport={async (blob, format) => {
+            console.log(`Exported ${format} file: ${blob.size} bytes`)
+            alert(`Exported ${format} file: ${blob.size} bytes`)
+          }}
+        />
     </main>
   )
 }

@@ -1,4 +1,3 @@
-'use client'
 'use strict';
 
 var React45 = require('react');
@@ -7906,26 +7905,22 @@ function createLocalStoragePersistence(opts = {}) {
   };
 }
 
-// src/internal/dynamicImport.ts
-var dynamicImport = new Function("specifier", "return import(specifier)");
-function importOptionalPeer(specifier) {
-  return dynamicImport(specifier);
-}
-
 // src/providers/defaults/imglyBackgroundRemoval.ts
 function createImglyBackgroundRemoval() {
   return {
     async remove(input, opts) {
       let removeBackground;
       try {
-        ;
-        ({ removeBackground } = await importOptionalPeer("@imgly/background-removal"));
-      } catch {
+        const mod = await import('@imgly/background-removal');
+        removeBackground = mod.removeBackground;
+      } catch (e) {
+        console.error(e);
         throw new Error(
           "@imgly/background-removal is not installed. Either install it as a peer dependency or pass a custom backgroundRemovalProvider prop."
         );
       }
       return removeBackground(input, {
+        publicPath: "https://staticimgly.com/@imgly/background-removal-data/1.7.0/dist/",
         progress: opts?.onProgress ? (_key, current, total) => opts.onProgress(current / total) : void 0
       });
     }
@@ -14423,15 +14418,21 @@ var Frame2 = class extends Base_default {
   initialize() {
     const frame = new Frame({
       ...defaultFrameOptions,
+      originX: "left",
+      originY: "top",
       absolutePositioned: this.config.clipToFrame
     });
     const background = new Background({
       ...defaultBackgroundOptions,
+      originX: "left",
+      originY: "top",
       shadow: this.config.shadow
     });
     this.canvas.add(frame, background);
     this.canvas.centerObject(frame);
     this.canvas.centerObject(background);
+    frame.setCoords?.();
+    background.setCoords?.();
     this.state.setFrame({
       height: defaultFrameOptions.width,
       width: defaultFrameOptions.height
@@ -14460,9 +14461,11 @@ var Frame2 = class extends Base_default {
     const background = this.background;
     frame.set({ width, height });
     this.canvas.centerObject(frame);
+    frame.setCoords?.();
     if (background) {
       background.set({ width, height });
       this.canvas.centerObject(background);
+      background.setCoords?.();
     }
     this.editor.zoom.zoomToFit();
   }
@@ -14577,11 +14580,27 @@ var Zoom = class extends Base_default {
     this.state.setZoomRatio(1);
   }
   zoomToFit() {
-    const zoomFitRatio = this.editor.frame.fitRatio;
-    const center = this.canvas.getCenterPoint();
-    this.canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
-    this.zoomToPoint(new fabric.Point(center.x, center.y), zoomFitRatio);
-    this.state.setZoomRatio(zoomFitRatio);
+    const zoom = this.editor.frame.fitRatio;
+    const canvasW = this.canvas.width;
+    const canvasH = this.canvas.height;
+    const frame = this.editor.frame.frame;
+    try {
+      frame.setCoords?.();
+    } catch {
+    }
+    const frameCenter = frame.getCenterPoint();
+    const tx = canvasW / 2 - frameCenter.x * zoom;
+    const ty = canvasH / 2 - frameCenter.y * zoom;
+    console.log("[zoomToFit] canvasW:", canvasW, "canvasH:", canvasH);
+    console.log("[zoomToFit] zoom:", zoom);
+    console.log("[zoomToFit] frame.left:", frame.left, "frame.top:", frame.top, "frame.width:", frame.width, "frame.height:", frame.height);
+    console.log("[zoomToFit] frameCenter:", frameCenter);
+    console.log("[zoomToFit] tx:", tx, "ty:", ty);
+    console.log("[zoomToFit] frame left edge on screen:", frame.left * zoom + tx);
+    console.log("[zoomToFit] frame right edge on screen:", (frame.left + frame.width) * zoom + tx);
+    this.canvas.setViewportTransform([zoom, 0, 0, zoom, tx, ty]);
+    this.canvas.requestRenderAll();
+    this.state.setZoomRatio(zoom);
   }
   zoomToRatio(zoomRatio) {
     const center = this.canvas.getCenterPoint();
@@ -15009,8 +15028,8 @@ var ObjectImporter = class {
       scaleY,
       stroke,
       strokeWidth,
-      angle,
       opacity,
+      angle,
       flipX,
       flipY,
       skewX,
@@ -15018,16 +15037,25 @@ var ObjectImporter = class {
       originX,
       originY,
       type,
+      shadow,
       preview
     } = item;
+    let frameLeft = options.left;
+    let frameTop = options.top;
+    if (!inGroup) {
+      if (options.originX === "center") frameLeft -= options.width * (options.scaleX || 1) / 2;
+      else if (options.originX === "right") frameLeft -= options.width * (options.scaleX || 1);
+      if (options.originY === "center") frameTop -= options.height * (options.scaleY || 1) / 2;
+      else if (options.originY === "right") frameTop -= options.height * (options.scaleY || 1);
+    }
     let metadata = item.metadata ? item.metadata : {};
     const { fill } = metadata;
     let baseOptions = {
       id: id ? id : generateId(),
       name: name ? name : type,
       angle: angle ? angle : 0,
-      top: inGroup ? top : options.top + top,
-      left: inGroup ? left : options.left + left,
+      top: inGroup ? top : frameTop + top,
+      left: inGroup ? left : frameLeft + left,
       width,
       height,
       originX: originX || "left",
@@ -16524,14 +16552,22 @@ var ObjectExporter = class {
       shadow,
       preview
     } = item;
+    let frameLeft = options.left;
+    let frameTop = options.top;
+    if (!inGroup) {
+      if (options.originX === "center") frameLeft -= options.width * (options.scaleX || 1) / 2;
+      else if (options.originX === "right") frameLeft -= options.width * (options.scaleX || 1);
+      if (options.originY === "center") frameTop -= options.height * (options.scaleY || 1) / 2;
+      else if (options.originY === "right") frameTop -= options.height * (options.scaleY || 1);
+    }
     const baseOptions = {
       id,
       name: name ? name : type,
       angle,
       stroke,
       strokeWidth,
-      left: inGroup ? left : left - options.left,
-      top: inGroup ? top : top - options.top,
+      left: inGroup ? left : left - frameLeft,
+      top: inGroup ? top : top - frameTop,
       width,
       height,
       opacity,
@@ -25871,10 +25907,44 @@ var FrozenCanvas = React45.memo(
           const nh = container.clientHeight || 600;
           try {
             editor?.canvas?.resize?.({ width: nw, height: nh });
+            window.requestAnimationFrame(() => {
+              try {
+                const fabricCanvas = editor.canvas?.canvas;
+                const frame = editor.frame?.frame;
+                const bg = editor.frame?.background;
+                if (fabricCanvas && frame) {
+                  fabricCanvas.centerObject(frame);
+                  frame.setCoords?.();
+                }
+                if (fabricCanvas && bg) {
+                  fabricCanvas.centerObject(bg);
+                  bg.setCoords?.();
+                }
+                editor.zoom.zoomToFit();
+              } catch {
+              }
+            });
           } catch {
           }
         });
         resizeObserver.observe(container);
+        window.setTimeout(() => {
+          try {
+            const fabricCanvas = editor.canvas?.canvas;
+            const frame = editor.frame?.frame;
+            const bg = editor.frame?.background;
+            if (fabricCanvas && frame) {
+              fabricCanvas.centerObject(frame);
+              frame.setCoords?.();
+            }
+            if (fabricCanvas && bg) {
+              fabricCanvas.centerObject(bg);
+              bg.setCoords?.();
+            }
+            editor.zoom.zoomToFit();
+          } catch {
+          }
+        }, 80);
         container.__layerhubEditor = editor;
         container.__layerhubObserver = resizeObserver;
       }, 0);
@@ -28885,11 +28955,77 @@ function TextPanel({ provider, onApplyTextDesign, onAddPlainText }) {
 function useToast() {
   return toastApi;
 }
+var DB_NAME = "fastlabai-media-db";
+var STORE_NAME = "local-media";
+function getDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = () => {
+      req.result.createObjectStore(STORE_NAME);
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+function useLocalMedia() {
+  const [media, setMedia] = React45.useState([]);
+  const [loading, setLoading] = React45.useState(true);
+  React45.useEffect(() => {
+    loadMedia();
+  }, []);
+  const loadMedia = async () => {
+    try {
+      const db = await getDB();
+      const tx = db.transaction(STORE_NAME, "readonly");
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.getAll();
+      req.onsuccess = () => {
+        const items = req.result || [];
+        items.sort((a, b) => b.timestamp - a.timestamp);
+        setMedia(items);
+        setLoading(false);
+      };
+    } catch (err) {
+      console.error("Failed to load local media", err);
+      setLoading(false);
+    }
+  };
+  const addMedia = async (url) => {
+    try {
+      const id = Date.now().toString() + Math.random().toString(36).slice(2);
+      const item = { id, url, timestamp: Date.now() };
+      const db = await getDB();
+      const tx = db.transaction(STORE_NAME, "readwrite");
+      const store = tx.objectStore(STORE_NAME);
+      store.put(item, id);
+      tx.oncomplete = () => {
+        setMedia((prev) => [item, ...prev]);
+      };
+    } catch (err) {
+      console.error("Failed to save media", err);
+    }
+  };
+  const removeMedia = async (id) => {
+    try {
+      const db = await getDB();
+      const tx = db.transaction(STORE_NAME, "readwrite");
+      const store = tx.objectStore(STORE_NAME);
+      store.delete(id);
+      tx.oncomplete = () => {
+        setMedia((prev) => prev.filter((m) => m.id !== id));
+      };
+    } catch (err) {
+      console.error("Failed to remove media", err);
+    }
+  };
+  return { media, loading, addMedia, removeMedia };
+}
 function UploadPanel({ onUploadFile }) {
   const fileInputRef = React45.useRef(null);
   const [hov, setHov] = React45.useState(false);
   const toast2 = useToast();
   const [isUploading, setIsUploading] = React45.useState(false);
+  const { media, loading, addMedia, removeMedia } = useLocalMedia();
   const handleFileChange = async (e) => {
     const f = e.target.files?.[0];
     if (!f) return;
@@ -28899,13 +29035,23 @@ function UploadPanel({ onUploadFile }) {
     }
     try {
       setIsUploading(true);
-      const url = URL.createObjectURL(f);
-      onUploadFile(url);
-      toast2.success("Upload complete");
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const url = reader.result;
+        await addMedia(url);
+        onUploadFile(url);
+        toast2.success("Upload complete");
+        setIsUploading(false);
+      };
+      reader.onerror = () => {
+        toast2.error("Failed to read file");
+        setIsUploading(false);
+      };
+      reader.readAsDataURL(f);
     } catch (err) {
       toast2.error(err instanceof Error ? err.message : "Upload failed");
-    } finally {
       setIsUploading(false);
+    } finally {
       e.target.value = "";
     }
   };
@@ -28951,7 +29097,58 @@ function UploadPanel({ onUploadFile }) {
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx("div", { style: { marginTop: 24, flex: 1, overflowY: "auto" }, children: /* @__PURE__ */ jsxRuntime.jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--color-text-muted)", fontSize: 12 }, children: "Uploaded files are added directly to the canvas." }) })
+    /* @__PURE__ */ jsxRuntime.jsx("div", { style: { marginTop: 24, flex: 1, overflowY: "auto" }, children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "flex", justifyContent: "center", padding: 20 }, children: /* @__PURE__ */ jsxRuntime.jsx(LoaderCircle, { className: "animate-spin", size: 24, color: "var(--color-text-muted)" }) }) : media.length === 0 ? /* @__PURE__ */ jsxRuntime.jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--color-text-muted)", fontSize: 12 }, children: "Uploaded files will appear here" }) : /* @__PURE__ */ jsxRuntime.jsx("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }, children: media.map((item) => /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
+      {
+        style: {
+          position: "relative",
+          aspectRatio: "1",
+          borderRadius: 8,
+          overflow: "hidden",
+          background: "var(--de-color-bg-alt)",
+          cursor: "pointer",
+          border: "1px solid color-mix(in srgb, var(--color-text) 10%, transparent)"
+        },
+        className: "group",
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "img",
+            {
+              src: item.url,
+              alt: "Upload",
+              style: { width: "100%", height: "100%", objectFit: "cover" },
+              onClick: () => onUploadFile(item.url)
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "button",
+            {
+              onClick: (e) => {
+                e.stopPropagation();
+                removeMedia(item.id);
+              },
+              style: {
+                position: "absolute",
+                top: 4,
+                right: 4,
+                background: "rgba(0,0,0,0.6)",
+                border: "none",
+                borderRadius: 4,
+                color: "#fff",
+                padding: 4,
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              },
+              title: "Remove from uploads",
+              children: /* @__PURE__ */ jsxRuntime.jsx(Trash2, { size: 14 })
+            }
+          )
+        ]
+      },
+      item.id
+    )) }) })
   ] });
 }
 function ElementsPanel({
@@ -29549,7 +29746,8 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
     proceed();
   }, [editor, hasUnsavedChanges, sceneKey, setHasUnsavedChanges, message]);
   const handleRemoveBg = React45.useCallback(async () => {
-    if (!editor || !activeObj || activeObj.type !== "StaticImage" || !activeObj.src) return;
+    const src = activeObj?.getSrc ? activeObj.getSrc() : activeObj?.src;
+    if (!editor || !activeObj || activeObj.type !== "StaticImage" || !src) return;
     setShimmerRect({
       top: activeObj.top ?? 0,
       left: activeObj.left ?? 0,
@@ -29559,14 +29757,26 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
     setRemovingBg(true);
     message.info("Removing background...");
     try {
-      const blob = await backgroundRemovalProvider.remove(activeObj.src);
-      const newUrl = URL.createObjectURL(blob);
-      editor?.objects.update({ src: newUrl });
+      const blob = await backgroundRemovalProvider.remove(src);
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const b64 = reader.result;
+        await activeObj.setSrc(b64);
+        editor?.canvas.requestRenderAll();
+        editor?.history.save();
+        setRemovingBg(false);
+        setShimmerRect(null);
+      };
+      reader.onerror = () => {
+        setRemovingBg(false);
+        setShimmerRect(null);
+        message.error("Failed to read image blob");
+      };
+      reader.readAsDataURL(blob);
       message.success("Background removed successfully!");
     } catch (err) {
       console.error("[handleRemoveBg] Error:", err);
       message.error(`Failed: ${err.message || "Unknown error"}`);
-    } finally {
       setRemovingBg(false);
       setShimmerRect(null);
     }
@@ -29609,10 +29819,10 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
       handleAddMedia(mediaUrl, { top, left });
     }
   }, [editor, addImageToCanvas, handleAddMedia]);
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { "data-de-root": true, className, style: { width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "var(--de-color-bg)", color: "var(--de-color-fg)" }, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { style: {
-    position: "fixed",
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { "data-de-root": true, className, style: { position: "fixed", inset: 0, width: "100%", height: "100%", display: "flex", flexDirection: "column", background: "var(--de-color-bg)", color: "var(--de-color-fg)" }, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { style: {
+    position: "absolute",
     inset: 0,
-    zIndex: 100,
+    zIndex: 0,
     display: "flex",
     flexDirection: "column",
     background: WORKSPACE_BG2
@@ -29746,7 +29956,40 @@ function DesignEditorInner({ onBack, initialScene, className, templatesPanel, li
                 removingBg,
                 onRemoveBg: handleRemoveBg
               }
-            )
+            ),
+            /* @__PURE__ */ jsxRuntime.jsxs("div", { style: {
+              position: "absolute",
+              bottom: 24,
+              left: 24,
+              background: "rgba(20, 20, 20, 0.65)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+              borderRadius: "24px",
+              padding: "6px 14px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              zIndex: 50,
+              pointerEvents: "none"
+            }, children: [
+              /* @__PURE__ */ jsxRuntime.jsx("div", { style: {
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "#a855f7",
+                boxShadow: "0 0 10px #a855f7"
+              } }),
+              /* @__PURE__ */ jsxRuntime.jsx("span", { style: {
+                color: "#fff",
+                fontSize: "11px",
+                fontWeight: 700,
+                letterSpacing: "0.5px",
+                textTransform: "uppercase",
+                textShadow: "0 2px 4px rgba(0,0,0,0.5)"
+              }, children: "In Development" })
+            ] })
           ]
         }
       ),
@@ -29789,7 +30032,7 @@ function DesignEditor({
 }
 
 // src/index.ts
-var VERSION = "1.0.0-beta.3";
+var VERSION = "1.0.0-beta.10";
 /*! Bundled license information:
 
 lodash/lodash.js:
